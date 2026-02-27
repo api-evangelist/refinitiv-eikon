@@ -1,0 +1,98 @@
+name: Refinitiv Eikon
+description: 'Refinitiv Eikon provides financial professionals with access to real-time market data, news, analytics, and trading capabilities. The Eikon Data API allows programmatic access to financial data including prices, fundamentals, reference data, and time series.
+
+  '
+image: https://www.refinitiv.com/content/dam/marketing/en_us/images/logos/refinitiv-logo.png
+created: '2024'
+modified: '2024'
+specificationVersion: '0.18'
+url: https://developers.refinitiv.com/apis.json
+tags:
+- financial data
+- market data
+- trading
+- analytics
+- real-time data
+- financial news
+apis:
+- name: Eikon Data API
+  description: 'Python library that allows access to Refinitiv Eikon data. Provides access to  instrument pricing, fundamentals, estimates, time series, and symbology.
+
+    '
+  image: https://www.refinitiv.com/content/dam/marketing/en_us/images/products/eikon-icon.png
+  humanURL: https://developers.refinitiv.com/en/api-catalog/eikon/eikon-data-api
+  baseURL: https://api.refinitiv.com
+  tags:
+  - market data
+  - Python
+  - financial data
+  - time series
+  properties:
+  - type: Documentation
+    url: https://developers.refinitiv.com/en/api-catalog/eikon/eikon-data-api/documentation
+  - type: QuickStart
+    url: https://developers.refinitiv.com/en/api-catalog/eikon/eikon-data-api/quick-start
+  - type: Tutorials
+    url: https://developers.refinitiv.com/en/api-catalog/eikon/eikon-data-api/tutorials
+  - type: Downloads
+    url: https://developers.refinitiv.com/en/api-catalog/eikon/eikon-data-api/downloads
+  - type: Support
+    url: https://developers.refinitiv.com/en/support
+- name: Refinitiv Data Platform APIs
+  description: 'RESTful APIs providing access to Refinitiv''s comprehensive financial data including pricing, ESG data, news, research, and alternative data.
+
+    '
+  humanURL: https://developers.refinitiv.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis
+  baseURL: https://api.refinitiv.com
+  tags:
+  - REST API
+  - market data
+  - ESG
+  - news
+  properties:
+  - type: Documentation
+    url: https://developers.refinitiv.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis/documentation
+  - type: OpenAPI
+    url: https://api.refinitiv.com/streaming-pricing/docs/swagger.yaml
+  - type: Authentication
+    url: https://developers.refinitiv.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis/tutorials#authorization-all
+  - type: Playground
+    url: https://apidocs.refinitiv.com/
+- name: Eikon Messenger API
+  description: 'API for building chatbots and integrations with Eikon Messenger for  collaboration and workflow automation.
+
+    '
+  humanURL: https://developers.refinitiv.com/en/api-catalog/eikon/eikon-messenger-api
+  baseURL: https://api.refinitiv.com
+  tags:
+  - messaging
+  - chatbot
+  - collaboration
+  properties:
+  - type: Documentation
+    url: https://developers.refinitiv.com/en/api-catalog/eikon/eikon-messenger-api/documentation
+  - type: QuickStart
+    url: https://developers.refinitiv.com/en/api-catalog/eikon/eikon-messenger-api/quick-start
+common:
+- type: Portal
+  url: https://developers.refinitiv.com
+- type: SignUp
+  url: https://developers.refinitiv.com/en/register
+- type: Login
+  url: https://developers.refinitiv.com/en/login
+- type: Blog
+  url: https://developers.refinitiv.com/en/insights
+- type: Forums
+  url: https://community.developers.refinitiv.com/
+- type: Support
+  url: https://developers.refinitiv.com/en/support
+- type: TermsOfService
+  url: https://www.refinitiv.com/en/policies/terms-of-use
+- type: PrivacyPolicy
+  url: https://www.refinitiv.com/en/policies/privacy-statement
+- type: Status
+  url: https://status.refinitiv.com/
+maintainers:
+- FN: Refinitiv Developer Relations
+  email: developersupport@refinitiv.com
+  url: https://developers.refinitiv.com
