@@ -1,0 +1,696 @@
+openapi: 3.1.0
+info:
+  title: LSEG DataScope Select REST API
+  description: >-
+    REST API providing programmatic access to the DataScope Select platform
+    for extracting global prices, corporate actions, reference data,
+    historical data, cross-reference data, and entity data. Built on OData
+    protocol, the API supports management of instrument lists, report
+    templates, schedules, and on-demand extractions. Authentication tokens
+    are valid for 24 hours.
+  version: '1.0.0'
+  contact:
+    name: LSEG Developer Support
+    url: https://developers.lseg.com
+  termsOfService: https://www.refinitiv.com/en/policies/terms-of-use
+externalDocs:
+  description: DataScope Select REST API Documentation
+  url: https://developers.lseg.com/en/api-catalog/datascope-select/datascope-select-rest-api/documentation
+servers:
+  - url: https://selectapi.datascope.refinitiv.com/RestApi/v1
+    description: Production Server
+tags:
+  - name: Authentication
+    description: Token-based authentication management
+  - name: Instrument Lists
+    description: Management of instrument lists for extractions
+  - name: Report Templates
+    description: Configuration of extraction report templates
+  - name: Schedules
+    description: Scheduled extraction management
+  - name: Extractions
+    description: On-demand and managed data extractions
+  - name: Search
+    description: Instrument search and validation
+security:
+  - tokenAuth: []
+paths:
+  /Authentication/RequestToken:
+    post:
+      operationId: requestToken
+      summary: Request authentication token
+      description: >-
+        Authenticates user credentials and returns a session token valid
+        for 24 hours. The token must be included in the Authorization
+        header of all subsequent API requests.
+      tags:
+        - Authentication
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - Credentials
+              properties:
+                Credentials:
+                  type: object
+                  required:
+                    - Username
+                    - Password
+                  properties:
+                    Username:
+                      type: string
+                      description: >-
+                        DataScope Select account username.
+                    Password:
+                      type: string
+                      description: >-
+                        DataScope Select account password.
+      responses:
+        '200':
+          description: Successfully authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  value:
+                    type: string
+                    description: >-
+                      Session token to use in subsequent requests.
+        '401':
+          description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /Extractions/ExtractRaw:
+    post:
+      operationId: extractRaw
+      summary: Execute on-demand raw extraction
+      description: >-
+        Executes an on-demand extraction for specified instruments and
+        fields. Returns extracted data directly or initiates an
+        asynchronous extraction for large result sets. Supports multiple
+        extraction types including end-of-day pricing, corporate actions,
+        and reference data.
+      tags:
+        - Extractions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExtractionRequest'
+      responses:
+        '200':
+          description: Extraction completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtractionResponse'
+        '202':
+          description: >-
+            Extraction accepted and processing asynchronously. Use the
+            Location header to poll for results.
+          headers:
+            Location:
+              description: >-
+                URL to poll for extraction results.
+              schema:
+                type: string
+        '400':
+          description: Invalid extraction request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /Extractions/ExtractWithNotes:
+    post:
+      operationId: extractWithNotes
+      summary: Execute on-demand extraction with notes
+      description: >-
+        Executes an on-demand extraction and returns both the extracted
+        data and processing notes. Notes include information about
+        instrument validation, field availability, and any issues
+        encountered during extraction.
+      tags:
+        - Extractions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExtractionRequest'
+      responses:
+        '200':
+          description: Extraction completed successfully with notes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtractionWithNotesResponse'
+        '400':
+          description: Invalid extraction request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /Extractions/ExtractedFiles:
+    get:
+      operationId: listExtractedFiles
+      summary: List extracted files
+      description: >-
+        Retrieves a list of files produced by completed extractions.
+        Files are available for download for a limited retention period.
+      tags:
+        - Extractions
+      responses:
+        '200':
+          description: Successfully retrieved file list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  value:
+                    type: array
+                    description: >-
+                      Array of extracted file metadata.
+                    items:
+                      $ref: '#/components/schemas/ExtractedFile'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /Extractions/ExtractedFiles('{fileId}')/$value:
+    get:
+      operationId: downloadExtractedFile
+      summary: Download an extracted file
+      description: >-
+        Downloads the contents of a specific extracted file by its
+        identifier. Returns the raw extraction data.
+      tags:
+        - Extractions
+      parameters:
+        - name: fileId
+          in: path
+          required: true
+          description: >-
+            Unique identifier of the extracted file.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully downloaded file
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: File not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /Search/InstrumentSearch:
+    post:
+      operationId: searchInstruments
+      summary: Search for instruments
+      description: >-
+        Searches for instruments by identifier, name, or other criteria.
+        Supports various identifier types including RIC, ISIN, CUSIP,
+        SEDOL, and ticker symbols.
+      tags:
+        - Search
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                SearchString:
+                  type: string
+                  description: >-
+                    Search term for instrument lookup.
+                IdentifierType:
+                  type: string
+                  description: >-
+                    Type of identifier used in the search.
+                  enum:
+                    - Ric
+                    - Isin
+                    - Cusip
+                    - Sedol
+                    - Ticker
+                    - ChainRic
+                PreferredIdentifierType:
+                  type: string
+                  description: >-
+                    Preferred identifier type for results.
+      responses:
+        '200':
+          description: Successfully retrieved search results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  value:
+                    type: array
+                    description: >-
+                      Array of matching instruments.
+                    items:
+                      $ref: '#/components/schemas/InstrumentSearchResult'
+        '400':
+          description: Invalid search parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /InstrumentLists:
+    get:
+      operationId: listInstrumentLists
+      summary: List instrument lists
+      description: >-
+        Retrieves all instrument lists owned by the authenticated user.
+        Instrument lists define the set of instruments for an extraction.
+      tags:
+        - Instrument Lists
+      responses:
+        '200':
+          description: Successfully retrieved instrument lists
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  value:
+                    type: array
+                    description: >-
+                      Array of instrument list definitions.
+                    items:
+                      $ref: '#/components/schemas/InstrumentList'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: createInstrumentList
+      summary: Create an instrument list
+      description: >-
+        Creates a new instrument list for use in extractions. The list
+        specifies the instruments to be included in data extraction jobs.
+      tags:
+        - Instrument Lists
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InstrumentList'
+      responses:
+        '201':
+          description: Instrument list created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstrumentList'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /ReportTemplates:
+    get:
+      operationId: listReportTemplates
+      summary: List report templates
+      description: >-
+        Retrieves all report templates owned by the authenticated user.
+        Report templates define the content type and fields for extractions.
+      tags:
+        - Report Templates
+      responses:
+        '200':
+          description: Successfully retrieved report templates
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  value:
+                    type: array
+                    description: >-
+                      Array of report template definitions.
+                    items:
+                      $ref: '#/components/schemas/ReportTemplate'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /Schedules:
+    get:
+      operationId: listSchedules
+      summary: List extraction schedules
+      description: >-
+        Retrieves all extraction schedules owned by the authenticated user.
+        Schedules define when and how extractions are automatically executed.
+      tags:
+        - Schedules
+      responses:
+        '200':
+          description: Successfully retrieved schedules
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  value:
+                    type: array
+                    description: >-
+                      Array of schedule definitions.
+                    items:
+                      $ref: '#/components/schemas/Schedule'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: createSchedule
+      summary: Create an extraction schedule
+      description: >-
+        Creates a new extraction schedule that automatically executes
+        extractions at specified times or triggered by events.
+      tags:
+        - Schedules
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Schedule'
+      responses:
+        '201':
+          description: Schedule created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schedule'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  securitySchemes:
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        Session token obtained from the RequestToken endpoint. Include
+        as Token followed by the token value.
+  schemas:
+    ExtractionRequest:
+      type: object
+      description: >-
+        Request body for on-demand data extraction operations.
+      required:
+        - ExtractionRequest
+      properties:
+        ExtractionRequest:
+          type: object
+          properties:
+            '@odata.type':
+              type: string
+              description: >-
+                OData type specifying the extraction type, such as
+                EndOfDayPricingExtractionRequest or
+                TermsAndConditionsExtractionRequest.
+            ContentFieldNames:
+              type: array
+              description: >-
+                List of field names to include in the extraction.
+              items:
+                type: string
+            IdentifierList:
+              type: object
+              description: >-
+                Specification of instruments for the extraction.
+              properties:
+                '@odata.type':
+                  type: string
+                  description: >-
+                    OData type for the identifier list, such as
+                    InstrumentIdentifierList.
+                InstrumentIdentifiers:
+                  type: array
+                  description: >-
+                    Array of instrument identifiers.
+                  items:
+                    type: object
+                    properties:
+                      Identifier:
+                        type: string
+                        description: >-
+                          Instrument identifier value.
+                      IdentifierType:
+                        type: string
+                        description: >-
+                          Type of identifier such as Ric, Isin, or Cusip.
+            Condition:
+              type: object
+              description: >-
+                Extraction conditions such as date range and query parameters.
+              additionalProperties: true
+    ExtractionResponse:
+      type: object
+      description: >-
+        Response containing extracted data from an on-demand extraction.
+      properties:
+        '@odata.context':
+          type: string
+          description: >-
+            OData context URL.
+        JobId:
+          type: string
+          description: >-
+            Unique identifier for the extraction job.
+        Notes:
+          type: array
+          description: >-
+            Processing notes from the extraction.
+          items:
+            type: string
+        value:
+          type: array
+          description: >-
+            Array of extracted data records.
+          items:
+            type: object
+            additionalProperties: true
+    ExtractionWithNotesResponse:
+      type: object
+      description: >-
+        Response containing both extracted data and detailed notes.
+      properties:
+        JobId:
+          type: string
+          description: >-
+            Unique identifier for the extraction job.
+        Notes:
+          type: array
+          description: >-
+            Detailed processing notes from the extraction.
+          items:
+            type: string
+        value:
+          type: array
+          description: >-
+            Array of extracted data records.
+          items:
+            type: object
+            additionalProperties: true
+    ExtractedFile:
+      type: object
+      description: >-
+        Metadata for a file produced by an extraction.
+      properties:
+        ExtractedFileId:
+          type: string
+          description: >-
+            Unique identifier for the extracted file.
+        ReportExtractionId:
+          type: string
+          description: >-
+            Identifier of the extraction that produced this file.
+        FileName:
+          type: string
+          description: >-
+            Name of the extracted file.
+        FileType:
+          type: string
+          description: >-
+            Type of file such as Full or Note.
+        Size:
+          type: integer
+          description: >-
+            File size in bytes.
+        ReceivedDateUtc:
+          type: string
+          format: date-time
+          description: >-
+            Timestamp when the file was created.
+    InstrumentSearchResult:
+      type: object
+      description: >-
+        Search result for an instrument lookup.
+      properties:
+        Identifier:
+          type: string
+          description: >-
+            Primary identifier for the instrument.
+        IdentifierType:
+          type: string
+          description: >-
+            Type of the primary identifier.
+        Source:
+          type: string
+          description: >-
+            Data source for the instrument.
+        Description:
+          type: string
+          description: >-
+            Human-readable description of the instrument.
+        Status:
+          type: string
+          description: >-
+            Current status of the instrument.
+    InstrumentList:
+      type: object
+      description: >-
+        Definition of an instrument list for extractions.
+      properties:
+        ListId:
+          type: string
+          description: >-
+            Unique identifier for the instrument list.
+        Name:
+          type: string
+          description: >-
+            Human-readable name for the list.
+        InstrumentIdentifiers:
+          type: array
+          description: >-
+            Array of instrument identifiers in the list.
+          items:
+            type: object
+            properties:
+              Identifier:
+                type: string
+                description: >-
+                  Instrument identifier value.
+              IdentifierType:
+                type: string
+                description: >-
+                  Type of identifier.
+    ReportTemplate:
+      type: object
+      description: >-
+        Definition of a report template for extractions.
+      properties:
+        ReportTemplateId:
+          type: string
+          description: >-
+            Unique identifier for the report template.
+        Name:
+          type: string
+          description: >-
+            Human-readable name for the template.
+        ContentType:
+          type: string
+          description: >-
+            Type of content for the extraction such as EndOfDay or
+            TermsAndConditions.
+        ContentFieldNames:
+          type: array
+          description: >-
+            List of field names included in the template.
+          items:
+            type: string
+    Schedule:
+      type: object
+      description: >-
+        Definition of an extraction schedule.
+      properties:
+        ScheduleId:
+          type: string
+          description: >-
+            Unique identifier for the schedule.
+        Name:
+          type: string
+          description: >-
+            Human-readable name for the schedule.
+        Recurrence:
+          type: object
+          description: >-
+            Recurrence pattern for the schedule.
+          properties:
+            '@odata.type':
+              type: string
+              description: >-
+                OData type for the recurrence pattern.
+            IsImmediate:
+              type: boolean
+              description: >-
+                Whether the extraction runs immediately.
+        ListId:
+          type: string
+          description: >-
+            Identifier of the instrument list used by this schedule.
+        ReportTemplateId:
+          type: string
+          description: >-
+            Identifier of the report template used by this schedule.
+    Error:
+      type: object
+      description: >-
+        Standard error response from the DataScope Select API.
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: >-
+                Machine-readable error code.
+            message:
+              type: string
+              description: >-
+                Human-readable error message.

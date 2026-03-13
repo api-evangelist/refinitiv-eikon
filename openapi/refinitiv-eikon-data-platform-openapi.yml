@@ -1,0 +1,1051 @@
+openapi: 3.1.0
+info:
+  title: Refinitiv Data Platform APIs
+  description: >-
+    RESTful APIs providing access to Refinitiv's comprehensive financial data
+    including pricing, ESG data, news, research, alternative data, and
+    streaming services. The platform serves as the central hub for
+    programmatic access to LSEG content. Uses OAuth 2.0 for authentication
+    with access tokens obtained via the token endpoint.
+  version: '1.0.0'
+  contact:
+    name: LSEG Developer Support
+    url: https://developers.lseg.com
+  termsOfService: https://www.refinitiv.com/en/policies/terms-of-use
+externalDocs:
+  description: Refinitiv Data Platform API Documentation
+  url: https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis/documentation
+servers:
+  - url: https://api.refinitiv.com
+    description: Production Server
+tags:
+  - name: Authentication
+    description: OAuth 2.0 token management for API access
+  - name: Historical Pricing
+    description: Historical price data including interday and intraday summaries
+  - name: Streaming Pricing
+    description: Snapshot and streaming price data for financial instruments
+  - name: News
+    description: Financial news headlines and stories from Reuters and other sources
+  - name: ESG
+    description: Environmental, Social, and Governance data and scores
+  - name: Symbology
+    description: Instrument identifier concordance and navigation
+  - name: Search
+    description: Search across organizations, instruments, quotes, and indicators
+  - name: Estimates
+    description: Consensus analyst estimates and recommendations
+  - name: Ownership
+    description: Institutional and fund ownership data
+  - name: Filings
+    description: Regulatory filings including SEC documents
+  - name: Funds
+    description: Lipper fund data including performance and classifications
+  - name: Research
+    description: Sell-side research reports and content
+security:
+  - bearerAuth: []
+paths:
+  /auth/oauth2/v1/token:
+    post:
+      operationId: getAccessToken
+      summary: Obtain access token
+      description: >-
+        Authenticates and returns an OAuth 2.0 access token using Resource
+        Owner Password Credentials grant type. Access tokens are valid for
+        five minutes. Subsequent token refreshes should use the refresh token
+        grant type.
+      tags:
+        - Authentication
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - grant_type
+                - username
+                - password
+                - client_id
+              properties:
+                grant_type:
+                  type: string
+                  description: >-
+                    OAuth 2.0 grant type. Use password for initial
+                    authentication, refresh_token for subsequent requests.
+                  enum:
+                    - password
+                    - refresh_token
+                username:
+                  type: string
+                  description: >-
+                    RDP username or machine account identifier.
+                password:
+                  type: string
+                  description: >-
+                    User password for the RDP account.
+                client_id:
+                  type: string
+                  description: >-
+                    Application client identifier provided during app
+                    registration.
+                refresh_token:
+                  type: string
+                  description: >-
+                    Refresh token from a previous authentication response.
+                    Required when grant_type is refresh_token.
+                scope:
+                  type: string
+                  description: >-
+                    Requested scope of access. Default is trapi.
+      responses:
+        '200':
+          description: Successfully authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /data/historical-pricing/v1/views/interday-summaries/{universe}:
+    get:
+      operationId: getInterdaySummaries
+      summary: Retrieve interday pricing summaries
+      description: >-
+        Returns historical interday summary pricing data for a specified
+        instrument including open, high, low, close, volume, and other
+        summary fields. Supports date range filtering and field selection.
+      tags:
+        - Historical Pricing
+      parameters:
+        - $ref: '#/components/parameters/Universe'
+        - $ref: '#/components/parameters/StartDate'
+        - $ref: '#/components/parameters/EndDate'
+        - name: interval
+          in: query
+          description: >-
+            Time interval for the summaries. Options include daily, weekly,
+            monthly, quarterly, and yearly.
+          schema:
+            type: string
+            enum:
+              - P1D
+              - P7D
+              - P1M
+              - P3M
+              - P1Y
+        - name: count
+          in: query
+          description: >-
+            Maximum number of data points to return.
+          schema:
+            type: integer
+            minimum: 1
+        - name: fields
+          in: query
+          description: >-
+            Comma-separated list of fields to include in the response.
+          schema:
+            type: string
+        - name: adjustments
+          in: query
+          description: >-
+            Comma-separated list of price adjustment types to apply.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved pricing data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HistoricalPricingResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Instrument not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /data/historical-pricing/v1/views/intraday-summaries/{universe}:
+    get:
+      operationId: getIntradaySummaries
+      summary: Retrieve intraday pricing summaries
+      description: >-
+        Returns historical intraday summary pricing data for a specified
+        instrument at configurable intervals. Supports minute-level and
+        hourly granularity for recent trading sessions.
+      tags:
+        - Historical Pricing
+      parameters:
+        - $ref: '#/components/parameters/Universe'
+        - $ref: '#/components/parameters/StartDate'
+        - $ref: '#/components/parameters/EndDate'
+        - name: interval
+          in: query
+          description: >-
+            Time interval for intraday summaries.
+          schema:
+            type: string
+            enum:
+              - PT1M
+              - PT5M
+              - PT10M
+              - PT30M
+              - PT60M
+              - PT1H
+        - name: count
+          in: query
+          description: >-
+            Maximum number of data points to return.
+          schema:
+            type: integer
+            minimum: 1
+        - name: fields
+          in: query
+          description: >-
+            Comma-separated list of fields to include in the response.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved intraday pricing data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HistoricalPricingResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /data/pricing/snapshots/v1/{universe}:
+    get:
+      operationId: getPricingSnapshots
+      summary: Retrieve pricing snapshots
+      description: >-
+        Returns the latest snapshot pricing data for one or more instruments.
+        Provides real-time or delayed pricing depending on entitlements.
+      tags:
+        - Streaming Pricing
+      parameters:
+        - name: universe
+          in: path
+          required: true
+          description: >-
+            Comma-separated list of instrument identifiers (RICs).
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: >-
+            Comma-separated list of fields to include in the response.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved pricing snapshots
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PricingSnapshotResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /data/news/v1/headlines:
+    get:
+      operationId: getNewsHeadlines
+      summary: Retrieve news headlines
+      description: >-
+        Returns financial news headlines matching the specified query
+        criteria. Supports filtering by topic, instrument, date range, and
+        other parameters. Results include headline text, source, and
+        timestamps.
+      tags:
+        - News
+      parameters:
+        - name: query
+          in: query
+          description: >-
+            Free-text search query for news headlines. Supports operators
+            and field-specific searches.
+          schema:
+            type: string
+        - name: count
+          in: query
+          description: >-
+            Maximum number of headlines to return.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+        - name: cursor
+          in: query
+          description: >-
+            Pagination cursor for retrieving the next set of results.
+          schema:
+            type: string
+        - name: dateFrom
+          in: query
+          description: >-
+            Start date for filtering headlines in ISO 8601 format.
+          schema:
+            type: string
+            format: date-time
+        - name: dateTo
+          in: query
+          description: >-
+            End date for filtering headlines in ISO 8601 format.
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Successfully retrieved news headlines
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NewsHeadlinesResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /data/news/v1/stories/{storyId}:
+    get:
+      operationId: getNewsStory
+      summary: Retrieve a news story
+      description: >-
+        Returns the full content of a news story identified by its story
+        identifier. Includes the story body, metadata, subjects, and
+        associated instruments.
+      tags:
+        - News
+      parameters:
+        - name: storyId
+          in: path
+          required: true
+          description: >-
+            Unique identifier for the news story.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved the news story
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NewsStory'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Story not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /data/environmental-social-governance/v2/views/scores-full:
+    get:
+      operationId: getEsgScoresFull
+      summary: Retrieve full ESG scores
+      description: >-
+        Returns comprehensive Environmental, Social, and Governance scores
+        and measures for specified instruments. Includes pillar scores,
+        category scores, and detailed metrics covering over 400 ESG data
+        points.
+      tags:
+        - ESG
+      parameters:
+        - name: universe
+          in: query
+          required: true
+          description: >-
+            Comma-separated list of instrument identifiers.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved ESG scores
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EsgScoresResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /data/environmental-social-governance/v2/views/measures-full:
+    get:
+      operationId: getEsgMeasuresFull
+      summary: Retrieve full ESG measures
+      description: >-
+        Returns detailed ESG measures and underlying data points for
+        specified instruments. Provides the raw metrics used to compute
+        ESG scores across environmental, social, and governance categories.
+      tags:
+        - ESG
+      parameters:
+        - name: universe
+          in: query
+          required: true
+          description: >-
+            Comma-separated list of instrument identifiers.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved ESG measures
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EsgMeasuresResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /discovery/symbology/v1/lookup:
+    post:
+      operationId: lookupSymbology
+      summary: Look up instrument symbology
+      description: >-
+        Maps between different instrument identifier types. Supports
+        concordance from external identifiers such as ISIN, CUSIP, SEDOL,
+        and ticker to LSEG PermIDs and RICs. Enables navigation between
+        a wide range of identifier types.
+      tags:
+        - Symbology
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SymbologyLookupRequest'
+      responses:
+        '200':
+          description: Successfully resolved identifiers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SymbologyLookupResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /discovery/search/v1/:
+    post:
+      operationId: searchInstruments
+      summary: Search for instruments
+      description: >-
+        Searches across organizations, instruments, quotes, and economic
+        indicators on the Refinitiv Data Platform. Supports filtering by
+        entity type, asset class, exchange, and other criteria.
+      tags:
+        - Search
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: Successfully retrieved search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >-
+        OAuth 2.0 bearer token obtained from the authentication endpoint.
+        Access tokens are valid for five minutes and must be refreshed
+        using the refresh token.
+  parameters:
+    Universe:
+      name: universe
+      in: path
+      required: true
+      description: >-
+        Instrument identifier, typically a RIC such as AAPL.O or IBM.N.
+      schema:
+        type: string
+    StartDate:
+      name: start
+      in: query
+      description: >-
+        Start date for the data range in ISO 8601 format.
+      schema:
+        type: string
+        format: date-time
+    EndDate:
+      name: end
+      in: query
+      description: >-
+        End date for the data range in ISO 8601 format.
+      schema:
+        type: string
+        format: date-time
+  schemas:
+    TokenResponse:
+      type: object
+      description: >-
+        OAuth 2.0 token response containing the access token and refresh
+        token for subsequent API calls.
+      properties:
+        access_token:
+          type: string
+          description: >-
+            Bearer token for authenticating subsequent API requests.
+        refresh_token:
+          type: string
+          description: >-
+            Token for obtaining a new access token when the current one
+            expires.
+        expires_in:
+          type: integer
+          description: >-
+            Number of seconds until the access token expires.
+        scope:
+          type: string
+          description: >-
+            Scope of access granted by the token.
+        token_type:
+          type: string
+          description: >-
+            Type of token issued, typically Bearer.
+    HistoricalPricingResponse:
+      type: object
+      description: >-
+        Response containing historical pricing data for an instrument.
+      properties:
+        universe:
+          type: array
+          description: >-
+            Array of instrument pricing result sets.
+          items:
+            type: object
+            properties:
+              instrumentId:
+                type: string
+                description: >-
+                  Instrument identifier for the pricing data.
+              ric:
+                type: string
+                description: >-
+                  Reuters Instrument Code.
+              displayName:
+                type: string
+                description: >-
+                  Human-readable name of the instrument.
+              data:
+                type: array
+                description: >-
+                  Array of pricing data points.
+                items:
+                  $ref: '#/components/schemas/PricingDataPoint'
+              headers:
+                type: array
+                description: >-
+                  Field header definitions for the data array.
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      description: >-
+                        Field name.
+                    type:
+                      type: string
+                      description: >-
+                        Data type of the field.
+    PricingDataPoint:
+      type: object
+      description: >-
+        A single data point in the historical pricing response.
+      properties:
+        DATE:
+          type: string
+          format: date
+          description: >-
+            Trading date for this data point.
+        TRDPRC_1:
+          type: number
+          description: >-
+            Last trade price or closing price.
+        HIGH_1:
+          type: number
+          description: >-
+            Highest trade price during the period.
+        LOW_1:
+          type: number
+          description: >-
+            Lowest trade price during the period.
+        OPEN_PRC:
+          type: number
+          description: >-
+            Opening trade price for the period.
+        ACVOL_UNS:
+          type: integer
+          description: >-
+            Accumulated volume (unsigned) for the period.
+        BID:
+          type: number
+          description: >-
+            Best bid price at close.
+        ASK:
+          type: number
+          description: >-
+            Best ask price at close.
+    PricingSnapshotResponse:
+      type: object
+      description: >-
+        Response containing real-time or delayed pricing snapshots.
+      properties:
+        universe:
+          type: array
+          description: >-
+            Array of instrument snapshot results.
+          items:
+            type: object
+            properties:
+              instrumentId:
+                type: string
+                description: >-
+                  Instrument identifier.
+              ric:
+                type: string
+                description: >-
+                  Reuters Instrument Code.
+              fields:
+                type: object
+                description: >-
+                  Key-value pairs of field names and their current values.
+                additionalProperties: true
+    NewsHeadlinesResponse:
+      type: object
+      description: >-
+        Response containing news headlines matching the query.
+      properties:
+        data:
+          type: array
+          description: >-
+            Array of news headline entries.
+          items:
+            $ref: '#/components/schemas/NewsHeadline'
+        meta:
+          type: object
+          description: >-
+            Pagination metadata.
+          properties:
+            count:
+              type: integer
+              description: >-
+                Total number of matching headlines.
+            next:
+              type: string
+              description: >-
+                Cursor for the next page of results.
+    NewsHeadline:
+      type: object
+      description: >-
+        A single news headline entry.
+      properties:
+        storyId:
+          type: string
+          description: >-
+            Unique identifier for the news story.
+        title:
+          type: string
+          description: >-
+            Headline text.
+        sourceCode:
+          type: string
+          description: >-
+            Code identifying the news source.
+        sourceName:
+          type: string
+          description: >-
+            Human-readable name of the news source.
+        versionCreated:
+          type: string
+          format: date-time
+          description: >-
+            Timestamp when the headline was created.
+    NewsStory:
+      type: object
+      description: >-
+        Full news story with body content and metadata.
+      properties:
+        storyId:
+          type: string
+          description: >-
+            Unique identifier for the news story.
+        title:
+          type: string
+          description: >-
+            Story headline.
+        body:
+          type: string
+          description: >-
+            Full story body content in HTML or plain text.
+        sourceCode:
+          type: string
+          description: >-
+            Code identifying the news source.
+        language:
+          type: string
+          description: >-
+            Language of the news story in ISO 639-1 format.
+        subjects:
+          type: array
+          description: >-
+            Topic codes associated with the story.
+          items:
+            type: string
+        audiences:
+          type: array
+          description: >-
+            Audience codes associated with the story.
+          items:
+            type: string
+        versionCreated:
+          type: string
+          format: date-time
+          description: >-
+            Timestamp when the story was published.
+    EsgScoresResponse:
+      type: object
+      description: >-
+        Response containing ESG scores for requested instruments.
+      properties:
+        data:
+          type: array
+          description: >-
+            Array of ESG score results by instrument.
+          items:
+            type: object
+            properties:
+              instrumentId:
+                type: string
+                description: >-
+                  Instrument identifier.
+              esgScore:
+                type: number
+                description: >-
+                  Overall ESG combined score.
+              environmentPillarScore:
+                type: number
+                description: >-
+                  Environmental pillar score.
+              socialPillarScore:
+                type: number
+                description: >-
+                  Social pillar score.
+              governancePillarScore:
+                type: number
+                description: >-
+                  Corporate governance pillar score.
+              esgCombinedScore:
+                type: number
+                description: >-
+                  Combined ESG score including controversies.
+              controversiesScore:
+                type: number
+                description: >-
+                  Score reflecting ESG controversies.
+    EsgMeasuresResponse:
+      type: object
+      description: >-
+        Response containing detailed ESG measures for requested instruments.
+      properties:
+        data:
+          type: array
+          description: >-
+            Array of ESG measure results by instrument.
+          items:
+            type: object
+            properties:
+              instrumentId:
+                type: string
+                description: >-
+                  Instrument identifier.
+              measures:
+                type: object
+                description: >-
+                  Key-value pairs of ESG measure fields and their values.
+                additionalProperties: true
+    SymbologyLookupRequest:
+      type: object
+      description: >-
+        Request body for symbology lookup operations.
+      required:
+        - from
+        - to
+        - universe
+      properties:
+        from:
+          type: array
+          description: >-
+            Source identifier type or types.
+          items:
+            type: object
+            properties:
+              identifierTypes:
+                type: array
+                description: >-
+                  List of source identifier types such as ISIN, CUSIP,
+                  SEDOL, or Ticker.
+                items:
+                  type: string
+              values:
+                type: array
+                description: >-
+                  List of identifier values to look up.
+                items:
+                  type: string
+        to:
+          type: array
+          description: >-
+            Target identifier types to resolve to.
+          items:
+            type: object
+            properties:
+              identifierTypes:
+                type: array
+                description: >-
+                  List of target identifier types such as RIC, PermID,
+                  or ISIN.
+                items:
+                  type: string
+        universe:
+          type: array
+          description: >-
+            List of instrument identifiers to resolve.
+          items:
+            type: string
+    SymbologyLookupResponse:
+      type: object
+      description: >-
+        Response containing resolved instrument identifiers.
+      properties:
+        data:
+          type: array
+          description: >-
+            Array of resolved identifier results.
+          items:
+            type: object
+            properties:
+              input:
+                type: string
+                description: >-
+                  Input identifier value.
+              output:
+                type: array
+                description: >-
+                  Resolved identifier mappings.
+                items:
+                  type: object
+                  additionalProperties:
+                    type: string
+    SearchRequest:
+      type: object
+      description: >-
+        Request body for instrument search operations.
+      properties:
+        View:
+          type: string
+          description: >-
+            Search view defining the entity types and fields to search
+            across.
+          enum:
+            - Entities
+            - EquityQuotes
+            - BondInstruments
+            - FundQuotes
+            - GovCorpInstruments
+            - Indicators
+        Filter:
+          type: string
+          description: >-
+            OData-style filter expression to narrow search results.
+        Query:
+          type: string
+          description: >-
+            Free-text search query.
+        Select:
+          type: string
+          description: >-
+            Comma-separated list of fields to return.
+        Top:
+          type: integer
+          description: >-
+            Maximum number of results to return.
+          minimum: 1
+          maximum: 10000
+        OrderBy:
+          type: string
+          description: >-
+            Field name and sort direction for ordering results.
+        Boost:
+          type: string
+          description: >-
+            Boosting expression to influence result ranking.
+    SearchResponse:
+      type: object
+      description: >-
+        Response containing search results for the query.
+      properties:
+        Total:
+          type: integer
+          description: >-
+            Total number of matching results.
+        Hits:
+          type: array
+          description: >-
+            Array of matching result entries.
+          items:
+            type: object
+            properties:
+              DocumentTitle:
+                type: string
+                description: >-
+                  Display name of the matched entity.
+              RIC:
+                type: string
+                description: >-
+                  Reuters Instrument Code if applicable.
+              PermID:
+                type: string
+                description: >-
+                  Permanent identifier for the entity.
+              PI:
+                type: string
+                description: >-
+                  Primary identifier for the entity.
+              ExchangeCode:
+                type: string
+                description: >-
+                  Code for the exchange where the instrument trades.
+    Error:
+      type: object
+      description: >-
+        Standard error response from the Refinitiv Data Platform.
+      properties:
+        error:
+          type: object
+          properties:
+            id:
+              type: string
+              description: >-
+                Unique error identifier.
+            code:
+              type: string
+              description: >-
+                Machine-readable error code.
+            message:
+              type: string
+              description: >-
+                Human-readable error message.
+            status:
+              type: object
+              description: >-
+                HTTP status information.
+              properties:
+                code:
+                  type: integer
+                  description: >-
+                    HTTP status code.
+                message:
+                  type: string
+                  description: >-
+                    HTTP status message.

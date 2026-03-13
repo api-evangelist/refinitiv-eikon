@@ -1,0 +1,491 @@
+openapi: 3.1.0
+info:
+  title: LSEG Tick History REST API
+  description: >-
+    REST API providing programmatic access to historical tick-level market
+    data through the DataScope Select platform. Supports on-demand and
+    scheduled extractions of tick data, intraday bars, and end-of-day data
+    across global markets. Shares the same base URL and authentication
+    mechanism as the DataScope Select REST API.
+  version: '1.0.0'
+  contact:
+    name: LSEG Developer Support
+    url: https://developers.lseg.com
+  termsOfService: https://www.refinitiv.com/en/policies/terms-of-use
+externalDocs:
+  description: Tick History REST API Documentation
+  url: https://developers.lseg.com/en/api-catalog/refinitiv-tick-history/refinitiv-tick-history-rth-rest-api/documentation
+servers:
+  - url: https://selectapi.datascope.refinitiv.com/RestApi/v1
+    description: Production Server
+tags:
+  - name: Authentication
+    description: Token-based authentication management
+  - name: On-Demand Extractions
+    description: Immediate tick data extraction requests
+  - name: Jobs
+    description: Extraction job management and status monitoring
+  - name: Files
+    description: Extracted file management and download
+security:
+  - tokenAuth: []
+paths:
+  /Authentication/RequestToken:
+    post:
+      operationId: requestToken
+      summary: Request authentication token
+      description: >-
+        Authenticates user credentials and returns a session token valid
+        for 24 hours. Uses the same authentication as DataScope Select.
+      tags:
+        - Authentication
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - Credentials
+              properties:
+                Credentials:
+                  type: object
+                  required:
+                    - Username
+                    - Password
+                  properties:
+                    Username:
+                      type: string
+                      description: >-
+                        DataScope Select account username.
+                    Password:
+                      type: string
+                      description: >-
+                        DataScope Select account password.
+      responses:
+        '200':
+          description: Successfully authenticated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  value:
+                    type: string
+                    description: >-
+                      Session token for subsequent requests.
+        '401':
+          description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /Extractions/ExtractRaw:
+    post:
+      operationId: extractTickHistoryRaw
+      summary: Extract tick history data
+      description: >-
+        Executes an on-demand tick history extraction for specified
+        instruments and date range. Supports tick data, intraday bars,
+        market depth, and time-and-sales extraction types. For large
+        extractions, returns a 202 response with a polling location.
+      tags:
+        - On-Demand Extractions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TickHistoryExtractionRequest'
+      responses:
+        '200':
+          description: Extraction completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TickHistoryExtractionResponse'
+        '202':
+          description: >-
+            Extraction accepted for asynchronous processing. Poll the
+            Location header URL for results.
+          headers:
+            Location:
+              description: >-
+                URL to poll for extraction results.
+              schema:
+                type: string
+        '400':
+          description: Invalid extraction request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /Extractions/ReportExtractions('{extractionId}')/FullExtractionNote:
+    get:
+      operationId: getExtractionNote
+      summary: Retrieve extraction notes
+      description: >-
+        Returns the detailed processing notes for a completed extraction,
+        including instrument validation results and any issues encountered.
+      tags:
+        - Jobs
+      parameters:
+        - name: extractionId
+          in: path
+          required: true
+          description: >-
+            Unique identifier of the extraction.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved extraction notes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  value:
+                    type: string
+                    description: >-
+                      Full extraction note content.
+        '404':
+          description: Extraction not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /Extractions/ExtractedFiles:
+    get:
+      operationId: listExtractedFiles
+      summary: List extracted files
+      description: >-
+        Retrieves a list of files produced by completed tick history
+        extractions. Files are available for download within the
+        retention period.
+      tags:
+        - Files
+      responses:
+        '200':
+          description: Successfully retrieved file list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  value:
+                    type: array
+                    description: >-
+                      Array of extracted file metadata.
+                    items:
+                      $ref: '#/components/schemas/ExtractedFile'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /Extractions/ExtractedFiles('{fileId}')/$value:
+    get:
+      operationId: downloadExtractedFile
+      summary: Download an extracted file
+      description: >-
+        Downloads the raw tick data file by its identifier. Supports
+        gzip compression via the Accept-Encoding header.
+      tags:
+        - Files
+      parameters:
+        - name: fileId
+          in: path
+          required: true
+          description: >-
+            Unique identifier of the extracted file.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully downloaded file
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: File not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /Jobs/Jobs:
+    get:
+      operationId: listJobs
+      summary: List extraction jobs
+      description: >-
+        Retrieves a list of extraction jobs and their current statuses.
+        Allows monitoring the progress of asynchronous extractions.
+      tags:
+        - Jobs
+      responses:
+        '200':
+          description: Successfully retrieved job list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  value:
+                    type: array
+                    description: >-
+                      Array of extraction job records.
+                    items:
+                      $ref: '#/components/schemas/ExtractionJob'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /Jobs/Jobs('{jobId}'):
+    get:
+      operationId: getJobStatus
+      summary: Get job status
+      description: >-
+        Retrieves the status and details of a specific extraction job.
+      tags:
+        - Jobs
+      parameters:
+        - name: jobId
+          in: path
+          required: true
+          description: >-
+            Unique identifier of the extraction job.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved job status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtractionJob'
+        '404':
+          description: Job not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: cancelJob
+      summary: Cancel an extraction job
+      description: >-
+        Cancels a running extraction job. Only jobs that have not yet
+        completed can be cancelled.
+      tags:
+        - Jobs
+      parameters:
+        - name: jobId
+          in: path
+          required: true
+          description: >-
+            Unique identifier of the extraction job to cancel.
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Job cancelled successfully
+        '404':
+          description: Job not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  securitySchemes:
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        Session token obtained from the RequestToken endpoint.
+  schemas:
+    TickHistoryExtractionRequest:
+      type: object
+      description: >-
+        Request body for tick history data extraction.
+      required:
+        - ExtractionRequest
+      properties:
+        ExtractionRequest:
+          type: object
+          properties:
+            '@odata.type':
+              type: string
+              description: >-
+                OData type for the extraction, such as
+                TickHistoryTimeAndSalesExtractionRequest,
+                TickHistoryIntradayBarsExtractionRequest, or
+                TickHistoryRawExtractionRequest.
+            ContentFieldNames:
+              type: array
+              description: >-
+                List of tick data fields to extract such as Trade Price,
+                Volume, Bid Price, and Ask Price.
+              items:
+                type: string
+            IdentifierList:
+              type: object
+              description: >-
+                Instruments for the tick history extraction.
+              properties:
+                '@odata.type':
+                  type: string
+                  description: >-
+                    OData type for the identifier list.
+                InstrumentIdentifiers:
+                  type: array
+                  description: >-
+                    Array of instrument identifiers.
+                  items:
+                    type: object
+                    properties:
+                      Identifier:
+                        type: string
+                        description: >-
+                          Instrument identifier such as a RIC.
+                      IdentifierType:
+                        type: string
+                        description: >-
+                          Type of identifier.
+            Condition:
+              type: object
+              description: >-
+                Extraction conditions including date range and data
+                filtering parameters.
+              properties:
+                MessageTimeStampIn:
+                  type: string
+                  description: >-
+                    Timezone for message timestamps.
+                  enum:
+                    - LocalExchangeTime
+                    - GmtUtc
+                ReportDateRangeType:
+                  type: string
+                  description: >-
+                    Type of date range specification.
+                  enum:
+                    - Range
+                    - Delta
+                QueryStartDate:
+                  type: string
+                  format: date-time
+                  description: >-
+                    Start date and time for the extraction.
+                QueryEndDate:
+                  type: string
+                  format: date-time
+                  description: >-
+                    End date and time for the extraction.
+                DisplaySourceRIC:
+                  type: boolean
+                  description: >-
+                    Whether to include the source RIC in results.
+    TickHistoryExtractionResponse:
+      type: object
+      description: >-
+        Response containing tick history extraction results.
+      properties:
+        JobId:
+          type: string
+          description: >-
+            Unique identifier for the extraction job.
+        Notes:
+          type: array
+          description: >-
+            Processing notes from the extraction.
+          items:
+            type: string
+        value:
+          type: array
+          description: >-
+            Array of tick data records.
+          items:
+            type: object
+            additionalProperties: true
+    ExtractedFile:
+      type: object
+      description: >-
+        Metadata for a file produced by an extraction.
+      properties:
+        ExtractedFileId:
+          type: string
+          description: >-
+            Unique identifier for the extracted file.
+        FileName:
+          type: string
+          description: >-
+            Name of the extracted file.
+        FileType:
+          type: string
+          description: >-
+            Type of file such as Full or Note.
+        Size:
+          type: integer
+          description: >-
+            File size in bytes.
+        ReceivedDateUtc:
+          type: string
+          format: date-time
+          description: >-
+            Timestamp when the file was generated.
+    ExtractionJob:
+      type: object
+      description: >-
+        Status and metadata for an extraction job.
+      properties:
+        JobId:
+          type: string
+          description: >-
+            Unique identifier for the job.
+        Status:
+          type: string
+          description: >-
+            Current status of the extraction job.
+          enum:
+            - InProgress
+            - Completed
+            - Failed
+            - Cancelled
+        StartedUtc:
+          type: string
+          format: date-time
+          description: >-
+            Timestamp when the job started.
+        CompletedUtc:
+          type: string
+          format: date-time
+          description: >-
+            Timestamp when the job completed.
+    Error:
+      type: object
+      description: >-
+        Standard error response.
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: >-
+                Machine-readable error code.
+            message:
+              type: string
+              description: >-
+                Human-readable error message.
