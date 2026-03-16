@@ -1,3 +1,4 @@
+aid: refinitiv-eikon
 name: Refinitiv Eikon
 description: >-
   Refinitiv Eikon provides financial professionals with access to real-time
@@ -5,11 +6,12 @@ description: >-
   allows programmatic access to financial data including prices, fundamentals,
   reference data, and time series. Eikon was withdrawn from the LSEG product
   line on June 30, 2025, and has been succeeded by LSEG Workspace.
+type: Index
 image: https://www.refinitiv.com/content/dam/marketing/en_us/images/logos/refinitiv-logo.png
-created: '2024'
-modified: '2026-03-04'
-specificationVersion: '0.18'
-url: https://developers.lseg.com/en/api-catalog
+url: https://raw.githubusercontent.com/api-evangelist/refinitiv-eikon/refs/heads/main/apis.yml
+created: '2024-01-01'
+modified: '2026-03-16'
+specificationVersion: '0.19'
 tags:
 - Financial Data
 - Market Data
@@ -714,5 +716,5 @@ common:
 - type: Website
   url: https://www.lseg.com
 maintainers:
-- name: Kin Lane
-  email: kin@apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com
