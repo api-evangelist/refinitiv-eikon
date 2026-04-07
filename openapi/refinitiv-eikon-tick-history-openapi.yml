@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: LSEG Tick History REST API
+  title: Refinitiv Eikon LSEG Tick History REST API
   description: >-
     REST API providing programmatic access to historical tick-level market
     data through the DataScope Select platform. Supports on-demand and
@@ -33,7 +33,7 @@ paths:
   /Authentication/RequestToken:
     post:
       operationId: requestToken
-      summary: Request authentication token
+      summary: Refinitiv Eikon Request authentication token
       description: >-
         Authenticates user credentials and returns a session token valid
         for 24 hours. Uses the same authentication as DataScope Select.
@@ -84,7 +84,7 @@ paths:
   /Extractions/ExtractRaw:
     post:
       operationId: extractTickHistoryRaw
-      summary: Extract tick history data
+      summary: Refinitiv Eikon Extract tick history data
       description: >-
         Executes an on-demand tick history extraction for specified
         instruments and date range. Supports tick data, intraday bars,
@@ -130,7 +130,7 @@ paths:
   /Extractions/ReportExtractions('{extractionId}')/FullExtractionNote:
     get:
       operationId: getExtractionNote
-      summary: Retrieve extraction notes
+      summary: Refinitiv Eikon Retrieve extraction notes
       description: >-
         Returns the detailed processing notes for a completed extraction,
         including instrument validation results and any issues encountered.
@@ -165,7 +165,7 @@ paths:
   /Extractions/ExtractedFiles:
     get:
       operationId: listExtractedFiles
-      summary: List extracted files
+      summary: Refinitiv Eikon List extracted files
       description: >-
         Retrieves a list of files produced by completed tick history
         extractions. Files are available for download within the
@@ -195,7 +195,7 @@ paths:
   /Extractions/ExtractedFiles('{fileId}')/$value:
     get:
       operationId: downloadExtractedFile
-      summary: Download an extracted file
+      summary: Refinitiv Eikon Download an extracted file
       description: >-
         Downloads the raw tick data file by its identifier. Supports
         gzip compression via the Accept-Encoding header.
@@ -226,7 +226,7 @@ paths:
   /Jobs/Jobs:
     get:
       operationId: listJobs
-      summary: List extraction jobs
+      summary: Refinitiv Eikon List extraction jobs
       description: >-
         Retrieves a list of extraction jobs and their current statuses.
         Allows monitoring the progress of asynchronous extractions.
@@ -255,7 +255,7 @@ paths:
   /Jobs/Jobs('{jobId}'):
     get:
       operationId: getJobStatus
-      summary: Get job status
+      summary: Refinitiv Eikon Get job status
       description: >-
         Retrieves the status and details of a specific extraction job.
       tags:
@@ -283,7 +283,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     delete:
       operationId: cancelJob
-      summary: Cancel an extraction job
+      summary: Refinitiv Eikon Cancel an extraction job
       description: >-
         Cancels a running extraction job. Only jobs that have not yet
         completed can be cancelled.

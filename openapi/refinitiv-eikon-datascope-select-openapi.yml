@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: LSEG DataScope Select REST API
+  title: Refinitiv Eikon LSEG DataScope Select REST API
   description: >-
     REST API providing programmatic access to the DataScope Select platform
     for extracting global prices, corporate actions, reference data,
@@ -38,7 +38,7 @@ paths:
   /Authentication/RequestToken:
     post:
       operationId: requestToken
-      summary: Request authentication token
+      summary: Refinitiv Eikon Request authentication token
       description: >-
         Authenticates user credentials and returns a session token valid
         for 24 hours. The token must be included in the Authorization
@@ -90,7 +90,7 @@ paths:
   /Extractions/ExtractRaw:
     post:
       operationId: extractRaw
-      summary: Execute on-demand raw extraction
+      summary: Refinitiv Eikon Execute on-demand raw extraction
       description: >-
         Executes an on-demand extraction for specified instruments and
         fields. Returns extracted data directly or initiates an
@@ -137,7 +137,7 @@ paths:
   /Extractions/ExtractWithNotes:
     post:
       operationId: extractWithNotes
-      summary: Execute on-demand extraction with notes
+      summary: Refinitiv Eikon Execute on-demand extraction with notes
       description: >-
         Executes an on-demand extraction and returns both the extracted
         data and processing notes. Notes include information about
@@ -173,7 +173,7 @@ paths:
   /Extractions/ExtractedFiles:
     get:
       operationId: listExtractedFiles
-      summary: List extracted files
+      summary: Refinitiv Eikon List extracted files
       description: >-
         Retrieves a list of files produced by completed extractions.
         Files are available for download for a limited retention period.
@@ -202,7 +202,7 @@ paths:
   /Extractions/ExtractedFiles('{fileId}')/$value:
     get:
       operationId: downloadExtractedFile
-      summary: Download an extracted file
+      summary: Refinitiv Eikon Download an extracted file
       description: >-
         Downloads the contents of a specific extracted file by its
         identifier. Returns the raw extraction data.
@@ -233,7 +233,7 @@ paths:
   /Search/InstrumentSearch:
     post:
       operationId: searchInstruments
-      summary: Search for instruments
+      summary: Refinitiv Eikon Search for instruments
       description: >-
         Searches for instruments by identifier, name, or other criteria.
         Supports various identifier types including RIC, ISIN, CUSIP,
@@ -289,7 +289,7 @@ paths:
   /InstrumentLists:
     get:
       operationId: listInstrumentLists
-      summary: List instrument lists
+      summary: Refinitiv Eikon List instrument lists
       description: >-
         Retrieves all instrument lists owned by the authenticated user.
         Instrument lists define the set of instruments for an extraction.
@@ -317,7 +317,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     post:
       operationId: createInstrumentList
-      summary: Create an instrument list
+      summary: Refinitiv Eikon Create an instrument list
       description: >-
         Creates a new instrument list for use in extractions. The list
         specifies the instruments to be included in data extraction jobs.
@@ -345,7 +345,7 @@ paths:
   /ReportTemplates:
     get:
       operationId: listReportTemplates
-      summary: List report templates
+      summary: Refinitiv Eikon List report templates
       description: >-
         Retrieves all report templates owned by the authenticated user.
         Report templates define the content type and fields for extractions.
@@ -374,7 +374,7 @@ paths:
   /Schedules:
     get:
       operationId: listSchedules
-      summary: List extraction schedules
+      summary: Refinitiv Eikon List extraction schedules
       description: >-
         Retrieves all extraction schedules owned by the authenticated user.
         Schedules define when and how extractions are automatically executed.
@@ -402,7 +402,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     post:
       operationId: createSchedule
-      summary: Create an extraction schedule
+      summary: Refinitiv Eikon Create an extraction schedule
       description: >-
         Creates a new extraction schedule that automatically executes
         extractions at specified times or triggered by events.

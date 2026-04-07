@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Refinitiv Data Platform APIs
+  title: Refinitiv Eikon Refinitiv Data Platform APIs
   description: >-
     RESTful APIs providing access to Refinitiv's comprehensive financial data
     including pricing, ESG data, news, research, alternative data, and
@@ -49,7 +49,7 @@ paths:
   /auth/oauth2/v1/token:
     post:
       operationId: getAccessToken
-      summary: Obtain access token
+      summary: Refinitiv Eikon Obtain access token
       description: >-
         Authenticates and returns an OAuth 2.0 access token using Resource
         Owner Password Credentials grant type. Access tokens are valid for
@@ -122,7 +122,7 @@ paths:
   /data/historical-pricing/v1/views/interday-summaries/{universe}:
     get:
       operationId: getInterdaySummaries
-      summary: Retrieve interday pricing summaries
+      summary: Refinitiv Eikon Retrieve interday pricing summaries
       description: >-
         Returns historical interday summary pricing data for a specified
         instrument including open, high, low, close, volume, and other
@@ -193,7 +193,7 @@ paths:
   /data/historical-pricing/v1/views/intraday-summaries/{universe}:
     get:
       operationId: getIntradaySummaries
-      summary: Retrieve intraday pricing summaries
+      summary: Refinitiv Eikon Retrieve intraday pricing summaries
       description: >-
         Returns historical intraday summary pricing data for a specified
         instrument at configurable intervals. Supports minute-level and
@@ -252,7 +252,7 @@ paths:
   /data/pricing/snapshots/v1/{universe}:
     get:
       operationId: getPricingSnapshots
-      summary: Retrieve pricing snapshots
+      summary: Refinitiv Eikon Retrieve pricing snapshots
       description: >-
         Returns the latest snapshot pricing data for one or more instruments.
         Provides real-time or delayed pricing depending on entitlements.
@@ -294,7 +294,7 @@ paths:
   /data/news/v1/headlines:
     get:
       operationId: getNewsHeadlines
-      summary: Retrieve news headlines
+      summary: Refinitiv Eikon Retrieve news headlines
       description: >-
         Returns financial news headlines matching the specified query
         criteria. Supports filtering by topic, instrument, date range, and
@@ -360,7 +360,7 @@ paths:
   /data/news/v1/stories/{storyId}:
     get:
       operationId: getNewsStory
-      summary: Retrieve a news story
+      summary: Refinitiv Eikon Retrieve a news story
       description: >-
         Returns the full content of a news story identified by its story
         identifier. Includes the story body, metadata, subjects, and
@@ -397,7 +397,7 @@ paths:
   /data/environmental-social-governance/v2/views/scores-full:
     get:
       operationId: getEsgScoresFull
-      summary: Retrieve full ESG scores
+      summary: Refinitiv Eikon Retrieve full ESG scores
       description: >-
         Returns comprehensive Environmental, Social, and Governance scores
         and measures for specified instruments. Includes pillar scores,
@@ -435,7 +435,7 @@ paths:
   /data/environmental-social-governance/v2/views/measures-full:
     get:
       operationId: getEsgMeasuresFull
-      summary: Retrieve full ESG measures
+      summary: Refinitiv Eikon Retrieve full ESG measures
       description: >-
         Returns detailed ESG measures and underlying data points for
         specified instruments. Provides the raw metrics used to compute
@@ -472,7 +472,7 @@ paths:
   /discovery/symbology/v1/lookup:
     post:
       operationId: lookupSymbology
-      summary: Look up instrument symbology
+      summary: Refinitiv Eikon Look up instrument symbology
       description: >-
         Maps between different instrument identifier types. Supports
         concordance from external identifiers such as ISIN, CUSIP, SEDOL,
@@ -508,7 +508,7 @@ paths:
   /discovery/search/v1/:
     post:
       operationId: searchInstruments
-      summary: Search for instruments
+      summary: Refinitiv Eikon Search for instruments
       description: >-
         Searches across organizations, instruments, quotes, and economic
         indicators on the Refinitiv Data Platform. Supports filtering by
