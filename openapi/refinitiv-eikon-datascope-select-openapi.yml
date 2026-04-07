@@ -22,14 +22,14 @@ servers:
 tags:
   - name: Authentication
     description: Token-based authentication management
+  - name: Extractions
+    description: On-demand and managed data extractions
   - name: Instrument Lists
     description: Management of instrument lists for extractions
   - name: Report Templates
     description: Configuration of extraction report templates
   - name: Schedules
     description: Scheduled extraction management
-  - name: Extractions
-    description: On-demand and managed data extractions
   - name: Search
     description: Instrument search and validation
 security:

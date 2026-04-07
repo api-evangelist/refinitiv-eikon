@@ -21,28 +21,18 @@ servers:
 tags:
   - name: Authentication
     description: OAuth 2.0 token management for API access
-  - name: Historical Pricing
-    description: Historical price data including interday and intraday summaries
-  - name: Streaming Pricing
-    description: Snapshot and streaming price data for financial instruments
-  - name: News
-    description: Financial news headlines and stories from Reuters and other sources
   - name: ESG
     description: Environmental, Social, and Governance data and scores
-  - name: Symbology
-    description: Instrument identifier concordance and navigation
+  - name: Historical Pricing
+    description: Historical price data including interday and intraday summaries
+  - name: News
+    description: Financial news headlines and stories from Reuters and other sources
   - name: Search
     description: Search across organizations, instruments, quotes, and indicators
-  - name: Estimates
-    description: Consensus analyst estimates and recommendations
-  - name: Ownership
-    description: Institutional and fund ownership data
-  - name: Filings
-    description: Regulatory filings including SEC documents
-  - name: Funds
-    description: Lipper fund data including performance and classifications
-  - name: Research
-    description: Sell-side research reports and content
+  - name: Streaming Pricing
+    description: Snapshot and streaming price data for financial instruments
+  - name: Symbology
+    description: Instrument identifier concordance and navigation
 security:
   - bearerAuth: []
 paths:

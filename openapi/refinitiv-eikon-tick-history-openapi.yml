@@ -21,12 +21,12 @@ servers:
 tags:
   - name: Authentication
     description: Token-based authentication management
-  - name: On-Demand Extractions
-    description: Immediate tick data extraction requests
-  - name: Jobs
-    description: Extraction job management and status monitoring
   - name: Files
     description: Extracted file management and download
+  - name: Jobs
+    description: Extraction job management and status monitoring
+  - name: On-Demand Extractions
+    description: Immediate tick data extraction requests
 security:
   - tokenAuth: []
 paths:
