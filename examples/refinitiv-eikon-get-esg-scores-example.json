@@ -1,0 +1,47 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.refinitiv.com/data/environmental-social-governance/v2/views/scores-full",
+    "headers": {
+      "Authorization": "Bearer {access_token}",
+      "Content-Type": "application/json"
+    },
+    "queryParameters": {
+      "universe": "AAPL.O,MSFT.O,GOOGL.O"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "data": [
+        {
+          "instrumentId": "AAPL.O",
+          "esgScore": 72.3,
+          "environmentPillarScore": 80.1,
+          "socialPillarScore": 68.4,
+          "governancePillarScore": 71.5,
+          "esgCombinedScore": 70.2,
+          "controversiesScore": 64.8
+        },
+        {
+          "instrumentId": "MSFT.O",
+          "esgScore": 85.6,
+          "environmentPillarScore": 89.3,
+          "socialPillarScore": 82.7,
+          "governancePillarScore": 84.2,
+          "esgCombinedScore": 84.1,
+          "controversiesScore": 78.3
+        },
+        {
+          "instrumentId": "GOOGL.O",
+          "esgScore": 68.9,
+          "environmentPillarScore": 75.2,
+          "socialPillarScore": 64.3,
+          "governancePillarScore": 67.8,
+          "esgCombinedScore": 65.4,
+          "controversiesScore": 52.1
+        }
+      ]
+    }
+  }
+}

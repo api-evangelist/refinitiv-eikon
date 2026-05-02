@@ -1,0 +1,231 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Refinitiv Eikon DataScope Select API"
+  description: "REST API for extracting global prices, corporate actions, reference data, historical data, and entity data from the DataScope Select platform."
+  tags:
+    - Refinitiv Eikon
+    - Data Extraction
+    - Corporate Actions
+    - Reference Data
+    - Historical Data
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      DATASCOPE_TOKEN: DATASCOPE_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: eikon-datascope
+      baseUri: https://selectapi.datascope.refinitiv.com/RestApi/v1
+      description: "DataScope Select REST API for batch data extraction."
+      authentication:
+        type: apikey
+        key: Authorization
+        value: "Token {{DATASCOPE_TOKEN}}"
+        placement: header
+      resources:
+        - name: extractions
+          path: /Extractions
+          description: "On-demand data extraction operations."
+          operations:
+            - name: extract-raw
+              method: POST
+              description: "Execute an on-demand raw data extraction."
+              inputParameters: []
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  ExtractionRequest: "{{tools.extractionRequest}}"
+
+            - name: extract-with-notes
+              method: POST
+              description: "Execute an on-demand extraction and return data with notes."
+              inputParameters: []
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  ExtractionRequest: "{{tools.extractionRequest}}"
+
+            - name: list-extracted-files
+              method: GET
+              description: "List files produced by completed extractions."
+              inputParameters: []
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: download-extracted-file
+              method: GET
+              description: "Download the contents of a specific extracted file."
+              inputParameters:
+                - name: fileId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Unique identifier of the extracted file."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: instrument-search
+          path: /Search/InstrumentSearch
+          description: "Instrument search and validation."
+          operations:
+            - name: search-instruments
+              method: POST
+              description: "Search for instruments by identifier or name."
+              inputParameters: []
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  SearchString: "{{tools.searchString}}"
+                  IdentifierType: "{{tools.identifierType}}"
+
+        - name: instrument-lists
+          path: /InstrumentLists
+          description: "Management of instrument lists for extractions."
+          operations:
+            - name: list-instrument-lists
+              method: GET
+              description: "Retrieve all instrument lists."
+              inputParameters: []
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: create-instrument-list
+              method: POST
+              description: "Create a new instrument list."
+              inputParameters: []
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  Name: "{{tools.name}}"
+                  InstrumentIdentifiers: "{{tools.instruments}}"
+
+        - name: schedules
+          path: /Schedules
+          description: "Extraction schedule management."
+          operations:
+            - name: list-schedules
+              method: GET
+              description: "List all extraction schedules."
+              inputParameters: []
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: create-schedule
+              method: POST
+              description: "Create a new extraction schedule."
+              inputParameters: []
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  Name: "{{tools.name}}"
+                  ListId: "{{tools.listId}}"
+                  ReportTemplateId: "{{tools.reportTemplateId}}"
+
+  exposes:
+    - type: rest
+      port: 8111
+      namespace: eikon-datascope-api
+      resources:
+        - path: /v1/extractions
+          name: extractions
+          description: "Data extractions."
+          operations:
+            - method: POST
+              name: extract-data
+              description: "Execute a data extraction."
+              call: "eikon-datascope.extract-raw"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/instruments/search
+          name: instrument-search
+          description: "Instrument search."
+          operations:
+            - method: POST
+              name: search-instruments
+              description: "Search for instruments."
+              call: "eikon-datascope.search-instruments"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9111
+      namespace: eikon-datascope-mcp
+      transport: http
+      tools:
+        - name: extract-data
+          description: "Execute an on-demand data extraction from DataScope Select."
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "eikon-datascope.extract-raw"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: search-instruments
+          description: "Search DataScope Select for financial instruments."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "eikon-datascope.search-instruments"
+          with:
+            searchString: "tools.searchString"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-extracted-files
+          description: "List files produced by completed DataScope extractions."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "eikon-datascope.list-extracted-files"
+          outputParameters:
+            - type: object
+              mapping: "$."

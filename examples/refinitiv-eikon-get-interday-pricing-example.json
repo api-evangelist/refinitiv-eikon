@@ -1,0 +1,42 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.refinitiv.com/data/historical-pricing/v1/views/interday-summaries/AAPL.O",
+    "headers": {
+      "Authorization": "Bearer {access_token}",
+      "Content-Type": "application/json"
+    },
+    "queryParameters": {
+      "start": "2024-01-01T00:00:00Z",
+      "end": "2024-01-31T23:59:59Z",
+      "interval": "P1D",
+      "fields": "TRDPRC_1,HIGH_1,LOW_1,OPEN_PRC,ACVOL_UNS"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "universe": [
+        {
+          "instrumentId": "AAPL.O",
+          "ric": "AAPL.O",
+          "displayName": "Apple Inc",
+          "headers": [
+            {"name": "DATE", "type": "Date"},
+            {"name": "TRDPRC_1", "type": "Double"},
+            {"name": "HIGH_1", "type": "Double"},
+            {"name": "LOW_1", "type": "Double"},
+            {"name": "OPEN_PRC", "type": "Double"},
+            {"name": "ACVOL_UNS", "type": "BigDecimal"}
+          ],
+          "data": [
+            ["2024-01-02", 185.85, 186.74, 183.43, 184.29, 73488000],
+            ["2024-01-03", 184.25, 185.88, 183.43, 184.22, 58403500],
+            ["2024-01-04", 181.91, 182.76, 180.17, 182.15, 71983900],
+            ["2024-01-05", 181.18, 182.73, 180.74, 181.99, 62303400]
+          ]
+        }
+      ]
+    }
+  }
+}

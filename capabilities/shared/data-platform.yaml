@@ -1,0 +1,410 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Refinitiv Eikon Data Platform API"
+  description: "RESTful API providing access to Refinitiv financial data including pricing, ESG, news, symbology, and search on the LSEG Data Platform."
+  tags:
+    - Refinitiv Eikon
+    - Financial Data
+    - Market Data
+    - ESG
+    - News
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      REFINITIV_EIKON_ACCESS_TOKEN: REFINITIV_EIKON_ACCESS_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: eikon-rdp
+      baseUri: https://api.refinitiv.com
+      description: "Refinitiv Data Platform RESTful API for financial data access."
+      authentication:
+        type: bearer
+        token: "{{REFINITIV_EIKON_ACCESS_TOKEN}}"
+      resources:
+        - name: authentication
+          path: /auth/oauth2/v1/token
+          description: "OAuth 2.0 token management."
+          operations:
+            - name: get-access-token
+              method: POST
+              description: "Obtain an OAuth 2.0 access token."
+              inputParameters:
+                - name: grant_type
+                  in: body
+                  type: string
+                  required: true
+                  description: "OAuth grant type (password or refresh_token)."
+                - name: username
+                  in: body
+                  type: string
+                  required: false
+                  description: "RDP username."
+                - name: password
+                  in: body
+                  type: string
+                  required: false
+                  description: "RDP password."
+                - name: client_id
+                  in: body
+                  type: string
+                  required: true
+                  description: "Application client identifier."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: historical-pricing
+          path: /data/historical-pricing/v1/views
+          description: "Historical interday and intraday pricing data."
+          operations:
+            - name: get-interday-summaries
+              method: GET
+              description: "Retrieve historical interday pricing summaries for an instrument."
+              inputParameters:
+                - name: universe
+                  in: path
+                  type: string
+                  required: true
+                  description: "Instrument RIC identifier."
+                - name: start
+                  in: query
+                  type: string
+                  required: false
+                  description: "Start date in ISO 8601 format."
+                - name: end
+                  in: query
+                  type: string
+                  required: false
+                  description: "End date in ISO 8601 format."
+                - name: interval
+                  in: query
+                  type: string
+                  required: false
+                  description: "Time interval (P1D, P7D, P1M, P3M, P1Y)."
+                - name: fields
+                  in: query
+                  type: string
+                  required: false
+                  description: "Comma-separated list of fields."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: get-intraday-summaries
+              method: GET
+              description: "Retrieve historical intraday pricing summaries."
+              inputParameters:
+                - name: universe
+                  in: path
+                  type: string
+                  required: true
+                  description: "Instrument RIC identifier."
+                - name: start
+                  in: query
+                  type: string
+                  required: false
+                  description: "Start date in ISO 8601 format."
+                - name: interval
+                  in: query
+                  type: string
+                  required: false
+                  description: "Intraday interval (PT1M, PT5M, PT30M, PT60M)."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: streaming-pricing
+          path: /data/pricing/snapshots/v1
+          description: "Real-time and delayed pricing snapshots."
+          operations:
+            - name: get-pricing-snapshots
+              method: GET
+              description: "Retrieve current pricing snapshots for instruments."
+              inputParameters:
+                - name: universe
+                  in: path
+                  type: string
+                  required: true
+                  description: "Comma-separated list of instrument RICs."
+                - name: fields
+                  in: query
+                  type: string
+                  required: false
+                  description: "Comma-separated list of fields."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: news
+          path: /data/news/v1
+          description: "Financial news headlines and stories."
+          operations:
+            - name: get-news-headlines
+              method: GET
+              description: "Retrieve financial news headlines."
+              inputParameters:
+                - name: query
+                  in: query
+                  type: string
+                  required: false
+                  description: "Free-text search query."
+                - name: count
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Maximum number of headlines to return."
+                - name: dateFrom
+                  in: query
+                  type: string
+                  required: false
+                  description: "Start date in ISO 8601 format."
+                - name: dateTo
+                  in: query
+                  type: string
+                  required: false
+                  description: "End date in ISO 8601 format."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: get-news-story
+              method: GET
+              description: "Retrieve the full content of a news story."
+              inputParameters:
+                - name: storyId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Unique identifier for the news story."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: esg
+          path: /data/environmental-social-governance/v2/views
+          description: "ESG scores and measures."
+          operations:
+            - name: get-esg-scores
+              method: GET
+              description: "Retrieve full ESG scores for instruments."
+              inputParameters:
+                - name: universe
+                  in: query
+                  type: string
+                  required: true
+                  description: "Comma-separated instrument identifiers."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: get-esg-measures
+              method: GET
+              description: "Retrieve detailed ESG measures for instruments."
+              inputParameters:
+                - name: universe
+                  in: query
+                  type: string
+                  required: true
+                  description: "Comma-separated instrument identifiers."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: symbology
+          path: /discovery/symbology/v1
+          description: "Instrument identifier concordance."
+          operations:
+            - name: lookup-symbology
+              method: POST
+              description: "Map between different instrument identifier types."
+              inputParameters: []
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  from: "{{tools.from}}"
+                  to: "{{tools.to}}"
+                  universe: "{{tools.universe}}"
+
+        - name: search
+          path: /discovery/search/v1/
+          description: "Search across instruments, organizations, and indicators."
+          operations:
+            - name: search-instruments
+              method: POST
+              description: "Search for instruments and organizations."
+              inputParameters: []
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  View: "{{tools.view}}"
+                  Query: "{{tools.query}}"
+                  Filter: "{{tools.filter}}"
+                  Top: "{{tools.top}}"
+
+  exposes:
+    - type: rest
+      port: 8110
+      namespace: eikon-rdp-api
+      resources:
+        - path: /v1/pricing/interday/{universe}
+          name: interday-pricing
+          description: "Historical interday pricing."
+          operations:
+            - method: GET
+              name: get-interday-pricing
+              description: "Retrieve interday historical pricing."
+              call: "eikon-rdp.get-interday-summaries"
+              with:
+                universe: "rest.universe"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/pricing/snapshots/{universe}
+          name: pricing-snapshots
+          description: "Real-time pricing snapshots."
+          operations:
+            - method: GET
+              name: get-pricing-snapshots
+              description: "Get current pricing snapshots."
+              call: "eikon-rdp.get-pricing-snapshots"
+              with:
+                universe: "rest.universe"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/news/headlines
+          name: news-headlines
+          description: "Financial news headlines."
+          operations:
+            - method: GET
+              name: get-headlines
+              description: "Retrieve news headlines."
+              call: "eikon-rdp.get-news-headlines"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/esg/scores
+          name: esg-scores
+          description: "ESG scores."
+          operations:
+            - method: GET
+              name: get-esg-scores
+              description: "Retrieve ESG scores."
+              call: "eikon-rdp.get-esg-scores"
+              with:
+                universe: "rest.universe"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9110
+      namespace: eikon-rdp-mcp
+      transport: http
+      tools:
+        - name: get-interday-pricing
+          description: "Retrieve historical interday pricing for a financial instrument."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "eikon-rdp.get-interday-summaries"
+          with:
+            universe: "tools.universe"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-pricing-snapshot
+          description: "Get current real-time or delayed pricing snapshot for instruments."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "eikon-rdp.get-pricing-snapshots"
+          with:
+            universe: "tools.universe"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-news-headlines
+          description: "Search and retrieve financial news headlines."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "eikon-rdp.get-news-headlines"
+          with:
+            query: "tools.query"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-esg-scores
+          description: "Retrieve ESG scores for financial instruments."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "eikon-rdp.get-esg-scores"
+          with:
+            universe: "tools.universe"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: lookup-symbology
+          description: "Map between different financial instrument identifier types."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "eikon-rdp.lookup-symbology"
+          with:
+            universe: "tools.universe"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: search-instruments
+          description: "Search across instruments, organizations, and economic indicators."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "eikon-rdp.search-instruments"
+          with:
+            query: "tools.query"
+          outputParameters:
+            - type: object
+              mapping: "$."

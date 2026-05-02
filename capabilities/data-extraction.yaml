@@ -1,0 +1,232 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Refinitiv Eikon Data Extraction"
+  description: >-
+    Unified workflow capability for data engineers and quant analysts extracting
+    bulk financial data from Refinitiv Eikon via DataScope Select and Tick History
+    REST APIs. Combines pricing, corporate actions, reference data, and tick-level
+    market data extraction workflows into a single interface.
+  tags:
+    - Refinitiv Eikon
+    - Data Extraction
+    - DataScope Select
+    - Tick History
+    - Corporate Actions
+    - Quantitative Analysis
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      DATASCOPE_TOKEN: DATASCOPE_TOKEN
+
+capability:
+  consumes:
+    - import: eikon-datascope
+      location: ./shared/datascope-select.yaml
+    - import: eikon-tick-history
+      location: ./shared/tick-history.yaml
+
+  exposes:
+    - type: rest
+      port: 8081
+      namespace: eikon-extraction-api
+      description: "Unified REST API for Refinitiv Eikon bulk data extraction."
+      resources:
+        - path: /v1/extractions
+          name: extractions
+          description: "On-demand data extractions."
+          operations:
+            - method: POST
+              name: extract-data
+              description: "Execute a DataScope Select on-demand extraction."
+              call: "eikon-datascope.extract-raw"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/extractions/files
+          name: extracted-files
+          description: "Extracted data files."
+          operations:
+            - method: GET
+              name: list-extracted-files
+              description: "List files from completed extractions."
+              call: "eikon-datascope.list-extracted-files"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/instruments/search
+          name: instrument-search
+          description: "Instrument search."
+          operations:
+            - method: POST
+              name: search-instruments
+              description: "Search DataScope for instruments."
+              call: "eikon-datascope.search-instruments"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/instrument-lists
+          name: instrument-lists
+          description: "Instrument list management."
+          operations:
+            - method: GET
+              name: list-instrument-lists
+              description: "List all instrument lists."
+              call: "eikon-datascope.list-instrument-lists"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-instrument-list
+              description: "Create a new instrument list."
+              call: "eikon-datascope.create-instrument-list"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/tick-history/extractions
+          name: tick-extractions
+          description: "Tick history extractions."
+          operations:
+            - method: POST
+              name: extract-tick-history
+              description: "Execute a tick history extraction."
+              call: "eikon-tick-history.extract-tick-history"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/tick-history/jobs
+          name: tick-jobs
+          description: "Tick extraction job monitoring."
+          operations:
+            - method: GET
+              name: list-tick-jobs
+              description: "List tick extraction jobs."
+              call: "eikon-tick-history.list-jobs"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/tick-history/jobs/{jobId}
+          name: tick-job-detail
+          description: "Individual tick extraction job."
+          operations:
+            - method: GET
+              name: get-tick-job-status
+              description: "Get tick extraction job status."
+              call: "eikon-tick-history.get-job-status"
+              with:
+                jobId: "rest.jobId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: DELETE
+              name: cancel-tick-job
+              description: "Cancel a running tick extraction job."
+              call: "eikon-tick-history.cancel-job"
+              with:
+                jobId: "rest.jobId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9081
+      namespace: eikon-extraction-mcp
+      transport: http
+      description: "MCP server for AI-assisted Refinitiv Eikon bulk data extraction."
+      tools:
+        - name: datascope-extract-data
+          description: "Execute a DataScope Select on-demand extraction for pricing, corporate actions, or reference data."
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "eikon-datascope.extract-raw"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: datascope-search-instruments
+          description: "Search DataScope Select for financial instruments by RIC, ISIN, CUSIP, or ticker."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "eikon-datascope.search-instruments"
+          with:
+            searchString: "tools.searchString"
+            identifierType: "tools.identifierType"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: datascope-list-instrument-lists
+          description: "List all saved instrument lists for DataScope extractions."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "eikon-datascope.list-instrument-lists"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: datascope-list-extracted-files
+          description: "List files produced by completed DataScope extractions."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "eikon-datascope.list-extracted-files"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: tick-history-extract
+          description: "Execute an on-demand tick history extraction for time-and-sales or intraday bars."
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "eikon-tick-history.extract-tick-history"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: tick-history-list-jobs
+          description: "List all tick history extraction jobs and their current statuses."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "eikon-tick-history.list-jobs"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: tick-history-get-job-status
+          description: "Get the current status and details of a specific tick history extraction job."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "eikon-tick-history.get-job-status"
+          with:
+            jobId: "tools.jobId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: tick-history-cancel-job
+          description: "Cancel a running tick history extraction job."
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: "eikon-tick-history.cancel-job"
+          with:
+            jobId: "tools.jobId"
+          outputParameters:
+            - type: object
+              mapping: "$."

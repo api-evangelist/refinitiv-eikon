@@ -1,0 +1,201 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Refinitiv Eikon Tick History API"
+  description: "REST API for accessing historical tick-level market data including tick data, intraday bars, and time-and-sales extractions."
+  tags:
+    - Refinitiv Eikon
+    - Tick Data
+    - Historical Data
+    - Market Data
+    - Intraday Bars
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      DATASCOPE_TOKEN: DATASCOPE_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: eikon-tick-history
+      baseUri: https://selectapi.datascope.refinitiv.com/RestApi/v1
+      description: "LSEG Tick History REST API for historical tick data."
+      authentication:
+        type: apikey
+        key: Authorization
+        value: "Token {{DATASCOPE_TOKEN}}"
+        placement: header
+      resources:
+        - name: tick-extractions
+          path: /Extractions/ExtractRaw
+          description: "On-demand tick history extraction."
+          operations:
+            - name: extract-tick-history
+              method: POST
+              description: "Execute an on-demand tick history extraction."
+              inputParameters: []
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  ExtractionRequest: "{{tools.extractionRequest}}"
+
+        - name: tick-files
+          path: /Extractions/ExtractedFiles
+          description: "Extracted tick data file management."
+          operations:
+            - name: list-extracted-files
+              method: GET
+              description: "List files from completed tick history extractions."
+              inputParameters: []
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: download-extracted-file
+              method: GET
+              description: "Download a tick history data file."
+              inputParameters:
+                - name: fileId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Unique identifier of the extracted file."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: jobs
+          path: /Jobs/Jobs
+          description: "Extraction job monitoring."
+          operations:
+            - name: list-jobs
+              method: GET
+              description: "List all extraction jobs and their statuses."
+              inputParameters: []
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: get-job-status
+              method: GET
+              description: "Get the status of a specific extraction job."
+              inputParameters:
+                - name: jobId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Unique identifier of the job."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: cancel-job
+              method: DELETE
+              description: "Cancel a running extraction job."
+              inputParameters:
+                - name: jobId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Unique identifier of the job to cancel."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8112
+      namespace: eikon-tick-history-api
+      resources:
+        - path: /v1/tick-history/extractions
+          name: tick-extractions
+          description: "Tick history extractions."
+          operations:
+            - method: POST
+              name: extract-tick-history
+              description: "Execute a tick history extraction."
+              call: "eikon-tick-history.extract-tick-history"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/tick-history/jobs
+          name: jobs
+          description: "Extraction job monitoring."
+          operations:
+            - method: GET
+              name: list-jobs
+              description: "List extraction jobs."
+              call: "eikon-tick-history.list-jobs"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/tick-history/jobs/{jobId}
+          name: job-detail
+          description: "Individual job status."
+          operations:
+            - method: GET
+              name: get-job-status
+              description: "Get job status."
+              call: "eikon-tick-history.get-job-status"
+              with:
+                jobId: "rest.jobId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9112
+      namespace: eikon-tick-history-mcp
+      transport: http
+      tools:
+        - name: extract-tick-data
+          description: "Execute an on-demand tick history extraction for financial instruments."
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "eikon-tick-history.extract-tick-history"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-tick-jobs
+          description: "List all tick history extraction jobs and their statuses."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "eikon-tick-history.list-jobs"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-tick-job-status
+          description: "Get the current status of a tick history extraction job."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "eikon-tick-history.get-job-status"
+          with:
+            jobId: "tools.jobId"
+          outputParameters:
+            - type: object
+              mapping: "$."

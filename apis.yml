@@ -10,7 +10,7 @@ type: Index
 image: https://www.refinitiv.com/content/dam/marketing/en_us/images/logos/refinitiv-logo.png
 url: https://raw.githubusercontent.com/api-evangelist/refinitiv-eikon/refs/heads/main/apis.yml
 created: '2024-01-01'
-modified: '2026-03-16'
+modified: '2026-05-02'
 specificationVersion: '0.19'
 tags:
   - Analytics
@@ -715,6 +715,28 @@ common:
     url: https://my.refinitiv.com
   - type: Website
     url: https://www.lseg.com
+  - type: OpenAPI
+    url: openapi/refinitiv-eikon-data-platform-openapi.yml
+  - type: OpenAPI
+    url: openapi/refinitiv-eikon-datascope-select-openapi.yml
+  - type: OpenAPI
+    url: openapi/refinitiv-eikon-tick-history-openapi.yml
+  - type: JSONSchema
+    url: json-schema/refinitiv-eikon-instrument-schema.json
+  - type: JSONSchema
+    url: json-schema/refinitiv-eikon-esg-schema.json
+  - type: JSONStructure
+    url: json-structure/refinitiv-eikon-data-platform-structure.json
+  - type: JSONLDContext
+    url: json-ld/refinitiv-eikon-context.jsonld
+  - type: SpectralRules
+    url: rules/refinitiv-eikon-rules.yml
+  - type: NaftikoCapabilities
+    url: capabilities/financial-data-research.yaml
+  - type: NaftikoCapabilities
+    url: capabilities/data-extraction.yaml
+  - type: Vocabulary
+    url: vocabulary/refinitiv-eikon-vocabulary.yml
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

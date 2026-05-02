@@ -1,0 +1,271 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Refinitiv Eikon Financial Data Research"
+  description: >-
+    Unified workflow capability for financial analysts researching instruments,
+    retrieving pricing data, ESG scores, news, and symbology from the Refinitiv
+    Eikon Data Platform. Combines the Data Platform API for real-time and
+    historical data with symbology concordance and instrument search.
+  tags:
+    - Refinitiv Eikon
+    - Financial Data
+    - Market Data
+    - ESG
+    - News
+    - Symbology
+    - Research
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      REFINITIV_EIKON_ACCESS_TOKEN: REFINITIV_EIKON_ACCESS_TOKEN
+
+capability:
+  consumes:
+    - import: eikon-rdp
+      location: ./shared/data-platform.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: eikon-research-api
+      description: "Unified REST API for Refinitiv Eikon financial data research."
+      resources:
+        - path: /v1/pricing/interday/{universe}
+          name: interday-pricing
+          description: "Historical interday pricing data for an instrument."
+          operations:
+            - method: GET
+              name: get-interday-pricing
+              description: "Retrieve historical interday pricing summaries."
+              call: "eikon-rdp.get-interday-summaries"
+              with:
+                universe: "rest.universe"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/pricing/intraday/{universe}
+          name: intraday-pricing
+          description: "Historical intraday pricing data."
+          operations:
+            - method: GET
+              name: get-intraday-pricing
+              description: "Retrieve historical intraday pricing summaries."
+              call: "eikon-rdp.get-intraday-summaries"
+              with:
+                universe: "rest.universe"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/pricing/snapshots/{universe}
+          name: pricing-snapshots
+          description: "Real-time pricing snapshots."
+          operations:
+            - method: GET
+              name: get-pricing-snapshots
+              description: "Retrieve current pricing snapshots."
+              call: "eikon-rdp.get-pricing-snapshots"
+              with:
+                universe: "rest.universe"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/news/headlines
+          name: news-headlines
+          description: "Financial news headlines."
+          operations:
+            - method: GET
+              name: get-news-headlines
+              description: "Retrieve financial news headlines."
+              call: "eikon-rdp.get-news-headlines"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/news/stories/{storyId}
+          name: news-story
+          description: "Full news story content."
+          operations:
+            - method: GET
+              name: get-news-story
+              description: "Retrieve a full news story."
+              call: "eikon-rdp.get-news-story"
+              with:
+                storyId: "rest.storyId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/esg/scores
+          name: esg-scores
+          description: "ESG scores for instruments."
+          operations:
+            - method: GET
+              name: get-esg-scores
+              description: "Retrieve ESG scores."
+              call: "eikon-rdp.get-esg-scores"
+              with:
+                universe: "rest.universe"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/esg/measures
+          name: esg-measures
+          description: "Detailed ESG measures."
+          operations:
+            - method: GET
+              name: get-esg-measures
+              description: "Retrieve detailed ESG measures."
+              call: "eikon-rdp.get-esg-measures"
+              with:
+                universe: "rest.universe"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/symbology/lookup
+          name: symbology
+          description: "Instrument identifier concordance."
+          operations:
+            - method: POST
+              name: lookup-symbology
+              description: "Map between instrument identifier types."
+              call: "eikon-rdp.lookup-symbology"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/search/instruments
+          name: instrument-search
+          description: "Instrument and entity search."
+          operations:
+            - method: POST
+              name: search-instruments
+              description: "Search for instruments and organizations."
+              call: "eikon-rdp.search-instruments"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9080
+      namespace: eikon-research-mcp
+      transport: http
+      description: "MCP server for AI-assisted Refinitiv Eikon financial data research."
+      tools:
+        - name: get-interday-pricing
+          description: "Retrieve historical interday pricing data for a financial instrument using its RIC code."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "eikon-rdp.get-interday-summaries"
+          with:
+            universe: "tools.universe"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-intraday-pricing
+          description: "Retrieve historical intraday pricing at minute or hourly intervals."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "eikon-rdp.get-intraday-summaries"
+          with:
+            universe: "tools.universe"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-pricing-snapshot
+          description: "Get current real-time or delayed pricing snapshot for one or more instruments."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "eikon-rdp.get-pricing-snapshots"
+          with:
+            universe: "tools.universe"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-news-headlines
+          description: "Search and retrieve financial news headlines from Reuters and other sources."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "eikon-rdp.get-news-headlines"
+          with:
+            query: "tools.query"
+            count: "tools.count"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-news-story
+          description: "Retrieve the full content of a financial news story by its story ID."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "eikon-rdp.get-news-story"
+          with:
+            storyId: "tools.storyId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-esg-scores
+          description: "Retrieve ESG (Environmental, Social, Governance) scores for financial instruments."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "eikon-rdp.get-esg-scores"
+          with:
+            universe: "tools.universe"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-esg-measures
+          description: "Retrieve detailed ESG measures and underlying data points for instruments."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "eikon-rdp.get-esg-measures"
+          with:
+            universe: "tools.universe"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: lookup-symbology
+          description: "Map between different instrument identifier types (ISIN, CUSIP, SEDOL, RIC, PermID)."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "eikon-rdp.lookup-symbology"
+          with:
+            universe: "tools.universe"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: search-instruments
+          description: "Search across instruments, organizations, and economic indicators on the Refinitiv Data Platform."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "eikon-rdp.search-instruments"
+          with:
+            query: "tools.query"
+            view: "tools.view"
+          outputParameters:
+            - type: object
+              mapping: "$."

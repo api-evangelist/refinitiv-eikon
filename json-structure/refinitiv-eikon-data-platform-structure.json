@@ -1,0 +1,137 @@
+{
+  "name": "Refinitiv Eikon Data Platform API Structure",
+  "description": "Structural documentation for the Refinitiv Eikon Data Platform REST API endpoints and response formats.",
+  "version": "1.0.0",
+  "baseUrl": "https://api.refinitiv.com",
+  "authentication": {
+    "type": "OAuth2",
+    "tokenEndpoint": "/auth/oauth2/v1/token",
+    "grantTypes": ["password", "refresh_token"],
+    "tokenLifetime": "5 minutes"
+  },
+  "domains": {
+    "historicalPricing": {
+      "basePath": "/data/historical-pricing/v1/views",
+      "endpoints": {
+        "interdaySummaries": {
+          "path": "/interday-summaries/{universe}",
+          "method": "GET",
+          "description": "OHLCV data with daily, weekly, monthly, quarterly, or yearly granularity.",
+          "responseShape": {
+            "universe": [
+              {
+                "instrumentId": "string",
+                "ric": "string",
+                "data": [["DATE", "TRDPRC_1", "HIGH_1", "LOW_1", "OPEN_PRC", "ACVOL_UNS"]],
+                "headers": [{"name": "string", "type": "string"}]
+              }
+            ]
+          }
+        },
+        "intradaySummaries": {
+          "path": "/intraday-summaries/{universe}",
+          "method": "GET",
+          "description": "Intraday OHLCV at 1, 5, 10, 30, or 60 minute intervals.",
+          "responseShape": {
+            "universe": [
+              {
+                "instrumentId": "string",
+                "data": [["DATE_TIME", "TRDPRC_1", "HIGH_1", "LOW_1", "OPEN_PRC"]],
+                "headers": [{"name": "string", "type": "string"}]
+              }
+            ]
+          }
+        }
+      }
+    },
+    "streamingPricing": {
+      "basePath": "/data/pricing/snapshots/v1",
+      "endpoints": {
+        "snapshots": {
+          "path": "/{universe}",
+          "method": "GET",
+          "description": "Real-time or delayed pricing snapshot for comma-delimited RIC list.",
+          "responseShape": {
+            "universe": [
+              {
+                "instrumentId": "string",
+                "ric": "string",
+                "fields": {"BID": 0.0, "ASK": 0.0, "TRDPRC_1": 0.0, "NETCHNG_1": 0.0}
+              }
+            ]
+          }
+        }
+      }
+    },
+    "news": {
+      "basePath": "/data/news/v1",
+      "endpoints": {
+        "headlines": {
+          "path": "/headlines",
+          "method": "GET",
+          "description": "Paginated list of news headlines matching query and filter criteria.",
+          "responseShape": {
+            "data": [{"storyId": "string", "title": "string", "sourceCode": "string", "versionCreated": "ISO8601"}],
+            "meta": {"count": 0, "next": "cursor_string"}
+          }
+        },
+        "story": {
+          "path": "/stories/{storyId}",
+          "method": "GET",
+          "description": "Full text of a news story.",
+          "responseShape": {
+            "storyId": "string",
+            "title": "string",
+            "body": "html_or_text",
+            "language": "en",
+            "subjects": ["string"],
+            "versionCreated": "ISO8601"
+          }
+        }
+      }
+    },
+    "esg": {
+      "basePath": "/data/environmental-social-governance/v2/views",
+      "endpoints": {
+        "scoresFull": {
+          "path": "/scores-full",
+          "method": "GET",
+          "description": "ESG pillar scores and combined score for instruments.",
+          "responseShape": {
+            "data": [
+              {
+                "instrumentId": "string",
+                "esgScore": 0.0,
+                "environmentPillarScore": 0.0,
+                "socialPillarScore": 0.0,
+                "governancePillarScore": 0.0,
+                "esgCombinedScore": 0.0,
+                "controversiesScore": 0.0
+              }
+            ]
+          }
+        }
+      }
+    },
+    "symbology": {
+      "basePath": "/discovery/symbology/v1",
+      "endpoints": {
+        "lookup": {
+          "path": "/lookup",
+          "method": "POST",
+          "description": "Cross-reference between ISIN, CUSIP, SEDOL, Ticker, RIC, and PermID."
+        }
+      }
+    },
+    "search": {
+      "basePath": "/discovery/search/v1",
+      "endpoints": {
+        "search": {
+          "path": "/",
+          "method": "POST",
+          "description": "Full-text search across Entities, EquityQuotes, BondInstruments, Indicators."
+        }
+      }
+    }
+  }
+}

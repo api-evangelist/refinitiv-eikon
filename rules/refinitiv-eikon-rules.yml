@@ -1,0 +1,95 @@
+extends: spectral:oas
+rules:
+  # Refinitiv Eikon API naming conventions
+  refinitiv-eikon-operation-summary-title-case:
+    description: All operation summaries must use Title Case.
+    message: "Operation summary '{{value}}' must use Title Case."
+    severity: warn
+    given: "$.paths[*][*].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9 '\\-]*$"
+
+  refinitiv-eikon-operation-id-camel-case:
+    description: OperationIds must use camelCase.
+    message: "OperationId '{{value}}' must use camelCase."
+    severity: warn
+    given: "$.paths[*][*].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  refinitiv-eikon-requires-auth:
+    description: >-
+      All Refinitiv Eikon operations (except token endpoints) must declare
+      bearer or token authentication.
+    message: "Operation must declare security requirements."
+    severity: warn
+    given: "$.paths[?(!~ /.*[Tt]oken.*/i)][*]"
+    then:
+      field: security
+      function: defined
+
+  refinitiv-eikon-response-200-defined:
+    description: All operations must define a 200 or 201 success response.
+    message: "Operation must define at least one success (2xx) response."
+    severity: error
+    given: "$.paths[*][*].responses"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          anyOf:
+            - required: ["200"]
+            - required: ["201"]
+            - required: ["202"]
+            - required: ["204"]
+
+  refinitiv-eikon-path-kebab-case:
+    description: Path segments must use kebab-case or camelCase (no underscores).
+    message: "Path '{{path}}' should not contain underscores in URL segments."
+    severity: warn
+    given: "$.paths"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "^.*_[a-z].*$"
+
+  refinitiv-eikon-tags-defined:
+    description: All operations must include at least one tag.
+    message: "Operation must include at least one tag."
+    severity: warn
+    given: "$.paths[*][*]"
+    then:
+      field: tags
+      function: truthy
+
+  refinitiv-eikon-bearer-format:
+    description: >-
+      Bearer token scheme must specify bearerFormat for documentation clarity.
+    message: "Bearer auth scheme should define bearerFormat."
+    severity: info
+    given: "$.components.securitySchemes[?(@.type=='http' && @.scheme=='bearer')]"
+    then:
+      field: bearerFormat
+      function: defined
+
+  refinitiv-eikon-info-contact:
+    description: API info must include a contact object with a URL.
+    message: "API info.contact must be defined with a URL."
+    severity: warn
+    given: "$.info"
+    then:
+      field: contact
+      function: defined
+
+  refinitiv-eikon-servers-defined:
+    description: API must define at least one server.
+    message: "API must have at least one server defined."
+    severity: error
+    given: "$"
+    then:
+      field: servers
+      function: truthy

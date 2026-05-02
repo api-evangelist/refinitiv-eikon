@@ -38,7 +38,7 @@ paths:
   /Authentication/RequestToken:
     post:
       operationId: requestToken
-      summary: Refinitiv Eikon Request authentication token
+      summary: Request Authentication Token
       description: >-
         Authenticates user credentials and returns a session token valid
         for 24 hours. The token must be included in the Authorization
@@ -90,7 +90,7 @@ paths:
   /Extractions/ExtractRaw:
     post:
       operationId: extractRaw
-      summary: Refinitiv Eikon Execute on-demand raw extraction
+      summary: Execute On-Demand Raw Extraction
       description: >-
         Executes an on-demand extraction for specified instruments and
         fields. Returns extracted data directly or initiates an
@@ -137,7 +137,7 @@ paths:
   /Extractions/ExtractWithNotes:
     post:
       operationId: extractWithNotes
-      summary: Refinitiv Eikon Execute on-demand extraction with notes
+      summary: Execute On-Demand Extraction with Notes
       description: >-
         Executes an on-demand extraction and returns both the extracted
         data and processing notes. Notes include information about
@@ -173,7 +173,7 @@ paths:
   /Extractions/ExtractedFiles:
     get:
       operationId: listExtractedFiles
-      summary: Refinitiv Eikon List extracted files
+      summary: List Extracted Files
       description: >-
         Retrieves a list of files produced by completed extractions.
         Files are available for download for a limited retention period.
@@ -202,7 +202,7 @@ paths:
   /Extractions/ExtractedFiles('{fileId}')/$value:
     get:
       operationId: downloadExtractedFile
-      summary: Refinitiv Eikon Download an extracted file
+      summary: Download an Extracted File
       description: >-
         Downloads the contents of a specific extracted file by its
         identifier. Returns the raw extraction data.
@@ -233,7 +233,7 @@ paths:
   /Search/InstrumentSearch:
     post:
       operationId: searchInstruments
-      summary: Refinitiv Eikon Search for instruments
+      summary: Search for Instruments
       description: >-
         Searches for instruments by identifier, name, or other criteria.
         Supports various identifier types including RIC, ISIN, CUSIP,
@@ -289,7 +289,7 @@ paths:
   /InstrumentLists:
     get:
       operationId: listInstrumentLists
-      summary: Refinitiv Eikon List instrument lists
+      summary: List Instrument Lists
       description: >-
         Retrieves all instrument lists owned by the authenticated user.
         Instrument lists define the set of instruments for an extraction.
@@ -317,7 +317,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     post:
       operationId: createInstrumentList
-      summary: Refinitiv Eikon Create an instrument list
+      summary: Create an Instrument List
       description: >-
         Creates a new instrument list for use in extractions. The list
         specifies the instruments to be included in data extraction jobs.
@@ -345,7 +345,7 @@ paths:
   /ReportTemplates:
     get:
       operationId: listReportTemplates
-      summary: Refinitiv Eikon List report templates
+      summary: List Report Templates
       description: >-
         Retrieves all report templates owned by the authenticated user.
         Report templates define the content type and fields for extractions.
@@ -374,7 +374,7 @@ paths:
   /Schedules:
     get:
       operationId: listSchedules
-      summary: Refinitiv Eikon List extraction schedules
+      summary: List Extraction Schedules
       description: >-
         Retrieves all extraction schedules owned by the authenticated user.
         Schedules define when and how extractions are automatically executed.
@@ -402,7 +402,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     post:
       operationId: createSchedule
-      summary: Refinitiv Eikon Create an extraction schedule
+      summary: Create an Extraction Schedule
       description: >-
         Creates a new extraction schedule that automatically executes
         extractions at specified times or triggered by events.

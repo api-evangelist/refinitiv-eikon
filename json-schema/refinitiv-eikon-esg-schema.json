@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://api-evangelist.github.io/refinitiv-eikon/json-schema/refinitiv-eikon-esg-schema.json",
+  "title": "Refinitiv Eikon ESG Score",
+  "description": "Schema for ESG (Environmental, Social, and Governance) scores from the Refinitiv Eikon Data Platform.",
+  "type": "object",
+  "properties": {
+    "instrumentId": {
+      "type": "string",
+      "description": "Instrument identifier (RIC or PermID)."
+    },
+    "esgScore": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Overall ESG combined score (0-100)."
+    },
+    "esgCombinedScore": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Combined ESG score including controversies impact."
+    },
+    "environmentPillarScore": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Environmental pillar score covering resource use, emissions, and innovation."
+    },
+    "socialPillarScore": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Social pillar score covering workforce, human rights, community, and product responsibility."
+    },
+    "governancePillarScore": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Corporate governance pillar score covering management, shareholders, and CSR strategy."
+    },
+    "controversiesScore": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Controversies score reflecting ESG incidents and controversies."
+    },
+    "period": {
+      "type": "string",
+      "description": "Reporting period for the ESG scores.",
+      "examples": ["FY2023", "FY2022"]
+    },
+    "measures": {
+      "type": "object",
+      "description": "Detailed ESG measure fields keyed by field name.",
+      "additionalProperties": {
+        "oneOf": [
+          {"type": "number"},
+          {"type": "string"},
+          {"type": "boolean"},
+          {"type": "null"}
+        ]
+      }
+    }
+  },
+  "required": ["instrumentId"]
+}

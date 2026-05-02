@@ -1,0 +1,96 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "fibo": "https://spec.edmcouncil.org/fibo/ontology/FND/",
+    "refinitiv": "https://developers.lseg.com/vocabulary/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "name": "schema:name",
+    "description": "schema:description",
+    "url": "schema:url",
+    "FinancialInstrument": {
+      "@id": "schema:FinancialProduct",
+      "description": "A financial instrument traded on a market."
+    },
+    "ric": {
+      "@id": "refinitiv:ric",
+      "@type": "xsd:string",
+      "description": "Reuters Instrument Code — primary identifier in the Refinitiv data ecosystem."
+    },
+    "permId": {
+      "@id": "refinitiv:permId",
+      "@type": "xsd:string",
+      "description": "Permanent Identifier (PermID) — globally unique LSEG identifier."
+    },
+    "isin": {
+      "@id": "schema:identifier",
+      "@type": "xsd:string",
+      "description": "International Securities Identification Number."
+    },
+    "ticker": {
+      "@id": "schema:tickerSymbol",
+      "@type": "xsd:string",
+      "description": "Exchange ticker symbol."
+    },
+    "EsgScore": {
+      "@id": "refinitiv:EsgScore",
+      "description": "Environmental, Social, and Governance score for a company."
+    },
+    "environmentPillarScore": {
+      "@id": "refinitiv:environmentPillarScore",
+      "@type": "xsd:decimal",
+      "description": "Score for environmental performance."
+    },
+    "socialPillarScore": {
+      "@id": "refinitiv:socialPillarScore",
+      "@type": "xsd:decimal",
+      "description": "Score for social performance."
+    },
+    "governancePillarScore": {
+      "@id": "refinitiv:governancePillarScore",
+      "@type": "xsd:decimal",
+      "description": "Score for corporate governance performance."
+    },
+    "NewsArticle": "schema:NewsArticle",
+    "storyId": {
+      "@id": "refinitiv:storyId",
+      "@type": "xsd:string",
+      "description": "Unique identifier for a news story in the Refinitiv news archive."
+    },
+    "sourceCode": {
+      "@id": "refinitiv:sourceCode",
+      "@type": "xsd:string",
+      "description": "Code identifying the news source provider."
+    },
+    "PricingData": {
+      "@id": "refinitiv:PricingData",
+      "description": "A point-in-time or historical pricing observation for a financial instrument."
+    },
+    "lastPrice": {
+      "@id": "refinitiv:lastPrice",
+      "@type": "xsd:decimal",
+      "description": "Last traded price."
+    },
+    "bidPrice": {
+      "@id": "refinitiv:bidPrice",
+      "@type": "xsd:decimal",
+      "description": "Best bid price."
+    },
+    "askPrice": {
+      "@id": "refinitiv:askPrice",
+      "@type": "xsd:decimal",
+      "description": "Best ask price."
+    },
+    "tradeVolume": {
+      "@id": "refinitiv:tradeVolume",
+      "@type": "xsd:integer",
+      "description": "Accumulated trading volume."
+    },
+    "Exchange": {
+      "@id": "schema:ExchangeRateSpecification",
+      "description": "A financial exchange where instruments are traded."
+    },
+    "Organization": "schema:Organization",
+    "currency": "schema:currency"
+  }
+}

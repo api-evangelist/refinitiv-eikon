@@ -1,0 +1,192 @@
+name: Refinitiv Eikon Vocabulary
+description: >-
+  Normative vocabulary for the Refinitiv Eikon and LSEG Data Platform ecosystem,
+  covering financial data concepts, identifiers, and API-specific terminology.
+version: '1.0'
+modified: '2026-05-02'
+source: https://developers.lseg.com
+terms:
+  - term: RIC (Reuters Instrument Code)
+    definition: >-
+      A ticker-like identifier used by Refinitiv to identify financial
+      instruments and indices. RICs typically consist of a root ticker plus an
+      exchange suffix (e.g., AAPL.O for Apple on NASDAQ). RICs are the primary
+      identifier for pricing queries on the Refinitiv Data Platform.
+    tags:
+      - Identifier
+      - Core Concept
+
+  - term: PermID
+    definition: >-
+      Permanent Identifier — a globally unique, persistent machine-readable
+      identifier assigned by Refinitiv/LSEG to companies, instruments, quotes,
+      and economic indicators. PermIDs are stable across corporate actions
+      and data updates.
+    tags:
+      - Identifier
+      - Open Data
+
+  - term: ISIN
+    definition: >-
+      International Securities Identification Number — a 12-character
+      alphanumeric code that uniquely identifies a security. ISINs are
+      administered by national numbering agencies and are used for cross-border
+      instrument identification.
+    tags:
+      - Identifier
+      - Standard
+
+  - term: CUSIP
+    definition: >-
+      Committee on Uniform Securities Identification Procedures number — a
+      9-character alphanumeric identifier for North American financial
+      instruments. Used primarily for US and Canadian securities.
+    tags:
+      - Identifier
+
+  - term: SEDOL
+    definition: >-
+      Stock Exchange Daily Official List — a 7-character identifier for
+      securities issued by the London Stock Exchange. Used primarily for
+      UK and international securities.
+    tags:
+      - Identifier
+
+  - term: Universe
+    definition: >-
+      In the Refinitiv Data Platform, a universe is one or more instrument
+      identifiers (typically RICs) that define the set of instruments for
+      a query. May be a single RIC or a comma-separated list in a query
+      parameter, or an array in a request body.
+    tags:
+      - Core Concept
+
+  - term: DataScope Select
+    definition: >-
+      A Refinitiv/LSEG data extraction platform providing bulk access to
+      global prices, corporate actions, reference data, historical data,
+      and cross-reference data. Accessible via REST API over OData protocol
+      or SOAP/XML interface.
+    tags:
+      - Product
+      - Data Platform
+
+  - term: Extraction
+    definition: >-
+      A DataScope Select operation that retrieves data for a specified set
+      of instruments and fields. Can be synchronous (immediate) or
+      asynchronous (with polling). Extraction types include end-of-day
+      pricing, corporate actions, terms and conditions, and reference data.
+    tags:
+      - DataScope Select
+
+  - term: Tick History
+    definition: >-
+      LSEG Tick History — a global historical tick-level market data
+      service providing access to time-and-sales, intraday bars, market
+      depth, and order book data. Accessible via the Tick History REST API
+      (TRTH) built on the DataScope Select platform.
+    tags:
+      - Product
+      - Tick Data
+
+  - term: ESG Score
+    definition: >-
+      Environmental, Social, and Governance score — a numeric rating
+      (0-100) measuring a company's performance on ESG criteria. Refinitiv
+      ESG scores cover over 400 individual ESG measures across 10 main
+      categories and 3 pillars (Environmental, Social, Governance).
+    tags:
+      - ESG
+      - Score
+
+  - term: ESG Pillar Score
+    definition: >-
+      One of three pillar scores that make up the overall ESG Score:
+      Environmental (resource use, emissions, innovation), Social (workforce,
+      human rights, community, product responsibility), and Governance
+      (management, shareholders, CSR strategy).
+    tags:
+      - ESG
+
+  - term: Controversies Score
+    definition: >-
+      A separate ESG score that captures ESG-related incident controversies
+      for a company. The ESG Combined Score blends the ESG Score with the
+      Controversies Score to produce a holistic sustainability rating.
+    tags:
+      - ESG
+
+  - term: OAuth 2.0 Bearer Token
+    definition: >-
+      The authentication mechanism used by the Refinitiv Data Platform.
+      Clients authenticate with username, password, and client_id to obtain
+      a short-lived access token (5 minutes) and a longer-lived refresh token.
+      The access token is passed as a Bearer token in the Authorization header.
+    tags:
+      - Authentication
+      - Security
+
+  - term: OHLCV
+    definition: >-
+      Open, High, Low, Close, Volume — the standard set of pricing fields
+      for a trading period. Corresponds to OPEN_PRC, HIGH_1, LOW_1, TRDPRC_1,
+      and ACVOL_UNS in Refinitiv field naming conventions.
+    tags:
+      - Pricing
+      - Market Data
+
+  - term: PermID Entity Search
+    definition: >-
+      A free, open API for searching organizations, equity instruments, and
+      equity quotes using PermID identifiers. Accessible without authentication
+      via the api-eit.refinitiv.com endpoint.
+    tags:
+      - Open Data
+      - Search
+
+  - term: World-Check
+    definition: >-
+      LSEG World-Check — a risk intelligence database for screening entities
+      against sanctions lists, politically exposed persons (PEPs), adverse
+      media, and other risk categories. Used for KYC, AML, and due diligence
+      workflows.
+    tags:
+      - Compliance
+      - Risk Management
+
+  - term: Intraday Bar
+    definition: >-
+      An aggregated OHLCV record for a sub-daily time interval (1, 5, 10,
+      30, or 60 minutes). Available through the Data Platform intraday
+      summaries endpoint and the Tick History extraction service.
+    tags:
+      - Market Data
+      - Historical Data
+
+  - term: Instrument List
+    definition: >-
+      A named collection of instrument identifiers stored in DataScope Select
+      for use in scheduled or on-demand extraction jobs. Instrument lists
+      enable reuse of instrument sets across multiple extraction operations.
+    tags:
+      - DataScope Select
+
+  - term: Report Template
+    definition: >-
+      A DataScope Select configuration that specifies the content type and
+      fields for an extraction (e.g., end-of-day pricing fields, corporate
+      action fields). Report templates are paired with instrument lists in
+      scheduled extraction jobs.
+    tags:
+      - DataScope Select
+
+  - term: Streaming Pricing
+    definition: >-
+      Real-time or delayed pricing data available through the Refinitiv
+      Data Platform pricing snapshots endpoint or via the WebSocket API
+      for continuous updates. Entitlements determine whether real-time
+      or delayed (typically 15-minute delayed) data is returned.
+    tags:
+      - Market Data
+      - Real-Time

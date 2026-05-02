@@ -39,7 +39,7 @@ paths:
   /auth/oauth2/v1/token:
     post:
       operationId: getAccessToken
-      summary: Refinitiv Eikon Obtain access token
+      summary: Obtain Access Token
       description: >-
         Authenticates and returns an OAuth 2.0 access token using Resource
         Owner Password Credentials grant type. Access tokens are valid for
@@ -112,7 +112,7 @@ paths:
   /data/historical-pricing/v1/views/interday-summaries/{universe}:
     get:
       operationId: getInterdaySummaries
-      summary: Refinitiv Eikon Retrieve interday pricing summaries
+      summary: Retrieve Interday Pricing Summaries
       description: >-
         Returns historical interday summary pricing data for a specified
         instrument including open, high, low, close, volume, and other
@@ -183,7 +183,7 @@ paths:
   /data/historical-pricing/v1/views/intraday-summaries/{universe}:
     get:
       operationId: getIntradaySummaries
-      summary: Refinitiv Eikon Retrieve intraday pricing summaries
+      summary: Retrieve Intraday Pricing Summaries
       description: >-
         Returns historical intraday summary pricing data for a specified
         instrument at configurable intervals. Supports minute-level and
@@ -242,7 +242,7 @@ paths:
   /data/pricing/snapshots/v1/{universe}:
     get:
       operationId: getPricingSnapshots
-      summary: Refinitiv Eikon Retrieve pricing snapshots
+      summary: Retrieve Pricing Snapshots
       description: >-
         Returns the latest snapshot pricing data for one or more instruments.
         Provides real-time or delayed pricing depending on entitlements.
@@ -284,7 +284,7 @@ paths:
   /data/news/v1/headlines:
     get:
       operationId: getNewsHeadlines
-      summary: Refinitiv Eikon Retrieve news headlines
+      summary: Retrieve News Headlines
       description: >-
         Returns financial news headlines matching the specified query
         criteria. Supports filtering by topic, instrument, date range, and
@@ -350,7 +350,7 @@ paths:
   /data/news/v1/stories/{storyId}:
     get:
       operationId: getNewsStory
-      summary: Refinitiv Eikon Retrieve a news story
+      summary: Retrieve a News Story
       description: >-
         Returns the full content of a news story identified by its story
         identifier. Includes the story body, metadata, subjects, and
@@ -387,7 +387,7 @@ paths:
   /data/environmental-social-governance/v2/views/scores-full:
     get:
       operationId: getEsgScoresFull
-      summary: Refinitiv Eikon Retrieve full ESG scores
+      summary: Retrieve Full ESG Scores
       description: >-
         Returns comprehensive Environmental, Social, and Governance scores
         and measures for specified instruments. Includes pillar scores,
@@ -425,7 +425,7 @@ paths:
   /data/environmental-social-governance/v2/views/measures-full:
     get:
       operationId: getEsgMeasuresFull
-      summary: Refinitiv Eikon Retrieve full ESG measures
+      summary: Retrieve Full ESG Measures
       description: >-
         Returns detailed ESG measures and underlying data points for
         specified instruments. Provides the raw metrics used to compute
@@ -462,7 +462,7 @@ paths:
   /discovery/symbology/v1/lookup:
     post:
       operationId: lookupSymbology
-      summary: Refinitiv Eikon Look up instrument symbology
+      summary: Look Up Instrument Symbology
       description: >-
         Maps between different instrument identifier types. Supports
         concordance from external identifiers such as ISIN, CUSIP, SEDOL,
@@ -498,7 +498,7 @@ paths:
   /discovery/search/v1/:
     post:
       operationId: searchInstruments
-      summary: Refinitiv Eikon Search for instruments
+      summary: Search for Instruments
       description: >-
         Searches across organizations, instruments, quotes, and economic
         indicators on the Refinitiv Data Platform. Supports filtering by
