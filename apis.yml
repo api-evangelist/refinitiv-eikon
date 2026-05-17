@@ -37,7 +37,7 @@ apis:
     properties:
       - type: Documentation
         url: https://developers.lseg.com/en/api-catalog/eikon/eikon-data-api/documentation
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developers.lseg.com/en/api-catalog/eikon/eikon-data-api/quick-start
       - type: Tutorials
         url: https://developers.lseg.com/en/api-catalog/eikon/eikon-data-api/tutorials
@@ -68,7 +68,7 @@ apis:
         url: https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis/tutorials#authorization-all
       - type: Developer Tools
         url: https://apidocs.refinitiv.com/Apps/ApiDocs
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis/quick-start
       - type: Tutorials
         url: https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis/tutorials
@@ -124,7 +124,7 @@ apis:
     properties:
       - type: Documentation
         url: https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-library-for-python/documentation
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-library-for-python/quick-start/getting-started-with-python
       - type: GitHubRepository
         url: https://github.com/LSEG-API-Samples/Example.DataLibrary.Python
@@ -145,7 +145,7 @@ apis:
     properties:
       - type: Documentation
         url: https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-library-for-typescript/documentation
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-library-for-typescript/quick-start
       - type: Tutorials
         url: https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-library-for-typescript/tutorials
@@ -183,7 +183,7 @@ apis:
     properties:
       - type: Documentation
         url: https://developers.lseg.com/en/api-catalog/eikon/datastream-web-service/Documents
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developers.lseg.com/en/api-catalog/eikon/datastream-web-service/Quickstart
       - type: Tutorials
         url: https://developers.lseg.com/en/api-catalog/eikon/datastream-web-service/Tutorials
@@ -208,7 +208,7 @@ apis:
     properties:
       - type: Documentation
         url: https://developers.lseg.com/en/api-catalog/real-time-opnsrc/websocket-api/documentation
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developers.lseg.com/en/api-catalog/real-time-opnsrc/websocket-api/quick-start
       - type: Tutorials
         url: https://developers.lseg.com/en/api-catalog/real-time-opnsrc/websocket-api/tutorials
@@ -231,7 +231,7 @@ apis:
     properties:
       - type: Documentation
         url: https://developers.lseg.com/en/api-catalog/real-time-opnsrc/rt-sdk-java/documentation
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developers.lseg.com/en/api-catalog/real-time-opnsrc/rt-sdk-java/quick-start
       - type: GitHubRepository
         url: https://github.com/Refinitiv/Real-Time-SDK
@@ -290,7 +290,7 @@ apis:
     properties:
       - type: Documentation
         url: https://developers.lseg.com/en/api-catalog/eikon/side-by-side-integration/documentation
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developers.lseg.com/en/api-catalog/eikon/side-by-side-integration/quick-start
       - type: Deprecation Notice
         url: https://developers.lseg.com/en/api-catalog/eikon/side-by-side-integration
@@ -346,7 +346,7 @@ apis:
     properties:
       - type: Documentation
         url: https://developers.lseg.com/en/api-catalog/datascope-select/datascope-select-rest-api/documentation
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developers.lseg.com/en/api-catalog/datascope-select/datascope-select-rest-api/quick-start
       - type: Tutorials
         url: https://developers.lseg.com/en/api-catalog/datascope-select/datascope-select-rest-api/tutorials
@@ -367,7 +367,7 @@ apis:
     properties:
       - type: Documentation
         url: https://developers.lseg.com/en/api-catalog/refinitiv-tick-history/refinitiv-tick-history-rth-rest-api/documentation
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developers.lseg.com/en/api-catalog/refinitiv-tick-history/refinitiv-tick-history-rth-rest-api/quick-start
       - type: Tutorials
         url: https://developers.lseg.com/en/api-catalog/refinitiv-tick-history/refinitiv-tick-history-rth-rest-api/tutorials
@@ -407,7 +407,7 @@ apis:
     properties:
       - type: Documentation
         url: https://developers.lseg.com/en/api-catalog/open-perm-id/permid-record-matching-restful-api/documentation
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developers.lseg.com/en/api-catalog/open-perm-id/permid-record-matching-restful-api/quick-start
   - name: Intelligent Tagging API
     description: >-
@@ -426,7 +426,7 @@ apis:
     properties:
       - type: Documentation
         url: https://developers.lseg.com/en/api-catalog/open-perm-id/intelligent-tagging-restful-api/documentation
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developers.lseg.com/en/api-catalog/open-perm-id/intelligent-tagging-restful-api/quick-start
   - name: Refinitiv Knowledge Direct API
     description: >-
@@ -446,7 +446,7 @@ apis:
     properties:
       - type: Documentation
         url: https://developers.lseg.com/en/api-catalog/refinitiv-knowledge-direct/refinitiv-knowledge-direct-api-rkd-api/documentation
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developers.lseg.com/en/api-catalog/refinitiv-knowledge-direct/refinitiv-knowledge-direct-api-rkd-api/quick-start
       - type: Tutorials
         url: https://developers.lseg.com/en/api-catalog/refinitiv-knowledge-direct/refinitiv-knowledge-direct-api-rkd-api/tutorials
@@ -598,7 +598,7 @@ apis:
     properties:
       - type: Documentation
         url: https://developers.lseg.com/en/api-catalog/customer-and-third-party-screening/world-check-one-api/documentation
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developers.lseg.com/en/api-catalog/customer-and-third-party-screening/world-check-one-api/quick-start
   - name: World-Check Verify API
     description: >-
@@ -617,7 +617,7 @@ apis:
     properties:
       - type: Documentation
         url: https://developers.lseg.com/en/api-catalog/customer-and-third-party-screening/world-check-verify/documentation
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developers.lseg.com/en/api-catalog/customer-and-third-party-screening/world-check-verify/quick-start
   - name: App Studio Web SDK
     description: >-
@@ -653,7 +653,7 @@ apis:
     properties:
       - type: Documentation
         url: https://developers.lseg.com/en/api-catalog/eikon/com-apis-for-use-in-microsoft-office/documentation
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developers.lseg.com/en/api-catalog/eikon/com-apis-for-use-in-microsoft-office/quick-start
       - type: Tutorials
         url: https://developers.lseg.com/en/api-catalog/eikon/com-apis-for-use-in-microsoft-office/tutorials
@@ -683,11 +683,11 @@ apis:
 common:
   - type: Portal
     url: https://developers.lseg.com
-  - type: Getting Started
+  - type: GettingStarted
     url: https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis/quick-start
   - type: Documentation
     url: https://developers.lseg.com/en/api-catalog
-  - type: Sign Up
+  - type: SignUp
     url: https://developers.lseg.com/en/register
   - type: Login
     url: https://developers.lseg.com/en/login
@@ -697,19 +697,19 @@ common:
     url: https://community.developers.refinitiv.com/
   - type: Support
     url: https://my.refinitiv.com/content/mytr/en/helpandsupport.html
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://www.refinitiv.com/en/policies/terms-of-use
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://www.refinitiv.com/en/policies/privacy-statement
-  - type: Status
+  - type: StatusPage
     url: https://status.refinitiv.com/
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/LSEG-API-Samples
   - type: GitHubRepository
     url: https://github.com/Refinitiv/Real-Time-SDK
   - type: Developer Tools
     url: https://apidocs.refinitiv.com/Apps/ApiDocs
-  - type: Change Log
+  - type: ChangeLog
     url: https://community.developers.refinitiv.com/discussions
   - type: Console
     url: https://my.refinitiv.com
