@@ -1,0 +1,151 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Refinitiv Eikon Refinitiv Data Platform APIs — Historical Pricing
+  description: 'Refinitiv Eikon Refinitiv Data Platform APIs — Historical Pricing. 2 operations. Lead operation: Retrieve
+    Interday Pricing Summaries. Self-contained Naftiko capability covering one Refinitiv Eikon business surface.'
+  tags:
+  - Refinitiv Eikon
+  - Historical Pricing
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    REFINITIV_EIKON_API_KEY: REFINITIV_EIKON_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: data-platform-historical-pricing
+    baseUri: https://api.refinitiv.com
+    description: Refinitiv Eikon Refinitiv Data Platform APIs — Historical Pricing business capability. Self-contained, no
+      shared references.
+    resources:
+    - name: data-historical-pricing-v1-views-interday-summaries-universe
+      path: /data/historical-pricing/v1/views/interday-summaries/{universe}
+      operations:
+      - name: getinterdaysummaries
+        method: GET
+        description: Retrieve Interday Pricing Summaries
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: interval
+          in: query
+          type: string
+          description: Time interval for the summaries. Options include daily, weekly, monthly, quarterly, and yearly.
+        - name: count
+          in: query
+          type: integer
+          description: Maximum number of data points to return.
+        - name: fields
+          in: query
+          type: string
+          description: Comma-separated list of fields to include in the response.
+        - name: adjustments
+          in: query
+          type: string
+          description: Comma-separated list of price adjustment types to apply.
+    - name: data-historical-pricing-v1-views-intraday-summaries-universe
+      path: /data/historical-pricing/v1/views/intraday-summaries/{universe}
+      operations:
+      - name: getintradaysummaries
+        method: GET
+        description: Retrieve Intraday Pricing Summaries
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: interval
+          in: query
+          type: string
+          description: Time interval for intraday summaries.
+        - name: count
+          in: query
+          type: integer
+          description: Maximum number of data points to return.
+        - name: fields
+          in: query
+          type: string
+          description: Comma-separated list of fields to include in the response.
+    authentication:
+      type: bearer
+      token: '{{env.REFINITIV_EIKON_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: data-platform-historical-pricing-rest
+    port: 8080
+    description: REST adapter for Refinitiv Eikon Refinitiv Data Platform APIs — Historical Pricing. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/data/historical-pricing/v1/views/interday-summaries/{universe}
+      name: data-historical-pricing-v1-views-interday-summaries-universe
+      description: REST surface for data-historical-pricing-v1-views-interday-summaries-universe.
+      operations:
+      - method: GET
+        name: getinterdaysummaries
+        description: Retrieve Interday Pricing Summaries
+        call: data-platform-historical-pricing.getinterdaysummaries
+        with:
+          interval: rest.interval
+          count: rest.count
+          fields: rest.fields
+          adjustments: rest.adjustments
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/data/historical-pricing/v1/views/intraday-summaries/{universe}
+      name: data-historical-pricing-v1-views-intraday-summaries-universe
+      description: REST surface for data-historical-pricing-v1-views-intraday-summaries-universe.
+      operations:
+      - method: GET
+        name: getintradaysummaries
+        description: Retrieve Intraday Pricing Summaries
+        call: data-platform-historical-pricing.getintradaysummaries
+        with:
+          interval: rest.interval
+          count: rest.count
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: data-platform-historical-pricing-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Refinitiv Eikon Refinitiv Data Platform APIs — Historical Pricing. One tool per consumed
+      operation, routed inline through this capability's consumes block.
+    tools:
+    - name: retrieve-interday-pricing-summaries
+      description: Retrieve Interday Pricing Summaries
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: data-platform-historical-pricing.getinterdaysummaries
+      with:
+        interval: tools.interval
+        count: tools.count
+        fields: tools.fields
+        adjustments: tools.adjustments
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-intraday-pricing-summaries
+      description: Retrieve Intraday Pricing Summaries
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: data-platform-historical-pricing.getintradaysummaries
+      with:
+        interval: tools.interval
+        count: tools.count
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.

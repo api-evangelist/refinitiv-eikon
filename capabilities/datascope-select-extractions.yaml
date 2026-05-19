@@ -1,0 +1,199 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Refinitiv Eikon LSEG DataScope Select REST API — Extractions
+  description: 'Refinitiv Eikon LSEG DataScope Select REST API — Extractions. 4 operations. Lead operation: Execute On-Demand
+    Raw Extraction. Self-contained Naftiko capability covering one Refinitiv Eikon business surface.'
+  tags:
+  - Refinitiv Eikon
+  - Extractions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    REFINITIV_EIKON_API_KEY: REFINITIV_EIKON_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: datascope-select-extractions
+    baseUri: https://selectapi.datascope.refinitiv.com/RestApi/v1
+    description: Refinitiv Eikon LSEG DataScope Select REST API — Extractions business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: Extractions-ExtractRaw
+      path: /Extractions/ExtractRaw
+      operations:
+      - name: extractraw
+        method: POST
+        description: Execute On-Demand Raw Extraction
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: Extractions-ExtractWithNotes
+      path: /Extractions/ExtractWithNotes
+      operations:
+      - name: extractwithnotes
+        method: POST
+        description: Execute On-Demand Extraction with Notes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: Extractions-ExtractedFiles
+      path: /Extractions/ExtractedFiles
+      operations:
+      - name: listextractedfiles
+        method: GET
+        description: List Extracted Files
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: Extractions-ExtractedFiles('{fileId}')-$value
+      path: /Extractions/ExtractedFiles('{fileId}')/$value
+      operations:
+      - name: downloadextractedfile
+        method: GET
+        description: Download an Extracted File
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fileId
+          in: path
+          type: string
+          description: Unique identifier of the extracted file.
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.REFINITIV_EIKON_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: datascope-select-extractions-rest
+    port: 8080
+    description: REST adapter for Refinitiv Eikon LSEG DataScope Select REST API — Extractions. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/extractions/extractraw
+      name: extractions-extractraw
+      description: REST surface for Extractions-ExtractRaw.
+      operations:
+      - method: POST
+        name: extractraw
+        description: Execute On-Demand Raw Extraction
+        call: datascope-select-extractions.extractraw
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/extractions/extractwithnotes
+      name: extractions-extractwithnotes
+      description: REST surface for Extractions-ExtractWithNotes.
+      operations:
+      - method: POST
+        name: extractwithnotes
+        description: Execute On-Demand Extraction with Notes
+        call: datascope-select-extractions.extractwithnotes
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/extractions/extractedfiles
+      name: extractions-extractedfiles
+      description: REST surface for Extractions-ExtractedFiles.
+      operations:
+      - method: GET
+        name: listextractedfiles
+        description: List Extracted Files
+        call: datascope-select-extractions.listextractedfiles
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/extractions/extractedfiles-fileid/value
+      name: extractions-extractedfiles-fileid-value
+      description: REST surface for Extractions-ExtractedFiles('{fileId}')-$value.
+      operations:
+      - method: GET
+        name: downloadextractedfile
+        description: Download an Extracted File
+        call: datascope-select-extractions.downloadextractedfile
+        with:
+          fileId: rest.fileId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: datascope-select-extractions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Refinitiv Eikon LSEG DataScope Select REST API — Extractions. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: execute-demand-raw-extraction
+      description: Execute On-Demand Raw Extraction
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: datascope-select-extractions.extractraw
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: execute-demand-extraction-notes
+      description: Execute On-Demand Extraction with Notes
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: datascope-select-extractions.extractwithnotes
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-extracted-files
+      description: List Extracted Files
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: datascope-select-extractions.listextractedfiles
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: download-extracted-file
+      description: Download an Extracted File
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: datascope-select-extractions.downloadextractedfile
+      with:
+        fileId: tools.fileId
+      outputParameters:
+      - type: object
+        mapping: $.

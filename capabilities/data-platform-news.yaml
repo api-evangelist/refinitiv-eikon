@@ -1,0 +1,145 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Refinitiv Eikon Refinitiv Data Platform APIs — News
+  description: 'Refinitiv Eikon Refinitiv Data Platform APIs — News. 2 operations. Lead operation: Retrieve News Headlines.
+    Self-contained Naftiko capability covering one Refinitiv Eikon business surface.'
+  tags:
+  - Refinitiv Eikon
+  - News
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    REFINITIV_EIKON_API_KEY: REFINITIV_EIKON_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: data-platform-news
+    baseUri: https://api.refinitiv.com
+    description: Refinitiv Eikon Refinitiv Data Platform APIs — News business capability. Self-contained, no shared references.
+    resources:
+    - name: data-news-v1-headlines
+      path: /data/news/v1/headlines
+      operations:
+      - name: getnewsheadlines
+        method: GET
+        description: Retrieve News Headlines
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: query
+          in: query
+          type: string
+          description: Free-text search query for news headlines. Supports operators and field-specific searches.
+        - name: count
+          in: query
+          type: integer
+          description: Maximum number of headlines to return.
+        - name: cursor
+          in: query
+          type: string
+          description: Pagination cursor for retrieving the next set of results.
+        - name: dateFrom
+          in: query
+          type: string
+          description: Start date for filtering headlines in ISO 8601 format.
+        - name: dateTo
+          in: query
+          type: string
+          description: End date for filtering headlines in ISO 8601 format.
+    - name: data-news-v1-stories-storyId
+      path: /data/news/v1/stories/{storyId}
+      operations:
+      - name: getnewsstory
+        method: GET
+        description: Retrieve a News Story
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: storyId
+          in: path
+          type: string
+          description: Unique identifier for the news story.
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.REFINITIV_EIKON_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: data-platform-news-rest
+    port: 8080
+    description: REST adapter for Refinitiv Eikon Refinitiv Data Platform APIs — News. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/data/news/v1/headlines
+      name: data-news-v1-headlines
+      description: REST surface for data-news-v1-headlines.
+      operations:
+      - method: GET
+        name: getnewsheadlines
+        description: Retrieve News Headlines
+        call: data-platform-news.getnewsheadlines
+        with:
+          query: rest.query
+          count: rest.count
+          cursor: rest.cursor
+          dateFrom: rest.dateFrom
+          dateTo: rest.dateTo
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/data/news/v1/stories/{storyid}
+      name: data-news-v1-stories-storyid
+      description: REST surface for data-news-v1-stories-storyId.
+      operations:
+      - method: GET
+        name: getnewsstory
+        description: Retrieve a News Story
+        call: data-platform-news.getnewsstory
+        with:
+          storyId: rest.storyId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: data-platform-news-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Refinitiv Eikon Refinitiv Data Platform APIs — News. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: retrieve-news-headlines
+      description: Retrieve News Headlines
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: data-platform-news.getnewsheadlines
+      with:
+        query: tools.query
+        count: tools.count
+        cursor: tools.cursor
+        dateFrom: tools.dateFrom
+        dateTo: tools.dateTo
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-news-story
+      description: Retrieve a News Story
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: data-platform-news.getnewsstory
+      with:
+        storyId: tools.storyId
+      outputParameters:
+      - type: object
+        mapping: $.

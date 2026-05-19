@@ -1,0 +1,73 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Refinitiv Eikon LSEG DataScope Select REST API — Report Templates
+  description: 'Refinitiv Eikon LSEG DataScope Select REST API — Report Templates. 1 operations. Lead operation: List Report
+    Templates. Self-contained Naftiko capability covering one Refinitiv Eikon business surface.'
+  tags:
+  - Refinitiv Eikon
+  - Report Templates
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    REFINITIV_EIKON_API_KEY: REFINITIV_EIKON_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: datascope-select-report-templates
+    baseUri: https://selectapi.datascope.refinitiv.com/RestApi/v1
+    description: Refinitiv Eikon LSEG DataScope Select REST API — Report Templates business capability. Self-contained, no
+      shared references.
+    resources:
+    - name: ReportTemplates
+      path: /ReportTemplates
+      operations:
+      - name: listreporttemplates
+        method: GET
+        description: List Report Templates
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.REFINITIV_EIKON_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: datascope-select-report-templates-rest
+    port: 8080
+    description: REST adapter for Refinitiv Eikon LSEG DataScope Select REST API — Report Templates. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/reporttemplates
+      name: reporttemplates
+      description: REST surface for ReportTemplates.
+      operations:
+      - method: GET
+        name: listreporttemplates
+        description: List Report Templates
+        call: datascope-select-report-templates.listreporttemplates
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: datascope-select-report-templates-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Refinitiv Eikon LSEG DataScope Select REST API — Report Templates. One tool per consumed
+      operation, routed inline through this capability's consumes block.
+    tools:
+    - name: list-report-templates
+      description: List Report Templates
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: datascope-select-report-templates.listreporttemplates
+      outputParameters:
+      - type: object
+        mapping: $.

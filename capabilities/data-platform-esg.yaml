@@ -1,0 +1,122 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Refinitiv Eikon Refinitiv Data Platform APIs — ESG
+  description: 'Refinitiv Eikon Refinitiv Data Platform APIs — ESG. 2 operations. Lead operation: Retrieve Full ESG Measures.
+    Self-contained Naftiko capability covering one Refinitiv Eikon business surface.'
+  tags:
+  - Refinitiv Eikon
+  - ESG
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    REFINITIV_EIKON_API_KEY: REFINITIV_EIKON_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: data-platform-esg
+    baseUri: https://api.refinitiv.com
+    description: Refinitiv Eikon Refinitiv Data Platform APIs — ESG business capability. Self-contained, no shared references.
+    resources:
+    - name: data-environmental-social-governance-v2-views-measures-full
+      path: /data/environmental-social-governance/v2/views/measures-full
+      operations:
+      - name: getesgmeasuresfull
+        method: GET
+        description: Retrieve Full ESG Measures
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: universe
+          in: query
+          type: string
+          description: Comma-separated list of instrument identifiers.
+          required: true
+    - name: data-environmental-social-governance-v2-views-scores-full
+      path: /data/environmental-social-governance/v2/views/scores-full
+      operations:
+      - name: getesgscoresfull
+        method: GET
+        description: Retrieve Full ESG Scores
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: universe
+          in: query
+          type: string
+          description: Comma-separated list of instrument identifiers.
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.REFINITIV_EIKON_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: data-platform-esg-rest
+    port: 8080
+    description: REST adapter for Refinitiv Eikon Refinitiv Data Platform APIs — ESG. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/data/environmental-social-governance/v2/views/measures-full
+      name: data-environmental-social-governance-v2-views-measures-full
+      description: REST surface for data-environmental-social-governance-v2-views-measures-full.
+      operations:
+      - method: GET
+        name: getesgmeasuresfull
+        description: Retrieve Full ESG Measures
+        call: data-platform-esg.getesgmeasuresfull
+        with:
+          universe: rest.universe
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/data/environmental-social-governance/v2/views/scores-full
+      name: data-environmental-social-governance-v2-views-scores-full
+      description: REST surface for data-environmental-social-governance-v2-views-scores-full.
+      operations:
+      - method: GET
+        name: getesgscoresfull
+        description: Retrieve Full ESG Scores
+        call: data-platform-esg.getesgscoresfull
+        with:
+          universe: rest.universe
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: data-platform-esg-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Refinitiv Eikon Refinitiv Data Platform APIs — ESG. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: retrieve-full-esg-measures
+      description: Retrieve Full ESG Measures
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: data-platform-esg.getesgmeasuresfull
+      with:
+        universe: tools.universe
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-full-esg-scores
+      description: Retrieve Full ESG Scores
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: data-platform-esg.getesgscoresfull
+      with:
+        universe: tools.universe
+      outputParameters:
+      - type: object
+        mapping: $.
