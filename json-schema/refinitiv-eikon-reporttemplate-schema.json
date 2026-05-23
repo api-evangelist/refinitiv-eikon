@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReportTemplate",
+  "title": "ReportTemplate",
+  "type": "object",
+  "description": "Definition of a report template for extractions.",
+  "properties": {
+    "ReportTemplateId": {
+      "type": "string",
+      "description": "Unique identifier for the report template."
+    },
+    "Name": {
+      "type": "string",
+      "description": "Human-readable name for the template."
+    },
+    "ContentType": {
+      "type": "string",
+      "description": "Type of content for the extraction such as EndOfDay or TermsAndConditions."
+    },
+    "ContentFieldNames": {
+      "type": "array",
+      "description": "List of field names included in the template.",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

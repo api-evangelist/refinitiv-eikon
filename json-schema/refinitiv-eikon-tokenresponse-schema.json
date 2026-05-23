@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TokenResponse",
+  "title": "TokenResponse",
+  "type": "object",
+  "description": "OAuth 2.0 token response containing the access token and refresh token for subsequent API calls.",
+  "properties": {
+    "access_token": {
+      "type": "string",
+      "description": "Bearer token for authenticating subsequent API requests."
+    },
+    "refresh_token": {
+      "type": "string",
+      "description": "Token for obtaining a new access token when the current one expires."
+    },
+    "expires_in": {
+      "type": "integer",
+      "description": "Number of seconds until the access token expires."
+    },
+    "scope": {
+      "type": "string",
+      "description": "Scope of access granted by the token."
+    },
+    "token_type": {
+      "type": "string",
+      "description": "Type of token issued, typically Bearer."
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Schedule",
+  "title": "Schedule",
+  "type": "object",
+  "description": "Definition of an extraction schedule.",
+  "properties": {
+    "ScheduleId": {
+      "type": "string",
+      "description": "Unique identifier for the schedule."
+    },
+    "Name": {
+      "type": "string",
+      "description": "Human-readable name for the schedule."
+    },
+    "Recurrence": {
+      "type": "object",
+      "description": "Recurrence pattern for the schedule.",
+      "properties": {
+        "@odata.type": {
+          "type": "string",
+          "description": "OData type for the recurrence pattern."
+        },
+        "IsImmediate": {
+          "type": "boolean",
+          "description": "Whether the extraction runs immediately."
+        }
+      }
+    },
+    "ListId": {
+      "type": "string",
+      "description": "Identifier of the instrument list used by this schedule."
+    },
+    "ReportTemplateId": {
+      "type": "string",
+      "description": "Identifier of the report template used by this schedule."
+    }
+  }
+}

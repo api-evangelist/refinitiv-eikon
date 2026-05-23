@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InstrumentList",
+  "title": "InstrumentList",
+  "type": "object",
+  "description": "Definition of an instrument list for extractions.",
+  "properties": {
+    "ListId": {
+      "type": "string",
+      "description": "Unique identifier for the instrument list."
+    },
+    "Name": {
+      "type": "string",
+      "description": "Human-readable name for the list."
+    },
+    "InstrumentIdentifiers": {
+      "type": "array",
+      "description": "Array of instrument identifiers in the list.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Identifier": {
+            "type": "string",
+            "description": "Instrument identifier value."
+          },
+          "IdentifierType": {
+            "type": "string",
+            "description": "Type of identifier."
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PricingSnapshotResponse",
+  "title": "PricingSnapshotResponse",
+  "type": "object",
+  "description": "Response containing real-time or delayed pricing snapshots.",
+  "properties": {
+    "universe": {
+      "type": "array",
+      "description": "Array of instrument snapshot results.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "instrumentId": {
+            "type": "string",
+            "description": "Instrument identifier."
+          },
+          "ric": {
+            "type": "string",
+            "description": "Reuters Instrument Code."
+          },
+          "fields": {
+            "type": "object",
+            "description": "Key-value pairs of field names and their current values.",
+            "additionalProperties": true
+          }
+        }
+      }
+    }
+  }
+}

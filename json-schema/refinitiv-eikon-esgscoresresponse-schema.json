@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EsgScoresResponse",
+  "title": "EsgScoresResponse",
+  "type": "object",
+  "description": "Response containing ESG scores for requested instruments.",
+  "properties": {
+    "data": {
+      "type": "array",
+      "description": "Array of ESG score results by instrument.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "instrumentId": {
+            "type": "string",
+            "description": "Instrument identifier."
+          },
+          "esgScore": {
+            "type": "number",
+            "description": "Overall ESG combined score."
+          },
+          "environmentPillarScore": {
+            "type": "number",
+            "description": "Environmental pillar score."
+          },
+          "socialPillarScore": {
+            "type": "number",
+            "description": "Social pillar score."
+          },
+          "governancePillarScore": {
+            "type": "number",
+            "description": "Corporate governance pillar score."
+          },
+          "esgCombinedScore": {
+            "type": "number",
+            "description": "Combined ESG score including controversies."
+          },
+          "controversiesScore": {
+            "type": "number",
+            "description": "Score reflecting ESG controversies."
+          }
+        }
+      }
+    }
+  }
+}

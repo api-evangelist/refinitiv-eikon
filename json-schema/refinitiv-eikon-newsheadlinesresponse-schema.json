@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/NewsHeadlinesResponse",
+  "title": "NewsHeadlinesResponse",
+  "type": "object",
+  "description": "Response containing news headlines matching the query.",
+  "properties": {
+    "data": {
+      "type": "array",
+      "description": "Array of news headline entries.",
+      "items": {
+        "$ref": "#/components/schemas/NewsHeadline"
+      }
+    },
+    "meta": {
+      "type": "object",
+      "description": "Pagination metadata.",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "description": "Total number of matching headlines."
+        },
+        "next": {
+          "type": "string",
+          "description": "Cursor for the next page of results."
+        }
+      }
+    }
+  }
+}

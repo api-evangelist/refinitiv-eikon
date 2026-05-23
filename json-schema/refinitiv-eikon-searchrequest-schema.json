@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SearchRequest",
+  "title": "SearchRequest",
+  "type": "object",
+  "description": "Request body for instrument search operations.",
+  "properties": {
+    "View": {
+      "type": "string",
+      "description": "Search view defining the entity types and fields to search across.",
+      "enum": [
+        "Entities",
+        "EquityQuotes",
+        "BondInstruments",
+        "FundQuotes",
+        "GovCorpInstruments",
+        "Indicators"
+      ]
+    },
+    "Filter": {
+      "type": "string",
+      "description": "OData-style filter expression to narrow search results."
+    },
+    "Query": {
+      "type": "string",
+      "description": "Free-text search query."
+    },
+    "Select": {
+      "type": "string",
+      "description": "Comma-separated list of fields to return."
+    },
+    "Top": {
+      "type": "integer",
+      "description": "Maximum number of results to return.",
+      "minimum": 1,
+      "maximum": 10000
+    },
+    "OrderBy": {
+      "type": "string",
+      "description": "Field name and sort direction for ordering results."
+    },
+    "Boost": {
+      "type": "string",
+      "description": "Boosting expression to influence result ranking."
+    }
+  }
+}

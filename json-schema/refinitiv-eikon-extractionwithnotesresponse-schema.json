@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExtractionWithNotesResponse",
+  "title": "ExtractionWithNotesResponse",
+  "type": "object",
+  "description": "Response containing both extracted data and detailed notes.",
+  "properties": {
+    "JobId": {
+      "type": "string",
+      "description": "Unique identifier for the extraction job."
+    },
+    "Notes": {
+      "type": "array",
+      "description": "Detailed processing notes from the extraction.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "value": {
+      "type": "array",
+      "description": "Array of extracted data records.",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/NewsStory",
+  "title": "NewsStory",
+  "type": "object",
+  "description": "Full news story with body content and metadata.",
+  "properties": {
+    "storyId": {
+      "type": "string",
+      "description": "Unique identifier for the news story."
+    },
+    "title": {
+      "type": "string",
+      "description": "Story headline."
+    },
+    "body": {
+      "type": "string",
+      "description": "Full story body content in HTML or plain text."
+    },
+    "sourceCode": {
+      "type": "string",
+      "description": "Code identifying the news source."
+    },
+    "language": {
+      "type": "string",
+      "description": "Language of the news story in ISO 639-1 format."
+    },
+    "subjects": {
+      "type": "array",
+      "description": "Topic codes associated with the story.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "audiences": {
+      "type": "array",
+      "description": "Audience codes associated with the story.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "versionCreated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the story was published."
+    }
+  }
+}

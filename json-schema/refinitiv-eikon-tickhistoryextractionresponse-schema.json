@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TickHistoryExtractionResponse",
+  "title": "TickHistoryExtractionResponse",
+  "type": "object",
+  "description": "Response containing tick history extraction results.",
+  "properties": {
+    "JobId": {
+      "type": "string",
+      "description": "Unique identifier for the extraction job."
+    },
+    "Notes": {
+      "type": "array",
+      "description": "Processing notes from the extraction.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "value": {
+      "type": "array",
+      "description": "Array of tick data records.",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    }
+  }
+}

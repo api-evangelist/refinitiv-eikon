@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExtractionJob",
+  "title": "ExtractionJob",
+  "type": "object",
+  "description": "Status and metadata for an extraction job.",
+  "properties": {
+    "JobId": {
+      "type": "string",
+      "description": "Unique identifier for the job."
+    },
+    "Status": {
+      "type": "string",
+      "description": "Current status of the extraction job.",
+      "enum": [
+        "InProgress",
+        "Completed",
+        "Failed",
+        "Cancelled"
+      ]
+    },
+    "StartedUtc": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the job started."
+    },
+    "CompletedUtc": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the job completed."
+    }
+  }
+}

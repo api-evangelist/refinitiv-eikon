@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExtractionResponse",
+  "title": "ExtractionResponse",
+  "type": "object",
+  "description": "Response containing extracted data from an on-demand extraction.",
+  "properties": {
+    "@odata.context": {
+      "type": "string",
+      "description": "OData context URL."
+    },
+    "JobId": {
+      "type": "string",
+      "description": "Unique identifier for the extraction job."
+    },
+    "Notes": {
+      "type": "array",
+      "description": "Processing notes from the extraction.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "value": {
+      "type": "array",
+      "description": "Array of extracted data records.",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    }
+  }
+}

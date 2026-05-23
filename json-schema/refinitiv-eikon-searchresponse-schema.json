@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SearchResponse",
+  "title": "SearchResponse",
+  "type": "object",
+  "description": "Response containing search results for the query.",
+  "properties": {
+    "Total": {
+      "type": "integer",
+      "description": "Total number of matching results."
+    },
+    "Hits": {
+      "type": "array",
+      "description": "Array of matching result entries.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "DocumentTitle": {
+            "type": "string",
+            "description": "Display name of the matched entity."
+          },
+          "RIC": {
+            "type": "string",
+            "description": "Reuters Instrument Code if applicable."
+          },
+          "PermID": {
+            "type": "string",
+            "description": "Permanent identifier for the entity."
+          },
+          "PI": {
+            "type": "string",
+            "description": "Primary identifier for the entity."
+          },
+          "ExchangeCode": {
+            "type": "string",
+            "description": "Code for the exchange where the instrument trades."
+          }
+        }
+      }
+    }
+  }
+}

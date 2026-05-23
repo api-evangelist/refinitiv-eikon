@@ -1,0 +1,190 @@
+{
+  "provider": "Refinitiv Eikon",
+  "providerId": "refinitiv-eikon",
+  "kind": "json-structure",
+  "description": "Structural overview of the Refinitiv Eikon API surface; extracted from openapi/.",
+  "schemaCount": 14,
+  "operationCount": 10,
+  "schemas": [
+    {
+      "name": "TokenResponse",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "HistoricalPricingResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "PricingDataPoint",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "PricingSnapshotResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "NewsHeadlinesResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "NewsHeadline",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "NewsStory",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "EsgScoresResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "EsgMeasuresResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "SymbologyLookupRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "from",
+        "to",
+        "universe"
+      ]
+    },
+    {
+      "name": "SymbologyLookupResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "SearchRequest",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "SearchResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "Error",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "POST",
+      "path": "/auth/oauth2/v1/token",
+      "operationId": "getAccessToken",
+      "summary": "Obtain Access Token",
+      "tags": [
+        "Authentication"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/data/historical-pricing/v1/views/interday-summaries/{universe}",
+      "operationId": "getInterdaySummaries",
+      "summary": "Retrieve Interday Pricing Summaries",
+      "tags": [
+        "Historical Pricing"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/data/historical-pricing/v1/views/intraday-summaries/{universe}",
+      "operationId": "getIntradaySummaries",
+      "summary": "Retrieve Intraday Pricing Summaries",
+      "tags": [
+        "Historical Pricing"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/data/pricing/snapshots/v1/{universe}",
+      "operationId": "getPricingSnapshots",
+      "summary": "Retrieve Pricing Snapshots",
+      "tags": [
+        "Streaming Pricing"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/data/news/v1/headlines",
+      "operationId": "getNewsHeadlines",
+      "summary": "Retrieve News Headlines",
+      "tags": [
+        "News"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/data/news/v1/stories/{storyId}",
+      "operationId": "getNewsStory",
+      "summary": "Retrieve a News Story",
+      "tags": [
+        "News"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/data/environmental-social-governance/v2/views/scores-full",
+      "operationId": "getEsgScoresFull",
+      "summary": "Retrieve Full ESG Scores",
+      "tags": [
+        "ESG"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/data/environmental-social-governance/v2/views/measures-full",
+      "operationId": "getEsgMeasuresFull",
+      "summary": "Retrieve Full ESG Measures",
+      "tags": [
+        "ESG"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/discovery/symbology/v1/lookup",
+      "operationId": "lookupSymbology",
+      "summary": "Look Up Instrument Symbology",
+      "tags": [
+        "Symbology"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/discovery/search/v1/",
+      "operationId": "searchInstruments",
+      "summary": "Search for Instruments",
+      "tags": [
+        "Search"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/NewsHeadline",
+  "title": "NewsHeadline",
+  "type": "object",
+  "description": "A single news headline entry.",
+  "properties": {
+    "storyId": {
+      "type": "string",
+      "description": "Unique identifier for the news story."
+    },
+    "title": {
+      "type": "string",
+      "description": "Headline text."
+    },
+    "sourceCode": {
+      "type": "string",
+      "description": "Code identifying the news source."
+    },
+    "sourceName": {
+      "type": "string",
+      "description": "Human-readable name of the news source."
+    },
+    "versionCreated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the headline was created."
+    }
+  }
+}

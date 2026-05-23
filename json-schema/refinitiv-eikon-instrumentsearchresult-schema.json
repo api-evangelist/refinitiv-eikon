@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InstrumentSearchResult",
+  "title": "InstrumentSearchResult",
+  "type": "object",
+  "description": "Search result for an instrument lookup.",
+  "properties": {
+    "Identifier": {
+      "type": "string",
+      "description": "Primary identifier for the instrument."
+    },
+    "IdentifierType": {
+      "type": "string",
+      "description": "Type of the primary identifier."
+    },
+    "Source": {
+      "type": "string",
+      "description": "Data source for the instrument."
+    },
+    "Description": {
+      "type": "string",
+      "description": "Human-readable description of the instrument."
+    },
+    "Status": {
+      "type": "string",
+      "description": "Current status of the instrument."
+    }
+  }
+}

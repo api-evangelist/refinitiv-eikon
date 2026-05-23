@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HistoricalPricingResponse",
+  "title": "HistoricalPricingResponse",
+  "type": "object",
+  "description": "Response containing historical pricing data for an instrument.",
+  "properties": {
+    "universe": {
+      "type": "array",
+      "description": "Array of instrument pricing result sets.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "instrumentId": {
+            "type": "string",
+            "description": "Instrument identifier for the pricing data."
+          },
+          "ric": {
+            "type": "string",
+            "description": "Reuters Instrument Code."
+          },
+          "displayName": {
+            "type": "string",
+            "description": "Human-readable name of the instrument."
+          },
+          "data": {
+            "type": "array",
+            "description": "Array of pricing data points.",
+            "items": {
+              "$ref": "#/components/schemas/PricingDataPoint"
+            }
+          },
+          "headers": {
+            "type": "array",
+            "description": "Field header definitions for the data array.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Field name."
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Data type of the field."
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SymbologyLookupResponse",
+  "title": "SymbologyLookupResponse",
+  "type": "object",
+  "description": "Response containing resolved instrument identifiers.",
+  "properties": {
+    "data": {
+      "type": "array",
+      "description": "Array of resolved identifier results.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "input": {
+            "type": "string",
+            "description": "Input identifier value."
+          },
+          "output": {
+            "type": "array",
+            "description": "Resolved identifier mappings.",
+            "items": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

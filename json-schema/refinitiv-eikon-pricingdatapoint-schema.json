@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PricingDataPoint",
+  "title": "PricingDataPoint",
+  "type": "object",
+  "description": "A single data point in the historical pricing response.",
+  "properties": {
+    "DATE": {
+      "type": "string",
+      "format": "date",
+      "description": "Trading date for this data point."
+    },
+    "TRDPRC_1": {
+      "type": "number",
+      "description": "Last trade price or closing price."
+    },
+    "HIGH_1": {
+      "type": "number",
+      "description": "Highest trade price during the period."
+    },
+    "LOW_1": {
+      "type": "number",
+      "description": "Lowest trade price during the period."
+    },
+    "OPEN_PRC": {
+      "type": "number",
+      "description": "Opening trade price for the period."
+    },
+    "ACVOL_UNS": {
+      "type": "integer",
+      "description": "Accumulated volume (unsigned) for the period."
+    },
+    "BID": {
+      "type": "number",
+      "description": "Best bid price at close."
+    },
+    "ASK": {
+      "type": "number",
+      "description": "Best ask price at close."
+    }
+  }
+}

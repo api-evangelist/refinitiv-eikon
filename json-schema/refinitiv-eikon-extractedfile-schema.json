@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExtractedFile",
+  "title": "ExtractedFile",
+  "type": "object",
+  "description": "Metadata for a file produced by an extraction.",
+  "properties": {
+    "ExtractedFileId": {
+      "type": "string",
+      "description": "Unique identifier for the extracted file."
+    },
+    "ReportExtractionId": {
+      "type": "string",
+      "description": "Identifier of the extraction that produced this file."
+    },
+    "FileName": {
+      "type": "string",
+      "description": "Name of the extracted file."
+    },
+    "FileType": {
+      "type": "string",
+      "description": "Type of file such as Full or Note."
+    },
+    "Size": {
+      "type": "integer",
+      "description": "File size in bytes."
+    },
+    "ReceivedDateUtc": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the file was created."
+    }
+  }
+}

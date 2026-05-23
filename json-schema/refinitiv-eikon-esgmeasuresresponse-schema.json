@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EsgMeasuresResponse",
+  "title": "EsgMeasuresResponse",
+  "type": "object",
+  "description": "Response containing detailed ESG measures for requested instruments.",
+  "properties": {
+    "data": {
+      "type": "array",
+      "description": "Array of ESG measure results by instrument.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "instrumentId": {
+            "type": "string",
+            "description": "Instrument identifier."
+          },
+          "measures": {
+            "type": "object",
+            "description": "Key-value pairs of ESG measure fields and their values.",
+            "additionalProperties": true
+          }
+        }
+      }
+    }
+  }
+}

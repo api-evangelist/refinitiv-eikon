@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SymbologyLookupRequest",
+  "title": "SymbologyLookupRequest",
+  "type": "object",
+  "description": "Request body for symbology lookup operations.",
+  "required": [
+    "from",
+    "to",
+    "universe"
+  ],
+  "properties": {
+    "from": {
+      "type": "array",
+      "description": "Source identifier type or types.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "identifierTypes": {
+            "type": "array",
+            "description": "List of source identifier types such as ISIN, CUSIP, SEDOL, or Ticker.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "values": {
+            "type": "array",
+            "description": "List of identifier values to look up.",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "to": {
+      "type": "array",
+      "description": "Target identifier types to resolve to.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "identifierTypes": {
+            "type": "array",
+            "description": "List of target identifier types such as RIC, PermID, or ISIN.",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "universe": {
+      "type": "array",
+      "description": "List of instrument identifiers to resolve.",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

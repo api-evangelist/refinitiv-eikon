@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExtractionRequest",
+  "title": "ExtractionRequest",
+  "type": "object",
+  "description": "Request body for on-demand data extraction operations.",
+  "required": [
+    "ExtractionRequest"
+  ],
+  "properties": {
+    "ExtractionRequest": {
+      "type": "object",
+      "properties": {
+        "@odata.type": {
+          "type": "string",
+          "description": "OData type specifying the extraction type, such as EndOfDayPricingExtractionRequest or TermsAndConditionsExtractionRequest."
+        },
+        "ContentFieldNames": {
+          "type": "array",
+          "description": "List of field names to include in the extraction.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "IdentifierList": {
+          "type": "object",
+          "description": "Specification of instruments for the extraction.",
+          "properties": {
+            "@odata.type": {
+              "type": "string",
+              "description": "OData type for the identifier list, such as InstrumentIdentifierList."
+            },
+            "InstrumentIdentifiers": {
+              "type": "array",
+              "description": "Array of instrument identifiers.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "Identifier": {
+                    "type": "string",
+                    "description": "Instrument identifier value."
+                  },
+                  "IdentifierType": {
+                    "type": "string",
+                    "description": "Type of identifier such as Ric, Isin, or Cusip."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Condition": {
+          "type": "object",
+          "description": "Extraction conditions such as date range and query parameters.",
+          "additionalProperties": true
+        }
+      }
+    }
+  }
+}
