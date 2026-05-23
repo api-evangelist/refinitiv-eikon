@@ -647,6 +647,9 @@ common:
   url: https://developers.lseg.com/en/login
 - type: Blog
   url: https://medium.com/lseg-developer-community
+- url: https://medium.com/feed/lseg-developer-community
+  type: BlogRSS
+  description: Discovered RSS/Atom feed for https://medium.com/lseg-developer-community
 - type: Community
   url: https://community.developers.refinitiv.com/
 - type: Support
