@@ -1,0 +1,489 @@
+asyncapi: '2.6.0'
+info:
+  title: LSEG (Refinitiv) Real-Time WebSocket API
+  version: '1.6'
+  description: |
+    Standards-based WebSocket API providing real-time streaming market data using
+    JSON message formats following the Open Message Model (OMM). Connects to
+    Refinitiv Real-Time Distribution Systems (RTDS) and Real-Time Optimized (RTO)
+    cloud services for consuming, contributing, and posting real-time content.
+
+    Source repository: https://github.com/Refinitiv/websocket-api (Apache 2.0
+    licensed). Protocol specification: WebsocketAPI_ProtocolSpecification.pdf in
+    that repository.
+
+    Authentication varies by deployment:
+      - Real-Time Distribution Systems (on-premise): username / ApplicationId /
+        Position passed in the Login Domain Key.
+      - Real-Time Optimized (cloud): OAuth2 (Client Credentials or LDP password
+        grant) bearer token passed as the AuthenticationToken element on the
+        Login Domain.
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  contact:
+    name: LSEG Developer Community
+    url: https://community.developers.refinitiv.com/
+defaultContentType: application/json
+servers:
+  rtds:
+    url: '{host}:{port}/WebSocket'
+    protocol: wss
+    description: |
+      Refinitiv Real-Time Distribution System (on-premise ADS/RTDS server). The
+      host and port are deployment-specific; default WebSocket port is 15000.
+    variables:
+      host:
+        description: Hostname or IP of the customer ADS / RTDS server.
+        default: ads
+      port:
+        description: WebSocket listener port configured on the ADS.
+        default: '15000'
+  rto:
+    url: 'api.refinitiv.com:443/WebSocket'
+    protocol: wss
+    description: |
+      Refinitiv Real-Time Optimized cloud endpoint. Requires a service discovery
+      step against the LSEG Data Platform to obtain a regional streaming endpoint
+      and an OAuth2 access token before the WebSocket Login is sent.
+channels:
+  /WebSocket:
+    description: |
+      Single WebSocket channel that multiplexes all OMM domain message streams
+      (Login, Source Directory, Dictionary, MarketPrice, MarketByOrder,
+      MarketByPrice, SymbolList, Yield Curve, etc.) using stream IDs.
+    bindings:
+      ws:
+        bindingVersion: '0.1.0'
+    subscribe:
+      operationId: receiveOmmMessage
+      summary: Messages received from the server.
+      message:
+        oneOf:
+          - $ref: '#/components/messages/LoginRefresh'
+          - $ref: '#/components/messages/Refresh'
+          - $ref: '#/components/messages/Update'
+          - $ref: '#/components/messages/Status'
+          - $ref: '#/components/messages/Ping'
+          - $ref: '#/components/messages/GenericMsgIn'
+          - $ref: '#/components/messages/AckIn'
+    publish:
+      operationId: sendOmmMessage
+      summary: Messages sent to the server.
+      message:
+        oneOf:
+          - $ref: '#/components/messages/LoginRequest'
+          - $ref: '#/components/messages/ItemRequest'
+          - $ref: '#/components/messages/Close'
+          - $ref: '#/components/messages/Pong'
+          - $ref: '#/components/messages/Post'
+          - $ref: '#/components/messages/GenericMsgOut'
+components:
+  messages:
+    LoginRequest:
+      name: LoginRequest
+      title: Login Request
+      summary: Initial Login Domain request authenticating the session.
+      payload:
+        $ref: '#/components/schemas/LoginRequestPayload'
+    LoginRefresh:
+      name: LoginRefresh
+      title: Login Refresh
+      summary: Server response to a Login request indicating session state.
+      payload:
+        $ref: '#/components/schemas/LoginRefreshPayload'
+    ItemRequest:
+      name: ItemRequest
+      title: Item Request
+      summary: Request to open or reissue a streaming or snapshot item.
+      payload:
+        $ref: '#/components/schemas/ItemRequestPayload'
+    Refresh:
+      name: Refresh
+      title: Refresh
+      summary: Full image of an item, sent on initial open or when re-syncing.
+      payload:
+        $ref: '#/components/schemas/RefreshPayload'
+    Update:
+      name: Update
+      title: Update
+      summary: Incremental update to a streaming item.
+      payload:
+        $ref: '#/components/schemas/UpdatePayload'
+    Status:
+      name: Status
+      title: Status
+      summary: Stream or data state change for an item (including stream close).
+      payload:
+        $ref: '#/components/schemas/StatusPayload'
+    Close:
+      name: Close
+      title: Close
+      summary: Client-initiated close of a stream by its ID.
+      payload:
+        $ref: '#/components/schemas/ClosePayload'
+    Ping:
+      name: Ping
+      title: Ping
+      summary: Liveness ping sent by the server.
+      payload:
+        $ref: '#/components/schemas/PingPayload'
+    Pong:
+      name: Pong
+      title: Pong
+      summary: Liveness pong sent by the client in response to a Ping.
+      payload:
+        $ref: '#/components/schemas/PongPayload'
+    Post:
+      name: Post
+      title: Post
+      summary: Off-stream or on-stream post used for contribution and inserts.
+      payload:
+        $ref: '#/components/schemas/PostPayload'
+    AckIn:
+      name: Ack
+      title: Ack
+      summary: Acknowledgement of a Post message, including any NAK code.
+      payload:
+        $ref: '#/components/schemas/AckPayload'
+    GenericMsgIn:
+      name: GenericMsgIn
+      title: Generic Message (inbound)
+      summary: Domain-defined message exchanged outside the request/refresh model.
+      payload:
+        $ref: '#/components/schemas/GenericMsgPayload'
+    GenericMsgOut:
+      name: GenericMsgOut
+      title: Generic Message (outbound)
+      summary: Domain-defined message sent by the client.
+      payload:
+        $ref: '#/components/schemas/GenericMsgPayload'
+  schemas:
+    Key:
+      type: object
+      description: OMM message Key identifying the item being requested.
+      properties:
+        Name:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+          description: Item name (RIC) or batch list of item names.
+        NameType:
+          type: integer
+          description: Numeric name type (e.g. RIC = 1).
+        Service:
+          oneOf:
+            - type: string
+            - type: integer
+          description: Service name or numeric service ID providing the item.
+        Filter:
+          type: integer
+        Identifier:
+          type: integer
+        Elements:
+          type: object
+          additionalProperties: true
+          description: OMM ElementList payload carried inside the Key.
+    State:
+      type: object
+      description: Stream and data state on Refresh / Status / Close messages.
+      properties:
+        Stream:
+          type: string
+          enum: [Open, NonStreaming, Closed, ClosedRecover, ClosedRedirected]
+        Data:
+          type: string
+          enum: [Ok, Suspect, NoChange]
+        Code:
+          type: string
+          description: OMM state code such as None, NotFound, NotEntitled, Timeout.
+        Text:
+          type: string
+    LoginRequestPayload:
+      type: object
+      required: [ID, Domain, Key]
+      properties:
+        ID:
+          type: integer
+          description: Stream ID. Login uses 1 by convention.
+          default: 1
+        Domain:
+          type: string
+          enum: [Login]
+        Key:
+          allOf:
+            - $ref: '#/components/schemas/Key'
+            - type: object
+              properties:
+                NameType:
+                  type: integer
+                  description: 1 = user name, 2 = AuthnToken (OAuth bearer).
+                Elements:
+                  type: object
+                  properties:
+                    ApplicationId:
+                      type: string
+                    Position:
+                      type: string
+                    AuthenticationToken:
+                      type: string
+                      description: OAuth2 access token for Real-Time Optimized.
+                    AuthenticationExtended:
+                      type: string
+                    Password:
+                      type: string
+                    Role:
+                      type: integer
+                    AllowSuspectData:
+                      type: integer
+                    ProvidePermissionProfile:
+                      type: integer
+                    ProvidePermissionExpressions:
+                      type: integer
+                    SingleOpen:
+                      type: integer
+                    SupportProviderDictionaryDownload:
+                      type: integer
+      example:
+        ID: 1
+        Domain: Login
+        Key:
+          Name: user
+          Elements:
+            ApplicationId: '256'
+            Position: 127.0.0.1
+    LoginRefreshPayload:
+      type: object
+      required: [ID, Type, Domain]
+      properties:
+        ID:
+          type: integer
+        Type:
+          type: string
+          enum: [Refresh]
+        Domain:
+          type: string
+          enum: [Login]
+        Key:
+          $ref: '#/components/schemas/Key'
+        State:
+          $ref: '#/components/schemas/State'
+        Solicited:
+          type: boolean
+        Elements:
+          type: object
+          additionalProperties: true
+    ItemRequestPayload:
+      type: object
+      required: [ID, Key]
+      properties:
+        ID:
+          type: integer
+          description: Stream ID assigned by the client.
+        Domain:
+          type: string
+          enum: [MarketPrice, MarketByOrder, MarketByPrice, SymbolList, YieldCurve, Source, Dictionary]
+          description: Optional, defaults to MarketPrice.
+        Key:
+          $ref: '#/components/schemas/Key'
+        Streaming:
+          type: boolean
+          default: true
+        View:
+          type: array
+          items:
+            oneOf:
+              - type: string
+              - type: integer
+          description: List of field names or FIDs to limit the response.
+        Refresh:
+          type: boolean
+        Qos:
+          type: object
+          additionalProperties: true
+        Priority:
+          type: object
+          properties:
+            Class:
+              type: integer
+            Count:
+              type: integer
+      example:
+        ID: 2
+        Key:
+          Name: TRI.N
+          Service: ELEKTRON_DD
+        Streaming: true
+    RefreshPayload:
+      type: object
+      required: [ID, Type]
+      properties:
+        ID:
+          type: integer
+        Type:
+          type: string
+          enum: [Refresh]
+        Domain:
+          type: string
+        Key:
+          $ref: '#/components/schemas/Key'
+        State:
+          $ref: '#/components/schemas/State'
+        Solicited:
+          type: boolean
+        Complete:
+          type: boolean
+        SeqNumber:
+          type: integer
+        Fields:
+          type: object
+          additionalProperties: true
+          description: OMM FieldList payload keyed by field name.
+        PermData:
+          type: string
+        Qos:
+          type: object
+          additionalProperties: true
+    UpdatePayload:
+      type: object
+      required: [ID, Type]
+      properties:
+        ID:
+          type: integer
+        Type:
+          type: string
+          enum: [Update]
+        Domain:
+          type: string
+        UpdateType:
+          type: string
+          description: e.g. Quote, Trade, Unspecified, ClosingRun.
+        Key:
+          $ref: '#/components/schemas/Key'
+        SeqNumber:
+          type: integer
+        Fields:
+          type: object
+          additionalProperties: true
+        DoNotCache:
+          type: boolean
+        DoNotConflate:
+          type: boolean
+        DoNotRipple:
+          type: boolean
+    StatusPayload:
+      type: object
+      required: [ID, Type]
+      properties:
+        ID:
+          type: integer
+        Type:
+          type: string
+          enum: [Status]
+        Domain:
+          type: string
+        Key:
+          $ref: '#/components/schemas/Key'
+        State:
+          $ref: '#/components/schemas/State'
+    ClosePayload:
+      type: object
+      required: [ID, Type]
+      properties:
+        ID:
+          oneOf:
+            - type: integer
+            - type: array
+              items:
+                type: integer
+        Type:
+          type: string
+          enum: [Close]
+        Domain:
+          type: string
+    PingPayload:
+      type: object
+      required: [Type]
+      properties:
+        Type:
+          type: string
+          enum: [Ping]
+    PongPayload:
+      type: object
+      required: [Type]
+      properties:
+        Type:
+          type: string
+          enum: [Pong]
+      example:
+        Type: Pong
+    PostPayload:
+      type: object
+      required: [ID, Type]
+      properties:
+        ID:
+          type: integer
+        Type:
+          type: string
+          enum: [Post]
+        Domain:
+          type: string
+        Key:
+          $ref: '#/components/schemas/Key'
+        PostID:
+          type: integer
+        PostUserInfo:
+          type: object
+          properties:
+            Address:
+              type: string
+            UserID:
+              type: integer
+        Ack:
+          type: boolean
+        Message:
+          type: object
+          additionalProperties: true
+          description: Nested OMM message being posted (e.g. Refresh or Update).
+    AckPayload:
+      type: object
+      required: [ID, Type]
+      properties:
+        ID:
+          type: integer
+        Type:
+          type: string
+          enum: [Ack]
+        Domain:
+          type: string
+        AckID:
+          type: integer
+        NakCode:
+          type: string
+        Text:
+          type: string
+    GenericMsgPayload:
+      type: object
+      required: [ID, Type]
+      properties:
+        ID:
+          type: integer
+        Type:
+          type: string
+          enum: [Generic]
+        Domain:
+          type: string
+        Key:
+          $ref: '#/components/schemas/Key'
+        SeqNumber:
+          type: integer
+        SecondarySeqNumber:
+          type: integer
+        Elements:
+          type: object
+          additionalProperties: true
+        Map:
+          type: object
+          additionalProperties: true

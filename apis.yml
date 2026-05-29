@@ -7,7 +7,7 @@ type: Index
 image: https://www.refinitiv.com/content/dam/marketing/en_us/images/logos/refinitiv-logo.png
 url: https://raw.githubusercontent.com/api-evangelist/refinitiv-eikon/refs/heads/main/apis.yml
 created: '2024-01-01'
-modified: '2026-05-19'
+modified: '2026-05-29'
 specificationVersion: '0.19'
 tags:
 - Analytics
@@ -224,6 +224,8 @@ apis:
     url: https://developers.lseg.com/en/api-catalog/real-time-opnsrc/websocket-api/tutorials
   - type: GitHubRepository
     url: https://github.com/Refinitiv/websocket-api
+  - type: AsyncAPI
+    url: asyncapi/refinitiv-eikon-asyncapi.yml
 - name: Real-Time Java SDK
   description: Java SDK encompassing the Enterprise Message API (EMA) and Enterprise Transport API (ETA) for building high-performance
     real-time data applications. Provides consumer, provider, and publisher features for real-time market data streaming.
@@ -678,6 +680,8 @@ common:
   url: openapi/refinitiv-eikon-datascope-select-openapi.yml
 - type: OpenAPI
   url: openapi/refinitiv-eikon-tick-history-openapi.yml
+- type: AsyncAPI
+  url: asyncapi/refinitiv-eikon-asyncapi.yml
 - type: JSONSchema
   url: json-schema/refinitiv-eikon-instrument-schema.json
 - type: JSONSchema
