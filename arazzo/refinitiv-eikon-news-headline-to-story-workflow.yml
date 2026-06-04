@@ -1,0 +1,108 @@
+arazzo: 1.0.1
+info:
+  title: Refinitiv Eikon News Headline to Story
+  summary: Search news headlines for a query, then fetch the full story body for the most recent match.
+  description: >-
+    A two-hop news pattern on the Refinitiv Data Platform. The workflow searches
+    financial news headlines matching a query and date window, captures the
+    story identifier of the first headline, and branches: when a headline is
+    returned it retrieves the full story body, metadata, and associated
+    subjects. Each step spells out its request inline so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dataPlatformApi
+  url: ../openapi/refinitiv-eikon-data-platform-openapi.yml
+  type: openapi
+workflows:
+- workflowId: news-headline-to-story
+  summary: Find a news headline by query and retrieve its full story content.
+  description: >-
+    Searches news headlines matching the supplied query and date range, captures
+    the storyId of the first headline, and when present, retrieves the full
+    story body and metadata.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - query
+    properties:
+      accessToken:
+        type: string
+        description: OAuth 2.0 bearer access token obtained from the token endpoint.
+      query:
+        type: string
+        description: Free-text search query for news headlines.
+      count:
+        type: integer
+        description: Maximum number of headlines to return (1-100).
+        default: 10
+      dateFrom:
+        type: string
+        description: Start date for filtering headlines in ISO 8601 format.
+      dateTo:
+        type: string
+        description: End date for filtering headlines in ISO 8601 format.
+  steps:
+  - stepId: getHeadlines
+    description: >-
+      Search financial news headlines matching the query and optional date
+      window, and capture the storyId of the first result.
+    operationId: getNewsHeadlines
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: query
+      in: query
+      value: $inputs.query
+    - name: count
+      in: query
+      value: $inputs.count
+    - name: dateFrom
+      in: query
+      value: $inputs.dateFrom
+    - name: dateTo
+      in: query
+      value: $inputs.dateTo
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      headlines: $response.body#/data
+      storyId: $response.body#/data/0/storyId
+    onSuccess:
+    - name: headlineFound
+      type: goto
+      stepId: getStory
+      criteria:
+      - context: $response.body
+        condition: $.data.length > 0
+        type: jsonpath
+    - name: noHeadlines
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.data.length == 0
+        type: jsonpath
+  - stepId: getStory
+    description: >-
+      Retrieve the full story body and metadata for the storyId captured from the
+      first headline.
+    operationId: getNewsStory
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: storyId
+      in: path
+      value: $steps.getHeadlines.outputs.storyId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      title: $response.body#/title
+      body: $response.body#/body
+      subjects: $response.body#/subjects
+  outputs:
+    storyId: $steps.getHeadlines.outputs.storyId
+    title: $steps.getStory.outputs.title
+    body: $steps.getStory.outputs.body

@@ -1,0 +1,122 @@
+arazzo: 1.0.1
+info:
+  title: Refinitiv Eikon Symbol to Time Series
+  summary: Resolve an external instrument identifier to a RIC, then pull its historical interday pricing summaries.
+  description: >-
+    A foundational financial-data pattern on the Refinitiv Data Platform. The
+    workflow takes an external identifier such as an ISIN, CUSIP, or ticker and
+    uses the symbology lookup endpoint to resolve it to a Reuters Instrument
+    Code (RIC). It then branches: when a RIC is resolved it retrieves interday
+    pricing summaries (open, high, low, close, volume) for that instrument over
+    the requested date range. Every step spells out its request inline so the
+    flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dataPlatformApi
+  url: ../openapi/refinitiv-eikon-data-platform-openapi.yml
+  type: openapi
+workflows:
+- workflowId: symbol-to-timeseries
+  summary: Map an external identifier to a RIC and retrieve its interday pricing history.
+  description: >-
+    Resolves a supplied external identifier to a RIC via the symbology lookup
+    endpoint, and when a RIC is found, fetches interday pricing summaries for
+    that instrument across the requested date range.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - identifierType
+    - identifierValue
+    properties:
+      accessToken:
+        type: string
+        description: OAuth 2.0 bearer access token obtained from the token endpoint.
+      identifierType:
+        type: string
+        description: Source identifier type to resolve from, such as ISIN, CUSIP, SEDOL, or Ticker.
+      identifierValue:
+        type: string
+        description: The external identifier value to resolve (e.g. an ISIN).
+      start:
+        type: string
+        description: Start date for the pricing range in ISO 8601 format.
+      end:
+        type: string
+        description: End date for the pricing range in ISO 8601 format.
+      interval:
+        type: string
+        description: Time interval for the interday summaries (P1D, P7D, P1M, P3M, or P1Y).
+        default: P1D
+  steps:
+  - stepId: resolveSymbol
+    description: >-
+      Look up the supplied external identifier and resolve it to a RIC using the
+      symbology concordance service.
+    operationId: lookupSymbology
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        from:
+        - identifierTypes:
+          - $inputs.identifierType
+          values:
+          - $inputs.identifierValue
+        to:
+        - identifierTypes:
+          - RIC
+        universe:
+        - $inputs.identifierValue
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      resolved: $response.body#/data
+      ric: $response.body#/data/0/output/0/RIC
+    onSuccess:
+    - name: ricResolved
+      type: goto
+      stepId: getHistory
+      criteria:
+      - context: $response.body
+        condition: $.data.length > 0
+        type: jsonpath
+    - name: ricMissing
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.data.length == 0
+        type: jsonpath
+  - stepId: getHistory
+    description: >-
+      Retrieve interday pricing summaries for the resolved RIC over the requested
+      date range and interval.
+    operationId: getInterdaySummaries
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: universe
+      in: path
+      value: $steps.resolveSymbol.outputs.ric
+    - name: start
+      in: query
+      value: $inputs.start
+    - name: end
+      in: query
+      value: $inputs.end
+    - name: interval
+      in: query
+      value: $inputs.interval
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      pricing: $response.body#/universe
+      dataPoints: $response.body#/universe/0/data
+  outputs:
+    resolvedRic: $steps.resolveSymbol.outputs.ric
+    pricing: $steps.getHistory.outputs.pricing

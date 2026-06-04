@@ -1,0 +1,120 @@
+arazzo: 1.0.1
+info:
+  title: Refinitiv Eikon Instrument ESG Profile
+  summary: Resolve an instrument by search, pull its full ESG scores, then drill into detailed ESG measures.
+  description: >-
+    An ESG research pattern on the Refinitiv Data Platform. The workflow
+    searches for an instrument, captures its RIC, retrieves the full set of
+    Environmental, Social, and Governance pillar scores, and branches: when
+    scores are returned it drills into the underlying detailed ESG measures for
+    the same instrument. Each step spells out its request inline so the flow can
+    be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dataPlatformApi
+  url: ../openapi/refinitiv-eikon-data-platform-openapi.yml
+  type: openapi
+workflows:
+- workflowId: instrument-esg-profile
+  summary: Resolve an instrument and assemble its ESG scores and detailed measures.
+  description: >-
+    Searches for an instrument, captures its RIC, retrieves the full ESG pillar
+    scores, and when scores are present, drills into the detailed ESG measures
+    for the same instrument.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - query
+    properties:
+      accessToken:
+        type: string
+        description: OAuth 2.0 bearer access token obtained from the token endpoint.
+      query:
+        type: string
+        description: Free-text search query identifying the company or instrument.
+  steps:
+  - stepId: searchInstrument
+    description: >-
+      Search for the target instrument across entities and capture the RIC of the
+      top hit.
+    operationId: $sourceDescriptions.dataPlatformApi.searchInstruments
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        View: Entities
+        Query: $inputs.query
+        Top: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      ric: $response.body#/Hits/0/RIC
+    onSuccess:
+    - name: hitFound
+      type: goto
+      stepId: getEsgScores
+      criteria:
+      - context: $response.body
+        condition: $.Total > 0
+        type: jsonpath
+    - name: noHit
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.Total == 0
+        type: jsonpath
+  - stepId: getEsgScores
+    description: >-
+      Retrieve the full ESG pillar and combined scores for the resolved
+      instrument.
+    operationId: getEsgScoresFull
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: universe
+      in: query
+      value: $steps.searchInstrument.outputs.ric
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      scores: $response.body#/data
+      esgScore: $response.body#/data/0/esgScore
+    onSuccess:
+    - name: scoresFound
+      type: goto
+      stepId: getEsgMeasures
+      criteria:
+      - context: $response.body
+        condition: $.data.length > 0
+        type: jsonpath
+    - name: noScores
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.data.length == 0
+        type: jsonpath
+  - stepId: getEsgMeasures
+    description: >-
+      Drill into the detailed ESG measures and underlying data points for the
+      same instrument.
+    operationId: getEsgMeasuresFull
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: universe
+      in: query
+      value: $steps.searchInstrument.outputs.ric
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      measures: $response.body#/data/0/measures
+  outputs:
+    resolvedRic: $steps.searchInstrument.outputs.ric
+    esgScores: $steps.getEsgScores.outputs.scores
+    esgMeasures: $steps.getEsgMeasures.outputs.measures

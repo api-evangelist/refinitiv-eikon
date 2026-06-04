@@ -635,6 +635,27 @@ apis:
   - type: Deprecation Notice
     url: https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-libraries
 common:
+- type: ArazzoWorkflows
+  url: arazzo/
+  workflows:
+  - url: arazzo/refinitiv-eikon-datascope-extraction-download-workflow.yml
+    name: Refinitiv Eikon DataScope Extraction and Download
+    summary: Authenticate, run an on-demand DataScope Select extraction, list produced files, and download one.
+  - url: arazzo/refinitiv-eikon-instrument-esg-profile-workflow.yml
+    name: Refinitiv Eikon Instrument ESG Profile
+    summary: Resolve an instrument by search, pull its full ESG scores, then drill into detailed ESG measures.
+  - url: arazzo/refinitiv-eikon-news-headline-to-story-workflow.yml
+    name: Refinitiv Eikon News Headline to Story
+    summary: Search news headlines for a query, then fetch the full story body for the most recent match.
+  - url: arazzo/refinitiv-eikon-search-to-snapshot-workflow.yml
+    name: Refinitiv Eikon Search to Pricing Snapshot
+    summary: Search for an instrument by free text, then pull the latest pricing snapshot for the top match.
+  - url: arazzo/refinitiv-eikon-symbol-to-timeseries-workflow.yml
+    name: Refinitiv Eikon Symbol to Time Series
+    summary: Resolve an external instrument identifier to a RIC, then pull its historical interday pricing summaries.
+  - url: arazzo/refinitiv-eikon-tickhistory-extraction-poll-workflow.yml
+    name: Refinitiv Eikon Tick History Extraction and Poll
+    summary: Authenticate, submit a tick history extraction, check the job status, and download the result when complete.
 - type: LinkedIn
   url: https://www.linkedin.com/showcase/refinitiv-eikon
 - type: Portal

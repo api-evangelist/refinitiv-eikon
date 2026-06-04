@@ -1,0 +1,100 @@
+arazzo: 1.0.1
+info:
+  title: Refinitiv Eikon Search to Pricing Snapshot
+  summary: Search for an instrument by free text, then pull the latest pricing snapshot for the top match.
+  description: >-
+    A discovery-to-pricing pattern on the Refinitiv Data Platform. The workflow
+    runs a free-text search across organizations, instruments, and quotes,
+    captures the RIC of the highest-ranked hit, and branches: when a hit with a
+    RIC is found it retrieves the latest snapshot pricing for that instrument.
+    Each step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dataPlatformApi
+  url: ../openapi/refinitiv-eikon-data-platform-openapi.yml
+  type: openapi
+workflows:
+- workflowId: search-to-snapshot
+  summary: Resolve an instrument by search and retrieve its latest pricing snapshot.
+  description: >-
+    Searches for an instrument using a free-text query, captures the RIC of the
+    top hit, and when a RIC is present, fetches the latest snapshot pricing for
+    that instrument.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - query
+    properties:
+      accessToken:
+        type: string
+        description: OAuth 2.0 bearer access token obtained from the token endpoint.
+      query:
+        type: string
+        description: Free-text search query for the instrument or entity.
+      view:
+        type: string
+        description: Search view defining which entity types and fields to search across.
+        default: EquityQuotes
+      fields:
+        type: string
+        description: Comma-separated list of pricing fields to include in the snapshot.
+  steps:
+  - stepId: searchInstrument
+    description: >-
+      Run a free-text instrument search and capture the RIC of the top-ranked
+      hit.
+    operationId: $sourceDescriptions.dataPlatformApi.searchInstruments
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        View: $inputs.view
+        Query: $inputs.query
+        Top: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      total: $response.body#/Total
+      ric: $response.body#/Hits/0/RIC
+    onSuccess:
+    - name: hitFound
+      type: goto
+      stepId: getSnapshot
+      criteria:
+      - context: $response.body
+        condition: $.Total > 0
+        type: jsonpath
+    - name: noHit
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.Total == 0
+        type: jsonpath
+  - stepId: getSnapshot
+    description: >-
+      Retrieve the latest snapshot pricing for the RIC resolved by the search
+      step.
+    operationId: getPricingSnapshots
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    - name: universe
+      in: path
+      value: $steps.searchInstrument.outputs.ric
+    - name: fields
+      in: query
+      value: $inputs.fields
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      snapshot: $response.body#/universe
+      fields: $response.body#/universe/0/fields
+  outputs:
+    resolvedRic: $steps.searchInstrument.outputs.ric
+    snapshot: $steps.getSnapshot.outputs.snapshot

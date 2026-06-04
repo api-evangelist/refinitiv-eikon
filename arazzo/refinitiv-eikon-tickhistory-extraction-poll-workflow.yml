@@ -1,0 +1,194 @@
+arazzo: 1.0.1
+info:
+  title: Refinitiv Eikon Tick History Extraction and Poll
+  summary: Authenticate, submit a tick history extraction, check the job status, and download the result when complete.
+  description: >-
+    An asynchronous Tick History extraction pattern. The workflow requests a
+    24-hour session token, submits a tick history extraction for an instrument
+    and date range, lists extraction jobs to capture the job identifier, and
+    checks its status. It branches on the job status: a Completed job proceeds
+    to listing and downloading the extracted file, while any other status ends
+    the flow for the caller to poll again later. Each step spells out its request
+    inline so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: tickHistoryApi
+  url: ../openapi/refinitiv-eikon-tick-history-openapi.yml
+  type: openapi
+workflows:
+- workflowId: tickhistory-extraction-poll
+  summary: Submit a tick history extraction and download its file once the job completes.
+  description: >-
+    Authenticates, submits a tick history extraction, captures the latest job
+    identifier, and checks its status. When the job is Completed it lists the
+    extracted files and downloads the first one; otherwise the flow ends for
+    later polling.
+  inputs:
+    type: object
+    required:
+    - username
+    - password
+    - extractionType
+    - identifier
+    - queryStartDate
+    - queryEndDate
+    properties:
+      username:
+        type: string
+        description: DataScope Select account username.
+      password:
+        type: string
+        description: DataScope Select account password.
+      extractionType:
+        type: string
+        description: OData tick history extraction type, e.g. TickHistoryTimeAndSalesExtractionRequest.
+      contentFieldNames:
+        type: array
+        description: Tick data field names to extract, such as Trade Price and Volume.
+        items:
+          type: string
+      identifier:
+        type: string
+        description: Instrument identifier (typically a RIC) to extract.
+      queryStartDate:
+        type: string
+        description: Start date and time for the extraction in ISO 8601 format.
+      queryEndDate:
+        type: string
+        description: End date and time for the extraction in ISO 8601 format.
+  steps:
+  - stepId: authenticate
+    description: >-
+      Exchange account credentials for a 24-hour session token shared with
+      DataScope Select.
+    operationId: $sourceDescriptions.tickHistoryApi.requestToken
+    requestBody:
+      contentType: application/json
+      payload:
+        Credentials:
+          Username: $inputs.username
+          Password: $inputs.password
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      token: $response.body#/value
+  - stepId: submitExtraction
+    description: >-
+      Submit a tick history extraction for the instrument and date range. A 200
+      returns data synchronously while a 202 indicates asynchronous processing.
+    operationId: extractTickHistoryRaw
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Token $steps.authenticate.outputs.token"
+    requestBody:
+      contentType: application/json
+      payload:
+        ExtractionRequest:
+          '@odata.type': $inputs.extractionType
+          ContentFieldNames: $inputs.contentFieldNames
+          IdentifierList:
+            '@odata.type': "#ThomsonReuters.Dss.Api.Extractions.ExtractionRequests.InstrumentIdentifierList"
+            InstrumentIdentifiers:
+            - Identifier: $inputs.identifier
+              IdentifierType: Ric
+          Condition:
+            ReportDateRangeType: Range
+            QueryStartDate: $inputs.queryStartDate
+            QueryEndDate: $inputs.queryEndDate
+            MessageTimeStampIn: GmtUtc
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      jobId: $response.body#/JobId
+  - stepId: listJobs
+    description: >-
+      List extraction jobs and capture the identifier and status of the most
+      recent job.
+    operationId: listJobs
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Token $steps.authenticate.outputs.token"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      jobId: $response.body#/value/0/JobId
+  - stepId: checkStatus
+    description: >-
+      Retrieve the status of the captured job and branch on whether it has
+      completed.
+    operationId: getJobStatus
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Token $steps.authenticate.outputs.token"
+    - name: jobId
+      in: path
+      value: $steps.listJobs.outputs.jobId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/Status
+    onSuccess:
+    - name: jobCompleted
+      type: goto
+      stepId: listFiles
+      criteria:
+      - context: $response.body
+        condition: $.Status == "Completed"
+        type: jsonpath
+    - name: jobPending
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.Status != "Completed"
+        type: jsonpath
+  - stepId: listFiles
+    description: >-
+      List the files produced by completed tick history extractions and capture
+      the first file identifier.
+    operationId: $sourceDescriptions.tickHistoryApi.listExtractedFiles
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Token $steps.authenticate.outputs.token"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      fileId: $response.body#/value/0/ExtractedFileId
+    onSuccess:
+    - name: hasFiles
+      type: goto
+      stepId: downloadFile
+      criteria:
+      - context: $response.body
+        condition: $.value.length > 0
+        type: jsonpath
+    - name: noFiles
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.value.length == 0
+        type: jsonpath
+  - stepId: downloadFile
+    description: >-
+      Download the raw tick data contents of the first extracted file by its
+      identifier.
+    operationId: $sourceDescriptions.tickHistoryApi.downloadExtractedFile
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Token $steps.authenticate.outputs.token"
+    - name: fileId
+      in: path
+      value: $steps.listFiles.outputs.fileId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      content: $response.body
+  outputs:
+    jobId: $steps.listJobs.outputs.jobId
+    jobStatus: $steps.checkStatus.outputs.status
+    downloadedFileId: $steps.listFiles.outputs.fileId

@@ -1,0 +1,146 @@
+arazzo: 1.0.1
+info:
+  title: Refinitiv Eikon DataScope Extraction and Download
+  summary: Authenticate, run an on-demand DataScope Select extraction, list produced files, and download one.
+  description: >-
+    An end-to-end DataScope Select extraction pattern. The workflow requests a
+    24-hour session token, submits an on-demand raw extraction for a set of
+    instruments and fields, and branches on the response: a synchronous 200
+    completion proceeds directly to listing the extracted files and downloading
+    the first one, while an asynchronous 202 ends the flow for the caller to
+    poll separately. Each step spells out its request inline so the flow can be
+    read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: datascopeApi
+  url: ../openapi/refinitiv-eikon-datascope-select-openapi.yml
+  type: openapi
+workflows:
+- workflowId: datascope-extraction-download
+  summary: Run a DataScope Select extraction and download the resulting file.
+  description: >-
+    Authenticates, submits an on-demand raw extraction, and on synchronous
+    completion lists the extracted files and downloads the first one. An
+    asynchronous acceptance ends the flow for separate polling.
+  inputs:
+    type: object
+    required:
+    - username
+    - password
+    - extractionType
+    - identifier
+    - identifierType
+    properties:
+      username:
+        type: string
+        description: DataScope Select account username.
+      password:
+        type: string
+        description: DataScope Select account password.
+      extractionType:
+        type: string
+        description: OData extraction type, e.g. EndOfDayPricingExtractionRequest.
+      contentFieldNames:
+        type: array
+        description: Field names to include in the extraction.
+        items:
+          type: string
+      identifier:
+        type: string
+        description: Instrument identifier value to extract.
+      identifierType:
+        type: string
+        description: Type of the instrument identifier, such as Ric, Isin, or Cusip.
+  steps:
+  - stepId: authenticate
+    description: >-
+      Exchange account credentials for a 24-hour DataScope Select session token.
+    operationId: $sourceDescriptions.datascopeApi.requestToken
+    requestBody:
+      contentType: application/json
+      payload:
+        Credentials:
+          Username: $inputs.username
+          Password: $inputs.password
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      token: $response.body#/value
+  - stepId: submitExtraction
+    description: >-
+      Submit an on-demand raw extraction for the supplied instrument and fields.
+      A 200 returns data synchronously; a 202 means the extraction is processing
+      asynchronously.
+    operationId: extractRaw
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Token $steps.authenticate.outputs.token"
+    requestBody:
+      contentType: application/json
+      payload:
+        ExtractionRequest:
+          '@odata.type': $inputs.extractionType
+          ContentFieldNames: $inputs.contentFieldNames
+          IdentifierList:
+            '@odata.type': "#DataScope.Select.Api.Extractions.ExtractionRequests.InstrumentIdentifierList"
+            InstrumentIdentifiers:
+            - Identifier: $inputs.identifier
+              IdentifierType: $inputs.identifierType
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      jobId: $response.body#/JobId
+      records: $response.body#/value
+    onSuccess:
+    - name: completedSync
+      type: goto
+      stepId: listFiles
+      criteria:
+      - condition: $statusCode == 200
+  - stepId: listFiles
+    description: >-
+      List the files produced by completed extractions and capture the first
+      file identifier.
+    operationId: $sourceDescriptions.datascopeApi.listExtractedFiles
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Token $steps.authenticate.outputs.token"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      files: $response.body#/value
+      fileId: $response.body#/value/0/ExtractedFileId
+    onSuccess:
+    - name: hasFiles
+      type: goto
+      stepId: downloadFile
+      criteria:
+      - context: $response.body
+        condition: $.value.length > 0
+        type: jsonpath
+    - name: noFiles
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.value.length == 0
+        type: jsonpath
+  - stepId: downloadFile
+    description: >-
+      Download the raw contents of the first extracted file by its identifier.
+    operationId: $sourceDescriptions.datascopeApi.downloadExtractedFile
+    parameters:
+    - name: Authorization
+      in: header
+      value: "Token $steps.authenticate.outputs.token"
+    - name: fileId
+      in: path
+      value: $steps.listFiles.outputs.fileId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      content: $response.body
+  outputs:
+    jobId: $steps.submitExtraction.outputs.jobId
+    downloadedFileId: $steps.listFiles.outputs.fileId
