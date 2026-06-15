@@ -1,0 +1,219 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Refinitiv Eikon LSEG DataScope Select REST API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Request Authentication Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://selectapi.datascope.refinitiv.com/RestApi/v1/Authentication/RequestToken",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Authenticates user credentials and returns a session token valid for 24 hours. The token must be included in the Authorization header of all subsequent API requests."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Extractions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Execute On-Demand Raw Extraction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://selectapi.datascope.refinitiv.com/RestApi/v1/Extractions/ExtractRaw",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes an on-demand extraction for specified instruments and fields. Returns extracted data directly or initiates an asynchronous extraction for large result sets. Supports multiple extraction types including end-of-day pricing, corporate actions, and reference data."
+        },
+        {
+          "info": {
+            "name": "Execute On-Demand Extraction with Notes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://selectapi.datascope.refinitiv.com/RestApi/v1/Extractions/ExtractWithNotes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes an on-demand extraction and returns both the extracted data and processing notes. Notes include information about instrument validation, field availability, and any issues encountered during extraction."
+        },
+        {
+          "info": {
+            "name": "List Extracted Files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://selectapi.datascope.refinitiv.com/RestApi/v1/Extractions/ExtractedFiles"
+          },
+          "docs": "Retrieves a list of files produced by completed extractions. Files are available for download for a limited retention period."
+        },
+        {
+          "info": {
+            "name": "Download an Extracted File",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://selectapi.datascope.refinitiv.com/RestApi/v1/Extractions/ExtractedFiles(':fileId')/$value",
+            "params": [
+              {
+                "name": "fileId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the extracted file."
+              }
+            ]
+          },
+          "docs": "Downloads the contents of a specific extracted file by its identifier. Returns the raw extraction data."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search for Instruments",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://selectapi.datascope.refinitiv.com/RestApi/v1/Search/InstrumentSearch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Searches for instruments by identifier, name, or other criteria. Supports various identifier types including RIC, ISIN, CUSIP, SEDOL, and ticker symbols."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Instrument Lists",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Instrument Lists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://selectapi.datascope.refinitiv.com/RestApi/v1/InstrumentLists"
+          },
+          "docs": "Retrieves all instrument lists owned by the authenticated user. Instrument lists define the set of instruments for an extraction."
+        },
+        {
+          "info": {
+            "name": "Create an Instrument List",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://selectapi.datascope.refinitiv.com/RestApi/v1/InstrumentLists",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new instrument list for use in extractions. The list specifies the instruments to be included in data extraction jobs."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Report Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Report Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://selectapi.datascope.refinitiv.com/RestApi/v1/ReportTemplates"
+          },
+          "docs": "Retrieves all report templates owned by the authenticated user. Report templates define the content type and fields for extractions."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Schedules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Extraction Schedules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://selectapi.datascope.refinitiv.com/RestApi/v1/Schedules"
+          },
+          "docs": "Retrieves all extraction schedules owned by the authenticated user. Schedules define when and how extractions are automatically executed."
+        },
+        {
+          "info": {
+            "name": "Create an Extraction Schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://selectapi.datascope.refinitiv.com/RestApi/v1/Schedules",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new extraction schedule that automatically executes extractions at specified times or triggered by events."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

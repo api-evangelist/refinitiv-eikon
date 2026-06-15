@@ -1,0 +1,2767 @@
+{
+  "item": [
+    {
+      "id": "30132c33-22c1-4e43-8fc0-c502b8ce420c",
+      "name": "Authentication",
+      "description": {
+        "content": "OAuth 2.0 token management for API access",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ea7df591-6667-4512-8f20-7365dbe2c326",
+          "name": "Obtain Access Token",
+          "request": {
+            "name": "Obtain Access Token",
+            "description": {
+              "content": "Authenticates and returns an OAuth 2.0 access token using Resource Owner Password Credentials grant type. Access tokens are valid for five minutes. Subsequent token refreshes should use the refresh token grant type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "auth",
+                "oauth2",
+                "v1",
+                "token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "grant_type",
+                  "value": "<string>",
+                  "description": "(Required) OAuth 2.0 grant type. Use password for initial authentication, refresh_token for subsequent requests."
+                },
+                {
+                  "disabled": false,
+                  "key": "username",
+                  "value": "<string>",
+                  "description": "(Required) RDP username or machine account identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "password",
+                  "value": "<string>",
+                  "description": "(Required) User password for the RDP account."
+                },
+                {
+                  "disabled": false,
+                  "key": "client_id",
+                  "value": "<string>",
+                  "description": "(Required) Application client identifier provided during app registration."
+                },
+                {
+                  "disabled": false,
+                  "key": "refresh_token",
+                  "value": "<string>",
+                  "description": "Refresh token from a previous authentication response. Required when grant_type is refresh_token."
+                },
+                {
+                  "disabled": false,
+                  "key": "scope",
+                  "value": "<string>",
+                  "description": "Requested scope of access. Default is trapi."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6ab9309c-397f-4257-b68e-5d6eb6b65668",
+              "name": "Successfully authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "oauth2",
+                    "v1",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) OAuth 2.0 grant type. Use password for initial authentication, refresh_token for subsequent requests.",
+                        "type": "text/plain"
+                      },
+                      "key": "grant_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) RDP username or machine account identifier.",
+                        "type": "text/plain"
+                      },
+                      "key": "username",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) User password for the RDP account.",
+                        "type": "text/plain"
+                      },
+                      "key": "password",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Application client identifier provided during app registration.",
+                        "type": "text/plain"
+                      },
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Refresh token from a previous authentication response. Required when grant_type is refresh_token.",
+                        "type": "text/plain"
+                      },
+                      "key": "refresh_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Requested scope of access. Default is trapi.",
+                        "type": "text/plain"
+                      },
+                      "key": "scope",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_token\": \"string\",\n  \"refresh_token\": \"string\",\n  \"expires_in\": 5329,\n  \"scope\": \"string\",\n  \"token_type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5e596e7-1b3b-4e29-88ca-fe8790885024",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "oauth2",
+                    "v1",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) OAuth 2.0 grant type. Use password for initial authentication, refresh_token for subsequent requests.",
+                        "type": "text/plain"
+                      },
+                      "key": "grant_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) RDP username or machine account identifier.",
+                        "type": "text/plain"
+                      },
+                      "key": "username",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) User password for the RDP account.",
+                        "type": "text/plain"
+                      },
+                      "key": "password",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Application client identifier provided during app registration.",
+                        "type": "text/plain"
+                      },
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Refresh token from a previous authentication response. Required when grant_type is refresh_token.",
+                        "type": "text/plain"
+                      },
+                      "key": "refresh_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Requested scope of access. Default is trapi.",
+                        "type": "text/plain"
+                      },
+                      "key": "scope",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": \"string\",\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"status\": {\n      \"code\": 7734,\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a059713b-8ff5-49cf-989e-96aa0d464883",
+              "name": "Invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "oauth2",
+                    "v1",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) OAuth 2.0 grant type. Use password for initial authentication, refresh_token for subsequent requests.",
+                        "type": "text/plain"
+                      },
+                      "key": "grant_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) RDP username or machine account identifier.",
+                        "type": "text/plain"
+                      },
+                      "key": "username",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) User password for the RDP account.",
+                        "type": "text/plain"
+                      },
+                      "key": "password",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Application client identifier provided during app registration.",
+                        "type": "text/plain"
+                      },
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Refresh token from a previous authentication response. Required when grant_type is refresh_token.",
+                        "type": "text/plain"
+                      },
+                      "key": "refresh_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Requested scope of access. Default is trapi.",
+                        "type": "text/plain"
+                      },
+                      "key": "scope",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": \"string\",\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"status\": {\n      \"code\": 7734,\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "2b746499-fd10-43fe-87e5-1872d3433644",
+      "name": "ESG",
+      "description": {
+        "content": "Environmental, Social, and Governance data and scores",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c4a84dc8-6557-4009-89e1-e2b5de9f77c5",
+          "name": "Retrieve Full ESG Scores",
+          "request": {
+            "name": "Retrieve Full ESG Scores",
+            "description": {
+              "content": "Returns comprehensive Environmental, Social, and Governance scores and measures for specified instruments. Includes pillar scores, category scores, and detailed metrics covering over 400 ESG data points.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "environmental-social-governance",
+                "v2",
+                "views",
+                "scores-full"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "universe",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of instrument identifiers."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0f1a1ed7-e2f0-4921-96f7-11d80e286b80",
+              "name": "Successfully retrieved ESG scores",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "environmental-social-governance",
+                    "v2",
+                    "views",
+                    "scores-full"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "universe",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"instrumentId\": \"string\",\n      \"esgScore\": 6845.076370706429,\n      \"environmentPillarScore\": 6534.96022121663,\n      \"socialPillarScore\": 2083.767564107879,\n      \"governancePillarScore\": 6727.568080578158,\n      \"esgCombinedScore\": 6388.823557522613,\n      \"controversiesScore\": 8038.8660695923145\n    },\n    {\n      \"instrumentId\": \"string\",\n      \"esgScore\": 4071.1890446897937,\n      \"environmentPillarScore\": 5210.723407078808,\n      \"socialPillarScore\": 9098.21615178876,\n      \"governancePillarScore\": 8364.510143401956,\n      \"esgCombinedScore\": 2254.735468986083,\n      \"controversiesScore\": 6012.993511388779\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "854d2238-a183-4468-9516-7e80fe1e6cbd",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "environmental-social-governance",
+                    "v2",
+                    "views",
+                    "scores-full"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "universe",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": \"string\",\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"status\": {\n      \"code\": 7734,\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "afe4b835-fa7f-4d72-9c7f-0e47f04e083d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "environmental-social-governance",
+                    "v2",
+                    "views",
+                    "scores-full"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "universe",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": \"string\",\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"status\": {\n      \"code\": 7734,\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e0cc8b4a-004a-41ca-9832-df8cf7ffe8ea",
+          "name": "Retrieve Full ESG Measures",
+          "request": {
+            "name": "Retrieve Full ESG Measures",
+            "description": {
+              "content": "Returns detailed ESG measures and underlying data points for specified instruments. Provides the raw metrics used to compute ESG scores across environmental, social, and governance categories.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "environmental-social-governance",
+                "v2",
+                "views",
+                "measures-full"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "universe",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of instrument identifiers."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3c104eaa-7ce0-45d4-ab2a-e4f9f37935f9",
+              "name": "Successfully retrieved ESG measures",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "environmental-social-governance",
+                    "v2",
+                    "views",
+                    "measures-full"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "universe",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"instrumentId\": \"string\",\n      \"measures\": {\n        \"key_0\": true,\n        \"key_1\": 246,\n        \"key_2\": \"string\"\n      }\n    },\n    {\n      \"instrumentId\": \"string\",\n      \"measures\": {\n        \"key_0\": 7999,\n        \"key_1\": 5543.482210841047,\n        \"key_2\": 1694\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6a597683-bc2e-408c-a836-053bf4b84d0f",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "environmental-social-governance",
+                    "v2",
+                    "views",
+                    "measures-full"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "universe",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": \"string\",\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"status\": {\n      \"code\": 7734,\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "75dbb675-77f8-4e18-b08b-b79b0f6a657b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "environmental-social-governance",
+                    "v2",
+                    "views",
+                    "measures-full"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "universe",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": \"string\",\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"status\": {\n      \"code\": 7734,\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "51e9e276-15e1-4880-9833-2329c50316a0",
+      "name": "Historical Pricing",
+      "description": {
+        "content": "Historical price data including interday and intraday summaries",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4770f51e-1f3c-4484-8b24-37ccbba5fbe1",
+          "name": "Retrieve Interday Pricing Summaries",
+          "request": {
+            "name": "Retrieve Interday Pricing Summaries",
+            "description": {
+              "content": "Returns historical interday summary pricing data for a specified instrument including open, high, low, close, volume, and other summary fields. Supports date range filtering and field selection.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "historical-pricing",
+                "v1",
+                "views",
+                "interday-summaries",
+                ":universe"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<dateTime>",
+                  "description": "Start date for the data range in ISO 8601 format."
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<dateTime>",
+                  "description": "End date for the data range in ISO 8601 format."
+                },
+                {
+                  "disabled": false,
+                  "key": "interval",
+                  "value": "<string>",
+                  "description": "Time interval for the summaries. Options include daily, weekly, monthly, quarterly, and yearly."
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "<integer>",
+                  "description": "Maximum number of data points to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to include in the response."
+                },
+                {
+                  "disabled": false,
+                  "key": "adjustments",
+                  "value": "<string>",
+                  "description": "Comma-separated list of price adjustment types to apply."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "universe",
+                  "description": "(Required) Instrument identifier, typically a RIC such as AAPL.O or IBM.N."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6b0c12da-4ebd-4441-bcbb-0b9f5f3326e4",
+              "name": "Successfully retrieved pricing data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "historical-pricing",
+                    "v1",
+                    "views",
+                    "interday-summaries",
+                    ":universe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "adjustments",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "universe",
+                      "description": "(Required) Instrument identifier, typically a RIC such as AAPL.O or IBM.N."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"universe\": [\n    {\n      \"instrumentId\": \"string\",\n      \"ric\": \"string\",\n      \"displayName\": \"string\",\n      \"data\": [\n        {\n          \"DATE\": \"1975-08-20\",\n          \"TRDPRC_1\": 1969.281873220191,\n          \"HIGH_1\": 7803.6246292217775,\n          \"LOW_1\": 9840.768720445283,\n          \"OPEN_PRC\": 5887.5730495498565,\n          \"ACVOL_UNS\": 2404,\n          \"BID\": 4400.401655408572,\n          \"ASK\": 6215.3990469041855\n        },\n        {\n          \"DATE\": \"1948-10-17\",\n          \"TRDPRC_1\": 1603.3202651892252,\n          \"HIGH_1\": 8176.877076523543,\n          \"LOW_1\": 4070.7994584262865,\n          \"OPEN_PRC\": 9582.691647274178,\n          \"ACVOL_UNS\": 6214,\n          \"BID\": 6078.557426446298,\n          \"ASK\": 3840.860680106386\n        }\n      ],\n      \"headers\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    {\n      \"instrumentId\": \"string\",\n      \"ric\": \"string\",\n      \"displayName\": \"string\",\n      \"data\": [\n        {\n          \"DATE\": \"2023-01-17\",\n          \"TRDPRC_1\": 9012.286983423128,\n          \"HIGH_1\": 9613.009753105616,\n          \"LOW_1\": 737.4765086716495,\n          \"OPEN_PRC\": 9714.62563278101,\n          \"ACVOL_UNS\": 3987,\n          \"BID\": 2265.6089358345776,\n          \"ASK\": 1469.7571837540047\n        },\n        {\n          \"DATE\": \"2025-10-18\",\n          \"TRDPRC_1\": 5494.4793160996705,\n          \"HIGH_1\": 5634.682015234518,\n          \"LOW_1\": 312.2818473592226,\n          \"OPEN_PRC\": 2792.072680053019,\n          \"ACVOL_UNS\": 9458,\n          \"BID\": 4142.071419177895,\n          \"ASK\": 8643.641373236287\n        }\n      ],\n      \"headers\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5a7c1a6e-9ea4-4ed8-9cdd-b50cf6c61134",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "historical-pricing",
+                    "v1",
+                    "views",
+                    "interday-summaries",
+                    ":universe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "adjustments",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "universe",
+                      "description": "(Required) Instrument identifier, typically a RIC such as AAPL.O or IBM.N."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": \"string\",\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"status\": {\n      \"code\": 7734,\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0542028c-9883-47ab-af24-65faa8c13770",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "historical-pricing",
+                    "v1",
+                    "views",
+                    "interday-summaries",
+                    ":universe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "adjustments",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "universe",
+                      "description": "(Required) Instrument identifier, typically a RIC such as AAPL.O or IBM.N."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": \"string\",\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"status\": {\n      \"code\": 7734,\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c839f9a0-3325-4f0b-9173-9a0c213598f0",
+              "name": "Instrument not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "historical-pricing",
+                    "v1",
+                    "views",
+                    "interday-summaries",
+                    ":universe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "adjustments",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "universe",
+                      "description": "(Required) Instrument identifier, typically a RIC such as AAPL.O or IBM.N."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": \"string\",\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"status\": {\n      \"code\": 7734,\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b8c55642-5c3e-45cf-bba1-7395a4cbf625",
+          "name": "Retrieve Intraday Pricing Summaries",
+          "request": {
+            "name": "Retrieve Intraday Pricing Summaries",
+            "description": {
+              "content": "Returns historical intraday summary pricing data for a specified instrument at configurable intervals. Supports minute-level and hourly granularity for recent trading sessions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "historical-pricing",
+                "v1",
+                "views",
+                "intraday-summaries",
+                ":universe"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<dateTime>",
+                  "description": "Start date for the data range in ISO 8601 format."
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<dateTime>",
+                  "description": "End date for the data range in ISO 8601 format."
+                },
+                {
+                  "disabled": false,
+                  "key": "interval",
+                  "value": "<string>",
+                  "description": "Time interval for intraday summaries."
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "<integer>",
+                  "description": "Maximum number of data points to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to include in the response."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "universe",
+                  "description": "(Required) Instrument identifier, typically a RIC such as AAPL.O or IBM.N."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4d099aa4-adf6-4453-ae7b-6387cec8be5f",
+              "name": "Successfully retrieved intraday pricing data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "historical-pricing",
+                    "v1",
+                    "views",
+                    "intraday-summaries",
+                    ":universe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "universe",
+                      "description": "(Required) Instrument identifier, typically a RIC such as AAPL.O or IBM.N."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"universe\": [\n    {\n      \"instrumentId\": \"string\",\n      \"ric\": \"string\",\n      \"displayName\": \"string\",\n      \"data\": [\n        {\n          \"DATE\": \"1975-08-20\",\n          \"TRDPRC_1\": 1969.281873220191,\n          \"HIGH_1\": 7803.6246292217775,\n          \"LOW_1\": 9840.768720445283,\n          \"OPEN_PRC\": 5887.5730495498565,\n          \"ACVOL_UNS\": 2404,\n          \"BID\": 4400.401655408572,\n          \"ASK\": 6215.3990469041855\n        },\n        {\n          \"DATE\": \"1948-10-17\",\n          \"TRDPRC_1\": 1603.3202651892252,\n          \"HIGH_1\": 8176.877076523543,\n          \"LOW_1\": 4070.7994584262865,\n          \"OPEN_PRC\": 9582.691647274178,\n          \"ACVOL_UNS\": 6214,\n          \"BID\": 6078.557426446298,\n          \"ASK\": 3840.860680106386\n        }\n      ],\n      \"headers\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    {\n      \"instrumentId\": \"string\",\n      \"ric\": \"string\",\n      \"displayName\": \"string\",\n      \"data\": [\n        {\n          \"DATE\": \"2023-01-17\",\n          \"TRDPRC_1\": 9012.286983423128,\n          \"HIGH_1\": 9613.009753105616,\n          \"LOW_1\": 737.4765086716495,\n          \"OPEN_PRC\": 9714.62563278101,\n          \"ACVOL_UNS\": 3987,\n          \"BID\": 2265.6089358345776,\n          \"ASK\": 1469.7571837540047\n        },\n        {\n          \"DATE\": \"2025-10-18\",\n          \"TRDPRC_1\": 5494.4793160996705,\n          \"HIGH_1\": 5634.682015234518,\n          \"LOW_1\": 312.2818473592226,\n          \"OPEN_PRC\": 2792.072680053019,\n          \"ACVOL_UNS\": 9458,\n          \"BID\": 4142.071419177895,\n          \"ASK\": 8643.641373236287\n        }\n      ],\n      \"headers\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "97fd52ae-040d-463f-a89e-4b99e96e46d0",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "historical-pricing",
+                    "v1",
+                    "views",
+                    "intraday-summaries",
+                    ":universe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "universe",
+                      "description": "(Required) Instrument identifier, typically a RIC such as AAPL.O or IBM.N."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": \"string\",\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"status\": {\n      \"code\": 7734,\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dc1eb7d8-20c7-4f2d-9e91-eb9297b3830e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "historical-pricing",
+                    "v1",
+                    "views",
+                    "intraday-summaries",
+                    ":universe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "universe",
+                      "description": "(Required) Instrument identifier, typically a RIC such as AAPL.O or IBM.N."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": \"string\",\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"status\": {\n      \"code\": 7734,\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "8791a9f9-ba19-421e-8e5e-7b99f9339ebb",
+      "name": "News",
+      "description": {
+        "content": "Financial news headlines and stories from Reuters and other sources",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "af46627a-6c55-4842-896f-8299e230da07",
+          "name": "Retrieve News Headlines",
+          "request": {
+            "name": "Retrieve News Headlines",
+            "description": {
+              "content": "Returns financial news headlines matching the specified query criteria. Supports filtering by topic, instrument, date range, and other parameters. Results include headline text, source, and timestamps.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "news",
+                "v1",
+                "headlines"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "Free-text search query for news headlines. Supports operators and field-specific searches."
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "<integer>",
+                  "description": "Maximum number of headlines to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Pagination cursor for retrieving the next set of results."
+                },
+                {
+                  "disabled": false,
+                  "key": "dateFrom",
+                  "value": "<dateTime>",
+                  "description": "Start date for filtering headlines in ISO 8601 format."
+                },
+                {
+                  "disabled": false,
+                  "key": "dateTo",
+                  "value": "<dateTime>",
+                  "description": "End date for filtering headlines in ISO 8601 format."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "511e7b7f-7e31-4156-89bf-249703aade83",
+              "name": "Successfully retrieved news headlines",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "news",
+                    "v1",
+                    "headlines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateFrom",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "dateTo",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"storyId\": \"string\",\n      \"title\": \"string\",\n      \"sourceCode\": \"string\",\n      \"sourceName\": \"string\",\n      \"versionCreated\": \"1993-11-04T21:14:23.803Z\"\n    },\n    {\n      \"storyId\": \"string\",\n      \"title\": \"string\",\n      \"sourceCode\": \"string\",\n      \"sourceName\": \"string\",\n      \"versionCreated\": \"1979-10-22T23:07:44.990Z\"\n    }\n  ],\n  \"meta\": {\n    \"count\": 8179,\n    \"next\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ea73921c-c6bb-4379-97f3-165ee09e5b0b",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "news",
+                    "v1",
+                    "headlines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateFrom",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "dateTo",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": \"string\",\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"status\": {\n      \"code\": 7734,\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ecab2647-bb6a-4eb4-9d8e-573bb1ca8d10",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "news",
+                    "v1",
+                    "headlines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateFrom",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "dateTo",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": \"string\",\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"status\": {\n      \"code\": 7734,\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cceaf44e-c79e-46ac-8468-600359668484",
+          "name": "Retrieve a News Story",
+          "request": {
+            "name": "Retrieve a News Story",
+            "description": {
+              "content": "Returns the full content of a news story identified by its story identifier. Includes the story body, metadata, subjects, and associated instruments.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "news",
+                "v1",
+                "stories",
+                ":storyId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "storyId",
+                  "description": "(Required) Unique identifier for the news story."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f4cb0a53-baa3-4916-b3fb-739fbf33f628",
+              "name": "Successfully retrieved the news story",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "news",
+                    "v1",
+                    "stories",
+                    ":storyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "storyId",
+                      "description": "(Required) Unique identifier for the news story."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"storyId\": \"string\",\n  \"title\": \"string\",\n  \"body\": \"string\",\n  \"sourceCode\": \"string\",\n  \"language\": \"string\",\n  \"subjects\": [\n    \"string\",\n    \"string\"\n  ],\n  \"audiences\": [\n    \"string\",\n    \"string\"\n  ],\n  \"versionCreated\": \"2023-07-31T12:23:53.715Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f2b79c26-ff3b-49d0-ae06-5fb5e868ee35",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "news",
+                    "v1",
+                    "stories",
+                    ":storyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "storyId",
+                      "description": "(Required) Unique identifier for the news story."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": \"string\",\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"status\": {\n      \"code\": 7734,\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8ce14c29-4cbe-4433-b1b9-a37f05d3b612",
+              "name": "Story not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "news",
+                    "v1",
+                    "stories",
+                    ":storyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "storyId",
+                      "description": "(Required) Unique identifier for the news story."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": \"string\",\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"status\": {\n      \"code\": 7734,\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "db0d693f-6a6a-45dc-bc00-3e41d2a7f4ec",
+      "name": "Search",
+      "description": {
+        "content": "Search across organizations, instruments, quotes, and indicators",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9cda624a-ff89-4b28-aad3-084cd4cfda18",
+          "name": "Search for Instruments",
+          "request": {
+            "name": "Search for Instruments",
+            "description": {
+              "content": "Searches across organizations, instruments, quotes, and economic indicators on the Refinitiv Data Platform. Supports filtering by entity type, asset class, exchange, and other criteria.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "discovery",
+                "search",
+                "v1",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"View\": \"<string>\",\n  \"Filter\": \"<string>\",\n  \"Query\": \"<string>\",\n  \"Select\": \"<string>\",\n  \"Top\": \"<integer>\",\n  \"OrderBy\": \"<string>\",\n  \"Boost\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0373c52f-45c2-4828-82cb-50bde46af909",
+              "name": "Successfully retrieved search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "discovery",
+                    "search",
+                    "v1",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"View\": \"<string>\",\n  \"Filter\": \"<string>\",\n  \"Query\": \"<string>\",\n  \"Select\": \"<string>\",\n  \"Top\": \"<integer>\",\n  \"OrderBy\": \"<string>\",\n  \"Boost\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Total\": 3776,\n  \"Hits\": [\n    {\n      \"DocumentTitle\": \"string\",\n      \"RIC\": \"string\",\n      \"PermID\": \"string\",\n      \"PI\": \"string\",\n      \"ExchangeCode\": \"string\"\n    },\n    {\n      \"DocumentTitle\": \"string\",\n      \"RIC\": \"string\",\n      \"PermID\": \"string\",\n      \"PI\": \"string\",\n      \"ExchangeCode\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "25d609d1-af28-49e6-92aa-2a516163ac21",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "discovery",
+                    "search",
+                    "v1",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"View\": \"<string>\",\n  \"Filter\": \"<string>\",\n  \"Query\": \"<string>\",\n  \"Select\": \"<string>\",\n  \"Top\": \"<integer>\",\n  \"OrderBy\": \"<string>\",\n  \"Boost\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": \"string\",\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"status\": {\n      \"code\": 7734,\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6fb3e7e7-f752-41e0-a4a8-0e9154cf3ff9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "discovery",
+                    "search",
+                    "v1",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"View\": \"<string>\",\n  \"Filter\": \"<string>\",\n  \"Query\": \"<string>\",\n  \"Select\": \"<string>\",\n  \"Top\": \"<integer>\",\n  \"OrderBy\": \"<string>\",\n  \"Boost\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": \"string\",\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"status\": {\n      \"code\": 7734,\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "eee85a8d-927c-4e99-ab2e-c7fa947e679b",
+      "name": "Streaming Pricing",
+      "description": {
+        "content": "Snapshot and streaming price data for financial instruments",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4d8ff613-7bc3-4ee9-8b80-3cd1d4b82766",
+          "name": "Retrieve Pricing Snapshots",
+          "request": {
+            "name": "Retrieve Pricing Snapshots",
+            "description": {
+              "content": "Returns the latest snapshot pricing data for one or more instruments. Provides real-time or delayed pricing depending on entitlements.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "pricing",
+                "snapshots",
+                "v1",
+                ":universe"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to include in the response."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "universe",
+                  "description": "(Required) Comma-separated list of instrument identifiers (RICs)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "05b494d0-9ee2-45e5-a204-3ee748feb19d",
+              "name": "Successfully retrieved pricing snapshots",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "pricing",
+                    "snapshots",
+                    "v1",
+                    ":universe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "universe",
+                      "description": "(Required) Comma-separated list of instrument identifiers (RICs)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"universe\": [\n    {\n      \"instrumentId\": \"string\",\n      \"ric\": \"string\",\n      \"fields\": {\n        \"key_0\": \"string\"\n      }\n    },\n    {\n      \"instrumentId\": \"string\",\n      \"ric\": \"string\",\n      \"fields\": {\n        \"key_0\": false,\n        \"key_1\": 3723\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "198fa5cc-ef21-47cd-bf85-8abb9cf309fa",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "pricing",
+                    "snapshots",
+                    "v1",
+                    ":universe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "universe",
+                      "description": "(Required) Comma-separated list of instrument identifiers (RICs)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": \"string\",\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"status\": {\n      \"code\": 7734,\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e3999e1-3f7a-4ec9-86a5-85e2caeeb382",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "pricing",
+                    "snapshots",
+                    "v1",
+                    ":universe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "universe",
+                      "description": "(Required) Comma-separated list of instrument identifiers (RICs)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": \"string\",\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"status\": {\n      \"code\": 7734,\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "1fd4f408-160b-419d-87b9-73027782d0dc",
+      "name": "Symbology",
+      "description": {
+        "content": "Instrument identifier concordance and navigation",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d59a5c88-3ea8-4740-852c-18d3a1c231ef",
+          "name": "Look Up Instrument Symbology",
+          "request": {
+            "name": "Look Up Instrument Symbology",
+            "description": {
+              "content": "Maps between different instrument identifier types. Supports concordance from external identifiers such as ISIN, CUSIP, SEDOL, and ticker to LSEG PermIDs and RICs. Enables navigation between a wide range of identifier types.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "discovery",
+                "symbology",
+                "v1",
+                "lookup"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"from\": [\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"to\": [\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"universe\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "41406349-2809-416a-9982-32ae50ac41ea",
+              "name": "Successfully resolved identifiers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "discovery",
+                    "symbology",
+                    "v1",
+                    "lookup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"from\": [\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"to\": [\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"universe\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"input\": \"string\",\n      \"output\": [\n        {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        {\n          \"key_0\": \"string\"\n        }\n      ]\n    },\n    {\n      \"input\": \"string\",\n      \"output\": [\n        {\n          \"key_0\": \"string\"\n        },\n        {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "08d8e729-3d95-4d5f-b5c4-1f23be6b83f9",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "discovery",
+                    "symbology",
+                    "v1",
+                    "lookup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"from\": [\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"to\": [\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"universe\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": \"string\",\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"status\": {\n      \"code\": 7734,\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "646b13f6-8cb5-4115-ac8b-a3b89d0299a9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "discovery",
+                    "symbology",
+                    "v1",
+                    "lookup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"from\": [\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"to\": [\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"universe\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": \"string\",\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"status\": {\n      \"code\": 7734,\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.refinitiv.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a9e8ae20-bf63-469a-b111-65e6be3d1f24",
+    "name": "Refinitiv Eikon Refinitiv Data Platform APIs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful APIs providing access to Refinitiv's comprehensive financial data including pricing, ESG data, news, research, alternative data, and streaming services. The platform serves as the central hub for programmatic access to LSEG content. Uses OAuth 2.0 for authentication with access tokens obtained via the token endpoint.\n\nContact Support:\n Name: LSEG Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

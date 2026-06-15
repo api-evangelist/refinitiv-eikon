@@ -1,0 +1,371 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Refinitiv Eikon Refinitiv Data Platform APIs",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Obtain Access Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.refinitiv.com/auth/oauth2/v1/token",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "grant_type",
+                  "value": ""
+                },
+                {
+                  "name": "username",
+                  "value": ""
+                },
+                {
+                  "name": "password",
+                  "value": ""
+                },
+                {
+                  "name": "client_id",
+                  "value": ""
+                },
+                {
+                  "name": "refresh_token",
+                  "value": ""
+                },
+                {
+                  "name": "scope",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Authenticates and returns an OAuth 2.0 access token using Resource Owner Password Credentials grant type. Access tokens are valid for five minutes. Subsequent token refreshes should use the refresh token grant type."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Historical Pricing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve Interday Pricing Summaries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.refinitiv.com/data/historical-pricing/v1/views/interday-summaries/:universe",
+            "params": [
+              {
+                "name": "universe",
+                "value": "",
+                "type": "path",
+                "description": "Instrument identifier, typically a RIC such as AAPL.O or IBM.N."
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start date for the data range in ISO 8601 format."
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End date for the data range in ISO 8601 format."
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "Time interval for the summaries. Options include daily, weekly, monthly, quarterly, and yearly."
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of data points to return."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response."
+              },
+              {
+                "name": "adjustments",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of price adjustment types to apply."
+              }
+            ]
+          },
+          "docs": "Returns historical interday summary pricing data for a specified instrument including open, high, low, close, volume, and other summary fields. Supports date range filtering and field selection."
+        },
+        {
+          "info": {
+            "name": "Retrieve Intraday Pricing Summaries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.refinitiv.com/data/historical-pricing/v1/views/intraday-summaries/:universe",
+            "params": [
+              {
+                "name": "universe",
+                "value": "",
+                "type": "path",
+                "description": "Instrument identifier, typically a RIC such as AAPL.O or IBM.N."
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start date for the data range in ISO 8601 format."
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End date for the data range in ISO 8601 format."
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "Time interval for intraday summaries."
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of data points to return."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response."
+              }
+            ]
+          },
+          "docs": "Returns historical intraday summary pricing data for a specified instrument at configurable intervals. Supports minute-level and hourly granularity for recent trading sessions."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Streaming Pricing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve Pricing Snapshots",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.refinitiv.com/data/pricing/snapshots/v1/:universe",
+            "params": [
+              {
+                "name": "universe",
+                "value": "",
+                "type": "path",
+                "description": "Comma-separated list of instrument identifiers (RICs)."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response."
+              }
+            ]
+          },
+          "docs": "Returns the latest snapshot pricing data for one or more instruments. Provides real-time or delayed pricing depending on entitlements."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "News",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve News Headlines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.refinitiv.com/data/news/v1/headlines",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Free-text search query for news headlines. Supports operators and field-specific searches."
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of headlines to return."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor for retrieving the next set of results."
+              },
+              {
+                "name": "dateFrom",
+                "value": "",
+                "type": "query",
+                "description": "Start date for filtering headlines in ISO 8601 format."
+              },
+              {
+                "name": "dateTo",
+                "value": "",
+                "type": "query",
+                "description": "End date for filtering headlines in ISO 8601 format."
+              }
+            ]
+          },
+          "docs": "Returns financial news headlines matching the specified query criteria. Supports filtering by topic, instrument, date range, and other parameters. Results include headline text, source, and timestamps."
+        },
+        {
+          "info": {
+            "name": "Retrieve a News Story",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.refinitiv.com/data/news/v1/stories/:storyId",
+            "params": [
+              {
+                "name": "storyId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the news story."
+              }
+            ]
+          },
+          "docs": "Returns the full content of a news story identified by its story identifier. Includes the story body, metadata, subjects, and associated instruments."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ESG",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve Full ESG Scores",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.refinitiv.com/data/environmental-social-governance/v2/views/scores-full",
+            "params": [
+              {
+                "name": "universe",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of instrument identifiers."
+              }
+            ]
+          },
+          "docs": "Returns comprehensive Environmental, Social, and Governance scores and measures for specified instruments. Includes pillar scores, category scores, and detailed metrics covering over 400 ESG data points."
+        },
+        {
+          "info": {
+            "name": "Retrieve Full ESG Measures",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.refinitiv.com/data/environmental-social-governance/v2/views/measures-full",
+            "params": [
+              {
+                "name": "universe",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of instrument identifiers."
+              }
+            ]
+          },
+          "docs": "Returns detailed ESG measures and underlying data points for specified instruments. Provides the raw metrics used to compute ESG scores across environmental, social, and governance categories."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Symbology",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Look Up Instrument Symbology",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.refinitiv.com/discovery/symbology/v1/lookup",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Maps between different instrument identifier types. Supports concordance from external identifiers such as ISIN, CUSIP, SEDOL, and ticker to LSEG PermIDs and RICs. Enables navigation between a wide range of identifier types."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search for Instruments",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.refinitiv.com/discovery/search/v1/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Searches across organizations, instruments, quotes, and economic indicators on the Refinitiv Data Platform. Supports filtering by entity type, asset class, exchange, and other criteria."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

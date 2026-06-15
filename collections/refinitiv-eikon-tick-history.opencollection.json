@@ -1,0 +1,178 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Refinitiv Eikon LSEG Tick History REST API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Request Authentication Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://selectapi.datascope.refinitiv.com/RestApi/v1/Authentication/RequestToken",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Authenticates user credentials and returns a session token valid for 24 hours. Uses the same authentication as DataScope Select."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "On-Demand Extractions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Extract Tick History Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://selectapi.datascope.refinitiv.com/RestApi/v1/Extractions/ExtractRaw",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes an on-demand tick history extraction for specified instruments and date range. Supports tick data, intraday bars, market depth, and time-and-sales extraction types. For large extractions, returns a 202 response with a polling location."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve Extraction Notes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://selectapi.datascope.refinitiv.com/RestApi/v1/Extractions/ReportExtractions(':extractionId')/FullExtractionNote",
+            "params": [
+              {
+                "name": "extractionId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the extraction."
+              }
+            ]
+          },
+          "docs": "Returns the detailed processing notes for a completed extraction, including instrument validation results and any issues encountered."
+        },
+        {
+          "info": {
+            "name": "List Extraction Jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://selectapi.datascope.refinitiv.com/RestApi/v1/Jobs/Jobs"
+          },
+          "docs": "Retrieves a list of extraction jobs and their current statuses. Allows monitoring the progress of asynchronous extractions."
+        },
+        {
+          "info": {
+            "name": "Get Job Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://selectapi.datascope.refinitiv.com/RestApi/v1/Jobs/Jobs(':jobId')",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the extraction job."
+              }
+            ]
+          },
+          "docs": "Retrieves the status and details of a specific extraction job."
+        },
+        {
+          "info": {
+            "name": "Cancel an Extraction Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://selectapi.datascope.refinitiv.com/RestApi/v1/Jobs/Jobs(':jobId')",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the extraction job to cancel."
+              }
+            ]
+          },
+          "docs": "Cancels a running extraction job. Only jobs that have not yet completed can be cancelled."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Files",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Extracted Files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://selectapi.datascope.refinitiv.com/RestApi/v1/Extractions/ExtractedFiles"
+          },
+          "docs": "Retrieves a list of files produced by completed tick history extractions. Files are available for download within the retention period."
+        },
+        {
+          "info": {
+            "name": "Download an Extracted File",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://selectapi.datascope.refinitiv.com/RestApi/v1/Extractions/ExtractedFiles(':fileId')/$value",
+            "params": [
+              {
+                "name": "fileId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the extracted file."
+              }
+            ]
+          },
+          "docs": "Downloads the raw tick data file by its identifier. Supports gzip compression via the Accept-Encoding header."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1270 @@
+{
+  "item": [
+    {
+      "id": "8a5934d0-bdf4-47f9-87cc-17326f32dbac",
+      "name": "Authentication",
+      "description": {
+        "content": "Token-based authentication management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e5443d8a-598f-4fcc-8407-65a0c7a7bb6a",
+          "name": "Request Authentication Token",
+          "request": {
+            "name": "Request Authentication Token",
+            "description": {
+              "content": "Authenticates user credentials and returns a session token valid for 24 hours. Uses the same authentication as DataScope Select.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Authentication",
+                "RequestToken"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Credentials\": {\n    \"Username\": \"<string>\",\n    \"Password\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c4c72754-d6ea-4f5d-bd3c-fd5f92a4488a",
+              "name": "Successfully authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Authentication",
+                    "RequestToken"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Credentials\": {\n    \"Username\": \"<string>\",\n    \"Password\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6f6df524-b9f4-426e-84a8-a5898f857317",
+              "name": "Invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Authentication",
+                    "RequestToken"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Credentials\": {\n    \"Username\": \"<string>\",\n    \"Password\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "edcfdab5-53b4-4cd7-8ef7-e2e834d471b3",
+      "name": "Files",
+      "description": {
+        "content": "Extracted file management and download",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ed77789e-78d6-42b5-9c10-643fe1f01aa7",
+          "name": "List Extracted Files",
+          "request": {
+            "name": "List Extracted Files",
+            "description": {
+              "content": "Retrieves a list of files produced by completed tick history extractions. Files are available for download within the retention period.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Extractions",
+                "ExtractedFiles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "14dfd004-13c0-479c-9b76-d84975c80578",
+              "name": "Successfully retrieved file list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Extractions",
+                    "ExtractedFiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": [\n    {\n      \"ExtractedFileId\": \"string\",\n      \"FileName\": \"string\",\n      \"FileType\": \"string\",\n      \"Size\": 2374,\n      \"ReceivedDateUtc\": \"1980-05-10T03:27:23.986Z\"\n    },\n    {\n      \"ExtractedFileId\": \"string\",\n      \"FileName\": \"string\",\n      \"FileType\": \"string\",\n      \"Size\": 3739,\n      \"ReceivedDateUtc\": \"2008-08-15T15:51:01.276Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4cf8e1a9-9a01-497d-b07e-9c1fe9f19a04",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Extractions",
+                    "ExtractedFiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "48925f4d-777d-43b4-be5a-e67980c6c2b7",
+          "name": "Download an Extracted File",
+          "request": {
+            "name": "Download an Extracted File",
+            "description": {
+              "content": "Downloads the raw tick data file by its identifier. Supports gzip compression via the Accept-Encoding header.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Extractions",
+                "ExtractedFiles('{{fileId}}')",
+                "$value"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f123b192-3440-457b-9022-22d9800774c4",
+              "name": "Successfully downloaded file",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Extractions",
+                    "ExtractedFiles('{{fileId}}')",
+                    "$value"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2fa3f2c1-1533-4c51-a4b6-bb15397ac1aa",
+              "name": "File not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Extractions",
+                    "ExtractedFiles('{{fileId}}')",
+                    "$value"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "d5aea088-a6dc-4db7-ad84-34b4a97c14ae",
+      "name": "Jobs",
+      "description": {
+        "content": "Extraction job management and status monitoring",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ee2c443f-5b1d-4887-8968-52c8aef0cd79",
+          "name": "Retrieve Extraction Notes",
+          "request": {
+            "name": "Retrieve Extraction Notes",
+            "description": {
+              "content": "Returns the detailed processing notes for a completed extraction, including instrument validation results and any issues encountered.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Extractions",
+                "ReportExtractions('{{extractionId}}')",
+                "FullExtractionNote"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aa7ec022-8479-46db-ac79-8ac7ecd371d9",
+              "name": "Successfully retrieved extraction notes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Extractions",
+                    "ReportExtractions('{{extractionId}}')",
+                    "FullExtractionNote"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c778b90f-bcf5-436e-9de7-010c36fe53dd",
+              "name": "Extraction not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Extractions",
+                    "ReportExtractions('{{extractionId}}')",
+                    "FullExtractionNote"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9ac2e192-4bfc-41e7-a14d-de3713bad8d4",
+          "name": "List Extraction Jobs",
+          "request": {
+            "name": "List Extraction Jobs",
+            "description": {
+              "content": "Retrieves a list of extraction jobs and their current statuses. Allows monitoring the progress of asynchronous extractions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Jobs",
+                "Jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "da7bdbeb-5022-49e7-9af9-bab3c3e547e8",
+              "name": "Successfully retrieved job list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Jobs",
+                    "Jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": [\n    {\n      \"JobId\": \"string\",\n      \"Status\": \"Completed\",\n      \"StartedUtc\": \"2020-07-11T13:49:12.419Z\",\n      \"CompletedUtc\": \"1979-07-03T05:33:00.793Z\"\n    },\n    {\n      \"JobId\": \"string\",\n      \"Status\": \"Failed\",\n      \"StartedUtc\": \"1961-07-31T03:14:59.340Z\",\n      \"CompletedUtc\": \"1985-05-17T20:11:46.898Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d38084f0-dae2-46b3-9049-7505e0fe041b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Jobs",
+                    "Jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b636685d-b2a0-4cff-b874-7d3950d5b649",
+          "name": "Get Job Status",
+          "request": {
+            "name": "Get Job Status",
+            "description": {
+              "content": "Retrieves the status and details of a specific extraction job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Jobs",
+                "Jobs('{{jobId}}')"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8c5f4f2d-1689-4a94-92b6-8457fe91a8eb",
+              "name": "Successfully retrieved job status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Jobs",
+                    "Jobs('{{jobId}}')"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"JobId\": \"string\",\n  \"Status\": \"InProgress\",\n  \"StartedUtc\": \"2022-10-28T14:34:40.684Z\",\n  \"CompletedUtc\": \"1977-02-23T14:44:46.690Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "310ff98c-cdb1-4179-a18a-104de6179bf5",
+              "name": "Job not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Jobs",
+                    "Jobs('{{jobId}}')"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f3a0eefb-b0a4-43b1-bc7b-7f349eece0dc",
+          "name": "Cancel an Extraction Job",
+          "request": {
+            "name": "Cancel an Extraction Job",
+            "description": {
+              "content": "Cancels a running extraction job. Only jobs that have not yet completed can be cancelled.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Jobs",
+                "Jobs('{{jobId}}')"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e9e88411-2f2b-4f56-aad7-fcd6d53c3fe0",
+              "name": "Job cancelled successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Jobs",
+                    "Jobs('{{jobId}}')"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "544dbfc1-438f-478e-a725-28dad167e59a",
+              "name": "Job not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Jobs",
+                    "Jobs('{{jobId}}')"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "02235e80-6700-426e-bec5-a0e015b7be9a",
+      "name": "On-Demand Extractions",
+      "description": {
+        "content": "Immediate tick data extraction requests",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ff7fe0e4-e9c7-406d-90a2-9ebb945b16ea",
+          "name": "Extract Tick History Data",
+          "request": {
+            "name": "Extract Tick History Data",
+            "description": {
+              "content": "Executes an on-demand tick history extraction for specified instruments and date range. Supports tick data, intraday bars, market depth, and time-and-sales extraction types. For large extractions, returns a 202 response with a polling location.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Extractions",
+                "ExtractRaw"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ExtractionRequest\": {\n    \"@odata.type\": \"<string>\",\n    \"ContentFieldNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"IdentifierList\": {\n      \"@odata.type\": \"<string>\",\n      \"InstrumentIdentifiers\": [\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        },\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        }\n      ]\n    },\n    \"Condition\": {\n      \"MessageTimeStampIn\": \"<string>\",\n      \"ReportDateRangeType\": \"<string>\",\n      \"QueryStartDate\": \"<dateTime>\",\n      \"QueryEndDate\": \"<dateTime>\",\n      \"DisplaySourceRIC\": \"<boolean>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "36bf12d8-5e71-4e20-89e5-bc842c162544",
+              "name": "Extraction completed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Extractions",
+                    "ExtractRaw"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ExtractionRequest\": {\n    \"@odata.type\": \"<string>\",\n    \"ContentFieldNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"IdentifierList\": {\n      \"@odata.type\": \"<string>\",\n      \"InstrumentIdentifiers\": [\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        },\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        }\n      ]\n    },\n    \"Condition\": {\n      \"MessageTimeStampIn\": \"<string>\",\n      \"ReportDateRangeType\": \"<string>\",\n      \"QueryStartDate\": \"<dateTime>\",\n      \"QueryEndDate\": \"<dateTime>\",\n      \"DisplaySourceRIC\": \"<boolean>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"JobId\": \"string\",\n  \"Notes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"value\": [\n    {\n      \"key_0\": false\n    },\n    {\n      \"key_0\": 1458.2453937432306,\n      \"key_1\": 8644.11703788809,\n      \"key_2\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "134c7e12-f9f7-4ea8-9d98-0363ac953a84",
+              "name": "Extraction accepted for asynchronous processing. Poll the Location header URL for results.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Extractions",
+                    "ExtractRaw"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ExtractionRequest\": {\n    \"@odata.type\": \"<string>\",\n    \"ContentFieldNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"IdentifierList\": {\n      \"@odata.type\": \"<string>\",\n      \"InstrumentIdentifiers\": [\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        },\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        }\n      ]\n    },\n    \"Condition\": {\n      \"MessageTimeStampIn\": \"<string>\",\n      \"ReportDateRangeType\": \"<string>\",\n      \"QueryStartDate\": \"<dateTime>\",\n      \"QueryEndDate\": \"<dateTime>\",\n      \"DisplaySourceRIC\": \"<boolean>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "URL to poll for extraction results.",
+                  "key": "Location",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e01b5b1e-224e-43c0-8110-abc35d0679d1",
+              "name": "Invalid extraction request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Extractions",
+                    "ExtractRaw"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ExtractionRequest\": {\n    \"@odata.type\": \"<string>\",\n    \"ContentFieldNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"IdentifierList\": {\n      \"@odata.type\": \"<string>\",\n      \"InstrumentIdentifiers\": [\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        },\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        }\n      ]\n    },\n    \"Condition\": {\n      \"MessageTimeStampIn\": \"<string>\",\n      \"ReportDateRangeType\": \"<string>\",\n      \"QueryStartDate\": \"<dateTime>\",\n      \"QueryEndDate\": \"<dateTime>\",\n      \"DisplaySourceRIC\": \"<boolean>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8cd19dfe-b512-4571-bf6d-bfd022c671b7",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Extractions",
+                    "ExtractRaw"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ExtractionRequest\": {\n    \"@odata.type\": \"<string>\",\n    \"ContentFieldNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"IdentifierList\": {\n      \"@odata.type\": \"<string>\",\n      \"InstrumentIdentifiers\": [\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        },\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        }\n      ]\n    },\n    \"Condition\": {\n      \"MessageTimeStampIn\": \"<string>\",\n      \"ReportDateRangeType\": \"<string>\",\n      \"QueryStartDate\": \"<dateTime>\",\n      \"QueryEndDate\": \"<dateTime>\",\n      \"DisplaySourceRIC\": \"<boolean>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://selectapi.datascope.refinitiv.com/RestApi/v1",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Unique identifier of the extraction.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "extractionId"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Unique identifier of the extraction job.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "jobId"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Unique identifier of the extracted file.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "fileId"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ee72b2cd-0824-4770-8db5-a87836fcba02",
+    "name": "Refinitiv Eikon LSEG Tick History REST API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API providing programmatic access to historical tick-level market data through the DataScope Select platform. Supports on-demand and scheduled extractions of tick data, intraday bars, and end-of-day data across global markets. Shares the same base URL and authentication mechanism as the DataScope Select REST API.\n\nContact Support:\n Name: LSEG Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

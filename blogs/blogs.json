@@ -2,17 +2,17 @@
   "repo": "refinitiv-eikon",
   "feeds": [
     {
-      "source": "https://developers.lseg.com/en/login",
-      "error": "HTTPError"
-    },
-    {
       "source": "https://medium.com/feed/lseg-developer-community",
       "feed_url": "https://medium.com/feed/lseg-developer-community",
       "title": "",
       "saved": 0,
       "method": "feed"
+    },
+    {
+      "source": "https://developers.lseg.com/en/login",
+      "error": "HTTPError"
     }
   ],
-  "fetched": "2026-06-01T23:35:02Z",
+  "fetched": "2026-06-14T20:42:17Z",
   "post_count": 0
 }
