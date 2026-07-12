@@ -1,0 +1,28 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/refinitiv-eikon-data-platform-openapi.yml, openapi/refinitiv-eikon-datascope-select-openapi.yml,
+  openapi/refinitiv-eikon-tick-history-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: OAuth 2.0 bearer token obtained from the authentication endpoint. Access tokens
+    are valid for five minutes and must be refreshed using the refresh token.
+  sources:
+  - openapi/refinitiv-eikon-data-platform-openapi.yml
+- name: tokenAuth
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: Session token obtained from the RequestToken endpoint. Include as Token followed
+    by the token value.
+  sources:
+  - openapi/refinitiv-eikon-datascope-select-openapi.yml
+  - openapi/refinitiv-eikon-tick-history-openapi.yml

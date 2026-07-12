@@ -658,6 +658,10 @@ apis:
       - type: Deprecation Notice
         url: https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-libraries
 common:
+  - type: DomainSecurity
+    url: security/refinitiv-eikon-domain-security.yml
+  - type: Authentication
+    url: authentication/refinitiv-eikon-authentication.yml
   - type: Arazzo
     url: arazzo/refinitiv-eikon-datascope-extraction-download-workflow.yml
     name: Refinitiv Eikon DataScope Extraction and Download
