@@ -658,6 +658,8 @@ apis:
       - type: Deprecation Notice
         url: https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-libraries
 common:
+  - type: AgenticAccess
+    url: agentic-access/refinitiv-eikon-agentic-access.yml
   - type: DomainSecurity
     url: security/refinitiv-eikon-domain-security.yml
   - type: Authentication
