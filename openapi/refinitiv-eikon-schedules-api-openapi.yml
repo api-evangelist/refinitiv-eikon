@@ -1,0 +1,119 @@
+openapi: 3.1.0
+info:
+  title: Refinitiv Eikon Refinitiv Data Platform APIs Authentication Schedules API
+  description: RESTful APIs providing access to Refinitiv's comprehensive financial data including pricing, ESG data, news, research, alternative data, and streaming services. The platform serves as the central hub for programmatic access to LSEG content. Uses OAuth 2.0 for authentication with access tokens obtained via the token endpoint.
+  version: 1.0.0
+  contact:
+    name: LSEG Developer Support
+    url: https://developers.lseg.com
+  termsOfService: https://www.refinitiv.com/en/policies/terms-of-use
+servers:
+- url: https://api.refinitiv.com
+  description: Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Schedules
+  description: Scheduled extraction management
+paths:
+  /Schedules:
+    get:
+      operationId: listSchedules
+      summary: List Extraction Schedules
+      description: Retrieves all extraction schedules owned by the authenticated user. Schedules define when and how extractions are automatically executed.
+      tags:
+      - Schedules
+      responses:
+        '200':
+          description: Successfully retrieved schedules
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  value:
+                    type: array
+                    description: Array of schedule definitions.
+                    items:
+                      $ref: '#/components/schemas/Schedule'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: createSchedule
+      summary: Create an Extraction Schedule
+      description: Creates a new extraction schedule that automatically executes extractions at specified times or triggered by events.
+      tags:
+      - Schedules
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Schedule'
+      responses:
+        '201':
+          description: Schedule created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schedule'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Schedule:
+      type: object
+      description: Definition of an extraction schedule.
+      properties:
+        ScheduleId:
+          type: string
+          description: Unique identifier for the schedule.
+        Name:
+          type: string
+          description: Human-readable name for the schedule.
+        Recurrence:
+          type: object
+          description: Recurrence pattern for the schedule.
+          properties:
+            '@odata.type':
+              type: string
+              description: OData type for the recurrence pattern.
+            IsImmediate:
+              type: boolean
+              description: Whether the extraction runs immediately.
+        ListId:
+          type: string
+          description: Identifier of the instrument list used by this schedule.
+        ReportTemplateId:
+          type: string
+          description: Identifier of the report template used by this schedule.
+    Error:
+      type: object
+      description: Standard error response from the DataScope Select API.
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code.
+            message:
+              type: string
+              description: Human-readable error message.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 bearer token obtained from the authentication endpoint. Access tokens are valid for five minutes and must be refreshed using the refresh token.
+externalDocs:
+  description: Refinitiv Data Platform API Documentation
+  url: https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis/documentation

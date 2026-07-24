@@ -1,0 +1,258 @@
+openapi: 3.1.0
+info:
+  title: Refinitiv Eikon Refinitiv Data Platform APIs Authentication Historical Pricing API
+  description: RESTful APIs providing access to Refinitiv's comprehensive financial data including pricing, ESG data, news, research, alternative data, and streaming services. The platform serves as the central hub for programmatic access to LSEG content. Uses OAuth 2.0 for authentication with access tokens obtained via the token endpoint.
+  version: 1.0.0
+  contact:
+    name: LSEG Developer Support
+    url: https://developers.lseg.com
+  termsOfService: https://www.refinitiv.com/en/policies/terms-of-use
+servers:
+- url: https://api.refinitiv.com
+  description: Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Historical Pricing
+  description: Historical price data including interday and intraday summaries
+paths:
+  /data/historical-pricing/v1/views/interday-summaries/{universe}:
+    get:
+      operationId: getInterdaySummaries
+      summary: Retrieve Interday Pricing Summaries
+      description: Returns historical interday summary pricing data for a specified instrument including open, high, low, close, volume, and other summary fields. Supports date range filtering and field selection.
+      tags:
+      - Historical Pricing
+      parameters:
+      - $ref: '#/components/parameters/Universe'
+      - $ref: '#/components/parameters/StartDate'
+      - $ref: '#/components/parameters/EndDate'
+      - name: interval
+        in: query
+        description: Time interval for the summaries. Options include daily, weekly, monthly, quarterly, and yearly.
+        schema:
+          type: string
+          enum:
+          - P1D
+          - P7D
+          - P1M
+          - P3M
+          - P1Y
+      - name: count
+        in: query
+        description: Maximum number of data points to return.
+        schema:
+          type: integer
+          minimum: 1
+      - name: fields
+        in: query
+        description: Comma-separated list of fields to include in the response.
+        schema:
+          type: string
+      - name: adjustments
+        in: query
+        description: Comma-separated list of price adjustment types to apply.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved pricing data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HistoricalPricingResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Instrument not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /data/historical-pricing/v1/views/intraday-summaries/{universe}:
+    get:
+      operationId: getIntradaySummaries
+      summary: Retrieve Intraday Pricing Summaries
+      description: Returns historical intraday summary pricing data for a specified instrument at configurable intervals. Supports minute-level and hourly granularity for recent trading sessions.
+      tags:
+      - Historical Pricing
+      parameters:
+      - $ref: '#/components/parameters/Universe'
+      - $ref: '#/components/parameters/StartDate'
+      - $ref: '#/components/parameters/EndDate'
+      - name: interval
+        in: query
+        description: Time interval for intraday summaries.
+        schema:
+          type: string
+          enum:
+          - PT1M
+          - PT5M
+          - PT10M
+          - PT30M
+          - PT60M
+          - PT1H
+      - name: count
+        in: query
+        description: Maximum number of data points to return.
+        schema:
+          type: integer
+          minimum: 1
+      - name: fields
+        in: query
+        description: Comma-separated list of fields to include in the response.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved intraday pricing data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HistoricalPricingResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  parameters:
+    EndDate:
+      name: end
+      in: query
+      description: End date for the data range in ISO 8601 format.
+      schema:
+        type: string
+        format: date-time
+    StartDate:
+      name: start
+      in: query
+      description: Start date for the data range in ISO 8601 format.
+      schema:
+        type: string
+        format: date-time
+    Universe:
+      name: universe
+      in: path
+      required: true
+      description: Instrument identifier, typically a RIC such as AAPL.O or IBM.N.
+      schema:
+        type: string
+  schemas:
+    HistoricalPricingResponse:
+      type: object
+      description: Response containing historical pricing data for an instrument.
+      properties:
+        universe:
+          type: array
+          description: Array of instrument pricing result sets.
+          items:
+            type: object
+            properties:
+              instrumentId:
+                type: string
+                description: Instrument identifier for the pricing data.
+              ric:
+                type: string
+                description: Reuters Instrument Code.
+              displayName:
+                type: string
+                description: Human-readable name of the instrument.
+              data:
+                type: array
+                description: Array of pricing data points.
+                items:
+                  $ref: '#/components/schemas/PricingDataPoint'
+              headers:
+                type: array
+                description: Field header definitions for the data array.
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      description: Field name.
+                    type:
+                      type: string
+                      description: Data type of the field.
+    Error:
+      type: object
+      description: Standard error response from the Refinitiv Data Platform.
+      properties:
+        error:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Unique error identifier.
+            code:
+              type: string
+              description: Machine-readable error code.
+            message:
+              type: string
+              description: Human-readable error message.
+            status:
+              type: object
+              description: HTTP status information.
+              properties:
+                code:
+                  type: integer
+                  description: HTTP status code.
+                message:
+                  type: string
+                  description: HTTP status message.
+    PricingDataPoint:
+      type: object
+      description: A single data point in the historical pricing response.
+      properties:
+        DATE:
+          type: string
+          format: date
+          description: Trading date for this data point.
+        TRDPRC_1:
+          type: number
+          description: Last trade price or closing price.
+        HIGH_1:
+          type: number
+          description: Highest trade price during the period.
+        LOW_1:
+          type: number
+          description: Lowest trade price during the period.
+        OPEN_PRC:
+          type: number
+          description: Opening trade price for the period.
+        ACVOL_UNS:
+          type: integer
+          description: Accumulated volume (unsigned) for the period.
+        BID:
+          type: number
+          description: Best bid price at close.
+        ASK:
+          type: number
+          description: Best ask price at close.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 bearer token obtained from the authentication endpoint. Access tokens are valid for five minutes and must be refreshed using the refresh token.
+externalDocs:
+  description: Refinitiv Data Platform API Documentation
+  url: https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis/documentation

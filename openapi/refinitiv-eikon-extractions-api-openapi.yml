@@ -1,0 +1,269 @@
+openapi: 3.1.0
+info:
+  title: Refinitiv Eikon Refinitiv Data Platform APIs Authentication Extractions API
+  description: RESTful APIs providing access to Refinitiv's comprehensive financial data including pricing, ESG data, news, research, alternative data, and streaming services. The platform serves as the central hub for programmatic access to LSEG content. Uses OAuth 2.0 for authentication with access tokens obtained via the token endpoint.
+  version: 1.0.0
+  contact:
+    name: LSEG Developer Support
+    url: https://developers.lseg.com
+  termsOfService: https://www.refinitiv.com/en/policies/terms-of-use
+servers:
+- url: https://api.refinitiv.com
+  description: Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Extractions
+  description: On-demand and managed data extractions
+paths:
+  /Extractions/ExtractRaw:
+    post:
+      operationId: extractRaw
+      summary: Execute On-Demand Raw Extraction
+      description: Executes an on-demand extraction for specified instruments and fields. Returns extracted data directly or initiates an asynchronous extraction for large result sets. Supports multiple extraction types including end-of-day pricing, corporate actions, and reference data.
+      tags:
+      - Extractions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExtractionRequest'
+      responses:
+        '200':
+          description: Extraction completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtractionResponse'
+        '202':
+          description: Extraction accepted and processing asynchronously. Use the Location header to poll for results.
+          headers:
+            Location:
+              description: URL to poll for extraction results.
+              schema:
+                type: string
+        '400':
+          description: Invalid extraction request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /Extractions/ExtractWithNotes:
+    post:
+      operationId: extractWithNotes
+      summary: Execute On-Demand Extraction with Notes
+      description: Executes an on-demand extraction and returns both the extracted data and processing notes. Notes include information about instrument validation, field availability, and any issues encountered during extraction.
+      tags:
+      - Extractions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExtractionRequest'
+      responses:
+        '200':
+          description: Extraction completed successfully with notes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtractionWithNotesResponse'
+        '400':
+          description: Invalid extraction request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /Extractions/ExtractedFiles:
+    get:
+      operationId: listExtractedFiles
+      summary: List Extracted Files
+      description: Retrieves a list of files produced by completed extractions. Files are available for download for a limited retention period.
+      tags:
+      - Extractions
+      responses:
+        '200':
+          description: Successfully retrieved file list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  value:
+                    type: array
+                    description: Array of extracted file metadata.
+                    items:
+                      $ref: '#/components/schemas/ExtractedFile'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /Extractions/ExtractedFiles('{fileId}')/$value:
+    get:
+      operationId: downloadExtractedFile
+      summary: Download an Extracted File
+      description: Downloads the contents of a specific extracted file by its identifier. Returns the raw extraction data.
+      tags:
+      - Extractions
+      parameters:
+      - name: fileId
+        in: path
+        required: true
+        description: Unique identifier of the extracted file.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully downloaded file
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: File not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    ExtractedFile:
+      type: object
+      description: Metadata for a file produced by an extraction.
+      properties:
+        ExtractedFileId:
+          type: string
+          description: Unique identifier for the extracted file.
+        ReportExtractionId:
+          type: string
+          description: Identifier of the extraction that produced this file.
+        FileName:
+          type: string
+          description: Name of the extracted file.
+        FileType:
+          type: string
+          description: Type of file such as Full or Note.
+        Size:
+          type: integer
+          description: File size in bytes.
+        ReceivedDateUtc:
+          type: string
+          format: date-time
+          description: Timestamp when the file was created.
+    ExtractionResponse:
+      type: object
+      description: Response containing extracted data from an on-demand extraction.
+      properties:
+        '@odata.context':
+          type: string
+          description: OData context URL.
+        JobId:
+          type: string
+          description: Unique identifier for the extraction job.
+        Notes:
+          type: array
+          description: Processing notes from the extraction.
+          items:
+            type: string
+        value:
+          type: array
+          description: Array of extracted data records.
+          items:
+            type: object
+            additionalProperties: true
+    ExtractionRequest:
+      type: object
+      description: Request body for on-demand data extraction operations.
+      required:
+      - ExtractionRequest
+      properties:
+        ExtractionRequest:
+          type: object
+          properties:
+            '@odata.type':
+              type: string
+              description: OData type specifying the extraction type, such as EndOfDayPricingExtractionRequest or TermsAndConditionsExtractionRequest.
+            ContentFieldNames:
+              type: array
+              description: List of field names to include in the extraction.
+              items:
+                type: string
+            IdentifierList:
+              type: object
+              description: Specification of instruments for the extraction.
+              properties:
+                '@odata.type':
+                  type: string
+                  description: OData type for the identifier list, such as InstrumentIdentifierList.
+                InstrumentIdentifiers:
+                  type: array
+                  description: Array of instrument identifiers.
+                  items:
+                    type: object
+                    properties:
+                      Identifier:
+                        type: string
+                        description: Instrument identifier value.
+                      IdentifierType:
+                        type: string
+                        description: Type of identifier such as Ric, Isin, or Cusip.
+            Condition:
+              type: object
+              description: Extraction conditions such as date range and query parameters.
+              additionalProperties: true
+    ExtractionWithNotesResponse:
+      type: object
+      description: Response containing both extracted data and detailed notes.
+      properties:
+        JobId:
+          type: string
+          description: Unique identifier for the extraction job.
+        Notes:
+          type: array
+          description: Detailed processing notes from the extraction.
+          items:
+            type: string
+        value:
+          type: array
+          description: Array of extracted data records.
+          items:
+            type: object
+            additionalProperties: true
+    Error:
+      type: object
+      description: Standard error response from the DataScope Select API.
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code.
+            message:
+              type: string
+              description: Human-readable error message.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 bearer token obtained from the authentication endpoint. Access tokens are valid for five minutes and must be refreshed using the refresh token.
+externalDocs:
+  description: Refinitiv Data Platform API Documentation
+  url: https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis/documentation

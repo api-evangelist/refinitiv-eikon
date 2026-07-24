@@ -1,0 +1,230 @@
+openapi: 3.1.0
+info:
+  title: Refinitiv Eikon Refinitiv Data Platform APIs Authentication Search API
+  description: RESTful APIs providing access to Refinitiv's comprehensive financial data including pricing, ESG data, news, research, alternative data, and streaming services. The platform serves as the central hub for programmatic access to LSEG content. Uses OAuth 2.0 for authentication with access tokens obtained via the token endpoint.
+  version: 1.0.0
+  contact:
+    name: LSEG Developer Support
+    url: https://developers.lseg.com
+  termsOfService: https://www.refinitiv.com/en/policies/terms-of-use
+servers:
+- url: https://api.refinitiv.com
+  description: Production Server
+security:
+- bearerAuth: []
+tags:
+- name: Search
+  description: Search across organizations, instruments, quotes, and indicators
+paths:
+  /discovery/search/v1/:
+    post:
+      operationId: searchInstruments
+      summary: Search for Instruments
+      description: Searches across organizations, instruments, quotes, and economic indicators on the Refinitiv Data Platform. Supports filtering by entity type, asset class, exchange, and other criteria.
+      tags:
+      - Search
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: Successfully retrieved search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /Search/InstrumentSearch:
+    post:
+      operationId: searchInstruments
+      summary: Search for Instruments
+      description: Searches for instruments by identifier, name, or other criteria. Supports various identifier types including RIC, ISIN, CUSIP, SEDOL, and ticker symbols.
+      tags:
+      - Search
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                SearchString:
+                  type: string
+                  description: Search term for instrument lookup.
+                IdentifierType:
+                  type: string
+                  description: Type of identifier used in the search.
+                  enum:
+                  - Ric
+                  - Isin
+                  - Cusip
+                  - Sedol
+                  - Ticker
+                  - ChainRic
+                PreferredIdentifierType:
+                  type: string
+                  description: Preferred identifier type for results.
+      responses:
+        '200':
+          description: Successfully retrieved search results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  value:
+                    type: array
+                    description: Array of matching instruments.
+                    items:
+                      $ref: '#/components/schemas/InstrumentSearchResult'
+        '400':
+          description: Invalid search parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error_2'
+components:
+  schemas:
+    Error_2:
+      type: object
+      description: Standard error response from the DataScope Select API.
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code.
+            message:
+              type: string
+              description: Human-readable error message.
+    SearchResponse:
+      type: object
+      description: Response containing search results for the query.
+      properties:
+        Total:
+          type: integer
+          description: Total number of matching results.
+        Hits:
+          type: array
+          description: Array of matching result entries.
+          items:
+            type: object
+            properties:
+              DocumentTitle:
+                type: string
+                description: Display name of the matched entity.
+              RIC:
+                type: string
+                description: Reuters Instrument Code if applicable.
+              PermID:
+                type: string
+                description: Permanent identifier for the entity.
+              PI:
+                type: string
+                description: Primary identifier for the entity.
+              ExchangeCode:
+                type: string
+                description: Code for the exchange where the instrument trades.
+    SearchRequest:
+      type: object
+      description: Request body for instrument search operations.
+      properties:
+        View:
+          type: string
+          description: Search view defining the entity types and fields to search across.
+          enum:
+          - Entities
+          - EquityQuotes
+          - BondInstruments
+          - FundQuotes
+          - GovCorpInstruments
+          - Indicators
+        Filter:
+          type: string
+          description: OData-style filter expression to narrow search results.
+        Query:
+          type: string
+          description: Free-text search query.
+        Select:
+          type: string
+          description: Comma-separated list of fields to return.
+        Top:
+          type: integer
+          description: Maximum number of results to return.
+          minimum: 1
+          maximum: 10000
+        OrderBy:
+          type: string
+          description: Field name and sort direction for ordering results.
+        Boost:
+          type: string
+          description: Boosting expression to influence result ranking.
+    InstrumentSearchResult:
+      type: object
+      description: Search result for an instrument lookup.
+      properties:
+        Identifier:
+          type: string
+          description: Primary identifier for the instrument.
+        IdentifierType:
+          type: string
+          description: Type of the primary identifier.
+        Source:
+          type: string
+          description: Data source for the instrument.
+        Description:
+          type: string
+          description: Human-readable description of the instrument.
+        Status:
+          type: string
+          description: Current status of the instrument.
+    Error:
+      type: object
+      description: Standard error response from the Refinitiv Data Platform.
+      properties:
+        error:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Unique error identifier.
+            code:
+              type: string
+              description: Machine-readable error code.
+            message:
+              type: string
+              description: Human-readable error message.
+            status:
+              type: object
+              description: HTTP status information.
+              properties:
+                code:
+                  type: integer
+                  description: HTTP status code.
+                message:
+                  type: string
+                  description: HTTP status message.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 bearer token obtained from the authentication endpoint. Access tokens are valid for five minutes and must be refreshed using the refresh token.
+externalDocs:
+  description: Refinitiv Data Platform API Documentation
+  url: https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis/documentation
