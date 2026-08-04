@@ -1,0 +1,309 @@
+{
+  "info": {
+    "_postman_id": "33ae5502-c693-4de6-8e35-e3a44ab667f4",
+    "name": "Refinitiv Eikon Refinitiv Data Platform APIs Authentication Files API",
+    "description": "RESTful APIs providing access to Refinitiv's comprehensive financial data including pricing, ESG data, news, research, alternative data, and streaming services. The platform serves as the central hub for programmatic access to LSEG content. Uses OAuth 2.0 for authentication with access tokens obtained via the token endpoint.\n\nContact Support:\n Name: LSEG Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:44:03.000Z",
+    "updatedAt": "2026-07-28T02:44:03.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-33ae5502-c693-4de6-8e35-e3a44ab667f4"
+  },
+  "item": [
+    {
+      "name": "Extractions",
+      "item": [
+        {
+          "name": "ExtractedFiles",
+          "item": [
+            {
+              "name": "List Extracted Files",
+              "id": "001850ae-fe5a-49fe-a51a-f81466a9e908",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/Extractions/ExtractedFiles",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Extractions",
+                    "ExtractedFiles"
+                  ]
+                },
+                "description": "Retrieves a list of files produced by completed tick history extractions. Files are available for download within the retention period."
+              },
+              "response": [
+                {
+                  "id": "ac3c85ef-da4f-4ccc-81c5-82ec59c8cd34",
+                  "name": "Successfully retrieved file list",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/Extractions/ExtractedFiles",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Extractions",
+                        "ExtractedFiles"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"value\": [\n    {\n      \"ExtractedFileId\": \"<string>\",\n      \"FileName\": \"<string>\",\n      \"FileType\": \"<string>\",\n      \"Size\": \"<integer>\",\n      \"ReceivedDateUtc\": \"<dateTime>\"\n    },\n    {\n      \"ExtractedFileId\": \"<string>\",\n      \"FileName\": \"<string>\",\n      \"FileType\": \"<string>\",\n      \"Size\": \"<integer>\",\n      \"ReceivedDateUtc\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:44:04.000Z",
+                  "updatedAt": "2026-07-28T02:44:04.000Z",
+                  "uid": "35240-ac3c85ef-da4f-4ccc-81c5-82ec59c8cd34"
+                },
+                {
+                  "id": "139427c1-64c2-41c5-b710-1cdb444115d4",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/Extractions/ExtractedFiles",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Extractions",
+                        "ExtractedFiles"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:44:04.000Z",
+                  "updatedAt": "2026-07-28T02:44:04.000Z",
+                  "uid": "35240-139427c1-64c2-41c5-b710-1cdb444115d4"
+                }
+              ],
+              "createdAt": "2026-07-28T02:44:04.000Z",
+              "updatedAt": "2026-07-28T02:44:04.000Z",
+              "uid": "35240-001850ae-fe5a-49fe-a51a-f81466a9e908"
+            }
+          ],
+          "id": "ceb24ec2-33d7-4773-8d8a-b272f6fd9a60",
+          "createdAt": "2026-07-28T02:44:04.000Z",
+          "updatedAt": "2026-07-28T02:44:04.000Z",
+          "uid": "35240-ceb24ec2-33d7-4773-8d8a-b272f6fd9a60"
+        },
+        {
+          "name": "ExtractedFiles('{fileId}')",
+          "item": [
+            {
+              "name": "$value",
+              "item": [
+                {
+                  "name": "Download an Extracted File",
+                  "id": "39d5dc20-7124-49e2-956e-5250f5331b69",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/octet-stream"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/Extractions/ExtractedFiles('{{fileId}}')/$value",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Extractions",
+                        "ExtractedFiles('{{fileId}}')",
+                        "$value"
+                      ]
+                    },
+                    "description": "Downloads the raw tick data file by its identifier. Supports gzip compression via the Accept-Encoding header."
+                  },
+                  "response": [
+                    {
+                      "id": "d0cf28c8-c9ea-4de4-a892-cf56286f0754",
+                      "name": "Successfully downloaded file",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/octet-stream"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/Extractions/ExtractedFiles('{{fileId}}')/$value",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "Extractions",
+                            "ExtractedFiles('{{fileId}}')",
+                            "$value"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/octet-stream"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<binary>",
+                      "createdAt": "2026-07-28T02:44:04.000Z",
+                      "updatedAt": "2026-07-28T02:44:04.000Z",
+                      "uid": "35240-d0cf28c8-c9ea-4de4-a892-cf56286f0754"
+                    },
+                    {
+                      "id": "d13ed973-0ec2-46bb-90d8-52d9af68d207",
+                      "name": "File not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/Extractions/ExtractedFiles('{{fileId}}')/$value",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "Extractions",
+                            "ExtractedFiles('{{fileId}}')",
+                            "$value"
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:44:04.000Z",
+                      "updatedAt": "2026-07-28T02:44:04.000Z",
+                      "uid": "35240-d13ed973-0ec2-46bb-90d8-52d9af68d207"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:44:04.000Z",
+                  "updatedAt": "2026-07-28T02:44:04.000Z",
+                  "uid": "35240-39d5dc20-7124-49e2-956e-5250f5331b69"
+                }
+              ],
+              "id": "e577824d-b74c-4020-b681-6a4ca9d0a3d9",
+              "createdAt": "2026-07-28T02:44:04.000Z",
+              "updatedAt": "2026-07-28T02:44:04.000Z",
+              "uid": "35240-e577824d-b74c-4020-b681-6a4ca9d0a3d9"
+            }
+          ],
+          "id": "12de593b-faaf-4c99-a4e0-4d0bc27217e2",
+          "createdAt": "2026-07-28T02:44:04.000Z",
+          "updatedAt": "2026-07-28T02:44:04.000Z",
+          "uid": "35240-12de593b-faaf-4c99-a4e0-4d0bc27217e2"
+        }
+      ],
+      "id": "fc65f516-3cb4-4dfa-8e3f-b246b78b40e2",
+      "createdAt": "2026-07-28T02:44:04.000Z",
+      "updatedAt": "2026-07-28T02:44:04.000Z",
+      "uid": "35240-fc65f516-3cb4-4dfa-8e3f-b246b78b40e2"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.refinitiv.com"
+    },
+    {
+      "key": "fileId",
+      "value": "<string>"
+    }
+  ]
+}

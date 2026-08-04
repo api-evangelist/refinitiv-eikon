@@ -1,0 +1,558 @@
+{
+  "info": {
+    "_postman_id": "2b9e1028-ad0d-498f-b622-6050caafbc5c",
+    "name": "Refinitiv Eikon Refinitiv Data Platform APIs Authentication Jobs API",
+    "description": "RESTful APIs providing access to Refinitiv's comprehensive financial data including pricing, ESG data, news, research, alternative data, and streaming services. The platform serves as the central hub for programmatic access to LSEG content. Uses OAuth 2.0 for authentication with access tokens obtained via the token endpoint.\n\nContact Support:\n Name: LSEG Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:44:06.000Z",
+    "updatedAt": "2026-07-28T02:44:06.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2b9e1028-ad0d-498f-b622-6050caafbc5c"
+  },
+  "item": [
+    {
+      "name": "Extractions",
+      "item": [
+        {
+          "name": "ReportExtractions('{extractionId}')",
+          "item": [
+            {
+              "name": "FullExtractionNote",
+              "item": [
+                {
+                  "name": "Retrieve Extraction Notes",
+                  "id": "9a648249-eca4-4862-8b91-f5ad8e7ca866",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/Extractions/ReportExtractions('{{extractionId}}')/FullExtractionNote",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Extractions",
+                        "ReportExtractions('{{extractionId}}')",
+                        "FullExtractionNote"
+                      ]
+                    },
+                    "description": "Returns the detailed processing notes for a completed extraction, including instrument validation results and any issues encountered."
+                  },
+                  "response": [
+                    {
+                      "id": "bfd94c98-66cc-42e1-82f1-73681309c92b",
+                      "name": "Successfully retrieved extraction notes",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/Extractions/ReportExtractions('{{extractionId}}')/FullExtractionNote",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "Extractions",
+                            "ReportExtractions('{{extractionId}}')",
+                            "FullExtractionNote"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"value\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:44:06.000Z",
+                      "updatedAt": "2026-07-28T02:44:06.000Z",
+                      "uid": "35240-bfd94c98-66cc-42e1-82f1-73681309c92b"
+                    },
+                    {
+                      "id": "3836ee0c-1db9-4504-8fb4-a2a704fd9c24",
+                      "name": "Extraction not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/Extractions/ReportExtractions('{{extractionId}}')/FullExtractionNote",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "Extractions",
+                            "ReportExtractions('{{extractionId}}')",
+                            "FullExtractionNote"
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:44:06.000Z",
+                      "updatedAt": "2026-07-28T02:44:06.000Z",
+                      "uid": "35240-3836ee0c-1db9-4504-8fb4-a2a704fd9c24"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:44:06.000Z",
+                  "updatedAt": "2026-07-28T02:44:06.000Z",
+                  "uid": "35240-9a648249-eca4-4862-8b91-f5ad8e7ca866"
+                }
+              ],
+              "id": "2e7c680c-9402-42f9-b5f4-b7801d98da81",
+              "createdAt": "2026-07-28T02:44:06.000Z",
+              "updatedAt": "2026-07-28T02:44:06.000Z",
+              "uid": "35240-2e7c680c-9402-42f9-b5f4-b7801d98da81"
+            }
+          ],
+          "id": "d167e648-d58f-47ca-bde6-1c963e1b849b",
+          "createdAt": "2026-07-28T02:44:06.000Z",
+          "updatedAt": "2026-07-28T02:44:06.000Z",
+          "uid": "35240-d167e648-d58f-47ca-bde6-1c963e1b849b"
+        }
+      ],
+      "id": "bc3b1b0b-b8ba-46a0-8ec1-12c1529c29d4",
+      "createdAt": "2026-07-28T02:44:06.000Z",
+      "updatedAt": "2026-07-28T02:44:06.000Z",
+      "uid": "35240-bc3b1b0b-b8ba-46a0-8ec1-12c1529c29d4"
+    },
+    {
+      "name": "Jobs",
+      "item": [
+        {
+          "name": "Jobs",
+          "item": [
+            {
+              "name": "List Extraction Jobs",
+              "id": "33609cd2-3fc1-40d6-81ae-689628285c59",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/Jobs/Jobs",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Jobs",
+                    "Jobs"
+                  ]
+                },
+                "description": "Retrieves a list of extraction jobs and their current statuses. Allows monitoring the progress of asynchronous extractions."
+              },
+              "response": [
+                {
+                  "id": "a4c05d60-bf23-4910-ab67-0f99517b2b1a",
+                  "name": "Successfully retrieved job list",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/Jobs/Jobs",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Jobs",
+                        "Jobs"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"value\": [\n    {\n      \"JobId\": \"<string>\",\n      \"Status\": \"Completed\",\n      \"StartedUtc\": \"<dateTime>\",\n      \"CompletedUtc\": \"<dateTime>\"\n    },\n    {\n      \"JobId\": \"<string>\",\n      \"Status\": \"Cancelled\",\n      \"StartedUtc\": \"<dateTime>\",\n      \"CompletedUtc\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:44:06.000Z",
+                  "updatedAt": "2026-07-28T02:44:06.000Z",
+                  "uid": "35240-a4c05d60-bf23-4910-ab67-0f99517b2b1a"
+                },
+                {
+                  "id": "3f4247be-2ea4-4ccf-9495-178560ead553",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/Jobs/Jobs",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Jobs",
+                        "Jobs"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:44:06.000Z",
+                  "updatedAt": "2026-07-28T02:44:06.000Z",
+                  "uid": "35240-3f4247be-2ea4-4ccf-9495-178560ead553"
+                }
+              ],
+              "createdAt": "2026-07-28T02:44:06.000Z",
+              "updatedAt": "2026-07-28T02:44:06.000Z",
+              "uid": "35240-33609cd2-3fc1-40d6-81ae-689628285c59"
+            }
+          ],
+          "id": "532ccf5e-fce1-4bee-b4ee-7a77d65e8095",
+          "createdAt": "2026-07-28T02:44:06.000Z",
+          "updatedAt": "2026-07-28T02:44:06.000Z",
+          "uid": "35240-532ccf5e-fce1-4bee-b4ee-7a77d65e8095"
+        },
+        {
+          "name": "Jobs('{jobId}')",
+          "item": [
+            {
+              "name": "Get Job Status",
+              "id": "53738cc0-82f0-443d-8047-8934eb1f13de",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/Jobs/Jobs('{{jobId}}')",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Jobs",
+                    "Jobs('{{jobId}}')"
+                  ]
+                },
+                "description": "Retrieves the status and details of a specific extraction job."
+              },
+              "response": [
+                {
+                  "id": "94298cbe-2e0c-4894-a20b-6c36ce7696ca",
+                  "name": "Successfully retrieved job status",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/Jobs/Jobs('{{jobId}}')",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Jobs",
+                        "Jobs('{{jobId}}')"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"JobId\": \"<string>\",\n  \"Status\": \"InProgress\",\n  \"StartedUtc\": \"<dateTime>\",\n  \"CompletedUtc\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T02:44:06.000Z",
+                  "updatedAt": "2026-07-28T02:44:06.000Z",
+                  "uid": "35240-94298cbe-2e0c-4894-a20b-6c36ce7696ca"
+                },
+                {
+                  "id": "881d082f-41ca-4734-aff4-9af2acba9cf0",
+                  "name": "Job not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/Jobs/Jobs('{{jobId}}')",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Jobs",
+                        "Jobs('{{jobId}}')"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:44:06.000Z",
+                  "updatedAt": "2026-07-28T02:44:06.000Z",
+                  "uid": "35240-881d082f-41ca-4734-aff4-9af2acba9cf0"
+                }
+              ],
+              "createdAt": "2026-07-28T02:44:06.000Z",
+              "updatedAt": "2026-07-28T02:44:06.000Z",
+              "uid": "35240-53738cc0-82f0-443d-8047-8934eb1f13de"
+            },
+            {
+              "name": "Cancel an Extraction Job",
+              "id": "62eddc2d-ed8c-4254-affe-a88ba37596b4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/Jobs/Jobs('{{jobId}}')",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Jobs",
+                    "Jobs('{{jobId}}')"
+                  ]
+                },
+                "description": "Cancels a running extraction job. Only jobs that have not yet completed can be cancelled."
+              },
+              "response": [
+                {
+                  "id": "61ac00ae-997c-4bae-a0c1-f242d2376b2f",
+                  "name": "Job cancelled successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/Jobs/Jobs('{{jobId}}')",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Jobs",
+                        "Jobs('{{jobId}}')"
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:44:06.000Z",
+                  "updatedAt": "2026-07-28T02:44:06.000Z",
+                  "uid": "35240-61ac00ae-997c-4bae-a0c1-f242d2376b2f"
+                },
+                {
+                  "id": "58cc0004-bb7c-4b03-9a90-97d5c3a483f3",
+                  "name": "Job not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/Jobs/Jobs('{{jobId}}')",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Jobs",
+                        "Jobs('{{jobId}}')"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:44:06.000Z",
+                  "updatedAt": "2026-07-28T02:44:06.000Z",
+                  "uid": "35240-58cc0004-bb7c-4b03-9a90-97d5c3a483f3"
+                }
+              ],
+              "createdAt": "2026-07-28T02:44:06.000Z",
+              "updatedAt": "2026-07-28T02:44:06.000Z",
+              "uid": "35240-62eddc2d-ed8c-4254-affe-a88ba37596b4"
+            }
+          ],
+          "id": "1187c741-81fd-45c3-8f5a-a4e6038d576d",
+          "createdAt": "2026-07-28T02:44:06.000Z",
+          "updatedAt": "2026-07-28T02:44:06.000Z",
+          "uid": "35240-1187c741-81fd-45c3-8f5a-a4e6038d576d"
+        }
+      ],
+      "id": "9db6eddc-19b3-42c0-8811-cf04e197284f",
+      "createdAt": "2026-07-28T02:44:06.000Z",
+      "updatedAt": "2026-07-28T02:44:06.000Z",
+      "uid": "35240-9db6eddc-19b3-42c0-8811-cf04e197284f"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.refinitiv.com"
+    },
+    {
+      "key": "extractionId",
+      "value": "<string>"
+    },
+    {
+      "key": "jobId",
+      "value": "<string>"
+    }
+  ]
+}

@@ -1,0 +1,299 @@
+{
+  "info": {
+    "_postman_id": "7bdc8ea1-6b09-4a76-a46d-7016121a1855",
+    "name": "Refinitiv Eikon Refinitiv Data Platform APIs Authentication Streaming Pricing API",
+    "description": "RESTful APIs providing access to Refinitiv's comprehensive financial data including pricing, ESG data, news, research, alternative data, and streaming services. The platform serves as the central hub for programmatic access to LSEG content. Uses OAuth 2.0 for authentication with access tokens obtained via the token endpoint.\n\nContact Support:\n Name: LSEG Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:44:12.000Z",
+    "updatedAt": "2026-07-28T02:44:12.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7bdc8ea1-6b09-4a76-a46d-7016121a1855"
+  },
+  "item": [
+    {
+      "name": "data",
+      "item": [
+        {
+          "name": "pricing",
+          "item": [
+            {
+              "name": "snapshots",
+              "item": [
+                {
+                  "name": "v1",
+                  "item": [
+                    {
+                      "name": "{universe}",
+                      "item": [
+                        {
+                          "name": "Retrieve Pricing Snapshots",
+                          "id": "1d944f43-567c-4b53-b27d-1a98609d3e5f",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/data/pricing/snapshots/v1/:universe?fields=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "data",
+                                "pricing",
+                                "snapshots",
+                                "v1",
+                                ":universe"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Comma-separated list of fields to include in the response.",
+                                  "key": "fields",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "9a456553-6e8f-4d2b-94d9-405edbbcd877",
+                                  "key": "universe",
+                                  "value": "<string>",
+                                  "description": "(Required) Comma-separated list of instrument identifiers (RICs)."
+                                }
+                              ]
+                            },
+                            "description": "Returns the latest snapshot pricing data for one or more instruments. Provides real-time or delayed pricing depending on entitlements."
+                          },
+                          "response": [
+                            {
+                              "id": "171be202-4104-448b-8fa8-fea4ee436c54",
+                              "name": "Successfully retrieved pricing snapshots",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/data/pricing/snapshots/v1/:universe?fields=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "data",
+                                    "pricing",
+                                    "snapshots",
+                                    "v1",
+                                    ":universe"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Comma-separated list of fields to include in the response.",
+                                      "key": "fields",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "universe"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"universe\": [\n    {\n      \"instrumentId\": \"<string>\",\n      \"ric\": \"<string>\",\n      \"fields\": {\n        \"in_5f1\": false\n      }\n    },\n    {\n      \"instrumentId\": \"<string>\",\n      \"ric\": \"<string>\",\n      \"fields\": {\n        \"eiusmod3\": -20177013,\n        \"magna_6\": true,\n        \"ex_1\": \"ad nostrud proident cillum\",\n        \"ad0\": -75123221,\n        \"ad5c\": \"anim minim adipisicing\"\n      }\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:44:12.000Z",
+                              "updatedAt": "2026-07-28T02:44:12.000Z",
+                              "uid": "35240-171be202-4104-448b-8fa8-fea4ee436c54"
+                            },
+                            {
+                              "id": "e95a0a4b-886c-446d-95c9-214c5057e593",
+                              "name": "Invalid request parameters",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/data/pricing/snapshots/v1/:universe?fields=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "data",
+                                    "pricing",
+                                    "snapshots",
+                                    "v1",
+                                    ":universe"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Comma-separated list of fields to include in the response.",
+                                      "key": "fields",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "universe"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"id\": \"<string>\",\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T02:44:12.000Z",
+                              "updatedAt": "2026-07-28T02:44:12.000Z",
+                              "uid": "35240-e95a0a4b-886c-446d-95c9-214c5057e593"
+                            },
+                            {
+                              "id": "b1ba8a00-5e9c-4670-ad03-65ef42a68121",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/data/pricing/snapshots/v1/:universe?fields=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "data",
+                                    "pricing",
+                                    "snapshots",
+                                    "v1",
+                                    ":universe"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Comma-separated list of fields to include in the response.",
+                                      "key": "fields",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "universe"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"id\": \"<string>\",\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T02:44:12.000Z",
+                              "updatedAt": "2026-07-28T02:44:12.000Z",
+                              "uid": "35240-b1ba8a00-5e9c-4670-ad03-65ef42a68121"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:44:12.000Z",
+                          "updatedAt": "2026-07-28T02:44:12.000Z",
+                          "uid": "35240-1d944f43-567c-4b53-b27d-1a98609d3e5f"
+                        }
+                      ],
+                      "id": "04c8d985-5749-4147-9f6b-e814cf32f152",
+                      "createdAt": "2026-07-28T02:44:12.000Z",
+                      "updatedAt": "2026-07-28T02:44:12.000Z",
+                      "uid": "35240-04c8d985-5749-4147-9f6b-e814cf32f152"
+                    }
+                  ],
+                  "id": "c220c18d-12ee-4a0b-8321-74c3f91983b3",
+                  "createdAt": "2026-07-28T02:44:12.000Z",
+                  "updatedAt": "2026-07-28T02:44:12.000Z",
+                  "uid": "35240-c220c18d-12ee-4a0b-8321-74c3f91983b3"
+                }
+              ],
+              "id": "c6e37dc9-7400-49bd-9d63-1724fd198311",
+              "createdAt": "2026-07-28T02:44:12.000Z",
+              "updatedAt": "2026-07-28T02:44:12.000Z",
+              "uid": "35240-c6e37dc9-7400-49bd-9d63-1724fd198311"
+            }
+          ],
+          "id": "5cd963e6-ed74-4fe5-bac1-4ea05212cc7b",
+          "createdAt": "2026-07-28T02:44:12.000Z",
+          "updatedAt": "2026-07-28T02:44:12.000Z",
+          "uid": "35240-5cd963e6-ed74-4fe5-bac1-4ea05212cc7b"
+        }
+      ],
+      "id": "4a1ee8e9-0ecc-4ab3-9d7e-2fa4aaafd18e",
+      "createdAt": "2026-07-28T02:44:12.000Z",
+      "updatedAt": "2026-07-28T02:44:12.000Z",
+      "uid": "35240-4a1ee8e9-0ecc-4ab3-9d7e-2fa4aaafd18e"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.refinitiv.com"
+    }
+  ]
+}

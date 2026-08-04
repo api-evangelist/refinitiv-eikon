@@ -1,0 +1,291 @@
+{
+  "info": {
+    "_postman_id": "e28df635-29c2-4d76-a250-43bfe66d55e7",
+    "name": "Refinitiv Eikon Refinitiv Data Platform APIs Authentication Symbology API",
+    "description": "RESTful APIs providing access to Refinitiv's comprehensive financial data including pricing, ESG data, news, research, alternative data, and streaming services. The platform serves as the central hub for programmatic access to LSEG content. Uses OAuth 2.0 for authentication with access tokens obtained via the token endpoint.\n\nContact Support:\n Name: LSEG Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:44:13.000Z",
+    "updatedAt": "2026-07-28T02:44:13.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e28df635-29c2-4d76-a250-43bfe66d55e7"
+  },
+  "item": [
+    {
+      "name": "discovery",
+      "item": [
+        {
+          "name": "symbology",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "lookup",
+                  "item": [
+                    {
+                      "name": "Look Up Instrument Symbology",
+                      "id": "eb9d93c7-5e0d-465e-8be0-6d7d59145d98",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"from\": [\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"to\": [\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"universe\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/discovery/symbology/v1/lookup",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "discovery",
+                            "symbology",
+                            "v1",
+                            "lookup"
+                          ]
+                        },
+                        "description": "Maps between different instrument identifier types. Supports concordance from external identifiers such as ISIN, CUSIP, SEDOL, and ticker to LSEG PermIDs and RICs. Enables navigation between a wide range of identifier types."
+                      },
+                      "response": [
+                        {
+                          "id": "3b986658-fe9d-4b32-aa2b-f8dc6b6e6c37",
+                          "name": "Successfully resolved identifiers",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"from\": [\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"to\": [\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"universe\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/discovery/symbology/v1/lookup",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "discovery",
+                                "symbology",
+                                "v1",
+                                "lookup"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": [\n    {\n      \"input\": \"<string>\",\n      \"output\": [\n        {\n          \"eu7f0\": \"<string>\",\n          \"mollit_1\": \"<string>\",\n          \"exercitation_a5\": \"<string>\"\n        },\n        {\n          \"minim4\": \"<string>\",\n          \"tempor_f8\": \"<string>\",\n          \"laboris1_4\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"input\": \"<string>\",\n      \"output\": [\n        {\n          \"labore_a\": \"<string>\",\n          \"aliquipcfb\": \"<string>\",\n          \"eiusmod12\": \"<string>\"\n        },\n        {\n          \"dolore_7_3\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:44:13.000Z",
+                          "updatedAt": "2026-07-28T02:44:13.000Z",
+                          "uid": "35240-3b986658-fe9d-4b32-aa2b-f8dc6b6e6c37"
+                        },
+                        {
+                          "id": "6ae85713-83ac-4276-bcf4-45809406debc",
+                          "name": "Invalid request parameters",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"from\": [\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"to\": [\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"universe\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/discovery/symbology/v1/lookup",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "discovery",
+                                "symbology",
+                                "v1",
+                                "lookup"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"id\": \"<string>\",\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T02:44:13.000Z",
+                          "updatedAt": "2026-07-28T02:44:13.000Z",
+                          "uid": "35240-6ae85713-83ac-4276-bcf4-45809406debc"
+                        },
+                        {
+                          "id": "fe4e51bb-3238-42e2-858a-6795fa6bcefc",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"from\": [\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"to\": [\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"universe\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/discovery/symbology/v1/lookup",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "discovery",
+                                "symbology",
+                                "v1",
+                                "lookup"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"id\": \"<string>\",\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T02:44:13.000Z",
+                          "updatedAt": "2026-07-28T02:44:13.000Z",
+                          "uid": "35240-fe4e51bb-3238-42e2-858a-6795fa6bcefc"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:44:13.000Z",
+                      "updatedAt": "2026-07-28T02:44:13.000Z",
+                      "uid": "35240-eb9d93c7-5e0d-465e-8be0-6d7d59145d98"
+                    }
+                  ],
+                  "id": "a30363e8-e9f6-4c51-aa21-0b237870f919",
+                  "createdAt": "2026-07-28T02:44:13.000Z",
+                  "updatedAt": "2026-07-28T02:44:13.000Z",
+                  "uid": "35240-a30363e8-e9f6-4c51-aa21-0b237870f919"
+                }
+              ],
+              "id": "5c5492a4-947e-450f-a16c-53e81efc21ec",
+              "createdAt": "2026-07-28T02:44:13.000Z",
+              "updatedAt": "2026-07-28T02:44:13.000Z",
+              "uid": "35240-5c5492a4-947e-450f-a16c-53e81efc21ec"
+            }
+          ],
+          "id": "20fe69fd-86f2-4ab3-ab2a-9f8cd6fb59c1",
+          "createdAt": "2026-07-28T02:44:13.000Z",
+          "updatedAt": "2026-07-28T02:44:13.000Z",
+          "uid": "35240-20fe69fd-86f2-4ab3-ab2a-9f8cd6fb59c1"
+        }
+      ],
+      "id": "3720fee6-6786-4ff9-8a20-eda4545cadc8",
+      "createdAt": "2026-07-28T02:44:13.000Z",
+      "updatedAt": "2026-07-28T02:44:13.000Z",
+      "uid": "35240-3720fee6-6786-4ff9-8a20-eda4545cadc8"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.refinitiv.com"
+    }
+  ]
+}

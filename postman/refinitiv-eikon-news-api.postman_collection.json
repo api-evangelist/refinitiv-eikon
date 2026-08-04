@@ -1,0 +1,557 @@
+{
+  "info": {
+    "_postman_id": "d1b57818-c2c1-410d-92ab-5318e4355340",
+    "name": "Refinitiv Eikon Refinitiv Data Platform APIs Authentication News API",
+    "description": "RESTful APIs providing access to Refinitiv's comprehensive financial data including pricing, ESG data, news, research, alternative data, and streaming services. The platform serves as the central hub for programmatic access to LSEG content. Uses OAuth 2.0 for authentication with access tokens obtained via the token endpoint.\n\nContact Support:\n Name: LSEG Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:44:07.000Z",
+    "updatedAt": "2026-07-28T02:44:07.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d1b57818-c2c1-410d-92ab-5318e4355340"
+  },
+  "item": [
+    {
+      "name": "data",
+      "item": [
+        {
+          "name": "news",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "headlines",
+                  "item": [
+                    {
+                      "name": "Retrieve News Headlines",
+                      "id": "40d5f76e-eb2b-46c7-bf33-50b9e620fcca",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/data/news/v1/headlines?query=<string>&count=<integer>&cursor=<string>&dateFrom=<dateTime>&dateTo=<dateTime>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "data",
+                            "news",
+                            "v1",
+                            "headlines"
+                          ],
+                          "query": [
+                            {
+                              "description": "Free-text search query for news headlines. Supports operators and field-specific searches.",
+                              "key": "query",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Maximum number of headlines to return.",
+                              "key": "count",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Pagination cursor for retrieving the next set of results.",
+                              "key": "cursor",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Start date for filtering headlines in ISO 8601 format.",
+                              "key": "dateFrom",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "End date for filtering headlines in ISO 8601 format.",
+                              "key": "dateTo",
+                              "value": "<dateTime>"
+                            }
+                          ]
+                        },
+                        "description": "Returns financial news headlines matching the specified query criteria. Supports filtering by topic, instrument, date range, and other parameters. Results include headline text, source, and timestamps."
+                      },
+                      "response": [
+                        {
+                          "id": "08607325-ea4d-41b2-aef5-411a7b9eb39a",
+                          "name": "Successfully retrieved news headlines",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/data/news/v1/headlines?query=<string>&count=<integer>&cursor=<string>&dateFrom=<dateTime>&dateTo=<dateTime>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "data",
+                                "news",
+                                "v1",
+                                "headlines"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Free-text search query for news headlines. Supports operators and field-specific searches.",
+                                  "key": "query",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Maximum number of headlines to return.",
+                                  "key": "count",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Pagination cursor for retrieving the next set of results.",
+                                  "key": "cursor",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Start date for filtering headlines in ISO 8601 format.",
+                                  "key": "dateFrom",
+                                  "value": "<dateTime>"
+                                },
+                                {
+                                  "description": "End date for filtering headlines in ISO 8601 format.",
+                                  "key": "dateTo",
+                                  "value": "<dateTime>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": [\n    {\n      \"storyId\": \"<string>\",\n      \"title\": \"<string>\",\n      \"sourceCode\": \"<string>\",\n      \"sourceName\": \"<string>\",\n      \"versionCreated\": \"<dateTime>\"\n    },\n    {\n      \"storyId\": \"<string>\",\n      \"title\": \"<string>\",\n      \"sourceCode\": \"<string>\",\n      \"sourceName\": \"<string>\",\n      \"versionCreated\": \"<dateTime>\"\n    }\n  ],\n  \"meta\": {\n    \"count\": \"<integer>\",\n    \"next\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:44:07.000Z",
+                          "updatedAt": "2026-07-28T02:44:07.000Z",
+                          "uid": "35240-08607325-ea4d-41b2-aef5-411a7b9eb39a"
+                        },
+                        {
+                          "id": "33557527-8150-418b-be91-5ea31dacb6bc",
+                          "name": "Invalid request parameters",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/data/news/v1/headlines?query=<string>&count=<integer>&cursor=<string>&dateFrom=<dateTime>&dateTo=<dateTime>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "data",
+                                "news",
+                                "v1",
+                                "headlines"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Free-text search query for news headlines. Supports operators and field-specific searches.",
+                                  "key": "query",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Maximum number of headlines to return.",
+                                  "key": "count",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Pagination cursor for retrieving the next set of results.",
+                                  "key": "cursor",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Start date for filtering headlines in ISO 8601 format.",
+                                  "key": "dateFrom",
+                                  "value": "<dateTime>"
+                                },
+                                {
+                                  "description": "End date for filtering headlines in ISO 8601 format.",
+                                  "key": "dateTo",
+                                  "value": "<dateTime>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"id\": \"<string>\",\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T02:44:07.000Z",
+                          "updatedAt": "2026-07-28T02:44:07.000Z",
+                          "uid": "35240-33557527-8150-418b-be91-5ea31dacb6bc"
+                        },
+                        {
+                          "id": "247ab1ea-e080-4e9f-acce-8530b0012721",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/data/news/v1/headlines?query=<string>&count=<integer>&cursor=<string>&dateFrom=<dateTime>&dateTo=<dateTime>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "data",
+                                "news",
+                                "v1",
+                                "headlines"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Free-text search query for news headlines. Supports operators and field-specific searches.",
+                                  "key": "query",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Maximum number of headlines to return.",
+                                  "key": "count",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Pagination cursor for retrieving the next set of results.",
+                                  "key": "cursor",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Start date for filtering headlines in ISO 8601 format.",
+                                  "key": "dateFrom",
+                                  "value": "<dateTime>"
+                                },
+                                {
+                                  "description": "End date for filtering headlines in ISO 8601 format.",
+                                  "key": "dateTo",
+                                  "value": "<dateTime>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"id\": \"<string>\",\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T02:44:07.000Z",
+                          "updatedAt": "2026-07-28T02:44:07.000Z",
+                          "uid": "35240-247ab1ea-e080-4e9f-acce-8530b0012721"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:44:07.000Z",
+                      "updatedAt": "2026-07-28T02:44:07.000Z",
+                      "uid": "35240-40d5f76e-eb2b-46c7-bf33-50b9e620fcca"
+                    }
+                  ],
+                  "id": "dc3f60f7-640f-47c8-b11a-e42b34ee349d",
+                  "createdAt": "2026-07-28T02:44:07.000Z",
+                  "updatedAt": "2026-07-28T02:44:07.000Z",
+                  "uid": "35240-dc3f60f7-640f-47c8-b11a-e42b34ee349d"
+                },
+                {
+                  "name": "stories",
+                  "item": [
+                    {
+                      "name": "{storyId}",
+                      "item": [
+                        {
+                          "name": "Retrieve a News Story",
+                          "id": "7a51bfd8-797e-4e39-93f7-bc043264ded9",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/data/news/v1/stories/:storyId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "data",
+                                "news",
+                                "v1",
+                                "stories",
+                                ":storyId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "88f07764-e397-4eea-80e3-d7ba0b1d09f4",
+                                  "key": "storyId",
+                                  "value": "<string>",
+                                  "description": "(Required) Unique identifier for the news story."
+                                }
+                              ]
+                            },
+                            "description": "Returns the full content of a news story identified by its story identifier. Includes the story body, metadata, subjects, and associated instruments."
+                          },
+                          "response": [
+                            {
+                              "id": "78eaf69b-f815-4f00-9dad-1a7b4191ffdc",
+                              "name": "Successfully retrieved the news story",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/data/news/v1/stories/:storyId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "data",
+                                    "news",
+                                    "v1",
+                                    "stories",
+                                    ":storyId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "storyId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"storyId\": \"<string>\",\n  \"title\": \"<string>\",\n  \"body\": \"<string>\",\n  \"sourceCode\": \"<string>\",\n  \"language\": \"<string>\",\n  \"subjects\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"audiences\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"versionCreated\": \"<dateTime>\"\n}",
+                              "createdAt": "2026-07-28T02:44:07.000Z",
+                              "updatedAt": "2026-07-28T02:44:07.000Z",
+                              "uid": "35240-78eaf69b-f815-4f00-9dad-1a7b4191ffdc"
+                            },
+                            {
+                              "id": "4221bd20-ecae-49e8-9832-3ec4aad78843",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/data/news/v1/stories/:storyId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "data",
+                                    "news",
+                                    "v1",
+                                    "stories",
+                                    ":storyId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "storyId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"id\": \"<string>\",\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T02:44:07.000Z",
+                              "updatedAt": "2026-07-28T02:44:07.000Z",
+                              "uid": "35240-4221bd20-ecae-49e8-9832-3ec4aad78843"
+                            },
+                            {
+                              "id": "812952e2-cf37-4002-abff-bf536baff858",
+                              "name": "Story not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/data/news/v1/stories/:storyId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "data",
+                                    "news",
+                                    "v1",
+                                    "stories",
+                                    ":storyId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "storyId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"id\": \"<string>\",\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T02:44:07.000Z",
+                              "updatedAt": "2026-07-28T02:44:07.000Z",
+                              "uid": "35240-812952e2-cf37-4002-abff-bf536baff858"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:44:07.000Z",
+                          "updatedAt": "2026-07-28T02:44:07.000Z",
+                          "uid": "35240-7a51bfd8-797e-4e39-93f7-bc043264ded9"
+                        }
+                      ],
+                      "id": "4cb0d343-64cd-498e-998a-38f0a17d0925",
+                      "createdAt": "2026-07-28T02:44:07.000Z",
+                      "updatedAt": "2026-07-28T02:44:07.000Z",
+                      "uid": "35240-4cb0d343-64cd-498e-998a-38f0a17d0925"
+                    }
+                  ],
+                  "id": "c2323954-ad8a-43fc-bee7-4c5b1b9d374d",
+                  "createdAt": "2026-07-28T02:44:07.000Z",
+                  "updatedAt": "2026-07-28T02:44:07.000Z",
+                  "uid": "35240-c2323954-ad8a-43fc-bee7-4c5b1b9d374d"
+                }
+              ],
+              "id": "7df922c2-f820-4489-925f-4abbb792d684",
+              "createdAt": "2026-07-28T02:44:07.000Z",
+              "updatedAt": "2026-07-28T02:44:07.000Z",
+              "uid": "35240-7df922c2-f820-4489-925f-4abbb792d684"
+            }
+          ],
+          "id": "cf5e1d7f-069b-467f-bd23-b1cb69f36b8d",
+          "createdAt": "2026-07-28T02:44:07.000Z",
+          "updatedAt": "2026-07-28T02:44:07.000Z",
+          "uid": "35240-cf5e1d7f-069b-467f-bd23-b1cb69f36b8d"
+        }
+      ],
+      "id": "f943615f-f6d4-45ad-875c-e67a7468d98c",
+      "createdAt": "2026-07-28T02:44:07.000Z",
+      "updatedAt": "2026-07-28T02:44:07.000Z",
+      "uid": "35240-f943615f-f6d4-45ad-875c-e67a7468d98c"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.refinitiv.com"
+    }
+  ]
+}

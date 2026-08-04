@@ -1,0 +1,819 @@
+{
+  "info": {
+    "_postman_id": "a84990ee-dafa-4ad4-8221-62f76eaac801",
+    "name": "Refinitiv Eikon Refinitiv Data Platform APIs Authentication Extractions API",
+    "description": "RESTful APIs providing access to Refinitiv's comprehensive financial data including pricing, ESG data, news, research, alternative data, and streaming services. The platform serves as the central hub for programmatic access to LSEG content. Uses OAuth 2.0 for authentication with access tokens obtained via the token endpoint.\n\nContact Support:\n Name: LSEG Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:44:02.000Z",
+    "updatedAt": "2026-07-28T02:44:02.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a84990ee-dafa-4ad4-8221-62f76eaac801"
+  },
+  "item": [
+    {
+      "name": "Extractions",
+      "item": [
+        {
+          "name": "ExtractRaw",
+          "item": [
+            {
+              "name": "Execute On-Demand Raw Extraction",
+              "id": "0a267a5a-494f-4c4d-90b9-1aa97db263e1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ExtractionRequest\": {\n    \"@odata.type\": \"<string>\",\n    \"ContentFieldNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"IdentifierList\": {\n      \"@odata.type\": \"<string>\",\n      \"InstrumentIdentifiers\": [\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        },\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        }\n      ]\n    },\n    \"Condition\": {\n      \"ea794\": \"amet commodo magna\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/Extractions/ExtractRaw",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Extractions",
+                    "ExtractRaw"
+                  ]
+                },
+                "description": "Executes an on-demand extraction for specified instruments and fields. Returns extracted data directly or initiates an asynchronous extraction for large result sets. Supports multiple extraction types including end-of-day pricing, corporate actions, and reference data."
+              },
+              "response": [
+                {
+                  "id": "31abebb2-c9b6-4ada-a675-6018e4d37445",
+                  "name": "Extraction completed successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"ExtractionRequest\": {\n    \"@odata.type\": \"<string>\",\n    \"ContentFieldNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"IdentifierList\": {\n      \"@odata.type\": \"<string>\",\n      \"InstrumentIdentifiers\": [\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        },\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        }\n      ]\n    },\n    \"Condition\": {\n      \"ea794\": \"amet commodo magna\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/Extractions/ExtractRaw",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Extractions",
+                        "ExtractRaw"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"@odata.context\": \"<string>\",\n  \"JobId\": \"<string>\",\n  \"Notes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"value\": [\n    {\n      \"dolore_13\": -74422466,\n      \"aute_a5c\": 1185789.5927011669\n    },\n    {\n      \"tempor_c9\": -61938569,\n      \"amet_38a\": 84669557.00264987,\n      \"Excepteur_55_\": 40530905\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:44:03.000Z",
+                  "updatedAt": "2026-07-28T02:44:03.000Z",
+                  "uid": "35240-31abebb2-c9b6-4ada-a675-6018e4d37445"
+                },
+                {
+                  "id": "7282bdbb-9774-486b-9807-d0acf5ee59a1",
+                  "name": "Extraction accepted and processing asynchronously. Use the Location header to poll for results.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"ExtractionRequest\": {\n    \"@odata.type\": \"<string>\",\n    \"ContentFieldNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"IdentifierList\": {\n      \"@odata.type\": \"<string>\",\n      \"InstrumentIdentifiers\": [\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        },\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        }\n      ]\n    },\n    \"Condition\": {\n      \"ea794\": \"amet commodo magna\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/Extractions/ExtractRaw",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Extractions",
+                        "ExtractRaw"
+                      ]
+                    }
+                  },
+                  "status": "Accepted",
+                  "code": 202,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "URL to poll for extraction results.",
+                        "type": "text/plain"
+                      },
+                      "key": "Location",
+                      "value": "<string>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:44:03.000Z",
+                  "updatedAt": "2026-07-28T02:44:03.000Z",
+                  "uid": "35240-7282bdbb-9774-486b-9807-d0acf5ee59a1"
+                },
+                {
+                  "id": "e5bbb029-2cc5-4133-bcb1-0d9fbf903495",
+                  "name": "Invalid extraction request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"ExtractionRequest\": {\n    \"@odata.type\": \"<string>\",\n    \"ContentFieldNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"IdentifierList\": {\n      \"@odata.type\": \"<string>\",\n      \"InstrumentIdentifiers\": [\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        },\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        }\n      ]\n    },\n    \"Condition\": {\n      \"ea794\": \"amet commodo magna\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/Extractions/ExtractRaw",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Extractions",
+                        "ExtractRaw"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:44:03.000Z",
+                  "updatedAt": "2026-07-28T02:44:03.000Z",
+                  "uid": "35240-e5bbb029-2cc5-4133-bcb1-0d9fbf903495"
+                },
+                {
+                  "id": "faef2f57-4514-4b2c-8693-59300411ae92",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"ExtractionRequest\": {\n    \"@odata.type\": \"<string>\",\n    \"ContentFieldNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"IdentifierList\": {\n      \"@odata.type\": \"<string>\",\n      \"InstrumentIdentifiers\": [\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        },\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        }\n      ]\n    },\n    \"Condition\": {\n      \"ea794\": \"amet commodo magna\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/Extractions/ExtractRaw",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Extractions",
+                        "ExtractRaw"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:44:03.000Z",
+                  "updatedAt": "2026-07-28T02:44:03.000Z",
+                  "uid": "35240-faef2f57-4514-4b2c-8693-59300411ae92"
+                }
+              ],
+              "createdAt": "2026-07-28T02:44:03.000Z",
+              "updatedAt": "2026-07-28T02:44:03.000Z",
+              "uid": "35240-0a267a5a-494f-4c4d-90b9-1aa97db263e1"
+            }
+          ],
+          "id": "86992e38-8eba-4bae-93e2-e1b1b0fbd841",
+          "createdAt": "2026-07-28T02:44:03.000Z",
+          "updatedAt": "2026-07-28T02:44:03.000Z",
+          "uid": "35240-86992e38-8eba-4bae-93e2-e1b1b0fbd841"
+        },
+        {
+          "name": "ExtractWithNotes",
+          "item": [
+            {
+              "name": "Execute On-Demand Extraction with Notes",
+              "id": "f53c869b-9039-466b-b86a-a7dd727e9d8d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ExtractionRequest\": {\n    \"@odata.type\": \"<string>\",\n    \"ContentFieldNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"IdentifierList\": {\n      \"@odata.type\": \"<string>\",\n      \"InstrumentIdentifiers\": [\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        },\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        }\n      ]\n    },\n    \"Condition\": {\n      \"ea794\": \"amet commodo magna\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/Extractions/ExtractWithNotes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Extractions",
+                    "ExtractWithNotes"
+                  ]
+                },
+                "description": "Executes an on-demand extraction and returns both the extracted data and processing notes. Notes include information about instrument validation, field availability, and any issues encountered during extraction."
+              },
+              "response": [
+                {
+                  "id": "3bc443ce-9e7f-4b07-8299-81d2834abe31",
+                  "name": "Extraction completed successfully with notes",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"ExtractionRequest\": {\n    \"@odata.type\": \"<string>\",\n    \"ContentFieldNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"IdentifierList\": {\n      \"@odata.type\": \"<string>\",\n      \"InstrumentIdentifiers\": [\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        },\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        }\n      ]\n    },\n    \"Condition\": {\n      \"ea794\": \"amet commodo magna\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/Extractions/ExtractWithNotes",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Extractions",
+                        "ExtractWithNotes"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"JobId\": \"<string>\",\n  \"Notes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"value\": [\n    {\n      \"dolore_3b\": \"mollit commodo aliquip proi\",\n      \"elit_9e7\": true\n    },\n    {\n      \"minim_6f\": -66893525.74965519\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:44:03.000Z",
+                  "updatedAt": "2026-07-28T02:44:03.000Z",
+                  "uid": "35240-3bc443ce-9e7f-4b07-8299-81d2834abe31"
+                },
+                {
+                  "id": "3ab4ea4f-8d88-432c-8dcc-4a3c3345cc8b",
+                  "name": "Invalid extraction request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"ExtractionRequest\": {\n    \"@odata.type\": \"<string>\",\n    \"ContentFieldNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"IdentifierList\": {\n      \"@odata.type\": \"<string>\",\n      \"InstrumentIdentifiers\": [\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        },\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        }\n      ]\n    },\n    \"Condition\": {\n      \"ea794\": \"amet commodo magna\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/Extractions/ExtractWithNotes",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Extractions",
+                        "ExtractWithNotes"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:44:03.000Z",
+                  "updatedAt": "2026-07-28T02:44:03.000Z",
+                  "uid": "35240-3ab4ea4f-8d88-432c-8dcc-4a3c3345cc8b"
+                },
+                {
+                  "id": "07f7e629-63b4-4055-912a-43d50b7b252c",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"ExtractionRequest\": {\n    \"@odata.type\": \"<string>\",\n    \"ContentFieldNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"IdentifierList\": {\n      \"@odata.type\": \"<string>\",\n      \"InstrumentIdentifiers\": [\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        },\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        }\n      ]\n    },\n    \"Condition\": {\n      \"ea794\": \"amet commodo magna\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/Extractions/ExtractWithNotes",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Extractions",
+                        "ExtractWithNotes"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:44:03.000Z",
+                  "updatedAt": "2026-07-28T02:44:03.000Z",
+                  "uid": "35240-07f7e629-63b4-4055-912a-43d50b7b252c"
+                }
+              ],
+              "createdAt": "2026-07-28T02:44:03.000Z",
+              "updatedAt": "2026-07-28T02:44:03.000Z",
+              "uid": "35240-f53c869b-9039-466b-b86a-a7dd727e9d8d"
+            }
+          ],
+          "id": "22ea7a13-8aa8-48a8-aada-93b3bd04bd6f",
+          "createdAt": "2026-07-28T02:44:03.000Z",
+          "updatedAt": "2026-07-28T02:44:03.000Z",
+          "uid": "35240-22ea7a13-8aa8-48a8-aada-93b3bd04bd6f"
+        },
+        {
+          "name": "ExtractedFiles",
+          "item": [
+            {
+              "name": "List Extracted Files",
+              "id": "56aa322e-eb6d-4c6e-915a-016596ca246e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/Extractions/ExtractedFiles",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Extractions",
+                    "ExtractedFiles"
+                  ]
+                },
+                "description": "Retrieves a list of files produced by completed extractions. Files are available for download for a limited retention period."
+              },
+              "response": [
+                {
+                  "id": "3715e6a6-cc44-4d36-b827-e1ce8ebc1702",
+                  "name": "Successfully retrieved file list",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/Extractions/ExtractedFiles",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Extractions",
+                        "ExtractedFiles"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"value\": [\n    {\n      \"ExtractedFileId\": \"<string>\",\n      \"ReportExtractionId\": \"<string>\",\n      \"FileName\": \"<string>\",\n      \"FileType\": \"<string>\",\n      \"Size\": \"<integer>\",\n      \"ReceivedDateUtc\": \"<dateTime>\"\n    },\n    {\n      \"ExtractedFileId\": \"<string>\",\n      \"ReportExtractionId\": \"<string>\",\n      \"FileName\": \"<string>\",\n      \"FileType\": \"<string>\",\n      \"Size\": \"<integer>\",\n      \"ReceivedDateUtc\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:44:03.000Z",
+                  "updatedAt": "2026-07-28T02:44:03.000Z",
+                  "uid": "35240-3715e6a6-cc44-4d36-b827-e1ce8ebc1702"
+                },
+                {
+                  "id": "4083020b-0136-4384-a4a8-9f53981999ca",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/Extractions/ExtractedFiles",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Extractions",
+                        "ExtractedFiles"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:44:03.000Z",
+                  "updatedAt": "2026-07-28T02:44:03.000Z",
+                  "uid": "35240-4083020b-0136-4384-a4a8-9f53981999ca"
+                }
+              ],
+              "createdAt": "2026-07-28T02:44:03.000Z",
+              "updatedAt": "2026-07-28T02:44:03.000Z",
+              "uid": "35240-56aa322e-eb6d-4c6e-915a-016596ca246e"
+            }
+          ],
+          "id": "56ceda98-9aa7-457d-8d04-4995af010aa6",
+          "createdAt": "2026-07-28T02:44:03.000Z",
+          "updatedAt": "2026-07-28T02:44:03.000Z",
+          "uid": "35240-56ceda98-9aa7-457d-8d04-4995af010aa6"
+        },
+        {
+          "name": "ExtractedFiles('{fileId}')",
+          "item": [
+            {
+              "name": "$value",
+              "item": [
+                {
+                  "name": "Download an Extracted File",
+                  "id": "9d54fe43-ebd2-493a-886e-d310462b5a11",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/octet-stream"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/Extractions/ExtractedFiles('{{fileId}}')/$value",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Extractions",
+                        "ExtractedFiles('{{fileId}}')",
+                        "$value"
+                      ]
+                    },
+                    "description": "Downloads the contents of a specific extracted file by its identifier. Returns the raw extraction data."
+                  },
+                  "response": [
+                    {
+                      "id": "9645fc2b-9556-4517-963e-b9fbeaddf97f",
+                      "name": "Successfully downloaded file",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/octet-stream"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/Extractions/ExtractedFiles('{{fileId}}')/$value",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "Extractions",
+                            "ExtractedFiles('{{fileId}}')",
+                            "$value"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/octet-stream"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<binary>",
+                      "createdAt": "2026-07-28T02:44:03.000Z",
+                      "updatedAt": "2026-07-28T02:44:03.000Z",
+                      "uid": "35240-9645fc2b-9556-4517-963e-b9fbeaddf97f"
+                    },
+                    {
+                      "id": "7fb67a1c-ba05-4655-b635-2e47a6dba30e",
+                      "name": "File not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/Extractions/ExtractedFiles('{{fileId}}')/$value",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "Extractions",
+                            "ExtractedFiles('{{fileId}}')",
+                            "$value"
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:44:03.000Z",
+                      "updatedAt": "2026-07-28T02:44:03.000Z",
+                      "uid": "35240-7fb67a1c-ba05-4655-b635-2e47a6dba30e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:44:03.000Z",
+                  "updatedAt": "2026-07-28T02:44:03.000Z",
+                  "uid": "35240-9d54fe43-ebd2-493a-886e-d310462b5a11"
+                }
+              ],
+              "id": "8cf39754-0fc4-4424-8920-bf7c89a54de2",
+              "createdAt": "2026-07-28T02:44:03.000Z",
+              "updatedAt": "2026-07-28T02:44:03.000Z",
+              "uid": "35240-8cf39754-0fc4-4424-8920-bf7c89a54de2"
+            }
+          ],
+          "id": "a2b8e290-7fb2-4df7-b2bb-f216906044e7",
+          "createdAt": "2026-07-28T02:44:03.000Z",
+          "updatedAt": "2026-07-28T02:44:03.000Z",
+          "uid": "35240-a2b8e290-7fb2-4df7-b2bb-f216906044e7"
+        }
+      ],
+      "id": "d0e8a85b-fc4e-4bcf-97c4-0bb3f9f32862",
+      "createdAt": "2026-07-28T02:44:03.000Z",
+      "updatedAt": "2026-07-28T02:44:03.000Z",
+      "uid": "35240-d0e8a85b-fc4e-4bcf-97c4-0bb3f9f32862"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.refinitiv.com"
+    },
+    {
+      "key": "fileId",
+      "value": "<string>"
+    }
+  ]
+}

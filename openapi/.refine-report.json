@@ -1,0 +1,40 @@
+{
+  "provider": "refinitiv-eikon",
+  "sources": [
+    "refinitiv-eikon-authentication-api-openapi.yml",
+    "refinitiv-eikon-esg-api-openapi.yml",
+    "refinitiv-eikon-extractions-api-openapi.yml",
+    "refinitiv-eikon-files-api-openapi.yml",
+    "refinitiv-eikon-historical-pricing-api-openapi.yml",
+    "refinitiv-eikon-instrument-lists-api-openapi.yml",
+    "refinitiv-eikon-jobs-api-openapi.yml",
+    "refinitiv-eikon-news-api-openapi.yml",
+    "refinitiv-eikon-on-demand-extractions-api-openapi.yml",
+    "refinitiv-eikon-report-templates-api-openapi.yml",
+    "refinitiv-eikon-schedules-api-openapi.yml",
+    "refinitiv-eikon-search-api-openapi.yml",
+    "refinitiv-eikon-streaming-pricing-api-openapi.yml",
+    "refinitiv-eikon-symbology-api-openapi.yml"
+  ],
+  "outputs": [
+    "refinitiv-eikon-authentication-api-openapi.yml",
+    "refinitiv-eikon-esg-api-openapi.yml",
+    "refinitiv-eikon-extractions-api-openapi.yml",
+    "refinitiv-eikon-files-api-openapi.yml",
+    "refinitiv-eikon-historical-pricing-api-openapi.yml",
+    "refinitiv-eikon-instrument-lists-api-openapi.yml",
+    "refinitiv-eikon-jobs-api-openapi.yml",
+    "refinitiv-eikon-news-api-openapi.yml",
+    "refinitiv-eikon-on-demand-extractions-api-openapi.yml",
+    "refinitiv-eikon-report-templates-api-openapi.yml",
+    "refinitiv-eikon-schedules-api-openapi.yml",
+    "refinitiv-eikon-search-api-openapi.yml",
+    "refinitiv-eikon-streaming-pricing-api-openapi.yml",
+    "refinitiv-eikon-symbology-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

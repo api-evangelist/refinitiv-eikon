@@ -1,0 +1,154 @@
+{
+  "info": {
+    "_postman_id": "f6b31f19-02e4-4c05-81a5-ba9c0e8f638a",
+    "name": "Refinitiv Eikon Refinitiv Data Platform APIs Authentication Report Templates API",
+    "description": "RESTful APIs providing access to Refinitiv's comprehensive financial data including pricing, ESG data, news, research, alternative data, and streaming services. The platform serves as the central hub for programmatic access to LSEG content. Uses OAuth 2.0 for authentication with access tokens obtained via the token endpoint.\n\nContact Support:\n Name: LSEG Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:44:08.000Z",
+    "updatedAt": "2026-07-28T02:44:09.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f6b31f19-02e4-4c05-81a5-ba9c0e8f638a"
+  },
+  "item": [
+    {
+      "name": "ReportTemplates",
+      "item": [
+        {
+          "name": "List Report Templates",
+          "id": "e75fb901-b7e1-43d7-86ae-1db38d0c2fd3",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/ReportTemplates",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "ReportTemplates"
+              ]
+            },
+            "description": "Retrieves all report templates owned by the authenticated user. Report templates define the content type and fields for extractions."
+          },
+          "response": [
+            {
+              "id": "2734c8be-f8f3-4ba8-9f34-78b676eb96f3",
+              "name": "Successfully retrieved report templates",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/ReportTemplates",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "ReportTemplates"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"value\": [\n    {\n      \"ReportTemplateId\": \"<string>\",\n      \"Name\": \"<string>\",\n      \"ContentType\": \"<string>\",\n      \"ContentFieldNames\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"ReportTemplateId\": \"<string>\",\n      \"Name\": \"<string>\",\n      \"ContentType\": \"<string>\",\n      \"ContentFieldNames\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:44:09.000Z",
+              "updatedAt": "2026-07-28T02:44:09.000Z",
+              "uid": "35240-2734c8be-f8f3-4ba8-9f34-78b676eb96f3"
+            },
+            {
+              "id": "951ca545-da74-4061-81ad-f80a699d3589",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/ReportTemplates",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "ReportTemplates"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:44:09.000Z",
+              "updatedAt": "2026-07-28T02:44:09.000Z",
+              "uid": "35240-951ca545-da74-4061-81ad-f80a699d3589"
+            }
+          ],
+          "createdAt": "2026-07-28T02:44:09.000Z",
+          "updatedAt": "2026-07-28T02:44:09.000Z",
+          "uid": "35240-e75fb901-b7e1-43d7-86ae-1db38d0c2fd3"
+        }
+      ],
+      "id": "41b62869-bfc8-4415-ad02-4f6faea94364",
+      "createdAt": "2026-07-28T02:44:09.000Z",
+      "updatedAt": "2026-07-28T02:44:09.000Z",
+      "uid": "35240-41b62869-bfc8-4415-ad02-4f6faea94364"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.refinitiv.com"
+    }
+  ]
+}

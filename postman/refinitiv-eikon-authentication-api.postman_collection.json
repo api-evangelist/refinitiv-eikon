@@ -1,0 +1,569 @@
+{
+  "info": {
+    "_postman_id": "70286c3c-03e8-4b57-b8b7-9c379b66b621",
+    "name": "Refinitiv Eikon Refinitiv Data Platform APIs Authentication API",
+    "description": "RESTful APIs providing access to Refinitiv's comprehensive financial data including pricing, ESG data, news, research, alternative data, and streaming services. The platform serves as the central hub for programmatic access to LSEG content. Uses OAuth 2.0 for authentication with access tokens obtained via the token endpoint.\n\nContact Support:\n Name: LSEG Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:44:00.000Z",
+    "updatedAt": "2026-07-28T02:44:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-70286c3c-03e8-4b57-b8b7-9c379b66b621"
+  },
+  "item": [
+    {
+      "name": "auth",
+      "item": [
+        {
+          "name": "oauth2",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "token",
+                  "item": [
+                    {
+                      "name": "Obtain Access Token",
+                      "id": "431fa36b-ab36-4365-b408-d461eab64f06",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/x-www-form-urlencoded"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "urlencoded",
+                          "urlencoded": [
+                            {
+                              "description": "(Required) OAuth 2.0 grant type. Use password for initial authentication, refresh_token for subsequent requests.",
+                              "key": "grant_type",
+                              "value": "password"
+                            },
+                            {
+                              "description": "(Required) RDP username or machine account identifier.",
+                              "key": "username",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) User password for the RDP account.",
+                              "key": "password",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) Application client identifier provided during app registration.",
+                              "key": "client_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Refresh token from a previous authentication response. Required when grant_type is refresh_token.",
+                              "key": "refresh_token",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Requested scope of access. Default is trapi.",
+                              "key": "scope",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/auth/oauth2/v1/token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "auth",
+                            "oauth2",
+                            "v1",
+                            "token"
+                          ]
+                        },
+                        "description": "Authenticates and returns an OAuth 2.0 access token using Resource Owner Password Credentials grant type. Access tokens are valid for five minutes. Subsequent token refreshes should use the refresh token grant type."
+                      },
+                      "response": [
+                        {
+                          "id": "9f193a8a-efd7-4ebd-bd97-8b593c064685",
+                          "name": "Successfully authenticated",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/x-www-form-urlencoded"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "urlencoded",
+                              "urlencoded": [
+                                {
+                                  "description": "(Required) OAuth 2.0 grant type. Use password for initial authentication, refresh_token for subsequent requests.",
+                                  "key": "grant_type",
+                                  "value": "password"
+                                },
+                                {
+                                  "description": "(Required) RDP username or machine account identifier.",
+                                  "key": "username",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "(Required) User password for the RDP account.",
+                                  "key": "password",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "(Required) Application client identifier provided during app registration.",
+                                  "key": "client_id",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Refresh token from a previous authentication response. Required when grant_type is refresh_token.",
+                                  "key": "refresh_token",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Requested scope of access. Default is trapi.",
+                                  "key": "scope",
+                                  "value": "<string>"
+                                }
+                              ]
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/auth/oauth2/v1/token",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "auth",
+                                "oauth2",
+                                "v1",
+                                "token"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"access_token\": \"<string>\",\n  \"refresh_token\": \"<string>\",\n  \"expires_in\": \"<integer>\",\n  \"scope\": \"<string>\",\n  \"token_type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:44:01.000Z",
+                          "updatedAt": "2026-07-28T02:44:01.000Z",
+                          "uid": "35240-9f193a8a-efd7-4ebd-bd97-8b593c064685"
+                        },
+                        {
+                          "id": "13c60d7f-69d3-49f3-aab4-7e004d11d772",
+                          "name": "Invalid request parameters",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/x-www-form-urlencoded"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "urlencoded",
+                              "urlencoded": [
+                                {
+                                  "description": "(Required) OAuth 2.0 grant type. Use password for initial authentication, refresh_token for subsequent requests.",
+                                  "key": "grant_type",
+                                  "value": "password"
+                                },
+                                {
+                                  "description": "(Required) RDP username or machine account identifier.",
+                                  "key": "username",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "(Required) User password for the RDP account.",
+                                  "key": "password",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "(Required) Application client identifier provided during app registration.",
+                                  "key": "client_id",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Refresh token from a previous authentication response. Required when grant_type is refresh_token.",
+                                  "key": "refresh_token",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Requested scope of access. Default is trapi.",
+                                  "key": "scope",
+                                  "value": "<string>"
+                                }
+                              ]
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/auth/oauth2/v1/token",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "auth",
+                                "oauth2",
+                                "v1",
+                                "token"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"id\": \"<string>\",\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T02:44:01.000Z",
+                          "updatedAt": "2026-07-28T02:44:01.000Z",
+                          "uid": "35240-13c60d7f-69d3-49f3-aab4-7e004d11d772"
+                        },
+                        {
+                          "id": "3cc04afe-df1a-4525-b0e5-5b9bcd81e93a",
+                          "name": "Invalid credentials",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/x-www-form-urlencoded"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "urlencoded",
+                              "urlencoded": [
+                                {
+                                  "description": "(Required) OAuth 2.0 grant type. Use password for initial authentication, refresh_token for subsequent requests.",
+                                  "key": "grant_type",
+                                  "value": "password"
+                                },
+                                {
+                                  "description": "(Required) RDP username or machine account identifier.",
+                                  "key": "username",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "(Required) User password for the RDP account.",
+                                  "key": "password",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "(Required) Application client identifier provided during app registration.",
+                                  "key": "client_id",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Refresh token from a previous authentication response. Required when grant_type is refresh_token.",
+                                  "key": "refresh_token",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Requested scope of access. Default is trapi.",
+                                  "key": "scope",
+                                  "value": "<string>"
+                                }
+                              ]
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/auth/oauth2/v1/token",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "auth",
+                                "oauth2",
+                                "v1",
+                                "token"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"id\": \"<string>\",\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"status\": {\n      \"code\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T02:44:01.000Z",
+                          "updatedAt": "2026-07-28T02:44:01.000Z",
+                          "uid": "35240-3cc04afe-df1a-4525-b0e5-5b9bcd81e93a"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:44:01.000Z",
+                      "updatedAt": "2026-07-28T02:44:01.000Z",
+                      "uid": "35240-431fa36b-ab36-4365-b408-d461eab64f06"
+                    }
+                  ],
+                  "id": "bfdae562-1b7a-48ab-addd-3eb8f007ac8f",
+                  "createdAt": "2026-07-28T02:44:01.000Z",
+                  "updatedAt": "2026-07-28T02:44:01.000Z",
+                  "uid": "35240-bfdae562-1b7a-48ab-addd-3eb8f007ac8f"
+                }
+              ],
+              "id": "cfbaffb6-8404-4d29-b8c7-809ca5a44a1b",
+              "createdAt": "2026-07-28T02:44:01.000Z",
+              "updatedAt": "2026-07-28T02:44:01.000Z",
+              "uid": "35240-cfbaffb6-8404-4d29-b8c7-809ca5a44a1b"
+            }
+          ],
+          "id": "1aef63f8-5334-4df2-9521-9ec32ccb1979",
+          "createdAt": "2026-07-28T02:44:01.000Z",
+          "updatedAt": "2026-07-28T02:44:01.000Z",
+          "uid": "35240-1aef63f8-5334-4df2-9521-9ec32ccb1979"
+        }
+      ],
+      "id": "fd926963-428a-4dee-8f4d-5120a4421d50",
+      "createdAt": "2026-07-28T02:44:01.000Z",
+      "updatedAt": "2026-07-28T02:44:01.000Z",
+      "uid": "35240-fd926963-428a-4dee-8f4d-5120a4421d50"
+    },
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "RequestToken",
+          "item": [
+            {
+              "name": "Request Authentication Token",
+              "id": "3939da89-106b-4801-8e94-f8084f70bd3d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Credentials\": {\n    \"Username\": \"<string>\",\n    \"Password\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/Authentication/RequestToken",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Authentication",
+                    "RequestToken"
+                  ]
+                },
+                "description": "Authenticates user credentials and returns a session token valid for 24 hours. The token must be included in the Authorization header of all subsequent API requests."
+              },
+              "response": [
+                {
+                  "id": "be37ca9c-cc4c-4c52-aafa-fa647543957a",
+                  "name": "Successfully authenticated",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"Credentials\": {\n    \"Username\": \"<string>\",\n    \"Password\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/Authentication/RequestToken",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Authentication",
+                        "RequestToken"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"value\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:44:01.000Z",
+                  "updatedAt": "2026-07-28T02:44:01.000Z",
+                  "uid": "35240-be37ca9c-cc4c-4c52-aafa-fa647543957a"
+                },
+                {
+                  "id": "0575c73b-26bd-4cc3-8c2a-0735fe9a57b3",
+                  "name": "Invalid credentials",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"Credentials\": {\n    \"Username\": \"<string>\",\n    \"Password\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/Authentication/RequestToken",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Authentication",
+                        "RequestToken"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:44:01.000Z",
+                  "updatedAt": "2026-07-28T02:44:01.000Z",
+                  "uid": "35240-0575c73b-26bd-4cc3-8c2a-0735fe9a57b3"
+                }
+              ],
+              "createdAt": "2026-07-28T02:44:01.000Z",
+              "updatedAt": "2026-07-28T02:44:01.000Z",
+              "uid": "35240-3939da89-106b-4801-8e94-f8084f70bd3d"
+            }
+          ],
+          "id": "37e33816-5969-4ef6-936a-b94b6d855ba9",
+          "createdAt": "2026-07-28T02:44:01.000Z",
+          "updatedAt": "2026-07-28T02:44:01.000Z",
+          "uid": "35240-37e33816-5969-4ef6-936a-b94b6d855ba9"
+        }
+      ],
+      "id": "65b02438-1ab7-416d-ab0d-43e514dbc4e8",
+      "createdAt": "2026-07-28T02:44:01.000Z",
+      "updatedAt": "2026-07-28T02:44:01.000Z",
+      "uid": "35240-65b02438-1ab7-416d-ab0d-43e514dbc4e8"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.refinitiv.com"
+    }
+  ]
+}

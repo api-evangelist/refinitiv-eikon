@@ -1,0 +1,323 @@
+{
+  "info": {
+    "_postman_id": "db2231e4-35e4-41f4-adec-7a4dd4dd5efc",
+    "name": "Refinitiv Eikon Refinitiv Data Platform APIs Authentication On-Demand Extractions API",
+    "description": "RESTful APIs providing access to Refinitiv's comprehensive financial data including pricing, ESG data, news, research, alternative data, and streaming services. The platform serves as the central hub for programmatic access to LSEG content. Uses OAuth 2.0 for authentication with access tokens obtained via the token endpoint.\n\nContact Support:\n Name: LSEG Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:44:08.000Z",
+    "updatedAt": "2026-07-28T02:44:08.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-db2231e4-35e4-41f4-adec-7a4dd4dd5efc"
+  },
+  "item": [
+    {
+      "name": "Extractions",
+      "item": [
+        {
+          "name": "ExtractRaw",
+          "item": [
+            {
+              "name": "Extract Tick History Data",
+              "id": "4f7f542b-2976-4b6d-90d5-711df874b802",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ExtractionRequest\": {\n    \"@odata.type\": \"<string>\",\n    \"ContentFieldNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"IdentifierList\": {\n      \"@odata.type\": \"<string>\",\n      \"InstrumentIdentifiers\": [\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        },\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        }\n      ]\n    },\n    \"Condition\": {\n      \"MessageTimeStampIn\": \"GmtUtc\",\n      \"ReportDateRangeType\": \"Delta\",\n      \"QueryStartDate\": \"<dateTime>\",\n      \"QueryEndDate\": \"<dateTime>\",\n      \"DisplaySourceRIC\": \"<boolean>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/Extractions/ExtractRaw",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Extractions",
+                    "ExtractRaw"
+                  ]
+                },
+                "description": "Executes an on-demand tick history extraction for specified instruments and date range. Supports tick data, intraday bars, market depth, and time-and-sales extraction types. For large extractions, returns a 202 response with a polling location."
+              },
+              "response": [
+                {
+                  "id": "0bf1c3b4-46d0-4b36-988d-2f488995f781",
+                  "name": "Extraction completed successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"ExtractionRequest\": {\n    \"@odata.type\": \"<string>\",\n    \"ContentFieldNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"IdentifierList\": {\n      \"@odata.type\": \"<string>\",\n      \"InstrumentIdentifiers\": [\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        },\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        }\n      ]\n    },\n    \"Condition\": {\n      \"MessageTimeStampIn\": \"GmtUtc\",\n      \"ReportDateRangeType\": \"Delta\",\n      \"QueryStartDate\": \"<dateTime>\",\n      \"QueryEndDate\": \"<dateTime>\",\n      \"DisplaySourceRIC\": \"<boolean>\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/Extractions/ExtractRaw",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Extractions",
+                        "ExtractRaw"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"JobId\": \"<string>\",\n  \"Notes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"value\": [\n    {\n      \"consectetura\": 41003285.56468725,\n      \"nostrudd\": 46940672\n    },\n    {\n      \"eiusmod38\": 58532898.121780545,\n      \"nulla_4e4\": \"officia adipisicing\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:44:08.000Z",
+                  "updatedAt": "2026-07-28T02:44:08.000Z",
+                  "uid": "35240-0bf1c3b4-46d0-4b36-988d-2f488995f781"
+                },
+                {
+                  "id": "23a37175-aa5b-4506-a282-7152ebec11f5",
+                  "name": "Extraction accepted for asynchronous processing. Poll the Location header URL for results.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"ExtractionRequest\": {\n    \"@odata.type\": \"<string>\",\n    \"ContentFieldNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"IdentifierList\": {\n      \"@odata.type\": \"<string>\",\n      \"InstrumentIdentifiers\": [\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        },\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        }\n      ]\n    },\n    \"Condition\": {\n      \"MessageTimeStampIn\": \"GmtUtc\",\n      \"ReportDateRangeType\": \"Delta\",\n      \"QueryStartDate\": \"<dateTime>\",\n      \"QueryEndDate\": \"<dateTime>\",\n      \"DisplaySourceRIC\": \"<boolean>\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/Extractions/ExtractRaw",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Extractions",
+                        "ExtractRaw"
+                      ]
+                    }
+                  },
+                  "status": "Accepted",
+                  "code": 202,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "URL to poll for extraction results.",
+                        "type": "text/plain"
+                      },
+                      "key": "Location",
+                      "value": "<string>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:44:08.000Z",
+                  "updatedAt": "2026-07-28T02:44:08.000Z",
+                  "uid": "35240-23a37175-aa5b-4506-a282-7152ebec11f5"
+                },
+                {
+                  "id": "1ed7bef1-e076-4a96-a389-bab5d7c4346a",
+                  "name": "Invalid extraction request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"ExtractionRequest\": {\n    \"@odata.type\": \"<string>\",\n    \"ContentFieldNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"IdentifierList\": {\n      \"@odata.type\": \"<string>\",\n      \"InstrumentIdentifiers\": [\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        },\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        }\n      ]\n    },\n    \"Condition\": {\n      \"MessageTimeStampIn\": \"GmtUtc\",\n      \"ReportDateRangeType\": \"Delta\",\n      \"QueryStartDate\": \"<dateTime>\",\n      \"QueryEndDate\": \"<dateTime>\",\n      \"DisplaySourceRIC\": \"<boolean>\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/Extractions/ExtractRaw",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Extractions",
+                        "ExtractRaw"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:44:08.000Z",
+                  "updatedAt": "2026-07-28T02:44:08.000Z",
+                  "uid": "35240-1ed7bef1-e076-4a96-a389-bab5d7c4346a"
+                },
+                {
+                  "id": "f0062c37-496c-4690-8770-3f3bf330158b",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"ExtractionRequest\": {\n    \"@odata.type\": \"<string>\",\n    \"ContentFieldNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"IdentifierList\": {\n      \"@odata.type\": \"<string>\",\n      \"InstrumentIdentifiers\": [\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        },\n        {\n          \"Identifier\": \"<string>\",\n          \"IdentifierType\": \"<string>\"\n        }\n      ]\n    },\n    \"Condition\": {\n      \"MessageTimeStampIn\": \"GmtUtc\",\n      \"ReportDateRangeType\": \"Delta\",\n      \"QueryStartDate\": \"<dateTime>\",\n      \"QueryEndDate\": \"<dateTime>\",\n      \"DisplaySourceRIC\": \"<boolean>\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/Extractions/ExtractRaw",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Extractions",
+                        "ExtractRaw"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:44:08.000Z",
+                  "updatedAt": "2026-07-28T02:44:08.000Z",
+                  "uid": "35240-f0062c37-496c-4690-8770-3f3bf330158b"
+                }
+              ],
+              "createdAt": "2026-07-28T02:44:08.000Z",
+              "updatedAt": "2026-07-28T02:44:08.000Z",
+              "uid": "35240-4f7f542b-2976-4b6d-90d5-711df874b802"
+            }
+          ],
+          "id": "4590e9c5-4300-47ff-8726-598de08b5add",
+          "createdAt": "2026-07-28T02:44:08.000Z",
+          "updatedAt": "2026-07-28T02:44:08.000Z",
+          "uid": "35240-4590e9c5-4300-47ff-8726-598de08b5add"
+        }
+      ],
+      "id": "3a0c1c6a-08dc-41e3-8637-bc8b92046298",
+      "createdAt": "2026-07-28T02:44:08.000Z",
+      "updatedAt": "2026-07-28T02:44:08.000Z",
+      "uid": "35240-3a0c1c6a-08dc-41e3-8637-bc8b92046298"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.refinitiv.com"
+    }
+  ]
+}

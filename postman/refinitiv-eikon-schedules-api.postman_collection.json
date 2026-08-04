@@ -1,0 +1,311 @@
+{
+  "info": {
+    "_postman_id": "3fafc7a2-667f-4cab-b8eb-f1262f6b78cd",
+    "name": "Refinitiv Eikon Refinitiv Data Platform APIs Authentication Schedules API",
+    "description": "RESTful APIs providing access to Refinitiv's comprehensive financial data including pricing, ESG data, news, research, alternative data, and streaming services. The platform serves as the central hub for programmatic access to LSEG content. Uses OAuth 2.0 for authentication with access tokens obtained via the token endpoint.\n\nContact Support:\n Name: LSEG Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:44:09.000Z",
+    "updatedAt": "2026-07-28T02:44:10.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3fafc7a2-667f-4cab-b8eb-f1262f6b78cd"
+  },
+  "item": [
+    {
+      "name": "Schedules",
+      "item": [
+        {
+          "name": "List Extraction Schedules",
+          "id": "3c370508-cf5e-4b61-87f8-0d67ccd402be",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/Schedules",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "Schedules"
+              ]
+            },
+            "description": "Retrieves all extraction schedules owned by the authenticated user. Schedules define when and how extractions are automatically executed."
+          },
+          "response": [
+            {
+              "id": "b1eaf330-5f55-464e-a8f0-733ddf950bd7",
+              "name": "Successfully retrieved schedules",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/Schedules",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Schedules"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"value\": [\n    {\n      \"ScheduleId\": \"<string>\",\n      \"Name\": \"<string>\",\n      \"Recurrence\": {\n        \"@odata.type\": \"<string>\",\n        \"IsImmediate\": \"<boolean>\"\n      },\n      \"ListId\": \"<string>\",\n      \"ReportTemplateId\": \"<string>\"\n    },\n    {\n      \"ScheduleId\": \"<string>\",\n      \"Name\": \"<string>\",\n      \"Recurrence\": {\n        \"@odata.type\": \"<string>\",\n        \"IsImmediate\": \"<boolean>\"\n      },\n      \"ListId\": \"<string>\",\n      \"ReportTemplateId\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:44:10.000Z",
+              "updatedAt": "2026-07-28T02:44:10.000Z",
+              "uid": "35240-b1eaf330-5f55-464e-a8f0-733ddf950bd7"
+            },
+            {
+              "id": "d5790b16-e913-4a71-96aa-da9b3b295030",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/Schedules",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Schedules"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:44:10.000Z",
+              "updatedAt": "2026-07-28T02:44:10.000Z",
+              "uid": "35240-d5790b16-e913-4a71-96aa-da9b3b295030"
+            }
+          ],
+          "createdAt": "2026-07-28T02:44:10.000Z",
+          "updatedAt": "2026-07-28T02:44:10.000Z",
+          "uid": "35240-3c370508-cf5e-4b61-87f8-0d67ccd402be"
+        },
+        {
+          "name": "Create an Extraction Schedule",
+          "id": "9ff65cd8-0154-4a29-b854-ca3f413aba38",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ScheduleId\": \"<string>\",\n  \"Name\": \"<string>\",\n  \"Recurrence\": {\n    \"@odata.type\": \"<string>\",\n    \"IsImmediate\": \"<boolean>\"\n  },\n  \"ListId\": \"<string>\",\n  \"ReportTemplateId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/Schedules",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "Schedules"
+              ]
+            },
+            "description": "Creates a new extraction schedule that automatically executes extractions at specified times or triggered by events."
+          },
+          "response": [
+            {
+              "id": "1e68202e-09f4-462e-b6f9-76cc081d360a",
+              "name": "Schedule created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ScheduleId\": \"<string>\",\n  \"Name\": \"<string>\",\n  \"Recurrence\": {\n    \"@odata.type\": \"<string>\",\n    \"IsImmediate\": \"<boolean>\"\n  },\n  \"ListId\": \"<string>\",\n  \"ReportTemplateId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/Schedules",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Schedules"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"ScheduleId\": \"<string>\",\n  \"Name\": \"<string>\",\n  \"Recurrence\": {\n    \"@odata.type\": \"<string>\",\n    \"IsImmediate\": \"<boolean>\"\n  },\n  \"ListId\": \"<string>\",\n  \"ReportTemplateId\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:44:10.000Z",
+              "updatedAt": "2026-07-28T02:44:10.000Z",
+              "uid": "35240-1e68202e-09f4-462e-b6f9-76cc081d360a"
+            },
+            {
+              "id": "668e7348-c297-4801-9046-9213a02ea5b4",
+              "name": "Invalid request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ScheduleId\": \"<string>\",\n  \"Name\": \"<string>\",\n  \"Recurrence\": {\n    \"@odata.type\": \"<string>\",\n    \"IsImmediate\": \"<boolean>\"\n  },\n  \"ListId\": \"<string>\",\n  \"ReportTemplateId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/Schedules",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Schedules"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:44:10.000Z",
+              "updatedAt": "2026-07-28T02:44:10.000Z",
+              "uid": "35240-668e7348-c297-4801-9046-9213a02ea5b4"
+            }
+          ],
+          "createdAt": "2026-07-28T02:44:10.000Z",
+          "updatedAt": "2026-07-28T02:44:10.000Z",
+          "uid": "35240-9ff65cd8-0154-4a29-b854-ca3f413aba38"
+        }
+      ],
+      "id": "c45210fe-24e2-4bd4-9cb2-1b179fcfa373",
+      "createdAt": "2026-07-28T02:44:10.000Z",
+      "updatedAt": "2026-07-28T02:44:10.000Z",
+      "uid": "35240-c45210fe-24e2-4bd4-9cb2-1b179fcfa373"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.refinitiv.com"
+    }
+  ]
+}
