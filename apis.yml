@@ -1125,11 +1125,11 @@ common:
   - type: Website
     url: https://www.lseg.com
   - type: OpenAPI
-    url: openapi/refinitiv-eikon-data-platform-openapi.yml
+    url: openapi/_original/refinitiv-eikon-data-platform-openapi.yml
   - type: OpenAPI
-    url: openapi/refinitiv-eikon-datascope-select-openapi.yml
+    url: openapi/_original/refinitiv-eikon-datascope-select-openapi.yml
   - type: OpenAPI
-    url: openapi/refinitiv-eikon-tick-history-openapi.yml
+    url: openapi/_original/refinitiv-eikon-tick-history-openapi.yml
   - type: AsyncAPI
     url: asyncapi/refinitiv-eikon-asyncapi.yml
   - type: JSONSchema
