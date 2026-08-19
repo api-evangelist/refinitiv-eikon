@@ -1,0 +1,445 @@
+{
+  "item": [
+    {
+      "id": "1891d61b-6ac8-4b95-b525-5cf4becb54c2",
+      "name": "ESG",
+      "description": {
+        "content": "Environmental, Social, and Governance data and scores",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d30f230f-0f2e-4c78-87ec-6a3b22a618db",
+          "name": "Retrieve Full ESG Scores",
+          "request": {
+            "name": "Retrieve Full ESG Scores",
+            "description": {
+              "content": "Returns comprehensive Environmental, Social, and Governance scores and measures for specified instruments. Includes pillar scores, category scores, and detailed metrics covering over 400 ESG data points.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "environmental-social-governance",
+                "v2",
+                "views",
+                "scores-full"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "universe",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of instrument identifiers."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "25d26cdd-55b3-4125-978d-ed85effdc2ce",
+              "name": "Successfully retrieved ESG scores",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "environmental-social-governance",
+                    "v2",
+                    "views",
+                    "scores-full"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "universe",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"instrumentId\": \"string\",\n      \"esgScore\": 584.2736652147406,\n      \"environmentPillarScore\": 3718.7550639970823,\n      \"socialPillarScore\": 685.1482088615646,\n      \"governancePillarScore\": 980.8209424358627,\n      \"esgCombinedScore\": 614.125617962169,\n      \"controversiesScore\": 2443.5192382751993\n    },\n    {\n      \"instrumentId\": \"string\",\n      \"esgScore\": 4870.07848382781,\n      \"environmentPillarScore\": 7183.414584255632,\n      \"socialPillarScore\": 6928.08001122122,\n      \"governancePillarScore\": 6782.312876436014,\n      \"esgCombinedScore\": 288.08780065073705,\n      \"controversiesScore\": 6898.874922797955\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "66cce856-b827-4d85-a272-d97087a23dc7",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "environmental-social-governance",
+                    "v2",
+                    "views",
+                    "scores-full"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "universe",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": \"string\",\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"status\": {\n      \"code\": 5453,\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d7fa760b-eb44-4c6f-8b01-3360f63f1d21",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "environmental-social-governance",
+                    "v2",
+                    "views",
+                    "scores-full"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "universe",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": \"string\",\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"status\": {\n      \"code\": 5453,\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3188a2db-b90d-4c1d-93b8-ff1c7ce5daff",
+          "name": "Retrieve Full ESG Measures",
+          "request": {
+            "name": "Retrieve Full ESG Measures",
+            "description": {
+              "content": "Returns detailed ESG measures and underlying data points for specified instruments. Provides the raw metrics used to compute ESG scores across environmental, social, and governance categories.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "environmental-social-governance",
+                "v2",
+                "views",
+                "measures-full"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "universe",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of instrument identifiers."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "be3f2e09-c43d-4e79-92d1-b97ee01f86ef",
+              "name": "Successfully retrieved ESG measures",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "environmental-social-governance",
+                    "v2",
+                    "views",
+                    "measures-full"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "universe",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"instrumentId\": \"string\",\n      \"measures\": {\n        \"key_0\": 1855.959258461718,\n        \"key_1\": 3114.79663355171\n      }\n    },\n    {\n      \"instrumentId\": \"string\",\n      \"measures\": {\n        \"key_0\": true\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6b3899cd-0a84-43f4-915f-7ffcb98b69da",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "environmental-social-governance",
+                    "v2",
+                    "views",
+                    "measures-full"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "universe",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": \"string\",\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"status\": {\n      \"code\": 5453,\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "855710e5-ef1b-46f5-a7c8-20ee920a0384",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "environmental-social-governance",
+                    "v2",
+                    "views",
+                    "measures-full"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "universe",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": \"string\",\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"status\": {\n      \"code\": 5453,\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.refinitiv.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5cd5de5a-b097-416f-8c4a-7ba9454a1221",
+    "name": "Refinitiv Eikon Refinitiv Data Platform APIs Authentication ESG API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful APIs providing access to Refinitiv's comprehensive financial data including pricing, ESG data, news, research, alternative data, and streaming services. The platform serves as the central hub for programmatic access to LSEG content. Uses OAuth 2.0 for authentication with access tokens obtained via the token endpoint.\n\nContact Support:\n Name: LSEG Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

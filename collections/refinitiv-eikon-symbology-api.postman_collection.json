@@ -1,0 +1,254 @@
+{
+  "item": [
+    {
+      "id": "fcd59527-2e53-48c0-8792-71d2b2947c90",
+      "name": "Symbology",
+      "description": {
+        "content": "Instrument identifier concordance and navigation",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "69f32a20-3682-480d-bfd4-b01e3f633306",
+          "name": "Look Up Instrument Symbology",
+          "request": {
+            "name": "Look Up Instrument Symbology",
+            "description": {
+              "content": "Maps between different instrument identifier types. Supports concordance from external identifiers such as ISIN, CUSIP, SEDOL, and ticker to LSEG PermIDs and RICs. Enables navigation between a wide range of identifier types.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "discovery",
+                "symbology",
+                "v1",
+                "lookup"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"from\": [\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"to\": [\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"universe\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a37001d0-cf13-45f9-b601-7e5f39988372",
+              "name": "Successfully resolved identifiers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "discovery",
+                    "symbology",
+                    "v1",
+                    "lookup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"from\": [\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"to\": [\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"universe\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"input\": \"string\",\n      \"output\": [\n        {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\"\n        },\n        {\n          \"key_0\": \"string\"\n        }\n      ]\n    },\n    {\n      \"input\": \"string\",\n      \"output\": [\n        {\n          \"key_0\": \"string\"\n        },\n        {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\",\n          \"key_3\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "663595c9-dda5-404a-ab0a-a401186755f9",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "discovery",
+                    "symbology",
+                    "v1",
+                    "lookup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"from\": [\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"to\": [\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"universe\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": \"string\",\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"status\": {\n      \"code\": 9435,\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab94c44d-07ca-40fe-8d3e-f90bb17c92c1",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "discovery",
+                    "symbology",
+                    "v1",
+                    "lookup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"from\": [\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"to\": [\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identifierTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"universe\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": \"string\",\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"status\": {\n      \"code\": 9435,\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.refinitiv.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "902e7ed7-c778-4e6f-abb3-e4e1505e5893",
+    "name": "Refinitiv Eikon Refinitiv Data Platform APIs Authentication Symbology API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful APIs providing access to Refinitiv's comprehensive financial data including pricing, ESG data, news, research, alternative data, and streaming services. The platform serves as the central hub for programmatic access to LSEG content. Uses OAuth 2.0 for authentication with access tokens obtained via the token endpoint.\n\nContact Support:\n Name: LSEG Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Refinitiv Eikon Refinitiv Data Platform APIs Authentication News API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "News",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve News Headlines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.refinitiv.com/data/news/v1/headlines",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Free-text search query for news headlines. Supports operators and field-specific searches."
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of headlines to return."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor for retrieving the next set of results."
+              },
+              {
+                "name": "dateFrom",
+                "value": "",
+                "type": "query",
+                "description": "Start date for filtering headlines in ISO 8601 format."
+              },
+              {
+                "name": "dateTo",
+                "value": "",
+                "type": "query",
+                "description": "End date for filtering headlines in ISO 8601 format."
+              }
+            ]
+          },
+          "docs": "Returns financial news headlines matching the specified query criteria. Supports filtering by topic, instrument, date range, and other parameters. Results include headline text, source, and timestamps."
+        },
+        {
+          "info": {
+            "name": "Retrieve a News Story",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.refinitiv.com/data/news/v1/stories/:storyId",
+            "params": [
+              {
+                "name": "storyId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the news story."
+              }
+            ]
+          },
+          "docs": "Returns the full content of a news story identified by its story identifier. Includes the story body, metadata, subjects, and associated instruments."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

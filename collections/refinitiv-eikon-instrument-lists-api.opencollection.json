@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Refinitiv Eikon Refinitiv Data Platform APIs Authentication Instrument Lists API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Instrument Lists",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Instrument Lists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.refinitiv.com/InstrumentLists"
+          },
+          "docs": "Retrieves all instrument lists owned by the authenticated user. Instrument lists define the set of instruments for an extraction."
+        },
+        {
+          "info": {
+            "name": "Create an Instrument List",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.refinitiv.com/InstrumentLists",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new instrument list for use in extractions. The list specifies the instruments to be included in data extraction jobs."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

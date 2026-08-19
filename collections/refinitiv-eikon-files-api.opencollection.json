@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Refinitiv Eikon Refinitiv Data Platform APIs Authentication Files API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Files",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Extracted Files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.refinitiv.com/Extractions/ExtractedFiles"
+          },
+          "docs": "Retrieves a list of files produced by completed tick history extractions. Files are available for download within the retention period."
+        },
+        {
+          "info": {
+            "name": "Download an Extracted File",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.refinitiv.com/Extractions/ExtractedFiles(':fileId')/$value",
+            "params": [
+              {
+                "name": "fileId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the extracted file."
+              }
+            ]
+          },
+          "docs": "Downloads the raw tick data file by its identifier. Supports gzip compression via the Accept-Encoding header."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

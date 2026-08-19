@@ -1,0 +1,162 @@
+{
+  "item": [
+    {
+      "id": "a4eb49c4-1ca3-4a9c-b305-4ec265453baf",
+      "name": "Report Templates",
+      "description": {
+        "content": "Configuration of extraction report templates",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "54350657-390e-4f9b-bf83-367b4c9e504a",
+          "name": "List Report Templates",
+          "request": {
+            "name": "List Report Templates",
+            "description": {
+              "content": "Retrieves all report templates owned by the authenticated user. Report templates define the content type and fields for extractions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ReportTemplates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7849cfac-b2ca-47da-bac9-7832452ca6b7",
+              "name": "Successfully retrieved report templates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ReportTemplates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": [\n    {\n      \"ReportTemplateId\": \"string\",\n      \"Name\": \"string\",\n      \"ContentType\": \"string\",\n      \"ContentFieldNames\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"ReportTemplateId\": \"string\",\n      \"Name\": \"string\",\n      \"ContentType\": \"string\",\n      \"ContentFieldNames\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5ee4f2a3-b1e4-4818-829e-cefd426b2c8b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ReportTemplates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.refinitiv.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "12573131-14ed-4db3-8e3c-4ea8d4837454",
+    "name": "Refinitiv Eikon Refinitiv Data Platform APIs Authentication Report Templates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful APIs providing access to Refinitiv's comprehensive financial data including pricing, ESG data, news, research, alternative data, and streaming services. The platform serves as the central hub for programmatic access to LSEG content. Uses OAuth 2.0 for authentication with access tokens obtained via the token endpoint.\n\nContact Support:\n Name: LSEG Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,407 @@
+{
+  "item": [
+    {
+      "id": "a3dfe853-da03-4f88-9ace-5753c70bdae2",
+      "name": "Search",
+      "description": {
+        "content": "Search across organizations, instruments, quotes, and indicators",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6e9adb7b-8848-43fb-8495-e2e201177c97",
+          "name": "Search for Instruments",
+          "request": {
+            "name": "Search for Instruments",
+            "description": {
+              "content": "Searches across organizations, instruments, quotes, and economic indicators on the Refinitiv Data Platform. Supports filtering by entity type, asset class, exchange, and other criteria.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "discovery",
+                "search",
+                "v1",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"View\": \"<string>\",\n  \"Filter\": \"<string>\",\n  \"Query\": \"<string>\",\n  \"Select\": \"<string>\",\n  \"Top\": \"<integer>\",\n  \"OrderBy\": \"<string>\",\n  \"Boost\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5dced12d-bea7-48f5-abf8-8fceaf81ad37",
+              "name": "Successfully retrieved search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "discovery",
+                    "search",
+                    "v1",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"View\": \"<string>\",\n  \"Filter\": \"<string>\",\n  \"Query\": \"<string>\",\n  \"Select\": \"<string>\",\n  \"Top\": \"<integer>\",\n  \"OrderBy\": \"<string>\",\n  \"Boost\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Total\": 3188,\n  \"Hits\": [\n    {\n      \"DocumentTitle\": \"string\",\n      \"RIC\": \"string\",\n      \"PermID\": \"string\",\n      \"PI\": \"string\",\n      \"ExchangeCode\": \"string\"\n    },\n    {\n      \"DocumentTitle\": \"string\",\n      \"RIC\": \"string\",\n      \"PermID\": \"string\",\n      \"PI\": \"string\",\n      \"ExchangeCode\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d7ff528-6547-4a51-a926-d2b050aa68a1",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "discovery",
+                    "search",
+                    "v1",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"View\": \"<string>\",\n  \"Filter\": \"<string>\",\n  \"Query\": \"<string>\",\n  \"Select\": \"<string>\",\n  \"Top\": \"<integer>\",\n  \"OrderBy\": \"<string>\",\n  \"Boost\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": \"string\",\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"status\": {\n      \"code\": 7265,\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c671c1d6-a4e3-401d-84f2-3343452f3d95",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "discovery",
+                    "search",
+                    "v1",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"View\": \"<string>\",\n  \"Filter\": \"<string>\",\n  \"Query\": \"<string>\",\n  \"Select\": \"<string>\",\n  \"Top\": \"<integer>\",\n  \"OrderBy\": \"<string>\",\n  \"Boost\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": \"string\",\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"status\": {\n      \"code\": 7265,\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5c62a41a-cb89-44c7-8f5b-33c9d91e5763",
+          "name": "Search for Instruments",
+          "request": {
+            "name": "Search for Instruments",
+            "description": {
+              "content": "Searches for instruments by identifier, name, or other criteria. Supports various identifier types including RIC, ISIN, CUSIP, SEDOL, and ticker symbols.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Search",
+                "InstrumentSearch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"SearchString\": \"<string>\",\n  \"IdentifierType\": \"<string>\",\n  \"PreferredIdentifierType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "22065573-f8b2-447b-8a52-501b8517553d",
+              "name": "Successfully retrieved search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Search",
+                    "InstrumentSearch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"SearchString\": \"<string>\",\n  \"IdentifierType\": \"<string>\",\n  \"PreferredIdentifierType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": [\n    {\n      \"Identifier\": \"string\",\n      \"IdentifierType\": \"string\",\n      \"Source\": \"string\",\n      \"Description\": \"string\",\n      \"Status\": \"string\"\n    },\n    {\n      \"Identifier\": \"string\",\n      \"IdentifierType\": \"string\",\n      \"Source\": \"string\",\n      \"Description\": \"string\",\n      \"Status\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d7b7b6d-4c56-4fea-aa70-120d645e4f5b",
+              "name": "Invalid search parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Search",
+                    "InstrumentSearch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"SearchString\": \"<string>\",\n  \"IdentifierType\": \"<string>\",\n  \"PreferredIdentifierType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.refinitiv.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f9f07fa4-ff8e-4f54-8b48-feb5b82900c8",
+    "name": "Refinitiv Eikon Refinitiv Data Platform APIs Authentication Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful APIs providing access to Refinitiv's comprehensive financial data including pricing, ESG data, news, research, alternative data, and streaming services. The platform serves as the central hub for programmatic access to LSEG content. Uses OAuth 2.0 for authentication with access tokens obtained via the token endpoint.\n\nContact Support:\n Name: LSEG Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

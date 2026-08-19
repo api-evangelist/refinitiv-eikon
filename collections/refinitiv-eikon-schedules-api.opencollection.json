@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Refinitiv Eikon Refinitiv Data Platform APIs Authentication Schedules API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Schedules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Extraction Schedules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.refinitiv.com/Schedules"
+          },
+          "docs": "Retrieves all extraction schedules owned by the authenticated user. Schedules define when and how extractions are automatically executed."
+        },
+        {
+          "info": {
+            "name": "Create an Extraction Schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.refinitiv.com/Schedules",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new extraction schedule that automatically executes extractions at specified times or triggered by events."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

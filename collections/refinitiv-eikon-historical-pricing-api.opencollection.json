@@ -1,0 +1,128 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Refinitiv Eikon Refinitiv Data Platform APIs Authentication Historical Pricing API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Historical Pricing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve Interday Pricing Summaries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.refinitiv.com/data/historical-pricing/v1/views/interday-summaries/:universe",
+            "params": [
+              {
+                "name": "universe",
+                "value": "",
+                "type": "path",
+                "description": "Instrument identifier, typically a RIC such as AAPL.O or IBM.N."
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start date for the data range in ISO 8601 format."
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End date for the data range in ISO 8601 format."
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "Time interval for the summaries. Options include daily, weekly, monthly, quarterly, and yearly."
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of data points to return."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response."
+              },
+              {
+                "name": "adjustments",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of price adjustment types to apply."
+              }
+            ]
+          },
+          "docs": "Returns historical interday summary pricing data for a specified instrument including open, high, low, close, volume, and other summary fields. Supports date range filtering and field selection."
+        },
+        {
+          "info": {
+            "name": "Retrieve Intraday Pricing Summaries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.refinitiv.com/data/historical-pricing/v1/views/intraday-summaries/:universe",
+            "params": [
+              {
+                "name": "universe",
+                "value": "",
+                "type": "path",
+                "description": "Instrument identifier, typically a RIC such as AAPL.O or IBM.N."
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start date for the data range in ISO 8601 format."
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End date for the data range in ISO 8601 format."
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "Time interval for intraday summaries."
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of data points to return."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response."
+              }
+            ]
+          },
+          "docs": "Returns historical intraday summary pricing data for a specified instrument at configurable intervals. Supports minute-level and hourly granularity for recent trading sessions."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,760 @@
+{
+  "item": [
+    {
+      "id": "c4379085-c3cc-41f6-9a92-faa2522b94c6",
+      "name": "Historical Pricing",
+      "description": {
+        "content": "Historical price data including interday and intraday summaries",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9c8e0329-c7cb-4789-8db7-51f03dcf553c",
+          "name": "Retrieve Interday Pricing Summaries",
+          "request": {
+            "name": "Retrieve Interday Pricing Summaries",
+            "description": {
+              "content": "Returns historical interday summary pricing data for a specified instrument including open, high, low, close, volume, and other summary fields. Supports date range filtering and field selection.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "historical-pricing",
+                "v1",
+                "views",
+                "interday-summaries",
+                ":universe"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<dateTime>",
+                  "description": "Start date for the data range in ISO 8601 format."
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<dateTime>",
+                  "description": "End date for the data range in ISO 8601 format."
+                },
+                {
+                  "disabled": false,
+                  "key": "interval",
+                  "value": "<string>",
+                  "description": "Time interval for the summaries. Options include daily, weekly, monthly, quarterly, and yearly."
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "<integer>",
+                  "description": "Maximum number of data points to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to include in the response."
+                },
+                {
+                  "disabled": false,
+                  "key": "adjustments",
+                  "value": "<string>",
+                  "description": "Comma-separated list of price adjustment types to apply."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "universe",
+                  "description": "(Required) Instrument identifier, typically a RIC such as AAPL.O or IBM.N."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eb84b55b-e825-453f-8e4a-a03ba365fca5",
+              "name": "Successfully retrieved pricing data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "historical-pricing",
+                    "v1",
+                    "views",
+                    "interday-summaries",
+                    ":universe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "adjustments",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "universe",
+                      "description": "(Required) Instrument identifier, typically a RIC such as AAPL.O or IBM.N."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"universe\": [\n    {\n      \"instrumentId\": \"string\",\n      \"ric\": \"string\",\n      \"displayName\": \"string\",\n      \"data\": [\n        {\n          \"DATE\": \"1965-10-15\",\n          \"TRDPRC_1\": 4963.723076882068,\n          \"HIGH_1\": 4119.292384634927,\n          \"LOW_1\": 8635.450351938956,\n          \"OPEN_PRC\": 5405.885609224728,\n          \"ACVOL_UNS\": 3023,\n          \"BID\": 7676.823391640642,\n          \"ASK\": 1423.6895759637102\n        },\n        {\n          \"DATE\": \"1952-09-27\",\n          \"TRDPRC_1\": 2690.046280759819,\n          \"HIGH_1\": 2295.2486348287803,\n          \"LOW_1\": 7211.548408002374,\n          \"OPEN_PRC\": 5221.951938045138,\n          \"ACVOL_UNS\": 647,\n          \"BID\": 9566.874252142434,\n          \"ASK\": 6214.178977074426\n        }\n      ],\n      \"headers\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    {\n      \"instrumentId\": \"string\",\n      \"ric\": \"string\",\n      \"displayName\": \"string\",\n      \"data\": [\n        {\n          \"DATE\": \"1981-09-11\",\n          \"TRDPRC_1\": 5745.316093214878,\n          \"HIGH_1\": 9995.894628100015,\n          \"LOW_1\": 6676.3129020756405,\n          \"OPEN_PRC\": 953.6920975103769,\n          \"ACVOL_UNS\": 6339,\n          \"BID\": 3301.178527221884,\n          \"ASK\": 2889.822837165916\n        },\n        {\n          \"DATE\": \"2025-12-03\",\n          \"TRDPRC_1\": 3680.070253955873,\n          \"HIGH_1\": 8782.35780664739,\n          \"LOW_1\": 5461.258056218496,\n          \"OPEN_PRC\": 7745.631756631135,\n          \"ACVOL_UNS\": 954,\n          \"BID\": 2654.8782379815993,\n          \"ASK\": 1352.5558601146847\n        }\n      ],\n      \"headers\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fefe1805-1f03-4017-9cba-b9033db688c3",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "historical-pricing",
+                    "v1",
+                    "views",
+                    "interday-summaries",
+                    ":universe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "adjustments",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "universe",
+                      "description": "(Required) Instrument identifier, typically a RIC such as AAPL.O or IBM.N."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": \"string\",\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"status\": {\n      \"code\": 7492,\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42912b66-841c-4e24-ab02-ac9a8cb56bd1",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "historical-pricing",
+                    "v1",
+                    "views",
+                    "interday-summaries",
+                    ":universe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "adjustments",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "universe",
+                      "description": "(Required) Instrument identifier, typically a RIC such as AAPL.O or IBM.N."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": \"string\",\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"status\": {\n      \"code\": 7492,\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6450e2c7-3604-4527-80fe-37f1dd040bb5",
+              "name": "Instrument not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "historical-pricing",
+                    "v1",
+                    "views",
+                    "interday-summaries",
+                    ":universe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "adjustments",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "universe",
+                      "description": "(Required) Instrument identifier, typically a RIC such as AAPL.O or IBM.N."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": \"string\",\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"status\": {\n      \"code\": 7492,\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6f6e371b-8a29-4384-a027-5efa4cc6ee95",
+          "name": "Retrieve Intraday Pricing Summaries",
+          "request": {
+            "name": "Retrieve Intraday Pricing Summaries",
+            "description": {
+              "content": "Returns historical intraday summary pricing data for a specified instrument at configurable intervals. Supports minute-level and hourly granularity for recent trading sessions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "historical-pricing",
+                "v1",
+                "views",
+                "intraday-summaries",
+                ":universe"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<dateTime>",
+                  "description": "Start date for the data range in ISO 8601 format."
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<dateTime>",
+                  "description": "End date for the data range in ISO 8601 format."
+                },
+                {
+                  "disabled": false,
+                  "key": "interval",
+                  "value": "<string>",
+                  "description": "Time interval for intraday summaries."
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "<integer>",
+                  "description": "Maximum number of data points to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to include in the response."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "universe",
+                  "description": "(Required) Instrument identifier, typically a RIC such as AAPL.O or IBM.N."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3a14924e-85bb-4f4e-9ad8-6edf01cdbd02",
+              "name": "Successfully retrieved intraday pricing data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "historical-pricing",
+                    "v1",
+                    "views",
+                    "intraday-summaries",
+                    ":universe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "universe",
+                      "description": "(Required) Instrument identifier, typically a RIC such as AAPL.O or IBM.N."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"universe\": [\n    {\n      \"instrumentId\": \"string\",\n      \"ric\": \"string\",\n      \"displayName\": \"string\",\n      \"data\": [\n        {\n          \"DATE\": \"1965-10-15\",\n          \"TRDPRC_1\": 4963.723076882068,\n          \"HIGH_1\": 4119.292384634927,\n          \"LOW_1\": 8635.450351938956,\n          \"OPEN_PRC\": 5405.885609224728,\n          \"ACVOL_UNS\": 3023,\n          \"BID\": 7676.823391640642,\n          \"ASK\": 1423.6895759637102\n        },\n        {\n          \"DATE\": \"1952-09-27\",\n          \"TRDPRC_1\": 2690.046280759819,\n          \"HIGH_1\": 2295.2486348287803,\n          \"LOW_1\": 7211.548408002374,\n          \"OPEN_PRC\": 5221.951938045138,\n          \"ACVOL_UNS\": 647,\n          \"BID\": 9566.874252142434,\n          \"ASK\": 6214.178977074426\n        }\n      ],\n      \"headers\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    {\n      \"instrumentId\": \"string\",\n      \"ric\": \"string\",\n      \"displayName\": \"string\",\n      \"data\": [\n        {\n          \"DATE\": \"1981-09-11\",\n          \"TRDPRC_1\": 5745.316093214878,\n          \"HIGH_1\": 9995.894628100015,\n          \"LOW_1\": 6676.3129020756405,\n          \"OPEN_PRC\": 953.6920975103769,\n          \"ACVOL_UNS\": 6339,\n          \"BID\": 3301.178527221884,\n          \"ASK\": 2889.822837165916\n        },\n        {\n          \"DATE\": \"2025-12-03\",\n          \"TRDPRC_1\": 3680.070253955873,\n          \"HIGH_1\": 8782.35780664739,\n          \"LOW_1\": 5461.258056218496,\n          \"OPEN_PRC\": 7745.631756631135,\n          \"ACVOL_UNS\": 954,\n          \"BID\": 2654.8782379815993,\n          \"ASK\": 1352.5558601146847\n        }\n      ],\n      \"headers\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1dbaa19f-5a80-4555-825d-a4cb6d8c181e",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "historical-pricing",
+                    "v1",
+                    "views",
+                    "intraday-summaries",
+                    ":universe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "universe",
+                      "description": "(Required) Instrument identifier, typically a RIC such as AAPL.O or IBM.N."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": \"string\",\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"status\": {\n      \"code\": 7492,\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f743020a-f24a-4500-b61f-da2aef054f88",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "historical-pricing",
+                    "v1",
+                    "views",
+                    "intraday-summaries",
+                    ":universe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "universe",
+                      "description": "(Required) Instrument identifier, typically a RIC such as AAPL.O or IBM.N."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": \"string\",\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"status\": {\n      \"code\": 7492,\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.refinitiv.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3a4aa286-cfa0-48e3-b141-5d190327f962",
+    "name": "Refinitiv Eikon Refinitiv Data Platform APIs Authentication Historical Pricing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful APIs providing access to Refinitiv's comprehensive financial data including pricing, ESG data, news, research, alternative data, and streaming services. The platform serves as the central hub for programmatic access to LSEG content. Uses OAuth 2.0 for authentication with access tokens obtained via the token endpoint.\n\nContact Support:\n Name: LSEG Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

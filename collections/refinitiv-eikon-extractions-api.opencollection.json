@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Refinitiv Eikon Refinitiv Data Platform APIs Authentication Extractions API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Extractions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Execute On-Demand Raw Extraction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.refinitiv.com/Extractions/ExtractRaw",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes an on-demand extraction for specified instruments and fields. Returns extracted data directly or initiates an asynchronous extraction for large result sets. Supports multiple extraction types including end-of-day pricing, corporate actions, and reference data."
+        },
+        {
+          "info": {
+            "name": "Execute On-Demand Extraction with Notes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.refinitiv.com/Extractions/ExtractWithNotes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes an on-demand extraction and returns both the extracted data and processing notes. Notes include information about instrument validation, field availability, and any issues encountered during extraction."
+        },
+        {
+          "info": {
+            "name": "List Extracted Files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.refinitiv.com/Extractions/ExtractedFiles"
+          },
+          "docs": "Retrieves a list of files produced by completed extractions. Files are available for download for a limited retention period."
+        },
+        {
+          "info": {
+            "name": "Download an Extracted File",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.refinitiv.com/Extractions/ExtractedFiles(':fileId')/$value",
+            "params": [
+              {
+                "name": "fileId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the extracted file."
+              }
+            ]
+          },
+          "docs": "Downloads the contents of a specific extracted file by its identifier. Returns the raw extraction data."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

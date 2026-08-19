@@ -1,0 +1,92 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Refinitiv Eikon Refinitiv Data Platform APIs Authentication Jobs API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve Extraction Notes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.refinitiv.com/Extractions/ReportExtractions(':extractionId')/FullExtractionNote",
+            "params": [
+              {
+                "name": "extractionId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the extraction."
+              }
+            ]
+          },
+          "docs": "Returns the detailed processing notes for a completed extraction, including instrument validation results and any issues encountered."
+        },
+        {
+          "info": {
+            "name": "List Extraction Jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.refinitiv.com/Jobs/Jobs"
+          },
+          "docs": "Retrieves a list of extraction jobs and their current statuses. Allows monitoring the progress of asynchronous extractions."
+        },
+        {
+          "info": {
+            "name": "Get Job Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.refinitiv.com/Jobs/Jobs(':jobId')",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the extraction job."
+              }
+            ]
+          },
+          "docs": "Retrieves the status and details of a specific extraction job."
+        },
+        {
+          "info": {
+            "name": "Cancel an Extraction Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.refinitiv.com/Jobs/Jobs(':jobId')",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the extraction job to cancel."
+              }
+            ]
+          },
+          "docs": "Cancels a running extraction job. Only jobs that have not yet completed can be cancelled."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

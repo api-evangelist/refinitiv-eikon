@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Refinitiv Eikon Refinitiv Data Platform APIs Authentication On-Demand Extractions API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "On-Demand Extractions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Extract Tick History Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.refinitiv.com/Extractions/ExtractRaw",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes an on-demand tick history extraction for specified instruments and date range. Supports tick data, intraday bars, market depth, and time-and-sales extraction types. For large extractions, returns a 202 response with a polling location."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

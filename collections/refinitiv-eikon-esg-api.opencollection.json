@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Refinitiv Eikon Refinitiv Data Platform APIs Authentication ESG API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ESG",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve Full ESG Scores",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.refinitiv.com/data/environmental-social-governance/v2/views/scores-full",
+            "params": [
+              {
+                "name": "universe",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of instrument identifiers."
+              }
+            ]
+          },
+          "docs": "Returns comprehensive Environmental, Social, and Governance scores and measures for specified instruments. Includes pillar scores, category scores, and detailed metrics covering over 400 ESG data points."
+        },
+        {
+          "info": {
+            "name": "Retrieve Full ESG Measures",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.refinitiv.com/data/environmental-social-governance/v2/views/measures-full",
+            "params": [
+              {
+                "name": "universe",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of instrument identifiers."
+              }
+            ]
+          },
+          "docs": "Returns detailed ESG measures and underlying data points for specified instruments. Provides the raw metrics used to compute ESG scores across environmental, social, and governance categories."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

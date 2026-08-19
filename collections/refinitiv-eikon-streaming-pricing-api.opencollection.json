@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Refinitiv Eikon Refinitiv Data Platform APIs Authentication Streaming Pricing API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Streaming Pricing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve Pricing Snapshots",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.refinitiv.com/data/pricing/snapshots/v1/:universe",
+            "params": [
+              {
+                "name": "universe",
+                "value": "",
+                "type": "path",
+                "description": "Comma-separated list of instrument identifiers (RICs)."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response."
+              }
+            ]
+          },
+          "docs": "Returns the latest snapshot pricing data for one or more instruments. Provides real-time or delayed pricing depending on entitlements."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
