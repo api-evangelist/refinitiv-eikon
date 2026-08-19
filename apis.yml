@@ -23,7 +23,7 @@ image: https://www.refinitiv.com/content/dam/marketing/en_us/images/logos/refini
 url: https://raw.githubusercontent.com/api-evangelist/refinitiv-eikon/refs/heads/main/apis.yml
 created: '2024-01-01'
 modified: '2026-05-29'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 tags:
   - Analytics
   - Financial Data
