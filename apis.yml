@@ -65,6 +65,11 @@ apis:
   humanURL: https://developers.lseg.com/en/api-catalog/lseg-messenger-bot-sdk/lseg-messenger-bot-sdk
   baseURL: https://api.refinitiv.com
   tags:
+  - Chatbots
+  - Collaboration
+  - Compliance
+  - Messaging
+  tags_raw:
   - Chatbot
   - Collaboration
   - Compliance
@@ -269,6 +274,11 @@ apis:
   - Deprecated
   - Desktop Integration
   - Interoperability
+  - Workflows
+  tags_raw:
+  - Deprecated
+  - Desktop Integration
+  - Interoperability
   - Workflow
   properties:
   - type: Documentation
@@ -427,6 +437,11 @@ apis:
   baseURL: https://api.rkd.refinitiv.com
   tags:
   - Market Data
+  - Portal
+  - SOAP
+  - Wealth Management
+  tags_raw:
+  - Market Data
   - Portals
   - SOAP
   - Wealth Management
@@ -532,6 +547,11 @@ apis:
   humanURL: https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/estimates-API
   baseURL: https://api.refinitiv.com
   tags:
+  - Consensus
+  - Estimates
+  - Forecast
+  - Wealth Management
+  tags_raw:
   - Consensus
   - Estimates
   - Forecasts
@@ -767,6 +787,8 @@ apis:
   humanURL: https://developers.lseg.com/en/api-catalog/eikon/eikon-data-api
   baseURL: https://api.refinitiv.com
   tags:
+  - File
+  tags_raw:
   - Files
   properties:
   - type: OpenAPI
@@ -848,6 +870,8 @@ apis:
   humanURL: https://developers.lseg.com/en/api-catalog/eikon/eikon-data-api
   baseURL: https://api.refinitiv.com
   tags:
+  - Job
+  tags_raw:
   - Jobs
   properties:
   - type: OpenAPI
