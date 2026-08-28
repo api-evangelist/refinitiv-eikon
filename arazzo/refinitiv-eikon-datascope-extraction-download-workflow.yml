@@ -12,8 +12,11 @@ info:
     read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: datascopeApi
-  url: ../openapi/refinitiv-eikon-datascope-select-openapi.yml
+- name: authenticationApi
+  url: ../openapi/refinitiv-eikon-authentication-api-openapi.yml
+  type: openapi
+- name: extractionsApi
+  url: ../openapi/refinitiv-eikon-extractions-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: datascope-extraction-download
@@ -55,7 +58,7 @@ workflows:
   - stepId: authenticate
     description: >-
       Exchange account credentials for a 24-hour DataScope Select session token.
-    operationId: $sourceDescriptions.datascopeApi.requestToken
+    operationId: $sourceDescriptions.authenticationApi.requestToken
     requestBody:
       contentType: application/json
       payload:
@@ -102,7 +105,7 @@ workflows:
     description: >-
       List the files produced by completed extractions and capture the first
       file identifier.
-    operationId: $sourceDescriptions.datascopeApi.listExtractedFiles
+    operationId: $sourceDescriptions.extractionsApi.listExtractedFiles
     parameters:
     - name: Authorization
       in: header
@@ -129,7 +132,7 @@ workflows:
   - stepId: downloadFile
     description: >-
       Download the raw contents of the first extracted file by its identifier.
-    operationId: $sourceDescriptions.datascopeApi.downloadExtractedFile
+    operationId: $sourceDescriptions.extractionsApi.downloadExtractedFile
     parameters:
     - name: Authorization
       in: header

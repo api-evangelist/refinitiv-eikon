@@ -11,8 +11,8 @@ info:
     executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: dataPlatformApi
-  url: ../openapi/refinitiv-eikon-data-platform-openapi.yml
+- name: newsApi
+  url: ../openapi/refinitiv-eikon-news-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: news-headline-to-story

@@ -11,8 +11,11 @@ info:
     without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: dataPlatformApi
-  url: ../openapi/refinitiv-eikon-data-platform-openapi.yml
+- name: searchApi
+  url: ../openapi/refinitiv-eikon-search-api-openapi.yml
+  type: openapi
+- name: streamingPricingApi
+  url: ../openapi/refinitiv-eikon-streaming-pricing-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: search-to-snapshot
@@ -45,7 +48,7 @@ workflows:
     description: >-
       Run a free-text instrument search and capture the RIC of the top-ranked
       hit.
-    operationId: $sourceDescriptions.dataPlatformApi.searchInstruments
+    operationId: $sourceDescriptions.searchApi.searchInstruments
     parameters:
     - name: Authorization
       in: header

@@ -13,8 +13,17 @@ info:
     OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: tickHistoryApi
-  url: ../openapi/refinitiv-eikon-tick-history-openapi.yml
+- name: authenticationApi
+  url: ../openapi/refinitiv-eikon-authentication-api-openapi.yml
+  type: openapi
+- name: extractionsApi
+  url: ../openapi/refinitiv-eikon-extractions-api-openapi.yml
+  type: openapi
+- name: jobsApi
+  url: ../openapi/refinitiv-eikon-jobs-api-openapi.yml
+  type: openapi
+- name: onDemandExtractionsApi
+  url: ../openapi/refinitiv-eikon-on-demand-extractions-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: tickhistory-extraction-poll
@@ -62,7 +71,7 @@ workflows:
     description: >-
       Exchange account credentials for a 24-hour session token shared with
       DataScope Select.
-    operationId: $sourceDescriptions.tickHistoryApi.requestToken
+    operationId: $sourceDescriptions.authenticationApi.requestToken
     requestBody:
       contentType: application/json
       payload:
@@ -149,7 +158,7 @@ workflows:
     description: >-
       List the files produced by completed tick history extractions and capture
       the first file identifier.
-    operationId: $sourceDescriptions.tickHistoryApi.listExtractedFiles
+    operationId: $sourceDescriptions.extractionsApi.listExtractedFiles
     parameters:
     - name: Authorization
       in: header
@@ -176,7 +185,7 @@ workflows:
     description: >-
       Download the raw tick data contents of the first extracted file by its
       identifier.
-    operationId: $sourceDescriptions.tickHistoryApi.downloadExtractedFile
+    operationId: $sourceDescriptions.extractionsApi.downloadExtractedFile
     parameters:
     - name: Authorization
       in: header

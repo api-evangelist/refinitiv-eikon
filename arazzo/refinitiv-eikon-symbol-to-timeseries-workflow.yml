@@ -13,8 +13,11 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: dataPlatformApi
-  url: ../openapi/refinitiv-eikon-data-platform-openapi.yml
+- name: historicalPricingApi
+  url: ../openapi/refinitiv-eikon-historical-pricing-api-openapi.yml
+  type: openapi
+- name: symbologyApi
+  url: ../openapi/refinitiv-eikon-symbology-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: symbol-to-timeseries
