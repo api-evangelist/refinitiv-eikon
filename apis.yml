@@ -6,6 +6,19 @@ description: >-
   reference data, and time series. Eikon was withdrawn from the LSEG product line on June 30, 2025, and has been
   succeeded by LSEG Workspace.
 type: Index
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: true
+  callable_host: true
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  - pricing
+  - repository-unlicensed
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: self-serve
@@ -1083,6 +1096,8 @@ apis:
     url: >-
       https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis/download
 common:
+  - type: IssueTracker
+    url: https://github.com/datastreamapi/DatastreamPy/issues
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/refinitiv-eikon/overview
   - type: AgenticAccess
