@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Refinitiv Eikon Refinitiv Data Platform APIs Authentication Historical Pricing API
+  title: Refinitiv Eikon Refinitiv Data Platform Historical Pricing API
   description: RESTful APIs providing access to Refinitiv's comprehensive financial data including pricing, ESG data, news, research, alternative data, and streaming services. The platform serves as the central hub for programmatic access to LSEG content. Uses OAuth 2.0 for authentication with access tokens obtained via the token endpoint.
   version: 1.0.0
   contact:
@@ -141,13 +141,6 @@ components:
       schema:
         type: string
         format: date-time
-    StartDate:
-      name: start
-      in: query
-      description: Start date for the data range in ISO 8601 format.
-      schema:
-        type: string
-        format: date-time
     Universe:
       name: universe
       in: path
@@ -155,43 +148,14 @@ components:
       description: Instrument identifier, typically a RIC such as AAPL.O or IBM.N.
       schema:
         type: string
+    StartDate:
+      name: start
+      in: query
+      description: Start date for the data range in ISO 8601 format.
+      schema:
+        type: string
+        format: date-time
   schemas:
-    HistoricalPricingResponse:
-      type: object
-      description: Response containing historical pricing data for an instrument.
-      properties:
-        universe:
-          type: array
-          description: Array of instrument pricing result sets.
-          items:
-            type: object
-            properties:
-              instrumentId:
-                type: string
-                description: Instrument identifier for the pricing data.
-              ric:
-                type: string
-                description: Reuters Instrument Code.
-              displayName:
-                type: string
-                description: Human-readable name of the instrument.
-              data:
-                type: array
-                description: Array of pricing data points.
-                items:
-                  $ref: '#/components/schemas/PricingDataPoint'
-              headers:
-                type: array
-                description: Field header definitions for the data array.
-                items:
-                  type: object
-                  properties:
-                    name:
-                      type: string
-                      description: Field name.
-                    type:
-                      type: string
-                      description: Data type of the field.
     Error:
       type: object
       description: Standard error response from the Refinitiv Data Platform.
@@ -247,6 +211,42 @@ components:
         ASK:
           type: number
           description: Best ask price at close.
+    HistoricalPricingResponse:
+      type: object
+      description: Response containing historical pricing data for an instrument.
+      properties:
+        universe:
+          type: array
+          description: Array of instrument pricing result sets.
+          items:
+            type: object
+            properties:
+              instrumentId:
+                type: string
+                description: Instrument identifier for the pricing data.
+              ric:
+                type: string
+                description: Reuters Instrument Code.
+              displayName:
+                type: string
+                description: Human-readable name of the instrument.
+              data:
+                type: array
+                description: Array of pricing data points.
+                items:
+                  $ref: '#/components/schemas/PricingDataPoint'
+              headers:
+                type: array
+                description: Field header definitions for the data array.
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      description: Field name.
+                    type:
+                      type: string
+                      description: Data type of the field.
   securitySchemes:
     bearerAuth:
       type: http

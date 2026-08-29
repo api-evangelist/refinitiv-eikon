@@ -1,40 +1,51 @@
 {
   "provider": "refinitiv-eikon",
   "sources": [
-    "refinitiv-eikon-authentication-api-openapi.yml",
-    "refinitiv-eikon-esg-api-openapi.yml",
-    "refinitiv-eikon-extractions-api-openapi.yml",
-    "refinitiv-eikon-files-api-openapi.yml",
-    "refinitiv-eikon-historical-pricing-api-openapi.yml",
-    "refinitiv-eikon-instrument-lists-api-openapi.yml",
-    "refinitiv-eikon-jobs-api-openapi.yml",
-    "refinitiv-eikon-news-api-openapi.yml",
-    "refinitiv-eikon-on-demand-extractions-api-openapi.yml",
-    "refinitiv-eikon-report-templates-api-openapi.yml",
-    "refinitiv-eikon-schedules-api-openapi.yml",
-    "refinitiv-eikon-search-api-openapi.yml",
-    "refinitiv-eikon-streaming-pricing-api-openapi.yml",
-    "refinitiv-eikon-symbology-api-openapi.yml"
+    "_original/refinitiv-eikon-data-platform-openapi.yml",
+    "_original/refinitiv-eikon-datascope-select-openapi.yml",
+    "_original/refinitiv-eikon-tick-history-openapi.yml"
   ],
   "outputs": [
     "refinitiv-eikon-authentication-api-openapi.yml",
     "refinitiv-eikon-esg-api-openapi.yml",
-    "refinitiv-eikon-extractions-api-openapi.yml",
-    "refinitiv-eikon-files-api-openapi.yml",
     "refinitiv-eikon-historical-pricing-api-openapi.yml",
-    "refinitiv-eikon-instrument-lists-api-openapi.yml",
-    "refinitiv-eikon-jobs-api-openapi.yml",
     "refinitiv-eikon-news-api-openapi.yml",
-    "refinitiv-eikon-on-demand-extractions-api-openapi.yml",
-    "refinitiv-eikon-report-templates-api-openapi.yml",
-    "refinitiv-eikon-schedules-api-openapi.yml",
     "refinitiv-eikon-search-api-openapi.yml",
     "refinitiv-eikon-streaming-pricing-api-openapi.yml",
-    "refinitiv-eikon-symbology-api-openapi.yml"
+    "refinitiv-eikon-symbology-api-openapi.yml",
+    "refinitiv-eikon-extractions-api-openapi.yml",
+    "refinitiv-eikon-instrument-lists-api-openapi.yml",
+    "refinitiv-eikon-report-templates-api-openapi.yml",
+    "refinitiv-eikon-schedules-api-openapi.yml",
+    "refinitiv-eikon-files-api-openapi.yml",
+    "refinitiv-eikon-jobs-api-openapi.yml",
+    "refinitiv-eikon-on-demand-extractions-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "refinitiv-eikon-data-platform-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "refinitiv-eikon-datascope-select-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "refinitiv-eikon-tick-history-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "tag 'Authentication' spans 3 source specs (refinitiv-eikon-data-platform-openapi.yml, refinitiv-eikon-datascope-select-openapi.yml, refinitiv-eikon-tick-history-openapi.yml): per-path servers applied",
+    "tag 'Search' spans 2 source specs (refinitiv-eikon-data-platform-openapi.yml, refinitiv-eikon-datascope-select-openapi.yml): per-path servers applied"
+  ],
+  "skipped": [
+    "refinitiv-eikon-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "refinitiv-eikon-esg-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "refinitiv-eikon-extractions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "refinitiv-eikon-files-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "refinitiv-eikon-historical-pricing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "refinitiv-eikon-instrument-lists-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "refinitiv-eikon-jobs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "refinitiv-eikon-news-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "refinitiv-eikon-on-demand-extractions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "refinitiv-eikon-report-templates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "refinitiv-eikon-schedules-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "refinitiv-eikon-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "refinitiv-eikon-streaming-pricing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "refinitiv-eikon-symbology-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Refinitiv Eikon Refinitiv Data Platform APIs Authentication Symbology API
+  title: Refinitiv Eikon Refinitiv Data Platform Symbology API
   description: RESTful APIs providing access to Refinitiv's comprehensive financial data including pricing, ESG data, news, research, alternative data, and streaming services. The platform serves as the central hub for programmatic access to LSEG content. Uses OAuth 2.0 for authentication with access tokens obtained via the token endpoint.
   version: 1.0.0
   contact:
@@ -50,46 +50,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    SymbologyLookupRequest:
-      type: object
-      description: Request body for symbology lookup operations.
-      required:
-      - from
-      - to
-      - universe
-      properties:
-        from:
-          type: array
-          description: Source identifier type or types.
-          items:
-            type: object
-            properties:
-              identifierTypes:
-                type: array
-                description: List of source identifier types such as ISIN, CUSIP, SEDOL, or Ticker.
-                items:
-                  type: string
-              values:
-                type: array
-                description: List of identifier values to look up.
-                items:
-                  type: string
-        to:
-          type: array
-          description: Target identifier types to resolve to.
-          items:
-            type: object
-            properties:
-              identifierTypes:
-                type: array
-                description: List of target identifier types such as RIC, PermID, or ISIN.
-                items:
-                  type: string
-        universe:
-          type: array
-          description: List of instrument identifiers to resolve.
-          items:
-            type: string
     Error:
       type: object
       description: Standard error response from the Refinitiv Data Platform.
@@ -136,6 +96,46 @@ components:
                   type: object
                   additionalProperties:
                     type: string
+    SymbologyLookupRequest:
+      type: object
+      description: Request body for symbology lookup operations.
+      required:
+      - from
+      - to
+      - universe
+      properties:
+        from:
+          type: array
+          description: Source identifier type or types.
+          items:
+            type: object
+            properties:
+              identifierTypes:
+                type: array
+                description: List of source identifier types such as ISIN, CUSIP, SEDOL, or Ticker.
+                items:
+                  type: string
+              values:
+                type: array
+                description: List of identifier values to look up.
+                items:
+                  type: string
+        to:
+          type: array
+          description: Target identifier types to resolve to.
+          items:
+            type: object
+            properties:
+              identifierTypes:
+                type: array
+                description: List of target identifier types such as RIC, PermID, or ISIN.
+                items:
+                  type: string
+        universe:
+          type: array
+          description: List of instrument identifiers to resolve.
+          items:
+            type: string
   securitySchemes:
     bearerAuth:
       type: http

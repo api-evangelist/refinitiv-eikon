@@ -1,17 +1,17 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Refinitiv Eikon Refinitiv Data Platform APIs Authentication Files API
-  description: RESTful APIs providing access to Refinitiv's comprehensive financial data including pricing, ESG data, news, research, alternative data, and streaming services. The platform serves as the central hub for programmatic access to LSEG content. Uses OAuth 2.0 for authentication with access tokens obtained via the token endpoint.
+  title: Refinitiv Eikon LSEG Tick History REST Files API
+  description: REST API providing programmatic access to historical tick-level market data through the DataScope Select platform. Supports on-demand and scheduled extractions of tick data, intraday bars, and end-of-day data across global markets. Shares the same base URL and authentication mechanism as the DataScope Select REST API.
   version: 1.0.0
   contact:
     name: LSEG Developer Support
     url: https://developers.lseg.com
   termsOfService: https://www.refinitiv.com/en/policies/terms-of-use
 servers:
-- url: https://api.refinitiv.com
+- url: https://selectapi.datascope.refinitiv.com/RestApi/v1
   description: Production Server
 security:
-- bearerAuth: []
+- tokenAuth: []
 tags:
 - name: Files
   description: Extracted file management and download
@@ -106,11 +106,11 @@ components:
           format: date-time
           description: Timestamp when the file was generated.
   securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-      description: OAuth 2.0 bearer token obtained from the authentication endpoint. Access tokens are valid for five minutes and must be refreshed using the refresh token.
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Session token obtained from the RequestToken endpoint.
 externalDocs:
-  description: Refinitiv Data Platform API Documentation
-  url: https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis/documentation
+  description: Tick History REST API Documentation
+  url: https://developers.lseg.com/en/api-catalog/refinitiv-tick-history/refinitiv-tick-history-rth-rest-api/documentation
