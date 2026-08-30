@@ -1,23 +1,19 @@
 ---
 kin_checks:
   slug: refinitiv-eikon
-  schema_version: 0.15.1
-  scored_at: '2026-08-27'
-  run_ts: 2026-08-27T140727
+  schema_version: 0.16.0
+  scored_at: '2026-08-29'
+  run_ts: 2026-08-29T213958
   note: Actionable checks only (missed + partial). earned/na are every other check
-    in rubric/scoring-0.15.1.yml; counts below let you verify that.
+    in rubric/scoring-0.16.0.yml; counts below let you verify that.
   counts:
     total: 130
-    earned: 48
-    partial: 14
-    missed: 51
-    na: 17
+    earned: 49
+    partial: 15
+    missed: 53
+    na: 13
   checks:
   - id: maintainer_present
-    status: missed
-  - id: human_url_per_api
-    status: missed
-  - id: base_url_per_api
     status: missed
   - id: well_known_published
     status: missed
@@ -97,6 +93,14 @@ kin_checks:
     status: missed
   - id: reg_named_standard_conformance
     status: missed
+  - id: os_security_policy
+    status: missed
+  - id: os_contribution_guide
+    status: missed
+  - id: os_releases
+    status: missed
+  - id: os_code_of_conduct
+    status: missed
   - id: reversibility_documented
     status: missed
   - id: mcp_server
@@ -131,6 +135,10 @@ kin_checks:
     status: partial
     earned: 0.43
     detail: 2 of 14 openapi documents pass
+  - id: security_applied
+    status: partial
+    earned: 2.79
+    detail: 13 of 14 openapi documents pass
   - id: rules_present
     status: partial
     earned: 2.5
