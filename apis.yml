@@ -78,7 +78,7 @@ apis:
   humanURL: https://developers.lseg.com/en/api-catalog/lseg-messenger-bot-sdk/lseg-messenger-bot-sdk
   baseURL: https://api.refinitiv.com
   tags:
-  - Chatbot
+  - Chatbots
   - Collaboration
   - Compliance
   - Messaging
