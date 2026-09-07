@@ -2,20 +2,18 @@
   "repo": "refinitiv-eikon",
   "feeds": [
     {
+      "source": "https://developers.lseg.com/en/login",
+      "error": "HTTPError"
+    },
+    {
       "source": "https://medium.com/feed/lseg-developer-community",
       "feed_url": "https://medium.com/feed/lseg-developer-community",
       "title": "",
       "saved": 0,
-      "method": "feed",
-      "nature": "undetermined",
-      "nature_basis": null
-    },
-    {
-      "source": "https://developers.lseg.com/en/login",
-      "error": "HTTPError"
+      "method": "feed"
     }
   ],
-  "fetched": "2026-08-30T22:33:40Z",
+  "fetched": "2026-09-06T19:17:18Z",
   "post_count": 10,
   "feed_nature": "undetermined",
   "feed_nature_basis": null,
