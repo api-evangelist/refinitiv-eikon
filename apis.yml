@@ -545,6 +545,11 @@ apis:
   humanURL: https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/lipper-funds-API
   baseURL: https://api.refinitiv.com
   tags:
+  - Fund
+  - Lipper
+  - Performance
+  - Wealth Management
+  tags_raw:
   - Funds
   - Lipper
   - Performance
@@ -994,6 +999,8 @@ apis:
   humanURL: https://developers.lseg.com/en/api-catalog/eikon/eikon-data-api
   baseURL: https://api.refinitiv.com
   tags:
+  - Schedule
+  tags_raw:
   - Schedules
   properties:
   - type: OpenAPI
