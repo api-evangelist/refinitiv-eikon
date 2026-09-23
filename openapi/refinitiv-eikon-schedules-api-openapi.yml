@@ -69,19 +69,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
-      type: object
-      description: Standard error response from the DataScope Select API.
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              description: Machine-readable error code.
-            message:
-              type: string
-              description: Human-readable error message.
     Schedule:
       type: object
       description: Definition of an extraction schedule.
@@ -108,6 +95,19 @@ components:
         ReportTemplateId:
           type: string
           description: Identifier of the report template used by this schedule.
+    Error:
+      type: object
+      description: Standard error response from the DataScope Select API.
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code.
+            message:
+              type: string
+              description: Human-readable error message.
   securitySchemes:
     tokenAuth:
       type: apiKey

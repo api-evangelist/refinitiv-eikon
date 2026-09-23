@@ -107,6 +107,52 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    NewsHeadline:
+      type: object
+      description: A single news headline entry.
+      properties:
+        storyId:
+          type: string
+          description: Unique identifier for the news story.
+        title:
+          type: string
+          description: Headline text.
+        sourceCode:
+          type: string
+          description: Code identifying the news source.
+        sourceName:
+          type: string
+          description: Human-readable name of the news source.
+        versionCreated:
+          type: string
+          format: date-time
+          description: Timestamp when the headline was created.
+    Error:
+      type: object
+      description: Standard error response from the Refinitiv Data Platform.
+      properties:
+        error:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Unique error identifier.
+            code:
+              type: string
+              description: Machine-readable error code.
+            message:
+              type: string
+              description: Human-readable error message.
+            status:
+              type: object
+              description: HTTP status information.
+              properties:
+                code:
+                  type: integer
+                  description: HTTP status code.
+                message:
+                  type: string
+                  description: HTTP status message.
     NewsStory:
       type: object
       description: Full news story with body content and metadata.
@@ -140,52 +186,6 @@ components:
           type: string
           format: date-time
           description: Timestamp when the story was published.
-    Error:
-      type: object
-      description: Standard error response from the Refinitiv Data Platform.
-      properties:
-        error:
-          type: object
-          properties:
-            id:
-              type: string
-              description: Unique error identifier.
-            code:
-              type: string
-              description: Machine-readable error code.
-            message:
-              type: string
-              description: Human-readable error message.
-            status:
-              type: object
-              description: HTTP status information.
-              properties:
-                code:
-                  type: integer
-                  description: HTTP status code.
-                message:
-                  type: string
-                  description: HTTP status message.
-    NewsHeadline:
-      type: object
-      description: A single news headline entry.
-      properties:
-        storyId:
-          type: string
-          description: Unique identifier for the news story.
-        title:
-          type: string
-          description: Headline text.
-        sourceCode:
-          type: string
-          description: Code identifying the news source.
-        sourceName:
-          type: string
-          description: Human-readable name of the news source.
-        versionCreated:
-          type: string
-          format: date-time
-          description: Timestamp when the headline was created.
     NewsHeadlinesResponse:
       type: object
       description: Response containing news headlines matching the query.

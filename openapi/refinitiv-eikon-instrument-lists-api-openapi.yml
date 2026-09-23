@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Refinitiv Eikon LSEG DataScope Select REST Instrument Lists API
+  title: Refinitiv Eikon LSEG DataScope Select REST Instrument Lists…
   description: REST API providing programmatic access to the DataScope Select platform for extracting global prices, corporate actions, reference data, historical data, cross-reference data, and entity data. Built on OData protocol, the API supports management of instrument lists, report templates, schedules, and on-demand extractions. Authentication tokens are valid for 24 hours.
   version: 1.0.0
   contact:
