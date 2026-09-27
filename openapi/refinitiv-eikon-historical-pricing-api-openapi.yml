@@ -134,6 +134,13 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   parameters:
+    EndDate:
+      name: end
+      in: query
+      description: End date for the data range in ISO 8601 format.
+      schema:
+        type: string
+        format: date-time
     StartDate:
       name: start
       in: query
@@ -148,13 +155,6 @@ components:
       description: Instrument identifier, typically a RIC such as AAPL.O or IBM.N.
       schema:
         type: string
-    EndDate:
-      name: end
-      in: query
-      description: End date for the data range in ISO 8601 format.
-      schema:
-        type: string
-        format: date-time
   schemas:
     HistoricalPricingResponse:
       type: object

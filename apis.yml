@@ -7,17 +7,24 @@ description: >-
   succeeded by LSEG Workspace.
 type: Index
 deliveryModel:
-  model: unknown
+  model: saas
+  license_evidence:
+    not_product:
+    - datastreamapi/datastreampy
+    - lseg-api-samples/example.datalibrary.python
+    - lseg-api-samples/tutorial.eikonapi.python.streaming
+    - refinitiv/real-time-sdk
+    - refinitiv/websocket-api
   open_source: unknown
   commercial: true
   callable_host: true
-  label: Delivery model not determined — needs a product licence on record
+  label: Hosted service · you call their endpoint
   confidence: low
   source:
   - openapi
   - pricing
-  - repository-unlicensed
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: enterprise
@@ -45,6 +52,7 @@ tags:
   - Market Data
   - Real-Time Data
   - Trading
+  - Real-Time
 apis:
 - name: Eikon Data API
   description: >-
@@ -621,6 +629,11 @@ apis:
     https://developers.lseg.com/en/api-catalog/customer-and-third-party-screening/world-check-one-api
   baseURL: https://rms-world-check-one-api.thomsonreuters.com
   tags:
+  - AML
+  - Compliance
+  - Risk Management
+  - Screening
+  tags_raw:
   - AML
   - Compliance
   - Risk

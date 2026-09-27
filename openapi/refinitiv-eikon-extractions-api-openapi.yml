@@ -143,6 +143,27 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    ExtractionResponse:
+      type: object
+      description: Response containing extracted data from an on-demand extraction.
+      properties:
+        '@odata.context':
+          type: string
+          description: OData context URL.
+        JobId:
+          type: string
+          description: Unique identifier for the extraction job.
+        Notes:
+          type: array
+          description: Processing notes from the extraction.
+          items:
+            type: string
+        value:
+          type: array
+          description: Array of extracted data records.
+          items:
+            type: object
+            additionalProperties: true
     ExtractedFile:
       type: object
       description: Metadata for a file produced by an extraction.
@@ -206,19 +227,16 @@ components:
               type: object
               description: Extraction conditions such as date range and query parameters.
               additionalProperties: true
-    ExtractionResponse:
+    ExtractionWithNotesResponse:
       type: object
-      description: Response containing extracted data from an on-demand extraction.
+      description: Response containing both extracted data and detailed notes.
       properties:
-        '@odata.context':
-          type: string
-          description: OData context URL.
         JobId:
           type: string
           description: Unique identifier for the extraction job.
         Notes:
           type: array
-          description: Processing notes from the extraction.
+          description: Detailed processing notes from the extraction.
           items:
             type: string
         value:
@@ -240,24 +258,6 @@ components:
             message:
               type: string
               description: Human-readable error message.
-    ExtractionWithNotesResponse:
-      type: object
-      description: Response containing both extracted data and detailed notes.
-      properties:
-        JobId:
-          type: string
-          description: Unique identifier for the extraction job.
-        Notes:
-          type: array
-          description: Detailed processing notes from the extraction.
-          items:
-            type: string
-        value:
-          type: array
-          description: Array of extracted data records.
-          items:
-            type: object
-            additionalProperties: true
   securitySchemes:
     tokenAuth:
       type: apiKey
