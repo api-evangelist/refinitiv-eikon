@@ -72,6 +72,19 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Error:
+      type: object
+      description: Standard error response.
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code.
+            message:
+              type: string
+              description: Human-readable error message.
     ExtractedFile:
       type: object
       description: Metadata for a file produced by an extraction.
@@ -92,19 +105,6 @@ components:
           type: string
           format: date-time
           description: Timestamp when the file was generated.
-    Error:
-      type: object
-      description: Standard error response.
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              description: Machine-readable error code.
-            message:
-              type: string
-              description: Human-readable error message.
   securitySchemes:
     tokenAuth:
       type: apiKey

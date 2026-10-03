@@ -56,26 +56,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    PricingSnapshotResponse:
-      type: object
-      description: Response containing real-time or delayed pricing snapshots.
-      properties:
-        universe:
-          type: array
-          description: Array of instrument snapshot results.
-          items:
-            type: object
-            properties:
-              instrumentId:
-                type: string
-                description: Instrument identifier.
-              ric:
-                type: string
-                description: Reuters Instrument Code.
-              fields:
-                type: object
-                description: Key-value pairs of field names and their current values.
-                additionalProperties: true
     Error:
       type: object
       description: Standard error response from the Refinitiv Data Platform.
@@ -102,6 +82,26 @@ components:
                 message:
                   type: string
                   description: HTTP status message.
+    PricingSnapshotResponse:
+      type: object
+      description: Response containing real-time or delayed pricing snapshots.
+      properties:
+        universe:
+          type: array
+          description: Array of instrument snapshot results.
+          items:
+            type: object
+            properties:
+              instrumentId:
+                type: string
+                description: Instrument identifier.
+              ric:
+                type: string
+                description: Reuters Instrument Code.
+              fields:
+                type: object
+                description: Key-value pairs of field names and their current values.
+                additionalProperties: true
   securitySchemes:
     bearerAuth:
       type: http

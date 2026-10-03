@@ -57,6 +57,37 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Error:
+      type: object
+      description: Standard error response.
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code.
+            message:
+              type: string
+              description: Human-readable error message.
+    TickHistoryExtractionResponse:
+      type: object
+      description: Response containing tick history extraction results.
+      properties:
+        JobId:
+          type: string
+          description: Unique identifier for the extraction job.
+        Notes:
+          type: array
+          description: Processing notes from the extraction.
+          items:
+            type: string
+        value:
+          type: array
+          description: Array of tick data records.
+          items:
+            type: object
+            additionalProperties: true
     TickHistoryExtractionRequest:
       type: object
       description: Request body for tick history data extraction.
@@ -120,37 +151,6 @@ components:
                 DisplaySourceRIC:
                   type: boolean
                   description: Whether to include the source RIC in results.
-    TickHistoryExtractionResponse:
-      type: object
-      description: Response containing tick history extraction results.
-      properties:
-        JobId:
-          type: string
-          description: Unique identifier for the extraction job.
-        Notes:
-          type: array
-          description: Processing notes from the extraction.
-          items:
-            type: string
-        value:
-          type: array
-          description: Array of tick data records.
-          items:
-            type: object
-            additionalProperties: true
-    Error:
-      type: object
-      description: Standard error response.
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              description: Machine-readable error code.
-            message:
-              type: string
-              description: Human-readable error message.
   securitySchemes:
     tokenAuth:
       type: apiKey
