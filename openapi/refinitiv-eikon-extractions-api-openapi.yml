@@ -143,63 +143,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    ExtractedFile:
-      type: object
-      description: Metadata for a file produced by an extraction.
-      properties:
-        ExtractedFileId:
-          type: string
-          description: Unique identifier for the extracted file.
-        ReportExtractionId:
-          type: string
-          description: Identifier of the extraction that produced this file.
-        FileName:
-          type: string
-          description: Name of the extracted file.
-        FileType:
-          type: string
-          description: Type of file such as Full or Note.
-        Size:
-          type: integer
-          description: File size in bytes.
-        ReceivedDateUtc:
-          type: string
-          format: date-time
-          description: Timestamp when the file was created.
-    Error:
-      type: object
-      description: Standard error response from the DataScope Select API.
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              description: Machine-readable error code.
-            message:
-              type: string
-              description: Human-readable error message.
-    ExtractionResponse:
-      type: object
-      description: Response containing extracted data from an on-demand extraction.
-      properties:
-        '@odata.context':
-          type: string
-          description: OData context URL.
-        JobId:
-          type: string
-          description: Unique identifier for the extraction job.
-        Notes:
-          type: array
-          description: Processing notes from the extraction.
-          items:
-            type: string
-        value:
-          type: array
-          description: Array of extracted data records.
-          items:
-            type: object
-            additionalProperties: true
     ExtractionRequest:
       type: object
       description: Request body for on-demand data extraction operations.
@@ -258,6 +201,63 @@ components:
           items:
             type: object
             additionalProperties: true
+    ExtractedFile:
+      type: object
+      description: Metadata for a file produced by an extraction.
+      properties:
+        ExtractedFileId:
+          type: string
+          description: Unique identifier for the extracted file.
+        ReportExtractionId:
+          type: string
+          description: Identifier of the extraction that produced this file.
+        FileName:
+          type: string
+          description: Name of the extracted file.
+        FileType:
+          type: string
+          description: Type of file such as Full or Note.
+        Size:
+          type: integer
+          description: File size in bytes.
+        ReceivedDateUtc:
+          type: string
+          format: date-time
+          description: Timestamp when the file was created.
+    ExtractionResponse:
+      type: object
+      description: Response containing extracted data from an on-demand extraction.
+      properties:
+        '@odata.context':
+          type: string
+          description: OData context URL.
+        JobId:
+          type: string
+          description: Unique identifier for the extraction job.
+        Notes:
+          type: array
+          description: Processing notes from the extraction.
+          items:
+            type: string
+        value:
+          type: array
+          description: Array of extracted data records.
+          items:
+            type: object
+            additionalProperties: true
+    Error:
+      type: object
+      description: Standard error response from the DataScope Select API.
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code.
+            message:
+              type: string
+              description: Human-readable error message.
   securitySchemes:
     tokenAuth:
       type: apiKey

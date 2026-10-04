@@ -84,6 +84,49 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    EsgMeasuresResponse:
+      type: object
+      description: Response containing detailed ESG measures for requested instruments.
+      properties:
+        data:
+          type: array
+          description: Array of ESG measure results by instrument.
+          items:
+            type: object
+            properties:
+              instrumentId:
+                type: string
+                description: Instrument identifier.
+              measures:
+                type: object
+                description: Key-value pairs of ESG measure fields and their values.
+                additionalProperties: true
+    Error:
+      type: object
+      description: Standard error response from the Refinitiv Data Platform.
+      properties:
+        error:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Unique error identifier.
+            code:
+              type: string
+              description: Machine-readable error code.
+            message:
+              type: string
+              description: Human-readable error message.
+            status:
+              type: object
+              description: HTTP status information.
+              properties:
+                code:
+                  type: integer
+                  description: HTTP status code.
+                message:
+                  type: string
+                  description: HTTP status message.
     EsgScoresResponse:
       type: object
       description: Response containing ESG scores for requested instruments.
@@ -115,49 +158,6 @@ components:
               controversiesScore:
                 type: number
                 description: Score reflecting ESG controversies.
-    Error:
-      type: object
-      description: Standard error response from the Refinitiv Data Platform.
-      properties:
-        error:
-          type: object
-          properties:
-            id:
-              type: string
-              description: Unique error identifier.
-            code:
-              type: string
-              description: Machine-readable error code.
-            message:
-              type: string
-              description: Human-readable error message.
-            status:
-              type: object
-              description: HTTP status information.
-              properties:
-                code:
-                  type: integer
-                  description: HTTP status code.
-                message:
-                  type: string
-                  description: HTTP status message.
-    EsgMeasuresResponse:
-      type: object
-      description: Response containing detailed ESG measures for requested instruments.
-      properties:
-        data:
-          type: array
-          description: Array of ESG measure results by instrument.
-          items:
-            type: object
-            properties:
-              instrumentId:
-                type: string
-                description: Instrument identifier.
-              measures:
-                type: object
-                description: Key-value pairs of ESG measure fields and their values.
-                additionalProperties: true
   securitySchemes:
     bearerAuth:
       type: http

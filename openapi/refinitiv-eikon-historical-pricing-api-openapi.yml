@@ -133,36 +133,29 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
+  parameters:
+    EndDate:
+      name: end
+      in: query
+      description: End date for the data range in ISO 8601 format.
+      schema:
+        type: string
+        format: date-time
+    StartDate:
+      name: start
+      in: query
+      description: Start date for the data range in ISO 8601 format.
+      schema:
+        type: string
+        format: date-time
+    Universe:
+      name: universe
+      in: path
+      required: true
+      description: Instrument identifier, typically a RIC such as AAPL.O or IBM.N.
+      schema:
+        type: string
   schemas:
-    PricingDataPoint:
-      type: object
-      description: A single data point in the historical pricing response.
-      properties:
-        DATE:
-          type: string
-          format: date
-          description: Trading date for this data point.
-        TRDPRC_1:
-          type: number
-          description: Last trade price or closing price.
-        HIGH_1:
-          type: number
-          description: Highest trade price during the period.
-        LOW_1:
-          type: number
-          description: Lowest trade price during the period.
-        OPEN_PRC:
-          type: number
-          description: Opening trade price for the period.
-        ACVOL_UNS:
-          type: integer
-          description: Accumulated volume (unsigned) for the period.
-        BID:
-          type: number
-          description: Best bid price at close.
-        ASK:
-          type: number
-          description: Best ask price at close.
     HistoricalPricingResponse:
       type: object
       description: Response containing historical pricing data for an instrument.
@@ -225,28 +218,35 @@ components:
                 message:
                   type: string
                   description: HTTP status message.
-  parameters:
-    StartDate:
-      name: start
-      in: query
-      description: Start date for the data range in ISO 8601 format.
-      schema:
-        type: string
-        format: date-time
-    Universe:
-      name: universe
-      in: path
-      required: true
-      description: Instrument identifier, typically a RIC such as AAPL.O or IBM.N.
-      schema:
-        type: string
-    EndDate:
-      name: end
-      in: query
-      description: End date for the data range in ISO 8601 format.
-      schema:
-        type: string
-        format: date-time
+    PricingDataPoint:
+      type: object
+      description: A single data point in the historical pricing response.
+      properties:
+        DATE:
+          type: string
+          format: date
+          description: Trading date for this data point.
+        TRDPRC_1:
+          type: number
+          description: Last trade price or closing price.
+        HIGH_1:
+          type: number
+          description: Highest trade price during the period.
+        LOW_1:
+          type: number
+          description: Lowest trade price during the period.
+        OPEN_PRC:
+          type: number
+          description: Opening trade price for the period.
+        ACVOL_UNS:
+          type: integer
+          description: Accumulated volume (unsigned) for the period.
+        BID:
+          type: number
+          description: Best bid price at close.
+        ASK:
+          type: number
+          description: Best ask price at close.
   securitySchemes:
     bearerAuth:
       type: http

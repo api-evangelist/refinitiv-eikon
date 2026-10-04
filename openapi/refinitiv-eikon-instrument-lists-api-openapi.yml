@@ -69,19 +69,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
-      type: object
-      description: Standard error response from the DataScope Select API.
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              description: Machine-readable error code.
-            message:
-              type: string
-              description: Human-readable error message.
     InstrumentList:
       type: object
       description: Definition of an instrument list for extractions.
@@ -104,6 +91,19 @@ components:
               IdentifierType:
                 type: string
                 description: Type of identifier.
+    Error:
+      type: object
+      description: Standard error response from the DataScope Select API.
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code.
+            message:
+              type: string
+              description: Human-readable error message.
   securitySchemes:
     tokenAuth:
       type: apiKey
