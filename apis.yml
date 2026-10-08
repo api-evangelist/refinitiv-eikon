@@ -1117,6 +1117,12 @@ apis:
     url: >-
       https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis/download
 common:
+  - type: Plans
+    url: plans/refinitiv-eikon-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/refinitiv-eikon-rate-limits.yml
+  - type: FinOps
+    url: finops/refinitiv-eikon-finops.yml
   - type: IssueTracker
     url: https://github.com/datastreamapi/DatastreamPy/issues
   - type: PostmanWorkspace
