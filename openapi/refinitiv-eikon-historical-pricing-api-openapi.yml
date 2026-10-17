@@ -133,28 +133,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
-  parameters:
-    EndDate:
-      name: end
-      in: query
-      description: End date for the data range in ISO 8601 format.
-      schema:
-        type: string
-        format: date-time
-    StartDate:
-      name: start
-      in: query
-      description: Start date for the data range in ISO 8601 format.
-      schema:
-        type: string
-        format: date-time
-    Universe:
-      name: universe
-      in: path
-      required: true
-      description: Instrument identifier, typically a RIC such as AAPL.O or IBM.N.
-      schema:
-        type: string
   schemas:
     HistoricalPricingResponse:
       type: object
@@ -247,6 +225,28 @@ components:
         ASK:
           type: number
           description: Best ask price at close.
+  parameters:
+    StartDate:
+      name: start
+      in: query
+      description: Start date for the data range in ISO 8601 format.
+      schema:
+        type: string
+        format: date-time
+    EndDate:
+      name: end
+      in: query
+      description: End date for the data range in ISO 8601 format.
+      schema:
+        type: string
+        format: date-time
+    Universe:
+      name: universe
+      in: path
+      required: true
+      description: Instrument identifier, typically a RIC such as AAPL.O or IBM.N.
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

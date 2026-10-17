@@ -145,32 +145,6 @@ components:
         Boost:
           type: string
           description: Boosting expression to influence result ranking.
-    Error:
-      type: object
-      description: Standard error response from the Refinitiv Data Platform.
-      properties:
-        error:
-          type: object
-          properties:
-            id:
-              type: string
-              description: Unique error identifier.
-            code:
-              type: string
-              description: Machine-readable error code.
-            message:
-              type: string
-              description: Human-readable error message.
-            status:
-              type: object
-              description: HTTP status information.
-              properties:
-                code:
-                  type: integer
-                  description: HTTP status code.
-                message:
-                  type: string
-                  description: HTTP status message.
     SearchResponse:
       type: object
       description: Response containing search results for the query.
@@ -199,6 +173,32 @@ components:
               ExchangeCode:
                 type: string
                 description: Code for the exchange where the instrument trades.
+    Error:
+      type: object
+      description: Standard error response from the Refinitiv Data Platform.
+      properties:
+        error:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Unique error identifier.
+            code:
+              type: string
+              description: Machine-readable error code.
+            message:
+              type: string
+              description: Human-readable error message.
+            status:
+              type: object
+              description: HTTP status information.
+              properties:
+                code:
+                  type: integer
+                  description: HTTP status code.
+                message:
+                  type: string
+                  description: HTTP status message.
     InstrumentSearchResult:
       type: object
       description: Search result for an instrument lookup.

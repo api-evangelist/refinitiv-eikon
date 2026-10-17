@@ -107,6 +107,25 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    NewsHeadlinesResponse:
+      type: object
+      description: Response containing news headlines matching the query.
+      properties:
+        data:
+          type: array
+          description: Array of news headline entries.
+          items:
+            $ref: '#/components/schemas/NewsHeadline'
+        meta:
+          type: object
+          description: Pagination metadata.
+          properties:
+            count:
+              type: integer
+              description: Total number of matching headlines.
+            next:
+              type: string
+              description: Cursor for the next page of results.
     NewsHeadline:
       type: object
       description: A single news headline entry.
@@ -186,25 +205,6 @@ components:
                 message:
                   type: string
                   description: HTTP status message.
-    NewsHeadlinesResponse:
-      type: object
-      description: Response containing news headlines matching the query.
-      properties:
-        data:
-          type: array
-          description: Array of news headline entries.
-          items:
-            $ref: '#/components/schemas/NewsHeadline'
-        meta:
-          type: object
-          description: Pagination metadata.
-          properties:
-            count:
-              type: integer
-              description: Total number of matching headlines.
-            next:
-              type: string
-              description: Cursor for the next page of results.
   securitySchemes:
     bearerAuth:
       type: http
