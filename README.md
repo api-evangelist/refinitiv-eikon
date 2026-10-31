@@ -1,4 +1,4 @@
-# Refinitiv Eikon (refinitiv-eikon)
+# Refinitiv Eikon
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,921 +66,282 @@
 
 Refinitiv Eikon provides financial professionals with access to real-time market data, news, analytics, and trading capabilities. The Eikon Data API allows programmatic access to financial data including prices, fundamentals, reference data, and time series. Eikon was withdrawn from the LSEG product line on June 30, 2025, and has been succeeded by LSEG Workspace.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/refinitiv-eikon/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/refinitiv-eikon/refs/heads/main/apis.yml)
+**Areas:** Analytics · Financial Data · Financial News · Market Data · Real-Time Data · Trading · Real-Time
+
+## Refinitiv Eikon on APIs.io
+
+Everything profiled for Refinitiv Eikon is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/refinitiv-eikon/](https://apis.io/providers/refinitiv-eikon/)** — or go straight to one of the APIs or properties below.
+
+### APIs (47)
+
+- [Eikon Data API](https://apis.io/apis/refinitiv-eikon/eikon-data-api/) — Python and R library that allows programmatic access to Refinitiv Eikon data. Provides access to instrument pricing, fundamentals, estimates, time series,…
+- [LSEG Messenger Bot SDK](https://apis.io/apis/refinitiv-eikon/lseg-messenger-bot-sdk/) — SDK for building intelligent, compliant messaging bots within the LSEG Messenger platform. Enables sending, receiving, and replying to messages in…
+- [Messenger Side by Side API](https://apis.io/apis/refinitiv-eikon/messenger-side-by-side-api/) — API allowing external applications to connect with and pass information into LSEG Messenger. Requires user interaction and enables integration of…
+- [Refinitiv Data Library for Python](https://apis.io/apis/refinitiv-eikon/refinitiv-data-library-for-python/) — Python library providing uniform, ease-of-use interfaces for accessing the breadth and depth of financial data and services on the LSEG Data Platform.…
+- [Refinitiv Data Library for TypeScript](https://apis.io/apis/refinitiv-eikon/refinitiv-data-library-for-typescript/) — TypeScript and JavaScript library providing ease-of-use interfaces for accessing financial data and services on the Refinitiv Data Platform. Supports both…
+- [Refinitiv Data Library for .NET](https://apis.io/apis/refinitiv-eikon/refinitiv-data-library-for-net/) — .NET library providing uniform interfaces for accessing the Refinitiv Data Platform. Supports streaming and non-streaming data services for C# and other…
+- [Datastream Web Service API](https://apis.io/apis/refinitiv-eikon/datastream-web-service-api/) — API providing access to Datastream content, the world's leading time series database, via SOAP/XML and REST/JSON protocols. Enables strategists, economists,…
+- [LSEG WebSocket API](https://apis.io/apis/refinitiv-eikon/lseg-websocket-api/) — Standards-based WebSocket API for real-time pricing streaming using JSON message formats. Connects to Real-Time Distribution Systems and Real-Time Optimized…
+- [Real-Time Java SDK](https://apis.io/apis/refinitiv-eikon/real-time-java-sdk/) — Java SDK encompassing the Enterprise Message API (EMA) and Enterprise Transport API (ETA) for building high-performance real-time data applications.…
+- [Real-Time C/C++ SDK](https://apis.io/apis/refinitiv-eikon/real-time-cc-sdk/) — C and C++ SDK providing the Enterprise Message API (EMA) and Enterprise Transport API (ETA) for ultra-low-latency, high-throughput real-time data…
+- [Real-Time C# SDK](https://apis.io/apis/refinitiv-eikon/real-time-c-sdk/) — C# SDK providing the Enterprise Transport API (ETA) for building high-performance real-time data applications on .NET. Supports consuming, providing, and…
+- [Eikon Side by Side Interoperability API](https://apis.io/apis/refinitiv-eikon/eikon-side-by-side-interoperability-api/) — Web API for integrating standalone desktop applications with Refinitiv Eikon to create dynamic custom workflows. Enables launching Eikon apps…
+- [Workspace Web Side by Side API](https://apis.io/apis/refinitiv-eikon/workspace-web-side-by-side-api/) — API enabling interoperability and context passing between LSEG Workspace Web and external web applications within the same browser instance. Supports…
+- [Workspace SDK](https://apis.io/apis/refinitiv-eikon/workspace-sdk/) — End-to-end financial application development kit for designing GUI applications, powering them with market data, and integrating workflow logic into LSEG…
+- [LSEG DataScope Select REST API](https://apis.io/apis/refinitiv-eikon/lseg-datascope-select-rest-api/) — REST API providing programmatic access to the DataScope Select platform for extracting global prices, corporate actions, reference data, historical data,…
+- [LSEG Tick History REST API](https://apis.io/apis/refinitiv-eikon/lseg-tick-history-rest-api/) — REST API providing programmatic access to historical tick-level market data through the DataScope Select platform. Supports on-demand and scheduled…
+- [PermID Entity Search API](https://apis.io/apis/refinitiv-eikon/permid-entity-search-api/) — RESTful API for searching and discovering organizations, equity instruments, and equity quotes using PermID identifiers. Supports searching by name, ticker,…
+- [PermID Record Matching API](https://apis.io/apis/refinitiv-eikon/permid-record-matching-api/) — RESTful API for matching unstructured entity records to PermID identifiers. Enables concordance by mapping external entity data to LSEG permanent…
+- [Intelligent Tagging API](https://apis.io/apis/refinitiv-eikon/intelligent-tagging-api/) — RESTful API for extracting entities, topics, and metadata from unstructured text content. Identifies organizations, people, instruments, and other financial…
+- [Refinitiv Knowledge Direct API](https://apis.io/apis/refinitiv-eikon/refinitiv-knowledge-direct-api/) — Web services API integrating financial market data, news, and analytics into websites, trading platforms, advisory portals, and mobile applications.…
+- [Symbology API](https://apis.io/apis/refinitiv-eikon/symbology-api/) — Discovery Symbology API for concordance, navigation, and discovery of financial content. Enables mapping from external identifiers to LSEG PermIDs and…
+- [Search API](https://apis.io/apis/refinitiv-eikon/search-api/) — API enabling search across organizations, instruments, quotes, and economic indicators on the Refinitiv Data Platform. Part of the Search Light family of…
+- [Research API](https://apis.io/apis/refinitiv-eikon/research-api/) — API built on the Refinitiv Data Platform providing streamlined access to real-time and historical sell-side research reports. Serves as the aggregate…
+- [News API for Wealth](https://apis.io/apis/refinitiv-eikon/news-api-for-wealth/) — API providing access to financial news content for wealth management applications. Delivers real-time and historical news from Reuters and other sources…
+- [Funds API for Wealth](https://apis.io/apis/refinitiv-eikon/funds-api-for-wealth/) — API providing access to Lipper fund data for wealth management applications. Delivers fund performance, classifications, ratings, and other mutual fund data…
+- [Estimates API for Wealth](https://apis.io/apis/refinitiv-eikon/estimates-api-for-wealth/) — API providing access to consensus estimates data for wealth management applications. Delivers analyst estimates, recommendations, and forecasts through the…
+- [Ownership API for Wealth](https://apis.io/apis/refinitiv-eikon/ownership-api-for-wealth/) — API providing access to institutional and fund ownership data for wealth management applications. Delivers ownership holdings, stakes, and shareholder…
+- [Filings API](https://apis.io/apis/refinitiv-eikon/filings-api/) — API providing access to regulatory filings data through the Refinitiv Data Platform. Delivers SEC filings, annual reports, and other regulatory documents…
+- [World-Check One API](https://apis.io/apis/refinitiv-eikon/world-check-one-api/) — Workflow-based REST/JSON API for screening entities against the World-Check risk intelligence database. Supports due diligence in the fight against…
+- [World-Check Verify API](https://apis.io/apis/refinitiv-eikon/world-check-verify-api/) — Cloud-native, stateless screening API purpose-built for real-time, low-latency screening of individuals and entities in modern payment workflows. Screens…
+- [App Studio Web SDK](https://apis.io/apis/refinitiv-eikon/app-studio-web-sdk/) — Web SDK for building custom applications using HTML5 and JavaScript within the Eikon App Studio environment. Provides access to Eikon JavaScript libraries,…
+- [Eikon COM APIs for Microsoft Office](https://apis.io/apis/refinitiv-eikon/eikon-com-apis-for-microsoft-office/) — COM APIs for integrating Refinitiv Eikon data into Microsoft Office applications. Provides access to real-time market data, news, fundamental data, and…
+- [Eikon .NET APIs](https://apis.io/apis/refinitiv-eikon/eikon-net-apis/) — .NET APIs for building custom standalone applications that access Refinitiv Eikon data including real-time market data, news, fundamentals, and time series.…
+- [Refinitiv Eikon Authentication API](https://apis.io/apis/refinitiv-eikon/refinitiv-eikon-authentication-api/) — OAuth 2.0 token management for API access
+- [Refinitiv Eikon ESG API](https://apis.io/apis/refinitiv-eikon/refinitiv-eikon-esg-api/) — Environmental, Social, and Governance data and scores
+- [Refinitiv Eikon Extractions API](https://apis.io/apis/refinitiv-eikon/refinitiv-eikon-extractions-api/) — On-demand and managed data extractions
+- [Refinitiv Eikon Files API](https://apis.io/apis/refinitiv-eikon/refinitiv-eikon-files-api/) — Extracted file management and download
+- [Refinitiv Eikon Historical Pricing API](https://apis.io/apis/refinitiv-eikon/refinitiv-eikon-historical-pricing-api/) — Historical price data including interday and intraday summaries
+- [Refinitiv Eikon Instrument Lists API](https://apis.io/apis/refinitiv-eikon/refinitiv-eikon-instrument-lists-api/) — Management of instrument lists for extractions
+- [Refinitiv Eikon Jobs API](https://apis.io/apis/refinitiv-eikon/refinitiv-eikon-jobs-api/) — Extraction job management and status monitoring
+- [Refinitiv Eikon News API](https://apis.io/apis/refinitiv-eikon/refinitiv-eikon-news-api/) — Financial news headlines and stories from Reuters and other sources
+- [Refinitiv Eikon On-Demand Extractions API](https://apis.io/apis/refinitiv-eikon/refinitiv-eikon-on-demand-extractions-api/) — Immediate tick data extraction requests
+- [Refinitiv Eikon Report Templates API](https://apis.io/apis/refinitiv-eikon/refinitiv-eikon-report-templates-api/) — Configuration of extraction report templates
+- [Refinitiv Eikon Schedules API](https://apis.io/apis/refinitiv-eikon/refinitiv-eikon-schedules-api/) — Scheduled extraction management
+- [Refinitiv Eikon Search API](https://apis.io/apis/refinitiv-eikon/refinitiv-eikon-search-api/) — Search across organizations, instruments, quotes, and indicators
+- [Refinitiv Eikon Streaming Pricing API](https://apis.io/apis/refinitiv-eikon/refinitiv-eikon-streaming-pricing-api/) — Snapshot and streaming price data for financial instruments
+- [Refinitiv Eikon Symbology API](https://apis.io/apis/refinitiv-eikon/refinitiv-eikon-symbology-api/) — Instrument identifier concordance and navigation
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Arazzo workflows (6)
+
+Multi-step workflows that chain operations into a business task.
+
+- [Refinitiv Eikon DataScope Extraction and Download](https://apis.io/arazzos/refinitiv-eikon/refinitiv-eikon-datascope-extraction-download-workflow/)
+- [Refinitiv Eikon Instrument ESG Profile](https://apis.io/arazzos/refinitiv-eikon/refinitiv-eikon-instrument-esg-profile-workflow/)
+- [Refinitiv Eikon News Headline to Story](https://apis.io/arazzos/refinitiv-eikon/refinitiv-eikon-news-headline-to-story-workflow/)
+- [Refinitiv Eikon Search to Pricing Snapshot](https://apis.io/arazzos/refinitiv-eikon/refinitiv-eikon-search-to-snapshot-workflow/)
+- [Refinitiv Eikon Symbol to Time Series](https://apis.io/arazzos/refinitiv-eikon/refinitiv-eikon-symbol-to-timeseries-workflow/)
+- [Refinitiv Eikon Tick History Extraction and Poll](https://apis.io/arazzos/refinitiv-eikon/refinitiv-eikon-tickhistory-extraction-poll-workflow/)
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [LSEG (Refinitiv) Real-Time WebSocket API](https://apis.io/asyncapis/refinitiv-eikon/refinitiv-eikon-asyncapi/)
+
+#### Event channels (1)
+
+Individual events and webhooks the provider emits.
+
+- [/WebSocket](https://apis.io/channels/refinitiv-eikon/websocket/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Refinitiv Eikon Agentic Access](https://apis.io/agentic-access/refinitiv-eikon/refinitiv-eikon-agentic-access/)
+
+#### JSON Schema (27)
+
+The data models the API reads and writes.
+
+- [Error](https://apis.io/schemas/refinitiv-eikon/refinitiv-eikon-error/)
+- [Refinitiv Eikon ESG Score](https://apis.io/schemas/refinitiv-eikon/refinitiv-eikon-esg/)
+- [EsgMeasuresResponse](https://apis.io/schemas/refinitiv-eikon/refinitiv-eikon-esgmeasuresresponse/)
+- [EsgScoresResponse](https://apis.io/schemas/refinitiv-eikon/refinitiv-eikon-esgscoresresponse/)
+- [ExtractedFile](https://apis.io/schemas/refinitiv-eikon/refinitiv-eikon-extractedfile/)
+- [ExtractionJob](https://apis.io/schemas/refinitiv-eikon/refinitiv-eikon-extractionjob/)
+- [ExtractionRequest](https://apis.io/schemas/refinitiv-eikon/refinitiv-eikon-extractionrequest/)
+- [ExtractionResponse](https://apis.io/schemas/refinitiv-eikon/refinitiv-eikon-extractionresponse/)
+- [ExtractionWithNotesResponse](https://apis.io/schemas/refinitiv-eikon/refinitiv-eikon-extractionwithnotesresponse/)
+- [HistoricalPricingResponse](https://apis.io/schemas/refinitiv-eikon/refinitiv-eikon-historicalpricingresponse/)
+- [Refinitiv Eikon Financial Instrument](https://apis.io/schemas/refinitiv-eikon/refinitiv-eikon-instrument/)
+- [InstrumentList](https://apis.io/schemas/refinitiv-eikon/refinitiv-eikon-instrumentlist/)
+- [InstrumentSearchResult](https://apis.io/schemas/refinitiv-eikon/refinitiv-eikon-instrumentsearchresult/)
+- [NewsHeadline](https://apis.io/schemas/refinitiv-eikon/refinitiv-eikon-newsheadline/)
+- [NewsHeadlinesResponse](https://apis.io/schemas/refinitiv-eikon/refinitiv-eikon-newsheadlinesresponse/)
+- [NewsStory](https://apis.io/schemas/refinitiv-eikon/refinitiv-eikon-newsstory/)
+- [PricingDataPoint](https://apis.io/schemas/refinitiv-eikon/refinitiv-eikon-pricingdatapoint/)
+- [PricingSnapshotResponse](https://apis.io/schemas/refinitiv-eikon/refinitiv-eikon-pricingsnapshotresponse/)
+- [ReportTemplate](https://apis.io/schemas/refinitiv-eikon/refinitiv-eikon-reporttemplate/)
+- [Schedule](https://apis.io/schemas/refinitiv-eikon/refinitiv-eikon-schedule/)
+- [SearchRequest](https://apis.io/schemas/refinitiv-eikon/refinitiv-eikon-searchrequest/)
+- [SearchResponse](https://apis.io/schemas/refinitiv-eikon/refinitiv-eikon-searchresponse/)
+- [SymbologyLookupRequest](https://apis.io/schemas/refinitiv-eikon/refinitiv-eikon-symbologylookuprequest/)
+- [SymbologyLookupResponse](https://apis.io/schemas/refinitiv-eikon/refinitiv-eikon-symbologylookupresponse/)
+- [TickHistoryExtractionRequest](https://apis.io/schemas/refinitiv-eikon/refinitiv-eikon-tickhistoryextractionrequest/)
+- …and 2 more published on APIs.io
 
-## Scope
+#### JSON Structure (2)
 
-- **Type:** Index
+Data models expressed in JSON Structure.
 
-## Tags
+- [Refinitiv Eikon Data Platform Structure](https://apis.io/json-structure/refinitiv-eikon/refinitiv-eikon-data-platform-structure/)
+- [Refinitiv Eikon Structure](https://apis.io/json-structure/refinitiv-eikon/refinitiv-eikon-structure/)
 
-- Analytics
-- Financial Data
-- Financial News
-- Market Data
-- Real-Time Data
-- Trading
+#### JSON-LD (1)
 
-## Timestamps
+Linked-data contexts for the provider's vocabulary.
 
-- **Created:** 2024-01-01
-- **Modified:** 2026-05-29
+- [Refinitiv Eikon Context](https://apis.io/jsonld/refinitiv-eikon/refinitiv-eikon-context/)
 
-## APIs
+#### Vocabulary (1)
 
-### Eikon Data API
+The provider's domain terms, defined.
 
-Python and R library that allows programmatic access to Refinitiv Eikon data. Provides access to instrument pricing, fundamentals, estimates, time series, news, and symbology. Requires the Eikon or LSEG Workspace desktop application to be running for data access.
+- [Refinitiv Eikon Vocabulary](https://apis.io/vocabularies/refinitiv-eikon/refinitiv-eikon-vocabulary/)
 
-- **Human URL:** [https://developers.lseg.com/en/api-catalog/eikon/eikon-data-api](https://developers.lseg.com/en/api-catalog/eikon/eikon-data-api)
-- **Base URL:** `https://api.refinitiv.com`
+#### Examples (2)
 
-#### Tags
+Example requests and responses.
 
-- Financial Data
-- Market Data
-- Python
-- Time Series
+- [Refinitiv Eikon Get Esg Scores Example](https://apis.io/examples/refinitiv-eikon/refinitiv-eikon-get-esg-scores-example/)
+- [Refinitiv Eikon Get Interday Pricing Example](https://apis.io/examples/refinitiv-eikon/refinitiv-eikon-get-interday-pricing-example/)
 
-#### Properties
+#### Collections (31)
 
-- [Documentation](https://developers.lseg.com/en/api-catalog/eikon/eikon-data-api/documentation)
-- [Getting Started](https://developers.lseg.com/en/api-catalog/eikon/eikon-data-api/quick-start)
-- [Tutorials](https://developers.lseg.com/en/api-catalog/eikon/eikon-data-api/tutorials)
-- [Downloads](https://developers.lseg.com/en/api-catalog/eikon/eikon-data-api/download)
-- [GitHub Repository](https://github.com/LSEG-API-Samples/Tutorial.EikonAPI.Python.Streaming)
-- [Postman Collection](collections/refinitiv-eikon-data-platform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-data-platform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-datascope-select.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-datascope-select.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-tick-history.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-tick-history.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Postman and Open Collection request collections.
 
-### Refinitiv Data Platform APIs
+- [Refinitiv Eikon Refinitiv Data Platform APIs Authentication API](https://apis.io/collections/refinitiv-eikon/open-refinitiv-eikon-authentication-api/)
+- [Refinitiv Eikon Refinitiv Data Platform APIs](https://apis.io/collections/refinitiv-eikon/open-refinitiv-eikon-data-platform/)
+- [Refinitiv Eikon LSEG DataScope Select REST API](https://apis.io/collections/refinitiv-eikon/open-refinitiv-eikon-datascope-select/)
+- [Refinitiv Eikon Refinitiv Data Platform APIs Authentication ESG API](https://apis.io/collections/refinitiv-eikon/open-refinitiv-eikon-esg-api/)
+- [Refinitiv Eikon Refinitiv Data Platform APIs Authentication Extractions API](https://apis.io/collections/refinitiv-eikon/open-refinitiv-eikon-extractions-api/)
+- [Refinitiv Eikon Refinitiv Data Platform APIs Authentication Files API](https://apis.io/collections/refinitiv-eikon/open-refinitiv-eikon-files-api/)
+- [Refinitiv Eikon Refinitiv Data Platform APIs Authentication Historical Pricing API](https://apis.io/collections/refinitiv-eikon/open-refinitiv-eikon-historical-pricing-api/)
+- [Refinitiv Eikon Refinitiv Data Platform APIs Authentication Instrument Lists API](https://apis.io/collections/refinitiv-eikon/open-refinitiv-eikon-instrument-lists-api/)
+- [Refinitiv Eikon Refinitiv Data Platform APIs Authentication Jobs API](https://apis.io/collections/refinitiv-eikon/open-refinitiv-eikon-jobs-api/)
+- [Refinitiv Eikon Refinitiv Data Platform APIs Authentication News API](https://apis.io/collections/refinitiv-eikon/open-refinitiv-eikon-news-api/)
+- [Refinitiv Eikon Refinitiv Data Platform APIs Authentication On-Demand Extractions API](https://apis.io/collections/refinitiv-eikon/open-refinitiv-eikon-on-demand-extractions-api/)
+- [Refinitiv Eikon Refinitiv Data Platform APIs Authentication Report Templates API](https://apis.io/collections/refinitiv-eikon/open-refinitiv-eikon-report-templates-api/)
+- [Refinitiv Eikon Refinitiv Data Platform APIs Authentication Schedules API](https://apis.io/collections/refinitiv-eikon/open-refinitiv-eikon-schedules-api/)
+- [Refinitiv Eikon Refinitiv Data Platform APIs Authentication Search API](https://apis.io/collections/refinitiv-eikon/open-refinitiv-eikon-search-api/)
+- [Refinitiv Eikon Refinitiv Data Platform APIs Authentication Streaming Pricing API](https://apis.io/collections/refinitiv-eikon/open-refinitiv-eikon-streaming-pricing-api/)
+- [Refinitiv Eikon Refinitiv Data Platform APIs Authentication Symbology API](https://apis.io/collections/refinitiv-eikon/open-refinitiv-eikon-symbology-api/)
+- [Refinitiv Eikon LSEG Tick History REST API](https://apis.io/collections/refinitiv-eikon/open-refinitiv-eikon-tick-history/)
+- [Refinitiv Eikon Refinitiv Data Platform APIs Authentication API](https://apis.io/collections/refinitiv-eikon/postman-refinitiv-eikon-authentication-api/)
+- [Refinitiv Eikon Refinitiv Data Platform APIs Authentication ESG API](https://apis.io/collections/refinitiv-eikon/postman-refinitiv-eikon-esg-api/)
+- [Refinitiv Eikon Refinitiv Data Platform APIs Authentication Extractions API](https://apis.io/collections/refinitiv-eikon/postman-refinitiv-eikon-extractions-api/)
+- [Refinitiv Eikon Refinitiv Data Platform APIs Authentication Files API](https://apis.io/collections/refinitiv-eikon/postman-refinitiv-eikon-files-api/)
+- [Refinitiv Eikon Refinitiv Data Platform APIs Authentication Historical Pricing API](https://apis.io/collections/refinitiv-eikon/postman-refinitiv-eikon-historical-pricing-api/)
+- [Refinitiv Eikon Refinitiv Data Platform APIs Authentication Instrument Lists API](https://apis.io/collections/refinitiv-eikon/postman-refinitiv-eikon-instrument-lists-api/)
+- [Refinitiv Eikon Refinitiv Data Platform APIs Authentication Jobs API](https://apis.io/collections/refinitiv-eikon/postman-refinitiv-eikon-jobs-api/)
+- [Refinitiv Eikon Refinitiv Data Platform APIs Authentication News API](https://apis.io/collections/refinitiv-eikon/postman-refinitiv-eikon-news-api/)
+- …and 6 more published on APIs.io
 
-RESTful APIs providing access to Refinitiv's comprehensive financial data including pricing, ESG data, news, research, alternative data, and streaming services. The platform serves as the central hub for programmatic access to LSEG content.
+#### Governance rules (3)
 
-- **Human URL:** [https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis)
-- **Base URL:** `https://api.refinitiv.com`
+Spectral rulesets for the provider's contracts.
 
-#### Tags
+- [Refinitiv Eikon — asyncapi rules](https://apis.io/rules/refinitiv-eikon/refinitiv-eikon-asyncapi-spectral-rules/)
+- [Refinitiv Eikon — jsonschema rules](https://apis.io/rules/refinitiv-eikon/refinitiv-eikon-jsonschema-spectral-rules/)
+- [Refinitiv Eikon API Rules](https://apis.io/rules/refinitiv-eikon/refinitiv-eikon-rules/)
 
-- ESG
-- Market Data
-- News
-- REST API
+#### Security (2)
 
-#### Properties
+Authentication, trust centre, and vulnerability disclosure.
 
-- [Documentation](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis/documentation)
-- [OpenAPI](https://api.refinitiv.com/streaming-pricing/docs/swagger.yaml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Authentication](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis/tutorials#authorization-all)
-- [Developer  Tools](https://apidocs.refinitiv.com/Apps/ApiDocs)
-- [Getting Started](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis/quick-start)
-- [Tutorials](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis/tutorials)
-- [Downloads](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis/download)
-- [Postman Collection](collections/refinitiv-eikon-data-platform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-data-platform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-datascope-select.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-datascope-select.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-tick-history.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-tick-history.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Refinitiv Eikon Authentication](https://apis.io/security/refinitiv-eikon/refinitiv-eikon-authentication/)
+- [Refinitiv Eikon Domain Security](https://apis.io/security/refinitiv-eikon/refinitiv-eikon-domain-security/)
 
-### LSEG Messenger Bot SDK
+#### Plans and pricing (1)
 
-SDK for building intelligent, compliant messaging bots within the LSEG Messenger platform. Enables sending, receiving, and replying to messages in one-to-one and group chat contexts with full OAuth 2.0 authentication and audit trail compliance.
+Published plans, tiers and prices.
 
-- **Human URL:** [https://developers.lseg.com/en/api-catalog/lseg-messenger-bot-sdk/lseg-messenger-bot-sdk](https://developers.lseg.com/en/api-catalog/lseg-messenger-bot-sdk/lseg-messenger-bot-sdk)
-- **Base URL:** `https://api.refinitiv.com`
+- [Refinitiv Eikon Plans Pricing](https://apis.io/plans/refinitiv-eikon/refinitiv-eikon-plans-pricing/)
 
-#### Tags
+#### Rate limits (1)
 
-- Chatbot
-- Collaboration
-- Compliance
-- Messaging
+Published request limits.
 
-#### Properties
+- [Refinitiv Eikon Rate Limits](https://apis.io/rate-limits/refinitiv-eikon/refinitiv-eikon-rate-limits/)
 
-- [Documentation](https://developers.lseg.com/en/api-catalog/lseg-messenger-bot-sdk/lseg-messenger-bot-sdk/documentation)
-- [Postman Collection](collections/refinitiv-eikon-data-platform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-data-platform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-datascope-select.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-datascope-select.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-tick-history.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-tick-history.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### FinOps (1)
 
-### Messenger Side by Side API
+What the API costs to run, by operation.
 
-API allowing external applications to connect with and pass information into LSEG Messenger. Requires user interaction and enables integration of third-party applications alongside the messenger for collaborative workflows.
+- [Refinitiv Eikon Finops](https://apis.io/finops/refinitiv-eikon/refinitiv-eikon-finops/)
 
-- **Human URL:** [https://developers.lseg.com/en/api-catalog/messenger-api/messenger-side-by-side-api](https://developers.lseg.com/en/api-catalog/messenger-api/messenger-side-by-side-api)
-- **Base URL:** `https://api.refinitiv.com`
+## Where to find this API
 
-#### Tags
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-- Collaboration
-- Integration
-- Messaging
-
-#### Properties
-
-- [Documentation](https://developers.lseg.com/en/api-catalog/messenger-api/messenger-side-by-side-api/documentation)
-- [Postman Collection](collections/refinitiv-eikon-data-platform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-data-platform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-datascope-select.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-datascope-select.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-tick-history.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-tick-history.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Refinitiv Data Library for Python
-
-Python library providing uniform, ease-of-use interfaces for accessing the breadth and depth of financial data and services on the LSEG Data Platform. Returns data as Pandas DataFrames and supports both streaming and non-streaming data services.
-
-- **Human URL:** [https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-library-for-python](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-library-for-python)
-- **Base URL:** `https://api.refinitiv.com`
-
-#### Tags
-
-- Data Library
-- Financial Data
-- Python
-- SDK
-
-#### Properties
-
-- [Documentation](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-library-for-python/documentation)
-- [Getting Started](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-library-for-python/quick-start/getting-started-with-python)
-- [GitHub Repository](https://github.com/LSEG-API-Samples/Example.DataLibrary.Python)
-- [Postman Collection](collections/refinitiv-eikon-data-platform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-data-platform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-datascope-select.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-datascope-select.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-tick-history.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-tick-history.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Refinitiv Data Library for TypeScript
-
-TypeScript and JavaScript library providing ease-of-use interfaces for accessing financial data and services on the Refinitiv Data Platform. Supports both streaming and non-streaming data services for web and Node.js applications.
-
-- **Human URL:** [https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-library-for-typescript](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-library-for-typescript)
-- **Base URL:** `https://api.refinitiv.com`
-
-#### Tags
-
-- Data Library
-- JavaScript
-- SDK
-- TypeScript
-
-#### Properties
-
-- [Documentation](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-library-for-typescript/documentation)
-- [Getting Started](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-library-for-typescript/quick-start)
-- [Tutorials](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-library-for-typescript/tutorials)
-- [Postman Collection](collections/refinitiv-eikon-data-platform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-data-platform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-datascope-select.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-datascope-select.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-tick-history.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-tick-history.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Refinitiv Data Library for .NET
-
-.NET library providing uniform interfaces for accessing the Refinitiv Data Platform. Supports streaming and non-streaming data services for C# and other .NET languages, rebranded as LSEG Data Library for .NET.
-
-- **Human URL:** [https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-library-for--net](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-library-for--net)
-- **Base URL:** `https://api.refinitiv.com`
-
-#### Tags
-
-- .NET
-- C#
-- Data Library
-- SDK
-
-#### Properties
-
-- [Documentation](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-library-for--net/documentation)
-- [Postman Collection](collections/refinitiv-eikon-data-platform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-data-platform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-datascope-select.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-datascope-select.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-tick-history.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-tick-history.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Datastream Web Service API
-
-API providing access to Datastream content, the world's leading time series database, via SOAP/XML and REST/JSON protocols. Enables strategists, economists, and research communities to access comprehensive financial information with histories back to the 1900s, covering over 48 million financial instruments.
-
-- **Human URL:** [https://developers.lseg.com/en/api-catalog/eikon/datastream-web-service](https://developers.lseg.com/en/api-catalog/eikon/datastream-web-service)
-- **Base URL:** `https://product.datastream.com`
-
-#### Tags
-
-- Financial Data
-- Historical Data
-- SOAP
-- Time Series
-
-#### Properties
-
-- [Documentation](https://developers.lseg.com/en/api-catalog/eikon/datastream-web-service/Documents)
-- [Getting Started](https://developers.lseg.com/en/api-catalog/eikon/datastream-web-service/Quickstart)
-- [Tutorials](https://developers.lseg.com/en/api-catalog/eikon/datastream-web-service/Tutorials)
-- [Downloads](https://developers.lseg.com/en/api-catalog/eikon/datastream-web-service/download)
-- [GitHub Repository](https://github.com/datastreamapi/DatastreamPy)
-- [Postman Collection](collections/refinitiv-eikon-data-platform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-data-platform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-datascope-select.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-datascope-select.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-tick-history.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-tick-history.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### LSEG WebSocket API
-
-Standards-based WebSocket API for real-time pricing streaming using JSON message formats. Connects to Real-Time Distribution Systems and Real-Time Optimized cloud solutions for data consumption, contribution, and posting across Python, R, .NET, and other platforms.
-
-- **Human URL:** [https://developers.lseg.com/en/api-catalog/real-time-opnsrc/websocket-api](https://developers.lseg.com/en/api-catalog/real-time-opnsrc/websocket-api)
-- **Base URL:** `wss://api.refinitiv.com`
-
-#### Tags
-
-- Market Data
-- Real-Time
-- Streaming
-- WebSocket
-
-#### Properties
-
-- [Documentation](https://developers.lseg.com/en/api-catalog/real-time-opnsrc/websocket-api/documentation)
-- [Getting Started](https://developers.lseg.com/en/api-catalog/real-time-opnsrc/websocket-api/quick-start)
-- [Tutorials](https://developers.lseg.com/en/api-catalog/real-time-opnsrc/websocket-api/tutorials)
-- [GitHub Repository](https://github.com/Refinitiv/websocket-api)
-- [AsyncAPI](asyncapi/refinitiv-eikon-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
-- [Postman Collection](collections/refinitiv-eikon-data-platform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-data-platform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-datascope-select.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-datascope-select.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-tick-history.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-tick-history.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Real-Time Java SDK
-
-Java SDK encompassing the Enterprise Message API (EMA) and Enterprise Transport API (ETA) for building high-performance real-time data applications. Provides consumer, provider, and publisher features for real-time market data streaming.
-
-- **Human URL:** [https://developers.lseg.com/en/api-catalog/real-time-opnsrc/rt-sdk-java](https://developers.lseg.com/en/api-catalog/real-time-opnsrc/rt-sdk-java)
-- **Base URL:** `https://api.refinitiv.com`
-
-#### Tags
-
-- Java
-- Real-Time
-- SDK
-- Streaming
-
-#### Properties
-
-- [Documentation](https://developers.lseg.com/en/api-catalog/real-time-opnsrc/rt-sdk-java/documentation)
-- [Getting Started](https://developers.lseg.com/en/api-catalog/real-time-opnsrc/rt-sdk-java/quick-start)
-- [GitHub Repository](https://github.com/Refinitiv/Real-Time-SDK)
-- [Postman Collection](collections/refinitiv-eikon-data-platform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-data-platform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-datascope-select.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-datascope-select.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-tick-history.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-tick-history.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Real-Time C/C++ SDK
-
-C and C++ SDK providing the Enterprise Message API (EMA) and Enterprise Transport API (ETA) for ultra-low-latency, high-throughput real-time data applications. The ETA foundation enables the highest performance with minimal memory and CPU utilization.
-
-- **Human URL:** [https://developers.lseg.com/en/api-catalog/real-time-opnsrc/rt-sdk-cc](https://developers.lseg.com/en/api-catalog/real-time-opnsrc/rt-sdk-cc)
-- **Base URL:** `https://api.refinitiv.com`
-
-#### Tags
-
-- C++
-- Low Latency
-- Real-Time
-- SDK
-
-#### Properties
-
-- [Documentation](https://developers.lseg.com/en/api-catalog/real-time-opnsrc/rt-sdk-cc/documentation)
-- [GitHub Repository](https://github.com/Refinitiv/Real-Time-SDK)
-- [Postman Collection](collections/refinitiv-eikon-data-platform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-data-platform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-datascope-select.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-datascope-select.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-tick-history.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-tick-history.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Real-Time C# SDK
-
-C# SDK providing the Enterprise Transport API (ETA) for building high-performance real-time data applications on .NET. Supports consuming, providing, and publishing real-time content using the Open Message Model.
-
-- **Human URL:** [https://developers.lseg.com/en/api-catalog/real-time-opnsrc/rt-sdk-csharp](https://developers.lseg.com/en/api-catalog/real-time-opnsrc/rt-sdk-csharp)
-- **Base URL:** `https://api.refinitiv.com`
-
-#### Tags
-
-- .NET
-- C#
-- Real-Time
-- SDK
-
-#### Properties
-
-- [Documentation](https://developers.lseg.com/en/api-catalog/real-time-opnsrc/rt-sdk-csharp/documentation)
-- [GitHub Repository](https://github.com/Refinitiv/Real-Time-SDK)
-- [Postman Collection](collections/refinitiv-eikon-data-platform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-data-platform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-datascope-select.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-datascope-select.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-tick-history.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-tick-history.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Eikon Side by Side Interoperability API
-
-Web API for integrating standalone desktop applications with Refinitiv Eikon to create dynamic custom workflows. Enables launching Eikon apps programmatically and exchanging context such as portfolios, trade tickets, and instrument identifiers between applications.
-
-- **Human URL:** [https://developers.lseg.com/en/api-catalog/eikon/side-by-side-integration](https://developers.lseg.com/en/api-catalog/eikon/side-by-side-integration)
-- **Base URL:** `https://api.refinitiv.com`
-
-#### Tags
-
-- Deprecated
-- Desktop Integration
-- Interoperability
-- Workflow
-
-#### Properties
-
-- [Documentation](https://developers.lseg.com/en/api-catalog/eikon/side-by-side-integration/documentation)
-- [Getting Started](https://developers.lseg.com/en/api-catalog/eikon/side-by-side-integration/quick-start)
-- [Deprecation  Notice](https://developers.lseg.com/en/api-catalog/eikon/side-by-side-integration)
-- [Postman Collection](collections/refinitiv-eikon-data-platform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-data-platform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-datascope-select.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-datascope-select.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-tick-history.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-tick-history.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Workspace Web Side by Side API
-
-API enabling interoperability and context passing between LSEG Workspace Web and external web applications within the same browser instance. Supports authentication, metadata exchange, and navigation between Workspace and third-party web apps.
-
-- **Human URL:** [https://developers.lseg.com/en/api-catalog/eikon/workspace-web-side-by-side-api](https://developers.lseg.com/en/api-catalog/eikon/workspace-web-side-by-side-api)
-- **Base URL:** `https://api.refinitiv.com`
-
-#### Tags
-
-- Desktop Integration
-- Interoperability
-- Web
-- Workspace
-
-#### Properties
-
-- [Documentation](https://developers.lseg.com/en/api-catalog/eikon/workspace-web-side-by-side-api/documentation)
-- [Postman Collection](collections/refinitiv-eikon-data-platform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-data-platform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-datascope-select.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-datascope-select.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-tick-history.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-tick-history.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Workspace SDK
-
-End-to-end financial application development kit for designing GUI applications, powering them with market data, and integrating workflow logic into LSEG Workspace. Provides UI components, data integration, and workflow capabilities for building web-based financial applications.
-
-- **Human URL:** [https://developers.lseg.com/en/api-catalog/workspace-sdk/workspace-sdk](https://developers.lseg.com/en/api-catalog/workspace-sdk/workspace-sdk)
-- **Base URL:** `https://api.refinitiv.com`
-
-#### Tags
-
-- Application Development
-- SDK
-- UI Components
-- Workspace
-
-#### Properties
-
-- [Documentation](https://developers.lseg.com/en/api-catalog/workspace-sdk/workspace-sdk/documentation)
-- [Postman Collection](collections/refinitiv-eikon-data-platform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-data-platform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-datascope-select.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-datascope-select.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-tick-history.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-tick-history.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### LSEG DataScope Select REST API
-
-REST API providing programmatic access to the DataScope Select platform for extracting global prices, corporate actions, reference data, historical data, cross-reference data, and entity data. Supports flexible extraction scheduling with increased instrument limits compared to the SOAP API.
-
-- **Human URL:** [https://developers.lseg.com/en/api-catalog/datascope-select/datascope-select-rest-api](https://developers.lseg.com/en/api-catalog/datascope-select/datascope-select-rest-api)
-- **Base URL:** `https://selectapi.datascope.refinitiv.com/RestApi/v1`
-
-#### Tags
-
-- Corporate Actions
-- Data Extraction
-- Reference Data
-- REST API
-
-#### Properties
-
-- [Documentation](https://developers.lseg.com/en/api-catalog/datascope-select/datascope-select-rest-api/documentation)
-- [Getting Started](https://developers.lseg.com/en/api-catalog/datascope-select/datascope-select-rest-api/quick-start)
-- [Tutorials](https://developers.lseg.com/en/api-catalog/datascope-select/datascope-select-rest-api/tutorials)
-- [Postman Collection](collections/refinitiv-eikon-data-platform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-data-platform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-datascope-select.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-datascope-select.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-tick-history.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-tick-history.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### LSEG Tick History REST API
-
-REST API providing programmatic access to historical tick-level market data through the DataScope Select platform. Supports on-demand and scheduled extractions of tick data, intraday bars, and end-of-day data across global markets. Also available via Google BigQuery on GCP.
-
-- **Human URL:** [https://developers.lseg.com/en/api-catalog/refinitiv-tick-history/refinitiv-tick-history-rth-rest-api](https://developers.lseg.com/en/api-catalog/refinitiv-tick-history/refinitiv-tick-history-rth-rest-api)
-- **Base URL:** `https://selectapi.datascope.refinitiv.com/RestApi/v1`
-
-#### Tags
-
-- Historical Data
-- Market Data
-- REST API
-- Tick Data
-
-#### Properties
-
-- [Documentation](https://developers.lseg.com/en/api-catalog/refinitiv-tick-history/refinitiv-tick-history-rth-rest-api/documentation)
-- [Getting Started](https://developers.lseg.com/en/api-catalog/refinitiv-tick-history/refinitiv-tick-history-rth-rest-api/quick-start)
-- [Tutorials](https://developers.lseg.com/en/api-catalog/refinitiv-tick-history/refinitiv-tick-history-rth-rest-api/tutorials)
-- [Postman Collection](collections/refinitiv-eikon-data-platform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-data-platform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-datascope-select.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-datascope-select.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-tick-history.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-tick-history.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### PermID Entity Search API
-
-RESTful API for searching and discovering organizations, equity instruments, and equity quotes using PermID identifiers. Supports searching by name, ticker, RIC, LEI, and other standard identifiers across approximately 13 million organizations and 3 million equity quotes.
-
-- **Human URL:** [https://developers.lseg.com/en/api-catalog/open-perm-id/permid-entity-search](https://developers.lseg.com/en/api-catalog/open-perm-id/permid-entity-search)
-- **Base URL:** `https://api-eit.refinitiv.com/permid/search`
-
-#### Tags
-
-- Entity Search
-- Identifiers
-- Open Data
-- Symbology
-
-#### Properties
-
-- [Documentation](https://developers.lseg.com/en/api-catalog/open-perm-id/permid-entity-search/documentation)
-- [Tutorials](https://developers.lseg.com/en/api-catalog/open-perm-id/permid-entity-search/tutorials)
-- [Postman Collection](collections/refinitiv-eikon-data-platform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-data-platform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-datascope-select.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-datascope-select.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-tick-history.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-tick-history.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### PermID Record Matching API
-
-RESTful API for matching unstructured entity records to PermID identifiers. Enables concordance by mapping external entity data to LSEG permanent identifiers for organizations and instruments.
-
-- **Human URL:** [https://developers.lseg.com/en/api-catalog/open-perm-id/permid-record-matching-restful-api](https://developers.lseg.com/en/api-catalog/open-perm-id/permid-record-matching-restful-api)
-- **Base URL:** `https://api-eit.refinitiv.com/permid/match`
-
-#### Tags
-
-- Concordance
-- Entity Matching
-- Identifiers
-- Open Data
-
-#### Properties
-
-- [Documentation](https://developers.lseg.com/en/api-catalog/open-perm-id/permid-record-matching-restful-api/documentation)
-- [Getting Started](https://developers.lseg.com/en/api-catalog/open-perm-id/permid-record-matching-restful-api/quick-start)
-- [Postman Collection](collections/refinitiv-eikon-data-platform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-data-platform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-datascope-select.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-datascope-select.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-tick-history.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-tick-history.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Intelligent Tagging API
-
-RESTful API for extracting entities, topics, and metadata from unstructured text content. Identifies organizations, people, instruments, and other financial entities within documents using natural language processing.
-
-- **Human URL:** [https://developers.lseg.com/en/api-catalog/open-perm-id/intelligent-tagging-restful-api](https://developers.lseg.com/en/api-catalog/open-perm-id/intelligent-tagging-restful-api)
-- **Base URL:** `https://api-eit.refinitiv.com/permid/calais`
-
-#### Tags
-
-- Entity Extraction
-- NLP
-- Tagging
-- Text Analytics
-
-#### Properties
-
-- [Documentation](https://developers.lseg.com/en/api-catalog/open-perm-id/intelligent-tagging-restful-api/documentation)
-- [Getting Started](https://developers.lseg.com/en/api-catalog/open-perm-id/intelligent-tagging-restful-api/quick-start)
-- [Postman Collection](collections/refinitiv-eikon-data-platform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-data-platform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-datascope-select.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-datascope-select.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-tick-history.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-tick-history.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Refinitiv Knowledge Direct API
-
-Web services API integrating financial market data, news, and analytics into websites, trading platforms, advisory portals, and mobile applications. Delivers pricing, news, fundamental data, consensus estimates, Lipper fund data, and StockReports through SOAP and XML protocols.
-
-- **Human URL:** [https://developers.lseg.com/en/api-catalog/refinitiv-knowledge-direct/refinitiv-knowledge-direct-api-rkd-api](https://developers.lseg.com/en/api-catalog/refinitiv-knowledge-direct/refinitiv-knowledge-direct-api-rkd-api)
-- **Base URL:** `https://api.rkd.refinitiv.com`
-
-#### Tags
-
-- Market Data
-- Portals
-- SOAP
-- Wealth Management
-
-#### Properties
-
-- [Documentation](https://developers.lseg.com/en/api-catalog/refinitiv-knowledge-direct/refinitiv-knowledge-direct-api-rkd-api/documentation)
-- [Getting Started](https://developers.lseg.com/en/api-catalog/refinitiv-knowledge-direct/refinitiv-knowledge-direct-api-rkd-api/quick-start)
-- [Tutorials](https://developers.lseg.com/en/api-catalog/refinitiv-knowledge-direct/refinitiv-knowledge-direct-api-rkd-api/tutorials)
-- [Downloads](https://developers.lseg.com/en/api-catalog/refinitiv-knowledge-direct/refinitiv-knowledge-direct-api-rkd-api/download)
-- [Postman Collection](collections/refinitiv-eikon-data-platform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-data-platform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-datascope-select.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-datascope-select.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-tick-history.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-tick-history.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Symbology API
-
-Discovery Symbology API for concordance, navigation, and discovery of financial content. Enables mapping from external identifiers to LSEG PermIDs and navigating between a wide range of identifier types. Available at no additional cost to Data Platform subscribers.
-
-- **Human URL:** [https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/symbology-API](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/symbology-API)
-- **Base URL:** `https://api.refinitiv.com`
-
-#### Tags
-
-- Concordance
-- Identifiers
-- Reference Data
-- Symbology
-
-#### Properties
-
-- [Documentation](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/symbology-API/documentation)
-- [Postman Collection](collections/refinitiv-eikon-data-platform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-data-platform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-datascope-select.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-datascope-select.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-tick-history.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-tick-history.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Search API
-
-API enabling search across organizations, instruments, quotes, and economic indicators on the Refinitiv Data Platform. Part of the Search Light family of APIs for wealth management applications.
-
-- **Human URL:** [https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/search-API](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/search-API)
-- **Base URL:** `https://api.refinitiv.com`
-
-#### Tags
-
-- Discovery
-- Instruments
-- Search
-- Wealth Management
-
-#### Properties
-
-- [Documentation](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/search-API/documentation)
-- [Postman Collection](collections/refinitiv-eikon-data-platform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-data-platform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-datascope-select.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-datascope-select.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-tick-history.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-tick-history.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Research API
-
-API built on the Refinitiv Data Platform providing streamlined access to real-time and historical sell-side research reports. Serves as the aggregate delivery system for providing buy-side institutions with entitled research content.
-
-- **Human URL:** [https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/research-API](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/research-API)
-- **Base URL:** `https://api.refinitiv.com`
-
-#### Tags
-
-- Buy-Side
-- Reports
-- Research
-- Sell-Side
-
-#### Properties
-
-- [Documentation](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/research-API/documentation)
-- [Postman Collection](collections/refinitiv-eikon-data-platform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-data-platform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-datascope-select.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-datascope-select.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-tick-history.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-tick-history.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### News API for Wealth
-
-API providing access to financial news content for wealth management applications. Delivers real-time and historical news from Reuters and other sources through the Refinitiv Data Platform.
-
-- **Human URL:** [https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/news-API](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/news-API)
-- **Base URL:** `https://api.refinitiv.com`
-
-#### Tags
-
-- Financial News
-- News
-- Wealth Management
-
-#### Properties
-
-- [Documentation](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/news-API/documentation)
-- [Postman Collection](collections/refinitiv-eikon-data-platform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-data-platform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-datascope-select.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-datascope-select.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-tick-history.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-tick-history.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Funds API for Wealth
-
-API providing access to Lipper fund data for wealth management applications. Delivers fund performance, classifications, ratings, and other mutual fund data through the Refinitiv Data Platform.
-
-- **Human URL:** [https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/lipper-funds-API](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/lipper-funds-API)
-- **Base URL:** `https://api.refinitiv.com`
-
-#### Tags
-
-- Funds
-- Lipper
-- Performance
-- Wealth Management
-
-#### Properties
-
-- [Documentation](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/lipper-funds-API/documentation)
-- [Postman Collection](collections/refinitiv-eikon-data-platform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-data-platform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-datascope-select.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-datascope-select.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-tick-history.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-tick-history.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Estimates API for Wealth
-
-API providing access to consensus estimates data for wealth management applications. Delivers analyst estimates, recommendations, and forecasts through the Refinitiv Data Platform.
-
-- **Human URL:** [https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/estimates-API](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/estimates-API)
-- **Base URL:** `https://api.refinitiv.com`
-
-#### Tags
-
-- Consensus
-- Estimates
-- Forecasts
-- Wealth Management
-
-#### Properties
-
-- [Documentation](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/estimates-API/documentation)
-- [Postman Collection](collections/refinitiv-eikon-data-platform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-data-platform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-datascope-select.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-datascope-select.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-tick-history.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-tick-history.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Ownership API for Wealth
-
-API providing access to institutional and fund ownership data for wealth management applications. Delivers ownership holdings, stakes, and shareholder information through the Refinitiv Data Platform.
-
-- **Human URL:** [https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/ownership-API](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/ownership-API)
-- **Base URL:** `https://api.refinitiv.com`
-
-#### Tags
-
-- Holdings
-- Ownership
-- Shareholders
-- Wealth Management
-
-#### Properties
-
-- [Documentation](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/ownership-API/documentation)
-- [Postman Collection](collections/refinitiv-eikon-data-platform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-data-platform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-datascope-select.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-datascope-select.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-tick-history.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-tick-history.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Filings API
-
-API providing access to regulatory filings data through the Refinitiv Data Platform. Delivers SEC filings, annual reports, and other regulatory documents for financial analysis and compliance workflows.
-
-- **Human URL:** [https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/filings-API](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/filings-API)
-- **Base URL:** `https://api.refinitiv.com`
-
-#### Tags
-
-- Compliance
-- Filings
-- Regulatory
-- SEC
-
-#### Properties
-
-- [Documentation](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/filings-API/documentation)
-- [Postman Collection](collections/refinitiv-eikon-data-platform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-data-platform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-datascope-select.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-datascope-select.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-tick-history.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-tick-history.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### World-Check One API
-
-Workflow-based REST/JSON API for screening entities against the World-Check risk intelligence database. Supports due diligence in the fight against financial crime, bribery, and corruption by enabling checks against sanctions, PEPs, and reputational risk data.
-
-- **Human URL:** [https://developers.lseg.com/en/api-catalog/customer-and-third-party-screening/world-check-one-api](https://developers.lseg.com/en/api-catalog/customer-and-third-party-screening/world-check-one-api)
-- **Base URL:** `https://rms-world-check-one-api.thomsonreuters.com`
-
-#### Tags
-
-- AML
-- Compliance
-- Risk
-- Screening
-
-#### Properties
-
-- [Documentation](https://developers.lseg.com/en/api-catalog/customer-and-third-party-screening/world-check-one-api/documentation)
-- [Getting Started](https://developers.lseg.com/en/api-catalog/customer-and-third-party-screening/world-check-one-api/quick-start)
-- [Postman Collection](collections/refinitiv-eikon-data-platform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-data-platform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-datascope-select.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-datascope-select.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-tick-history.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-tick-history.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### World-Check Verify API
-
-Cloud-native, stateless screening API purpose-built for real-time, low-latency screening of individuals and entities in modern payment workflows. Screens against World-Check risk intelligence data and client proprietary lists via REST/JSON over HTTPS.
-
-- **Human URL:** [https://developers.lseg.com/en/api-catalog/customer-and-third-party-screening/world-check-verify](https://developers.lseg.com/en/api-catalog/customer-and-third-party-screening/world-check-verify)
-- **Base URL:** `https://api.refinitiv.com`
-
-#### Tags
-
-- Compliance
-- Payments
-- Real-Time
-- Screening
-
-#### Properties
-
-- [Documentation](https://developers.lseg.com/en/api-catalog/customer-and-third-party-screening/world-check-verify/documentation)
-- [Getting Started](https://developers.lseg.com/en/api-catalog/customer-and-third-party-screening/world-check-verify/quick-start)
-- [Postman Collection](collections/refinitiv-eikon-data-platform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-data-platform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-datascope-select.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-datascope-select.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-tick-history.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-tick-history.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### App Studio Web SDK
-
-Web SDK for building custom applications using HTML5 and JavaScript within the Eikon App Studio environment. Provides access to Eikon JavaScript libraries, UI controls, and data APIs for creating embedded financial applications.
-
-- **Human URL:** [https://developers.lseg.com/en/api-catalog/app-studio/app-studio-web-sdk](https://developers.lseg.com/en/api-catalog/app-studio/app-studio-web-sdk)
-- **Base URL:** `https://api.refinitiv.com`
-
-#### Tags
-
-- App Development
-- Embedded Apps
-- HTML5
-- JavaScript
-
-#### Properties
-
-- [Documentation](https://developers.lseg.com/en/api-catalog/app-studio/app-studio-web-sdk/documentation)
-- [Postman Collection](collections/refinitiv-eikon-data-platform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-data-platform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-datascope-select.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-datascope-select.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-tick-history.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-tick-history.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Eikon COM APIs for Microsoft Office
-
-COM APIs for integrating Refinitiv Eikon data into Microsoft Office applications. Provides access to real-time market data, news, fundamental data, and analytics through Visual Basic for Applications, VB, C++, and other COM-compatible languages.
-
-- **Human URL:** [https://developers.lseg.com/en/api-catalog/eikon/com-apis-for-use-in-microsoft-office](https://developers.lseg.com/en/api-catalog/eikon/com-apis-for-use-in-microsoft-office)
-- **Base URL:** `https://api.refinitiv.com`
-
-#### Tags
-
-- COM
-- Deprecated
-- Microsoft Office
-- VBA
-
-#### Properties
-
-- [Documentation](https://developers.lseg.com/en/api-catalog/eikon/com-apis-for-use-in-microsoft-office/documentation)
-- [Getting Started](https://developers.lseg.com/en/api-catalog/eikon/com-apis-for-use-in-microsoft-office/quick-start)
-- [Tutorials](https://developers.lseg.com/en/api-catalog/eikon/com-apis-for-use-in-microsoft-office/tutorials)
-- [Downloads](https://developers.lseg.com/en/api-catalog/eikon/com-apis-for-use-in-microsoft-office/download)
-- [Deprecation  Notice](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-libraries)
-- [Postman Collection](collections/refinitiv-eikon-data-platform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-data-platform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-datascope-select.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-datascope-select.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-tick-history.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-tick-history.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Eikon .NET APIs
-
-.NET APIs for building custom standalone applications that access Refinitiv Eikon data including real-time market data, news, fundamentals, and time series. Requires the Eikon application running with a signed-in user. 32-bit edition only.
-
-- **Human URL:** [https://developers.lseg.com/en/api-catalog/eikon/-net-apis-for-use-in-custom-applications](https://developers.lseg.com/en/api-catalog/eikon/-net-apis-for-use-in-custom-applications)
-- **Base URL:** `https://api.refinitiv.com`
-
-#### Tags
-
-- .NET
-- Custom Applications
-- Deprecated
-- Desktop
-
-#### Properties
-
-- [Documentation](https://developers.lseg.com/en/api-catalog/eikon/-net-apis-for-use-in-custom-applications/documentation)
-- [Deprecation  Notice](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-libraries)
-- [Postman Collection](collections/refinitiv-eikon-data-platform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-data-platform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-datascope-select.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-datascope-select.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/refinitiv-eikon-tick-history.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/refinitiv-eikon-tick-history.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [Arazzo Workflows](arazzo/) — [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)
-- [LinkedIn](https://www.linkedin.com/showcase/refinitiv-eikon)
-- [Portal](https://developers.lseg.com)
-- [Getting Started](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis/quick-start)
-- [Documentation](https://developers.lseg.com/en/api-catalog)
-- [Sign Up](https://developers.lseg.com/en/register)
-- [Login](https://developers.lseg.com/en/login)
-- [Blog](https://medium.com/lseg-developer-community)
-- [Blog R S S](https://medium.com/feed/lseg-developer-community)
-- [Community](https://community.developers.refinitiv.com/)
-- [Support](https://my.refinitiv.com/content/mytr/en/helpandsupport.html)
-- [Terms of Service](https://www.refinitiv.com/en/policies/terms-of-use)
-- [Privacy Policy](https://www.refinitiv.com/en/policies/privacy-statement)
-- [Status Page](https://status.refinitiv.com/)
-- [GitHub Organization](https://github.com/LSEG-API-Samples)
-- [GitHub Repository](https://github.com/Refinitiv/Real-Time-SDK)
-- [Developer  Tools](https://apidocs.refinitiv.com/Apps/ApiDocs)
-- [Changelog](https://community.developers.refinitiv.com/discussions)
-- [Console](https://my.refinitiv.com)
 - [Website](https://www.lseg.com)
-- [OpenAPI](openapi/refinitiv-eikon-data-platform-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [OpenAPI](openapi/refinitiv-eikon-datascope-select-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [OpenAPI](openapi/refinitiv-eikon-tick-history-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [AsyncAPI](asyncapi/refinitiv-eikon-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
-- [JSON Schema](json-schema/refinitiv-eikon-instrument-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/refinitiv-eikon-esg-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/refinitiv-eikon-data-platform-structure.json)
-- [J S O N L D Context](json-ld/refinitiv-eikon-context.jsonld)
-- [Spectral Rules](rules/refinitiv-eikon-rules.yml)
-- [Vocabulary](vocabulary/refinitiv-eikon-vocabulary.yml)
+- [Documentation](https://developers.lseg.com/en/api-catalog)
+- [Getting started](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis/quick-start)
+- [Support](https://my.refinitiv.com/content/mytr/en/helpandsupport.html)
+- [Changelog](https://community.developers.refinitiv.com/discussions)
+- [Blog](https://medium.com/lseg-developer-community)
+- [Terms of service](https://www.refinitiv.com/en/policies/terms-of-use)
+- [Privacy policy](https://www.refinitiv.com/en/policies/privacy-statement)
+- [GitHub](https://github.com/LSEG-API-Samples)
+- [Status](https://status.refinitiv.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 48.3** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 71.4 |
+| Contract quality | 66.5 |
+| Contract governance | 27.3 |
+| Operational transparency | 39.5 |
+| Developer ergonomics | 58.3 |
+| Access clarity | 22.4 |
+
+**Agent readiness 26.0** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | mostly (partial credit) |
+
+**Regulatory alignment 25.0** — Securities & Market Data
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/refinitiv-eikon/](https://apis.io/providers/refinitiv-eikon/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Refinitiv Eikon: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/refinitiv-eikon/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
